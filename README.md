@@ -1,4 +1,4 @@
-![](https://media.discordapp.net/attachments/1419146917576970402/1419147699579654225/e0c6f89a1f31452dbc4c94d3a8282f6a.png?ex=68e47a4a&is=68e328ca&hm=c0f71bc24dd1108e7936cdfcc52e3d3258911ee7ddb0fbefaa542691b302e688&=&format=webp&quality=lossless&width=2560&height=863)
+![](https://hirxs-workshop.net/wp-content/uploads/2025/10/e0c6f89a1f31452dbc4c94d3a8282f6a.png)
 
 ## 📦 ⏤ Fazbear's Restocked __**[¡COMING SOON! - 2025]**__
 Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!
