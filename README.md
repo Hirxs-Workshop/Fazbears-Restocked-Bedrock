@@ -1,6 +1,6 @@
 ![](https://hirxs-workshop.net/wp-content/uploads/2025/10/e0c6f89a1f31452dbc4c94d3a8282f6a.png)
 
-## 📦 ⏤ Fazbear's Restocked __**[¡COMING SOON! - 2025]**__
+## 📦 ⏤ Fazbear's Restocked - Early beta__
 Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!
 
 - With tons of cool, advanced mechanics that will make your pizzeria feel alive and functional, create complex or basic power systems, connect security cameras and monitor the area with dynamic connections, open your own functioning pizzeria, and even... survive the nights with animatronics!
