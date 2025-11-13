@@ -4,7 +4,7 @@
 Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!
 
 - With tons of cool, advanced mechanics that will make your pizzeria feel alive and functional, create complex or basic power systems, connect security cameras and monitor the area with dynamic connections, open your own functioning pizzeria, and even... survive the nights with animatronics!
-- Decorate your pizzeria with over 500+ decorative/solid blocks with variations and functions—and of course, this is just a small percentage of the content... 👀
+- Decorate your pizzeria with decorative/solid blocks with variations and functions—and of course, this is just a small percentage of the content... 👀
 
 ---
 
