@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "lockers_swamp_blue_texture",
+        "metalness_emissive_roughness": "lockers_swamp_blue_texture_mer",
+        "heightmap": "lockers_swamp_blue_texture_normal"
+    }
+}

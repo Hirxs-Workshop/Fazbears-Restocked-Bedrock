@@ -1,0 +1,51 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.pirate_cove_light_entity",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "bone",
+					"pivot": [0, 9, 0],
+					"cubes": [
+						{
+							"origin": [-4.5, 9, 3],
+							"size": [9, 9, 0],
+							"pivot": [0, 11.5, 3],
+							"rotation": [0, 0, -180],
+							"uv": {
+								"north": {"uv": [0.51482, 15.47778], "uv_size": [3.25, -3.25]},
+								"east": {"uv": [0.23704, 1.25556], "uv_size": [0.05555, 0.06944]},
+								"south": {"uv": [0.29259, 1.25556], "uv_size": [0.05556, 0.06944]},
+								"west": {"uv": [0.01482, 1.31111], "uv_size": [0.05556, 0.06944]},
+								"up": {"uv": [0.34815, 1.22778], "uv_size": [0.05556, 0.05556]},
+								"down": {"uv": [0.34815, 1.33889], "uv_size": [0.05556, -0.05556]}
+							}
+						},
+						{
+							"origin": [-17.5, -14, 4],
+							"size": [35, 29, 0],
+							"pivot": [0, 9, 0],
+							"rotation": [0, 0, -180],
+							"uv": {
+								"north": {"uv": [3.02535, 2.03237], "uv_size": [10.72465, 8.44815]},
+								"east": {"uv": [0.02886, 0.03237], "uv_size": [0.00351, 0.00439]},
+								"south": {"uv": [0.03237, 0.03237], "uv_size": [0.00351, 0.00439]},
+								"west": {"uv": [0.01482, 0.03589], "uv_size": [0.00351, 0.00439]},
+								"up": {"uv": [0.03589, 0.03062], "uv_size": [0.00351, 0.00351]},
+								"down": {"uv": [0.03589, 0.03764], "uv_size": [0.00351, -0.00351]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

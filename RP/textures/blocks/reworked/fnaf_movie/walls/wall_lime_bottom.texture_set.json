@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wall_lime_bottom",
+        "metalness_emissive_roughness": "wall_lime_bottom_mer",
+        "heightmap": "wall_lime_bottom_normal"
+    }
+}

@@ -1,0 +1,29 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.fnaf1_bonnie.attack": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"attack": "variable.attack_time > 0"
+						}
+					]
+				},
+				"attack": {
+					"on_entry": [
+						"/event entity @s bonnie_start_attack"
+					],
+					"animations": [
+						"attack"
+					],
+					"transitions": [
+						{
+							"default": "!variable.attack_time"
+						}
+					]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,87 @@
+{
+	"format_version": "1.17.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "fr:west_sit",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"kills": {
+				"minecraft:instant_despawn": {}
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": [
+					"inanimate"
+				]
+			},
+			"minecraft:collision_box": {
+				"width": 0.25,
+				"height": 0.1
+			},
+			"minecraft:physics": {
+				"has_collision": false,
+				"has_gravity": false
+			},
+			"minecraft:fire_immune": true,
+			"minecraft:damage_sensor": {
+				"triggers": [
+					{
+						"cause": "all",
+						"deals_damage": false,
+						"on_damage_sound_event": ""
+					}
+				]
+			},
+			"minecraft:breathable": {
+				"breathes_solids": true
+			},
+			"minecraft:rideable": {
+				"seat_count": 1,
+				"seats": [
+				  {
+					"position": [0, 0.3, 0],
+					"lock_rider_rotation": 120,
+					"rotate_rider_by": 90
+				  }
+				]
+			  },
+
+			  "minecraft:inside_block_notifier": {
+				"block_list": [
+					{
+						"block": {
+							"name": "fr:party_chair"
+						},
+						"exited_block_event": {
+							"event": "kill"
+						}
+					}
+				]
+			},
+			"minecraft:environment_sensor": {
+				"triggers": [
+					{
+						"event": "kill",
+						"filters": {
+							"test": "rider_count",
+							"value": 0
+						}
+					}
+				]
+			}
+		},
+		"events": {
+			"kill": {
+				"add": {
+					"component_groups": [
+						"kills"
+					]
+				}
+			}
+		}
+	}
+}

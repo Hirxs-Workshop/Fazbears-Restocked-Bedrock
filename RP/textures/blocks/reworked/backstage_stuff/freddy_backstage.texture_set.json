@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "freddy_backstage",
+        "metalness_emissive_roughness": "freddy_backstage_mer",
+        "heightmap": "freddy_backstage_normal"
+    }
+}

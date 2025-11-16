@@ -1,0 +1,115 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.wet_floor_sign",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "wet_floor_sign",
+					"pivot": [0, 5.08619, 0.12485],
+					"cubes": [
+						{
+							"origin": [-5.5, -0.37087, 2.59245],
+							"size": [3, 16, 0],
+							"pivot": [0, 7.62913, 2.59245],
+							"rotation": [17.5, 0, 0],
+							"uv": {
+								"north": {"uv": [0, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"east": {"uv": [0, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"south": {"uv": [8, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"west": {"uv": [11, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"up": {"uv": [0, 16], "uv_size": [11, 0], "material_instance": "sign"},
+								"down": {"uv": [11, 16], "uv_size": [11, 0], "material_instance": "sign"}
+							}
+						},
+						{
+							"origin": [2.5, -0.37087, 2.59245],
+							"size": [3, 16, 0],
+							"pivot": [8, 7.62913, 2.59245],
+							"rotation": [17.5, 0, 0],
+							"uv": {
+								"north": {"uv": [8, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"east": {"uv": [0, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"south": {"uv": [0, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"west": {"uv": [11, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"up": {"uv": [0, 16], "uv_size": [11, 0], "material_instance": "sign"},
+								"down": {"uv": [11, 16], "uv_size": [11, 0], "material_instance": "sign"}
+							}
+						},
+						{
+							"origin": [-2.5, 2.62913, 2.59245],
+							"size": [5, 11, 0],
+							"pivot": [5, 7.62913, 2.59245],
+							"rotation": [17.5, 0, 0],
+							"uv": {
+								"north": {"uv": [3, 18], "uv_size": [5, 11], "material_instance": "sign"},
+								"east": {"uv": [0, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"south": {"uv": [3, 18], "uv_size": [5, 11], "material_instance": "sign"},
+								"west": {"uv": [11, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"up": {"uv": [0, 16], "uv_size": [11, 0], "material_instance": "sign"},
+								"down": {"uv": [11, 16], "uv_size": [11, 0], "material_instance": "sign"}
+							}
+						},
+						{
+							"origin": [-2.5, 2.62913, -2.20755],
+							"size": [5, 11, 0],
+							"pivot": [5, 7.62913, -2.20755],
+							"rotation": [-17.5, 0, 0],
+							"uv": {
+								"north": {"uv": [3, 18], "uv_size": [5, 11], "material_instance": "sign"},
+								"east": {"uv": [0, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"south": {"uv": [3, 18], "uv_size": [5, 11], "material_instance": "sign"},
+								"west": {"uv": [11, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"up": {"uv": [0, 16], "uv_size": [11, 0], "material_instance": "sign"},
+								"down": {"uv": [11, 16], "uv_size": [11, 0], "material_instance": "sign"}
+							}
+						},
+						{
+							"origin": [2.5, -0.37087, -2.20755],
+							"size": [3, 16, 0],
+							"pivot": [8, 7.62913, -2.20755],
+							"rotation": [-17.5, 0, 0],
+							"uv": {
+								"north": {"uv": [8, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"east": {"uv": [0, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"south": {"uv": [0, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"west": {"uv": [11, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"up": {"uv": [0, 16], "uv_size": [11, 0], "material_instance": "sign"},
+								"down": {"uv": [11, 16], "uv_size": [11, 0], "material_instance": "sign"}
+							}
+						},
+						{
+							"origin": [-5.5, -0.37087, -2.20755],
+							"size": [3, 16, 0],
+							"pivot": [0, 7.62913, -2.20755],
+							"rotation": [-17.5, 0, 0],
+							"uv": {
+								"north": {"uv": [0, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"east": {"uv": [0, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"south": {"uv": [8, 16], "uv_size": [3, 16], "material_instance": "sign"},
+								"west": {"uv": [11, 16], "uv_size": [0, 16], "material_instance": "sign"},
+								"up": {"uv": [0, 16], "uv_size": [11, 0], "material_instance": "sign"},
+								"down": {"uv": [11, 16], "uv_size": [11, 0], "material_instance": "sign"}
+							}
+						},
+						{
+							"origin": [-13, 0.1, -13],
+							"size": [25, 0, 27],
+							"uv": {
+								"up": {"uv": [11, 27], "uv_size": [25, -27], "material_instance": "water"},
+								"down": {"uv": [11, 0], "uv_size": [25, 27], "material_instance": "water"}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

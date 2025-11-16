@@ -1,0 +1,104 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.fnaf1_foxy.base": {
+			"states": {
+				"default": {
+					"animations": [
+						"default"
+					],
+					"blend_transition": 0.2
+				}
+			}
+		},
+		"controller.animation.fnaf1_foxy.movement": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"attack": "variable.attack_time > 0"
+						},
+						{
+							"run": "variable.attack_time <= 0 && query.is_moving && query.modified_move_speed >= 0.9"
+						},
+						{
+							"walk": "variable.attack_time <= 0 && query.is_moving && query.modified_move_speed > 0.1 && query.modified_move_speed < 0.9"
+						},
+						{
+							"idle": "variable.attack_time <= 0 && (!query.is_moving || query.modified_move_speed <= 0.1)"
+						}
+					],
+					"blend_transition": 0.3
+				},
+				"walk": {
+					"animations": [
+						"walk", "look_at_target"
+					],
+					"transitions": [
+						{
+							"attack": "variable.attack_time > 0"
+						},
+						{
+							"run": "variable.attack_time <= 0 && query.modified_move_speed >= 0.9"
+						},
+						{
+							"idle": "variable.attack_time <= 0 && (!query.is_moving || query.modified_move_speed <= 0.1)"
+						}
+					],
+					"blend_transition": 0.3
+				},
+				"run": {
+					"animations": [
+						"run", "look_at_target"
+					],
+					"transitions": [
+						{
+							"attack": "variable.attack_time > 0"
+						},
+						{
+							"walk": "variable.attack_time <= 0 && query.modified_move_speed > 0.1 && query.modified_move_speed < 0.9"
+						},
+						{
+							"idle": "variable.attack_time <= 0 && (!query.is_moving || query.modified_move_speed <= 0.1)"
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"idle": {
+					"animations": [
+						"idle"
+					],
+					"transitions": [
+						{
+							"attack": "variable.attack_time > 0"
+						},
+						{
+							"run": "variable.attack_time <= 0 && query.is_moving && query.modified_move_speed >= 0.9"
+						},
+						{
+							"walk": "variable.attack_time <= 0 && query.is_moving && query.modified_move_speed > 0.1 && query.modified_move_speed < 0.9"
+						}
+					],
+					"blend_transition": 0.2
+				},
+				"attack": {
+					"animations": [
+						"attack"
+					],
+					"transitions": [
+						{
+							"idle": "query.all_animations_finished && variable.attack_time <= 0 && (!query.is_moving || query.modified_move_speed <= 0.1)"
+						},
+						{
+							"run": "query.all_animations_finished && variable.attack_time <= 0 && query.is_moving && query.modified_move_speed >= 0.9"
+						},
+						{
+							"walk": "query.all_animations_finished && variable.attack_time <= 0 && query.is_moving && query.modified_move_speed > 0.1 && query.modified_move_speed < 0.9"
+						}
+					],
+					"blend_transition": 0.8
+				}
+			}
+		}
+	}
+}

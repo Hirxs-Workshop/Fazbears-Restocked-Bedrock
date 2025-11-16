@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "cupcake",
+        "metalness_emissive_roughness": "cupcake_mer",
+        "heightmap": "cupcake_normal"
+    }
+}

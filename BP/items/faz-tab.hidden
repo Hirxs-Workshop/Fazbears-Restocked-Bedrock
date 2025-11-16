@@ -1,0 +1,23 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fr:faz-tab",
+			"menu_category": {
+				"category": "equipment"
+			}
+		},
+		"components": {
+			"minecraft:max_stack_size": 1,
+			"minecraft:hand_equipped": true,
+			"minecraft:icon": {
+				"textures": {
+					"default": "tablet"
+				}
+			},
+			"minecraft:custom_components": [
+				"fr:faz_tab_component"
+			]
+		}
+	}
+}

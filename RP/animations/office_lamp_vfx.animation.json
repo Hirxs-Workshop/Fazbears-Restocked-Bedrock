@@ -1,0 +1,13 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.office_lamp_vfx.camera": {
+			"loop": true,
+			"bones": {
+				"bone": {
+					"rotation": ["q.camera_rotation(0)*0", "q.body_y_rotation+q.rotation_to_camera(1)", 0]
+				}
+			}
+		}
+	}
+}

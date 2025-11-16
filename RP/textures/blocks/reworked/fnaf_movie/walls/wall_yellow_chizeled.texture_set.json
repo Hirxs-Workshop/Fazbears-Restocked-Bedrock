@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wall_yellow_chizeled",
+        "metalness_emissive_roughness": "wall_yellow_chizeled_mer",
+        "heightmap": "wall_yellow_chizeled_normal"
+    }
+}

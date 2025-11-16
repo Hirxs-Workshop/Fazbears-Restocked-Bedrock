@@ -1,0 +1,120 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:walls_pizza_wooden",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:variants": {
+					"values": {
+						"min": 0,
+						"max": 2
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"origin": [-8, 0, 6],
+				"size": [16, 16, 2]
+			},
+			"minecraft:selection_box": {
+				"origin": [-8, 0, 6],
+				"size": [16, 16, 2]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.walls_pizza_wooden_1"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "walls_pizza_wooden",
+					"render_method": "alpha_test"
+				}
+			},
+			"fr:single_interactive": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},	
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.walls_pizza_wooden_1"
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.walls_pizza_wooden_2"
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.walls_pizza_wooden_3"
+					}
+				}
+			}
+		]
+	}
+}

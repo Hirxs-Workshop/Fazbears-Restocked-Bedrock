@@ -1,0 +1,322 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:hallway_monitors",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:variants": {
+					"values": {
+						"min": 0,
+						"max": 5
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0.5
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 0.5
+			},
+			"minecraft:flammable": {
+				"catch_chance_modifier": 30,
+				"destroy_chance_modifier": 30
+			},
+			"minecraft:geometry": "geometry.hallway_monitors_1",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "hallway_monitors",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"origin": [-8, 0, -3],
+				"size": [16, 16, 11]
+			},
+			"minecraft:selection_box": {
+				"origin": [-8, 0, -3],
+				"size": [16, 16, 11]
+			},
+			"fr:single_interactive": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:geometry": "geometry.hallway_monitors_1"
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:geometry": "geometry.hallway_monitors_2"
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:geometry": "geometry.hallway_monitors_3"
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+					"minecraft:geometry": "geometry.hallway_monitors_5"
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 5",
+				"components": {
+					"minecraft:geometry": "geometry.hallway_monitors_6"
+				}
+			},
+						{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						]
+					},
+					"minecraft:geometry": "geometry.hallway_monitors_4",
+					"minecraft:collision_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					},
+					"minecraft:selection_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						]
+					},
+					"minecraft:geometry": "geometry.hallway_monitors_4",
+					"minecraft:collision_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					},
+					"minecraft:selection_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						]
+					},
+					"minecraft:geometry": "geometry.hallway_monitors_4",
+					"minecraft:collision_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					},
+					"minecraft:selection_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						]
+					},
+					"minecraft:geometry": "geometry.hallway_monitors_4",
+					"minecraft:collision_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					},
+					"minecraft:selection_box": {
+						"origin": [
+							-8,
+							0,
+							-2
+						],
+						"size": [
+							16,
+							8,
+							6
+						]
+					}
+				}
+			}
+		]
+	}
+}
