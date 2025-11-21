@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "movie_wall_top2",
-        "metalness_emissive_roughness": "movie_wall_top2_mer",
-        "heightmap": "movie_wall_top2_normal"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "acurate_chica_plush",
-        "metalness_emissive_roughness": "acurate_chica_plush_mer",
-        "heightmap": "acurate_chica_plush_normal"
-    }
-}

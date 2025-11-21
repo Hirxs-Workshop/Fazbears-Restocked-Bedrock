@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "bricks_dark_gray_bottom",
-        "metalness_emissive_roughness": "bricks_dark_gray_bottom_mer",
-        "heightmap": "bricks_dark_gray_bottom_normal"
-    }
-}

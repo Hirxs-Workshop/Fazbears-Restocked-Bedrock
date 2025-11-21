@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "knife3",
-        "metalness_emissive_roughness": "knife3_mer",
-        "heightmap": "knife3_normal"
-    }
-}

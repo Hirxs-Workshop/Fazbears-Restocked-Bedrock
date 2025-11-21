@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "security_desk_props",
-        "metalness_emissive_roughness": "security_desk_props_mer",
-        "heightmap": "security_desk_props_normal"
-    }
-}

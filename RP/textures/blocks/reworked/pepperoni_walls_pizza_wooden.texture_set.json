@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "pepperoni_walls_pizza_wooden",
-        "metalness_emissive_roughness": "pepperoni_walls_pizza_wooden_mer",
-        "heightmap": "pepperoni_walls_pizza_wooden_normal"
-    }
-}

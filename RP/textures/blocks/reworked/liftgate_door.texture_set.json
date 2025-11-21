@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "liftgate_door",
-        "metalness_emissive_roughness": "liftgate_door_mer",
-        "heightmap": "liftgate_door_normal"
-    }
-}
