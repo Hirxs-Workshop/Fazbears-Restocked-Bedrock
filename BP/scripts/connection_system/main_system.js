@@ -1,7 +1,7 @@
 import { world, system, BlockPermutation, Direction, EquipmentSlot, GameMode } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
 import { dynamicToast, dynamicToastEvent, cleanupLampVfxEntitiesOnReload, getLinePoints, turnOffLight, lampVfxEntities } from "./utils.js";
-import { LIGHT_TYPES, SWITCH_TYPES, GENERATOR_TYPES, LIGHT_ALIASES, SWITCH_ALIASES, GENERATOR_ALIASES, LIGHT_ICONS, SWITCH_ICONS, GENERATOR_ICONS, CONNECTIONS_KEY, GENERATORS_KEY, MAX_ENERGY, DEFAULT_CONSUMPTION_RATE, CONSUMPTION_MULTIPLIER, NEAR_DISTANCE } from "./connection_types.js";
+import { LIGHT_TYPES, SWITCH_TYPES, GENERATOR_TYPES, LIGHT_ALIASES, SWITCH_ALIASES, GENERATOR_ALIASES, LIGHT_ICONS, SWITCH_ICONS, GENERATOR_ICONS, CONNECTIONS_KEY, GENERATORS_KEY, MAX_ENERGY, DEFAULT_CONSUMPTION_RATE, CONSUMPTION_MULTIPLIER, NEAR_DISTANCE, getAllLightTypes, getAllSwitchTypes, isLightType, isSwitchType, getBlockAlias, getBlockIcon } from "./connection_types.js";
 import './door_buttons.js'
 
 let selections = {};
@@ -440,8 +440,8 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
   
   if (item && item.typeId === "fr:wrench") {
     const category = (function getBlockCategory(block) {
-      if (LIGHT_TYPES.has(block.typeId)) return "light";
-      if (SWITCH_TYPES.has(block.typeId)) return "switch";
+      if (isLightType(block.typeId)) return "light";
+      if (isSwitchType(block.typeId)) return "switch";
       if (GENERATOR_TYPES.has(block.typeId)) return "generator";
       return null;
     })(block);
@@ -478,9 +478,9 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
       dimension.runCommand(`execute positioned ${blockPos.x} ${blockPos.y} ${blockPos.z} run summon fr:selection ~ ~ ~ 0 0`);
       let iconToUse = "textures/fr_ui/selection_icon";
       let messageText = "§9Block selected";
-      if (SWITCH_TYPES.has(block.typeId)) {
-         iconToUse = SWITCH_ICONS[block.typeId] || "textures/fr_ui/switch_icon";
-         messageText = `§9The ${SWITCH_ALIASES[block.typeId] || "Switch"} block has been selected`;
+      if (isSwitchType(block.typeId)) {
+         iconToUse = getBlockIcon(block.typeId);
+         messageText = `§9The ${getBlockAlias(block.typeId)} block has been selected`;
       } else if (GENERATOR_TYPES.has(block.typeId)) {
          iconToUse = GENERATOR_ICONS[block.typeId] || "textures/fr_ui/placeholder_icon";
          messageText = `§9The ${GENERATOR_ALIASES[block.typeId] || "Generator"} block has been selected`;
@@ -500,7 +500,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
         const sourceBlock = dimension.getBlock({ x: source.x, y: source.y, z: source.z });
         let allowedRadius = 64;
         if (sourceBlock) {
-          if (SWITCH_TYPES.has(sourceBlock.typeId)) {
+          if (isSwitchType(sourceBlock.typeId)) {
           } else if (GENERATOR_TYPES.has(sourceBlock.typeId)) {
             const generatorData = getGeneratorAt(source);
             allowedRadius = generatorData ? (generatorData.radius || 8) : 8;
@@ -524,7 +524,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
           let isActive = false;
           const switchBlock = world.getDimension(source.dimensionId).getBlock({ x: source.x, y: source.y, z: source.z });
           if (switchBlock) {
-            if (SWITCH_TYPES.has(switchBlock.typeId)) {
+            if (isSwitchType(switchBlock.typeId)) {
               isActive = switchBlock.permutation.getState("fr:switch_type") === true;
             } else if (GENERATOR_TYPES.has(switchBlock.typeId)) {
               const gen = getGeneratorAt(source);
@@ -555,7 +555,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
     showGlobalMenu(player);
     return;
   }
-  if (LIGHT_TYPES.has(block.typeId)) {
+  if (isLightType(block.typeId)) {
     if (item && item.typeId === "fr:wrench") return;
     showTestLightMenu(player, blockPos);
     return;
@@ -597,7 +597,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
   };
   const blockType = brokenBlockPermutation.type.id;
 
-  if (LIGHT_TYPES.has(blockType)) {
+  if (isLightType(blockType)) {
     let connections = getConnections();
     const lightConnections = connections.filter(conn =>
       conn.light.x === blockPos.x &&
@@ -630,7 +630,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
     }
   }
 
-  if (SWITCH_TYPES.has(blockType)) {
+  if (isSwitchType(blockType)) {
     let connections = getConnections();
     const switchConnections = connections.filter(conn =>
       conn.switch.x === blockPos.x &&
@@ -714,7 +714,7 @@ system.runInterval(() => {
     });
     if (switchBlock && lightBlock) {
       let isActive = false;
-      if (SWITCH_TYPES.has(switchBlock.typeId)) {
+      if (isSwitchType(switchBlock.typeId)) {
         isActive = switchBlock.permutation.getState("fr:switch_type") === true;
       } else if (GENERATOR_TYPES.has(switchBlock.typeId)) {
         const gen = getGeneratorAt(conn.switch);
@@ -899,11 +899,11 @@ function updateLightTestActionBarForPlayer(player) {
   const blockData = player.getBlockFromViewDirection({ maxDistance: viewDistance });
   const block = blockData?.block;
   if (block && (
-      SWITCH_TYPES.has(block.typeId) ||
+      isSwitchType(block.typeId) ||
       GENERATOR_TYPES.has(block.typeId) ||
-      LIGHT_TYPES.has(block.typeId)
+      isLightType(block.typeId)
     )) {
-    if (LIGHT_TYPES.has(block.typeId)) {
+    if (isLightType(block.typeId)) {
       const blockPos = { x: block.location.x, y: block.location.y, z: block.location.z, dimensionId: player.dimension.id };
       const connections = getConnections();
       const connection = connections.find(conn =>
@@ -928,8 +928,8 @@ function updateLightTestActionBarForPlayer(player) {
           let switchName = "Manual";
           let isSwitchActive = false;
           if (switchBlock) {
-            if (SWITCH_TYPES.has(switchBlock.typeId)) {
-              switchName = SWITCH_ALIASES[switchBlock.typeId] || "Switch";
+            if (isSwitchType(switchBlock.typeId)) {
+              switchName = getBlockAlias(switchBlock.typeId);
               isSwitchActive = switchBlock.permutation.getState("fr:switch_type") === true;
             } else if (GENERATOR_TYPES.has(switchBlock.typeId)) {
               switchName = GENERATOR_ALIASES[switchBlock.typeId] || "Generator";
@@ -948,7 +948,7 @@ function updateLightTestActionBarForPlayer(player) {
         message = " §l§6Unlinked§r";
       }
     }
-    else if (SWITCH_TYPES.has(block.typeId) || GENERATOR_TYPES.has(block.typeId)) {
+    else if (isSwitchType(block.typeId) || GENERATOR_TYPES.has(block.typeId)) {
       const blockPos = { x: block.location.x, y: block.location.y, z: block.location.z, dimensionId: player.dimension.id };
       const connections = getConnections();
       const numConnections = connections.filter(conn =>
@@ -958,8 +958,8 @@ function updateLightTestActionBarForPlayer(player) {
         conn.switch.dimensionId === blockPos.dimensionId
       ).length;
       let blockName = "";
-      if (SWITCH_TYPES.has(block.typeId)) {
-        blockName = `§l§f${SWITCH_ALIASES[block.typeId] || "Switch"}§r`;
+      if (isSwitchType(block.typeId)) {
+        blockName = `§l§f${getBlockAlias(block.typeId)}§r`;
       } else if (GENERATOR_TYPES.has(block.typeId)) {
         blockName = `§l§f${GENERATOR_ALIASES[block.typeId] || "Generator"}§r`;
       }
@@ -992,10 +992,10 @@ function updateLightTestActionBarForPlayer(player) {
       const selectedBlock = dimension.getBlock({ x: selPos.x, y: selPos.y, z: selPos.z });
       let selectedMessage = "";
       if (selectedBlock) {
-        if (SWITCH_TYPES.has(selectedBlock.typeId) || GENERATOR_TYPES.has(selectedBlock.typeId)) {
+        if (isSwitchType(selectedBlock.typeId) || GENERATOR_TYPES.has(selectedBlock.typeId)) {
           let blockName = "";
-          if (SWITCH_TYPES.has(selectedBlock.typeId)) {
-            blockName = `§l§f${SWITCH_ALIASES[selectedBlock.typeId] || "Switch"}§r`;
+          if (isSwitchType(selectedBlock.typeId)) {
+            blockName = `§l§f${getBlockAlias(selectedBlock.typeId)}§r`;
           } else if (GENERATOR_TYPES.has(selectedBlock.typeId)) {
             blockName = `§l§f${GENERATOR_ALIASES[selectedBlock.typeId] || "Generator"}§r`;
           }

@@ -145,18 +145,28 @@
               }
             },
             {
+              "scroll_background": {
+                "type": "image",
+                "size": ["100% - 8px", "100% - 30px"],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [0, 18],
+                "layer": 1,
+                "texture": "textures/fr_ui/internal_modal_gray"
+              }
+            },
+            {
               "camera_list_scroll@common.scrolling_panel": {
                 "size": ["100% - 8px", "100% - 30px"],
                 "anchor_from": "top_middle",
                 "anchor_to": "top_middle",
                 "offset": [0, 18],
                 "layer": 2,
-                "$show_background": true,
-                "$background_image": "textures/fr_ui/internal_modal_gray",
+                "$show_background": false,
                 "$scrolling_content": "server_form.camera_list_content",
                 "$scroll_size": [5, "100%"],
-                "$scrolling_pane_size": ["100% - 4px", "100%"],
-                "$scrolling_pane_offset": [2, 0]
+                "$scrolling_pane_size": ["100% - 4px", "100% - 16px"],
+                "$scrolling_pane_offset": [2, 8]
               }
             }
           ]
@@ -175,14 +185,14 @@
               "$toggle_name": "oldpc_info_locked",
               "$toggle_group_forced_index": 99,
               "$toggle_group_default_selected": 0,
-              "$unchecked_control": "server_form.oldpc_button_default",
-              "$checked_control": "server_form.oldpc_button_hover",
-              "$unchecked_hover_control": "server_form.oldpc_button_hover",
-              "$checked_hover_control": "server_form.oldpc_button_hover",
+              "$unchecked_control": "server_form.oldpc_button_gray_locked",
+              "$checked_control": "server_form.oldpc_button_gray_locked",
+              "$unchecked_hover_control": "server_form.oldpc_button_gray_locked",
+              "$checked_hover_control": "server_form.oldpc_button_gray_locked",
               "size": ["69%", 42]
             } },
-            { "info_icon": { "type": "image", "texture": "textures/fr_ui/old_pc_icon", "size": [28, 28], "anchor_from": "center", "anchor_to": "center", "offset": [0, 0], "layer": 151 } },
-            { "info_label": { "type": "label", "text": "Info", "anchor_from": "bottom_middle", "anchor_to": "bottom_middle", "offset": [0, -10.5], "layer": 152, "font_scale_factor": 0.7, "text_alignment": "center" } }
+            { "info_icon": { "type": "image", "texture": "textures/fr_ui/old_pc_icon", "size": [28, 28], "anchor_from": "center", "anchor_to": "center", "offset": [0, 0], "layer": 151, "alpha": 0.5 } },
+            { "info_label": { "type": "label", "text": "Info", "anchor_from": "bottom_middle", "anchor_to": "bottom_middle", "offset": [0, -10.5], "layer": 152, "font_scale_factor": 0.7, "text_alignment": "center", "color": [0.6, 0.6, 0.6] } }
           ]
         }
       },
@@ -351,12 +361,23 @@
                 ]
               }
             },
-            { "camera_modal_scroll@common.scrolling_panel": { "size": ["100% - 8px", "100% - 24px"], "anchor_from": "top_middle", "anchor_to": "top_middle", "offset": [0, 18], "layer": 2, "$show_background": true, "$background_image": "textures/fr_ui/internal_modal_gray", "$scrolling_content": "server_form.camera_modal_content", "$scroll_size": [5, "100%"], "$scrolling_pane_size": ["100% - 4px", "100%"], "$scrolling_pane_offset": [2, 0] } }
+            {
+              "modal_scroll_background": {
+                "type": "image",
+                "size": ["100% - 8px", "100% - 24px"],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [0, 18],
+                "layer": 1,
+                "texture": "textures/fr_ui/internal_modal_gray"
+              }
+            },
+            { "camera_modal_scroll@common.scrolling_panel": { "size": ["100% - 8px", "100% - 24px"], "anchor_from": "top_middle", "anchor_to": "top_middle", "offset": [0, 18], "layer": 2, "$show_background": false, "$scrolling_content": "server_form.camera_modal_content", "$scroll_size": [5, "100%"], "$scrolling_pane_size": ["100% - 4px", "100% - 16px"], "$scrolling_pane_offset": [2, 8] } }
           ]
         }
       },
       {
-        "info_button_panel": { "type": "panel", "size": [60, 78], "anchor_from": "top_left", "anchor_to": "top_left", "offset": [4, -10], "controls": [ { "info_button_locked@common.radio_toggle": { "$toggle_view_binding_name": "oldpc_info_toggle_locked", "$toggle_name": "oldpc_info_locked", "$toggle_group_forced_index": 99, "$toggle_group_default_selected": 0, "$unchecked_control": "server_form.oldpc_button_default", "$checked_control": "server_form.oldpc_button_hover", "$unchecked_hover_control": "server_form.oldpc_button_hover", "$checked_hover_control": "server_form.oldpc_button_hover", "size": ["69%", 42] } }, { "info_icon": { "type": "image", "texture": "textures/fr_ui/old_pc_icon", "size": [28, 28], "anchor_from": "center", "anchor_to": "center", "offset": [0, 0], "layer": 151 } }, { "info_label": { "type": "label", "text": "Info", "anchor_from": "bottom_middle", "anchor_to": "bottom_middle", "offset": [0, -10.5], "layer": 152, "font_scale_factor": 0.7, "text_alignment": "center" } } ] }
+        "info_button_panel": { "type": "panel", "size": [60, 78], "anchor_from": "top_left", "anchor_to": "top_left", "offset": [4, -10], "controls": [ { "info_button_locked@common.radio_toggle": { "$toggle_view_binding_name": "oldpc_info_toggle_locked", "$toggle_name": "oldpc_info_locked", "$toggle_group_forced_index": 99, "$toggle_group_default_selected": 0, "$unchecked_control": "server_form.oldpc_button_gray_locked", "$checked_control": "server_form.oldpc_button_gray_locked", "$unchecked_hover_control": "server_form.oldpc_button_gray_locked", "$checked_hover_control": "server_form.oldpc_button_gray_locked", "size": ["69%", 42] } }, { "info_icon": { "type": "image", "texture": "textures/fr_ui/old_pc_icon", "size": [28, 28], "anchor_from": "center", "anchor_to": "center", "offset": [0, 0], "layer": 151, "alpha": 0.5 } }, { "info_label": { "type": "label", "text": "Info", "anchor_from": "bottom_middle", "anchor_to": "bottom_middle", "offset": [0, -10.5], "layer": 152, "font_scale_factor": 0.7, "text_alignment": "center", "color": [0.6, 0.6, 0.6] } } ] }
       },
       {
         "bottom_bar": {

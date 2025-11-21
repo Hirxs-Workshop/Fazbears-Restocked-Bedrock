@@ -39,8 +39,7 @@
 					"texture": "wall_wire",
 					"render_method": "alpha_test"
 				}
-			},
-			"fr:single_interactive": {}
+			}
 		},
 		"permutations": [
 			{

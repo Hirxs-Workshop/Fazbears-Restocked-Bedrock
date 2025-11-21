@@ -37,7 +37,8 @@
 				}
 			},
 			"minecraft:custom_components": [
-				"fr:faz_diver_mode_switch"
+				"fr:faz_diver_mode_switch",
+				"fr:wrench_interaction"
 			]
 		}
 	}

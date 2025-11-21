@@ -1,6 +1,7 @@
 import { world, system } from "@minecraft/server";
 import { ActionFormData, ModalFormData, uiManager } from "@minecraft/server-ui";
 import { dynamicToast, showCameraLoading } from "../utils.js";
+import * as FRAPI from "../fr_api.js";
 
 class SecurityCameraSystem {
   constructor() {
@@ -31,6 +32,120 @@ class SecurityCameraSystem {
     this.flashlightActive = new Map();
     this.flashlightBlocks = new Map();
     this.FLASHLIGHT_RANGE = 5;
+  }
+
+  /**
+   * Verifica si un bloque es una cámara (nativa o registrada vía API)
+   * @param {Block|string} blockOrTypeId - Bloque o typeId del bloque
+   * @returns {boolean}
+   */
+  isCamera(blockOrTypeId) {
+    const typeId = typeof blockOrTypeId === 'string' ? blockOrTypeId : blockOrTypeId?.typeId;
+    if (!typeId) return false;
+    
+    // Verificar cámara nativa
+    if (typeId === "fr:security_cameras") return true;
+    
+    // Verificar cámara custom registrada vía API
+    return FRAPI.getCameraConfig(typeId) !== null;
+  }
+
+  /**
+   * Detecta qué sistema de rotación usa el bloque
+   * @param {Block} block - Bloque de cámara
+   * @returns {string} - "fr:rotation", "cardinal_direction", o null
+   */
+  getBlockRotationSystem(block) {
+    if (!block) return null;
+    
+    try {
+      // Verificar si tiene fr:rotation
+      const frRotation = block.permutation.getState("fr:rotation");
+      if (frRotation !== undefined && frRotation !== null) return "fr:rotation";
+    } catch {}
+    
+    try {
+      // Verificar si tiene minecraft:cardinal_direction
+      const cardinalDir = block.permutation.getState("minecraft:cardinal_direction");
+      if (cardinalDir !== undefined && cardinalDir !== null) return "cardinal_direction";
+    } catch {}
+    
+    return null;
+  }
+
+  /**
+   * Convierte un yaw a dirección cardinal
+   * @param {number} yaw - Ángulo en grados
+   * @returns {string} - "north", "south", "east", "west"
+   */
+  yawToCardinalDirection(yaw) {
+    // Normalizar yaw a 0-360
+    let normalizedYaw = ((yaw % 360) + 360) % 360;
+    
+    // Mapear a direcciones cardinales
+    if (normalizedYaw >= 315 || normalizedYaw < 45) return "south";
+    if (normalizedYaw >= 45 && normalizedYaw < 135) return "west";
+    if (normalizedYaw >= 135 && normalizedYaw < 225) return "north";
+    return "east"; // 225-315
+  }
+
+  /**
+   * Convierte dirección cardinal a yaw
+   * @param {string} direction - "north", "south", "east", "west"
+   * @returns {number} - Yaw en grados
+   */
+  cardinalDirectionToYaw(direction) {
+    const directionMap = {
+      "south": 0,
+      "west": 90,
+      "north": 180,
+      "east": 270
+    };
+    return directionMap[direction] ?? 180;
+  }
+
+  /**
+   * Obtiene la rotación actual del bloque (agnóstico al sistema)
+   * @param {Block} block - Bloque de cámara
+   * @returns {any} - Rotación actual (índice o dirección) o null
+   */
+  getBlockRotation(block) {
+    if (!block) return null;
+    
+    const rotationSystem = this.getBlockRotationSystem(block);
+    
+    if (rotationSystem === "fr:rotation") {
+      try {
+        return block.permutation.getState("fr:rotation");
+      } catch {}
+    } else if (rotationSystem === "cardinal_direction") {
+      try {
+        return block.permutation.getState("minecraft:cardinal_direction");
+      } catch {}
+    }
+    
+    return null;
+  }
+
+  /**
+   * Establece la rotación del bloque (agnóstico al sistema)
+   * @param {Block} block - Bloque de cámara
+   * @param {any} rotation - Rotación a establecer
+   */
+  setBlockRotation(block, rotation) {
+    if (!block || rotation === null || rotation === undefined) return;
+    
+    const rotationSystem = this.getBlockRotationSystem(block);
+    
+    try {
+      if (rotationSystem === "fr:rotation") {
+        const newPerm = block.permutation.withState("fr:rotation", rotation);
+        block.setPermutation(newPerm);
+      } else if (rotationSystem === "cardinal_direction") {
+        const newPerm = block.permutation.withState("minecraft:cardinal_direction", rotation);
+        block.setPermutation(newPerm);
+      }
+    } catch {}
   }
 
   async getWorldTimeLabelsAsync(player) {
@@ -185,11 +300,10 @@ class SecurityCameraSystem {
             try {
               const dimension = world.getDimension(session.dim);
               const camBlock = this.blockFromLocStr(dimension, session.cam);
-              if (camBlock && camBlock.typeId === "fr:security_cameras") {
-                const currentRotation = camBlock.permutation.getState("fr:rotation");
+              if (camBlock && this.isCamera(camBlock)) {
+                const currentRotation = this.getBlockRotation(camBlock);
                 if (currentRotation !== initialRotation) {
-                  const newPerm = camBlock.permutation.withState("fr:rotation", initialRotation);
-                  camBlock.setPermutation(newPerm);
+                  this.setBlockRotation(camBlock, initialRotation);
                 }
               }
             } catch {}
@@ -233,7 +347,7 @@ class SecurityCameraSystem {
       this.removeFlashlightBlocks(pid, dimension);
       
       const cam = this.blockFromLocStr(dimension, camPosStr);
-      if (!cam || cam.typeId !== "fr:security_cameras") return;
+      if (!cam || !this.isCamera(cam)) return;
       
       const baseYawValue = this.baseYaw.get(pid);
       if (baseYawValue === undefined) return;
@@ -323,7 +437,8 @@ class SecurityCameraSystem {
     const blockId = block.typeId;
     const itemId = itemStack?.typeId;
 
-    if (blockId === "fr:security_cameras") {
+    // Verificar si es una cámara (nativa o custom registrada vía API)
+    if (this.isCamera(blockId)) {
       if (itemId === "fr:faz-diver_security") {
         this.selectCamera(player, block);
       }
@@ -369,7 +484,10 @@ class SecurityCameraSystem {
       for (const loc of attachedLocations) {
         try {
           const block = dimension.getBlock(loc);
-          if (!block || block.typeId !== "fr:security_cameras") continue;
+          if (!block) continue;
+          
+          // Verificar si es cámara nativa o custom
+          if (!this.isCamera(block)) continue;
 
           const camPosStr = this.locStr({ x: Math.floor(loc.x), y: Math.floor(loc.y), z: Math.floor(loc.z) });
 
@@ -430,7 +548,7 @@ class SecurityCameraSystem {
     player.sendMessage(
       dynamicToast(
         "§l§aCAMERA SELECTED",
-        `§qID: §f§ffr:security_cameras\n§qPos: §f${pos.x}, ${pos.y}, ${pos.z}`,
+        `§qID: §f§f${block.typeId}\n§qPos: §f${pos.x}, ${pos.y}, ${pos.z}`,
         "textures/fr_ui/approve_icon",
         "textures/fr_ui/approve_ui"
       )
@@ -585,7 +703,7 @@ class SecurityCameraSystem {
         const validCameras = [];
         for (const camPosStr of camList) {
           const camBlock = this.blockFromLocStr(pcBlock.dimension, camPosStr);
-          if (camBlock && camBlock.typeId === "fr:security_cameras") {
+          if (camBlock && this.isCamera(camBlock)) {
             validCameras.push(camPosStr);
           }
         }
@@ -749,7 +867,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
     }
     
     const camBlock = this.blockFromLocStr(dimension, camPosStr);
-    if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
+    if (!camBlock || !this.isCamera(camBlock)) {
       const camList = this.connections.get(pcPosStr) ?? [];
       const index = camList.indexOf(camPosStr);
       if (index > -1) {
@@ -809,7 +927,8 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       }
     }
 
-    const initialRotation = camBlock.permutation.getState("fr:rotation");
+    // Guardar rotación inicial (funciona con fr:rotation o cardinal_direction)
+    const initialRotation = this.getBlockRotation(camBlock);
     const basePose = this.frontPoseOf(camBlock);
     
     const alreadyViewing = this.viewers.has(pid);
@@ -900,7 +1019,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
           if (!sess) continue;
           const dim = player.dimension;
           const camBlock = this.blockFromLocStr(dim, sess.cam ?? "");
-          if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
+          if (!camBlock || !this.isCamera(camBlock)) {
             const camList = this.connections.get(sess.pc) ?? [];
             const oldIdx = camList.indexOf(sess.cam);
             if (oldIdx > -1) camList.splice(oldIdx, 1);
@@ -1030,11 +1149,10 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
           try {
             const dimension = world.getDimension(session.dim);
             const camBlock = this.blockFromLocStr(dimension, session.cam);
-            if (camBlock && camBlock.typeId === "fr:security_cameras") {
-              const currentRotation = camBlock.permutation.getState("fr:rotation");
+            if (camBlock && this.isCamera(camBlock)) {
+              const currentRotation = this.getBlockRotation(camBlock);
               if (currentRotation !== initialRotation) {
-                const newPerm = camBlock.permutation.withState("fr:rotation", initialRotation);
-                camBlock.setPermutation(newPerm);
+                this.setBlockRotation(camBlock, initialRotation);
               }
             }
           } catch {}
@@ -1213,22 +1331,39 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
   updateCameraBlockRotation(dimension, camPosStr, currentYaw) {
     try {
       const camBlock = this.blockFromLocStr(dimension, camPosStr);
-      if (!camBlock || camBlock.typeId !== "fr:security_cameras") return;
+      if (!camBlock || !this.isCamera(camBlock)) return;
       
+      // Verificar orientación del bloque (solo actualizar si está mirando hacia abajo)
       let blockFace = "down";
       try {
         blockFace = camBlock.permutation.getState("minecraft:block_face") ?? "down";
       } catch {}
       
-      if (blockFace !== "down") return;
+      // Detectar sistema de rotación
+      const rotationSystem = this.getBlockRotationSystem(camBlock);
       
-      const rotationIndex = this.yawToRotationIndex(currentYaw);
-      const currentRotation = camBlock.permutation.getState("fr:rotation");
-      
-      if (currentRotation !== rotationIndex) {
-        const newPerm = camBlock.permutation.withState("fr:rotation", rotationIndex);
-        camBlock.setPermutation(newPerm);
+      if (rotationSystem === "fr:rotation") {
+        // Sistema nativo de FR (índices 0-15)
+        if (blockFace !== "down") return;
+        
+        const rotationIndex = this.yawToRotationIndex(currentYaw);
+        const currentRotation = camBlock.permutation.getState("fr:rotation");
+        
+        if (currentRotation !== rotationIndex) {
+          const newPerm = camBlock.permutation.withState("fr:rotation", rotationIndex);
+          camBlock.setPermutation(newPerm);
+        }
+      } else if (rotationSystem === "cardinal_direction") {
+        // Sistema cardinal (north, south, east, west)
+        const cardinalDir = this.yawToCardinalDirection(currentYaw);
+        const currentDir = camBlock.permutation.getState("minecraft:cardinal_direction");
+        
+        if (currentDir !== cardinalDir) {
+          const newPerm = camBlock.permutation.withState("minecraft:cardinal_direction", cardinalDir);
+          camBlock.setPermutation(newPerm);
+        }
       }
+      // Si no tiene ningún sistema de rotación, simplemente no actualiza el bloque
     } catch (e) {}
   }
 
@@ -1287,13 +1422,25 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       };
       yaw = faceYaws[blockFace] ?? 180;
     } else {
-      try {
-        const rotation = block.permutation.getState("fr:rotation");
-        if (rotation !== undefined && rotation !== null) {
-          const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
-          yaw = (rotation >= 0 && rotation < angles.length) ? angles[rotation] : 180;
-        }
-      } catch {}
+      // Obtener yaw desde el sistema de rotación del bloque
+      const rotationSystem = this.getBlockRotationSystem(block);
+      
+      if (rotationSystem === "fr:rotation") {
+        try {
+          const rotation = block.permutation.getState("fr:rotation");
+          if (rotation !== undefined && rotation !== null) {
+            const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
+            yaw = (rotation >= 0 && rotation < angles.length) ? angles[rotation] : 180;
+          }
+        } catch {}
+      } else if (rotationSystem === "cardinal_direction") {
+        try {
+          const direction = block.permutation.getState("minecraft:cardinal_direction");
+          if (direction) {
+            yaw = this.cardinalDirectionToYaw(direction);
+          }
+        } catch {}
+      }
     }
     
     const yawRad = yaw * this.DEG_TO_RAD;
@@ -1502,7 +1649,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
             if (baseYawValue === undefined) return;
             
             const cam = this.blockFromLocStr(dimension, camPosStr);
-            if (!cam || cam.typeId !== "fr:security_cameras") {
+            if (!cam || !this.isCamera(cam)) {
               this.exitView(player);
               return;
             }
@@ -1557,11 +1704,10 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
           if (initialRot !== undefined) {
             try {
               const currentCamBlock = this.blockFromLocStr(dimension, camPosStr);
-              if (currentCamBlock && currentCamBlock.typeId === "fr:security_cameras") {
-                const currentRot = currentCamBlock.permutation.getState("fr:rotation");
+              if (currentCamBlock && this.isCamera(currentCamBlock)) {
+                const currentRot = this.getBlockRotation(currentCamBlock);
                 if (currentRot !== initialRot) {
-                  const resetPerm = currentCamBlock.permutation.withState("fr:rotation", initialRot);
-                  currentCamBlock.setPermutation(resetPerm);
+                  this.setBlockRotation(currentCamBlock, initialRot);
                 }
               }
             } catch {}
@@ -1586,11 +1732,10 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
           if (initialRot !== undefined) {
             try {
               const currentCamBlock = this.blockFromLocStr(dimension, camPosStr);
-              if (currentCamBlock && currentCamBlock.typeId === "fr:security_cameras") {
-                const currentRot = currentCamBlock.permutation.getState("fr:rotation");
+              if (currentCamBlock && this.isCamera(currentCamBlock)) {
+                const currentRot = this.getBlockRotation(currentCamBlock);
                 if (currentRot !== initialRot) {
-                  const resetPerm = currentCamBlock.permutation.withState("fr:rotation", initialRot);
-                  currentCamBlock.setPermutation(resetPerm);
+                  this.setBlockRotation(currentCamBlock, initialRot);
                 }
               }
             } catch {}
@@ -1625,7 +1770,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       const validCameras = [];
       for (const camPosStr of camList) {
         const camBlock = this.blockFromLocStr(player.dimension, camPosStr);
-        if (camBlock && camBlock.typeId === "fr:security_cameras") {
+        if (camBlock && this.isCamera(camBlock)) {
           validCameras.push(camPosStr);
         }
       }
@@ -1665,7 +1810,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
             status = "§p[IN USE]";
           }
         }
-        form.button(`${status} §r§8Camera (${posStr})`, "textures/fr_ui/gear");
+        form.button(`${status} §r§8Camera (${posStr})`, "textures/fr_ui/security_camera_icon");
       });
       form.show(player).then((res) => {
         if (res.canceled) {
@@ -1685,12 +1830,18 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       const pcBlock = this.blockFromLocStr(player.dimension, pcPosStr);
       const camBlock = this.blockFromLocStr(player.dimension, camPosStr);
       
-      if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
+      if (!camBlock || !this.isCamera(camBlock)) {
         player.sendMessage("§cCamera not found or invalid");
         return;
       }
 
-      const currentRotation = camBlock.permutation.getState("fr:rotation") ?? 0;
+      // Obtener rotación actual (solo para cámaras con fr:rotation)
+      let currentRotation = 0;
+      const rotationSystem = this.getBlockRotationSystem(camBlock);
+      if (rotationSystem === "fr:rotation") {
+        currentRotation = camBlock.permutation.getState("fr:rotation") ?? 0;
+      }
+      
       const settings = this.cameraSettings.get(camPosStr) ?? { verticalPitch: 0, rotationRange: 85, autoRotate: true };
       
       if (settings.verticalOffset !== undefined && settings.verticalPitch === undefined) {
@@ -1792,8 +1943,18 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
   adjustCameraRotation(player, pcPosStr, camPosStr) {
     try {
       const camBlock = this.blockFromLocStr(player.dimension, camPosStr);
-      if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
+      if (!camBlock || !this.isCamera(camBlock)) {
         player.sendMessage("§cCamera not found");
+        return;
+      }
+      
+      // Solo funciona con cámaras que usan fr:rotation
+      const rotationSystem = this.getBlockRotationSystem(camBlock);
+      if (rotationSystem !== "fr:rotation") {
+        player.sendMessage("§cThis camera doesn't support manual rotation adjustment");
+        system.runTimeout(() => {
+          this.editCamera(player, pcPosStr, camPosStr);
+        }, 20);
         return;
       }
       
@@ -1816,7 +1977,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
         
         try {
           const freshCamBlock = this.blockFromLocStr(player.dimension, camPosStr);
-          if (freshCamBlock && freshCamBlock.typeId === "fr:security_cameras") {
+          if (freshCamBlock && this.isCamera(freshCamBlock)) {
             const newPerm = freshCamBlock.permutation.withState("fr:rotation", newRotation);
             freshCamBlock.setPermutation(newPerm);
             player.sendMessage(
@@ -2038,6 +2199,58 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
     } catch {
       this.cameraSettings.clear();
     }
+  }
+
+  /**
+   * Establece configuración de cámara desde API externa
+   * @param {string} camPosStr - Posición de la cámara
+   * @param {Object} config - Configuración de la cámara
+   */
+  setCameraConfigFromAPI(camPosStr, config) {
+    if (!camPosStr || !config) return;
+    
+    const settings = {
+      verticalPitch: config.verticalPitch ?? 0,
+      rotationRange: config.rotationRange ?? 85,
+      autoRotate: config.autoRotate ?? true,
+      autoRotateSpeed: config.autoRotateSpeed ?? 0.8
+    };
+    
+    this.cameraSettings.set(camPosStr, settings);
+    this.saveCameraSettings();
+  }
+
+  /**
+   * Obtiene configuración de cámara (nativa o externa)
+   * @param {string} camPosStr - Posición de la cámara
+   * @param {string} blockId - ID del bloque de cámara
+   * @returns {Object}
+   */
+  getCameraConfig(camPosStr, blockId = null) {
+    // Primero buscar configuración específica de esta posición
+    let settings = this.cameraSettings.get(camPosStr);
+    if (settings) return settings;
+    
+    // Si hay blockId, buscar configuración por tipo de bloque en la API
+    if (blockId) {
+      const apiConfig = FRAPI.getCameraConfig(blockId);
+      if (apiConfig) {
+        return {
+          verticalPitch: apiConfig.verticalPitch ?? 0,
+          rotationRange: apiConfig.rotationRange ?? 85,
+          autoRotate: apiConfig.autoRotate ?? true,
+          autoRotateSpeed: apiConfig.autoRotateSpeed ?? 0.8
+        };
+      }
+    }
+    
+    // Configuración por defecto
+    return {
+      verticalPitch: 0,
+      rotationRange: 85,
+      autoRotate: true,
+      autoRotateSpeed: 0.8
+    };
   }
 }
 

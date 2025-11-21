@@ -1,0 +1,106 @@
+{
+  "namespace": "start_screen_screen",
+
+  "start_static_overlay_wait": {
+    "anim_type": "wait",
+    "duration": 0.35,
+    "next": "@start_screen_screen.start_static_overlay_fade"
+  },
+  "start_static_overlay_fade": {
+    "anim_type": "alpha",
+    "easing": "in_cubic",
+    "duration": 0,
+    "from": 1.0,
+    "to": 0.0
+  },
+
+  "start_text_wait": {
+    "anim_type": "wait",
+    "duration": 4.0,
+    "next": "@start_screen_screen.start_text_fade"
+  },
+  "start_text_fade": {
+    "anim_type": "alpha",
+    "easing": "in_out_cubic",
+    "duration": 3.0,
+    "from": 1.0,
+    "to": 0.0
+  },
+
+  "start_screen_label_from_buttons": {
+    "type": "label",
+    "text": "#text",
+    "size": ["100%", "default"],
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+    "text_alignment": "center",
+    "font_scale_factor": 2.0,
+    "color": [1.0, 1.0, 1.0],
+    "layer": 2,
+    "alpha": 1.0,
+    "anims": [
+      "@start_screen_screen.start_text_wait"
+    ],
+    "bindings": [
+      { "binding_type": "collection_details", "binding_collection_name": "form_buttons" },
+      { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+      { "binding_type": "view", "source_property_name": "#form_button_text", "target_property_name": "#text" }
+    ]
+  },
+
+  "start_screen_ui": {
+    "type": "panel",
+    "$flag_start_screen": "§S§T§A§R§T",
+    "size": ["100%", "100%"],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "layer": 1000,
+    "controls": [
+      {
+        "bg": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/ui/Black",
+          "layer": 0,
+          "anchor_from": "center",
+          "anchor_to": "center"
+        }
+      },
+      {
+        "labels_panel": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%", "default"],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 1,
+          "collection_name": "form_buttons",
+          "factory": {
+            "name": "start_labels",
+            "control_name": "start_screen_screen.start_screen_label_from_buttons"
+          },
+          "bindings": [
+            { "binding_name": "#form_button_contents", "binding_name_override": "#collection_length" }
+          ]
+        }
+      },
+      {
+        "static_overlay": {
+          "type": "image",
+          "size": ["170%", "170%"],
+          "uv_size": [128, 72],
+          "texture": "textures/fr_ui/glitch_effect",
+          "layer": 100,
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "uv": "@server_form.start_effect_anim",
+          "alpha": "@start_screen_screen.start_static_overlay_wait"
+        }
+      }
+    ],
+    "bindings": [
+      { "binding_type": "global", "binding_name": "#title_text" },
+      { "binding_type": "view", "source_property_name": "(#title_text = $flag_start_screen)", "target_property_name": "#visible" }
+    ]
+  }
+}

@@ -37,6 +37,11 @@
 					"fr:wrench"
 				]
 			},
+			"minecraft:interact": {
+				"interactions": [
+					{}
+				]
+			},
 			"minecraft:hurt_on_condition": {
 				"damage_conditions": [
 					{

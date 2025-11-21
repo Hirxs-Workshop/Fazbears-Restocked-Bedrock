@@ -1,18 +1,38 @@
 import { world, system } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
+import * as FRAPI from "./fr_api.js";
 
 const VARIANT_REGISTRY = new Map();
 
+/**
+ * Registra variantes para un bloque (usa la API interna)
+ * @param {string} blockId
+ * @param {Array} variants
+ */
 export function registerBlockVariants(blockId, variants) {
   if (!blockId || !Array.isArray(variants)) {
     return;
   }
   VARIANT_REGISTRY.set(blockId, { variants });
+  // También registrar en la API global
+  FRAPI.registerBlockVariants(blockId, variants);
 }
 
+/**
+ * Obtiene las variantes de un bloque (nativas o externas)
+ * @param {string} blockId
+ * @returns {Array|null}
+ */
 function getBlockVariants(blockId) {
+  // Primero buscar en registro nativo
   const entry = VARIANT_REGISTRY.get(blockId);
-  return entry ? entry.variants : null;
+  if (entry) return entry.variants;
+  
+  // Buscar en API externa
+  const externalVariants = FRAPI.getBlockVariants(blockId);
+  if (externalVariants) return externalVariants;
+  
+  return null;
 }
 
 function getVariantsStateRange(block) {

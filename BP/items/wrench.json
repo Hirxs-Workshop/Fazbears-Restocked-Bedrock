@@ -14,7 +14,19 @@
 				"textures": {
 					"default": "wrench"
 				}
-			}
+			},
+			"minecraft:cooldown": {
+				"category": "wrench_use",
+				"duration": 0.2
+			},
+			"minecraft:use_animation": "crossbow",
+			"minecraft:use_modifiers": {
+				"movement_modifier": 0.8,
+				"use_duration": 10
+			},
+			"minecraft:allow_off_hand": false,
+			"minecraft:should_despawn": true,
+			"minecraft:custom_components": ["fr:wrench_interaction"]
 		}
 	}
 }

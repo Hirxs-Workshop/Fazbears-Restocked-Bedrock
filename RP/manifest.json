@@ -1,7 +1,7 @@
 {
 	"format_version": 2,
 	"header": {
-		"name": "RP | Fazbear's Restocked | Public early build 0.5.5",
+		"name": "RP | Fazbear's Restocked | Public early build 1",
 		"description": "Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!",
 		"min_engine_version": [
 			1,
@@ -9,13 +9,13 @@
 			120
 		],
 		"uuid": "c35695e2-c1ac-43c2-918d-a4c94b9acdcf",
-		"version": [1,5,5]
+		"version": [1,5,7]
 	},
 	"modules": [
 		{
 			"type": "resources",
 			"uuid": "e14f36eb-f25e-4df3-a809-07297e5235ff",
-		"version": [1,5,5]
+		"version": [1,5,7]
 		}
 	],
 	"capabilities": [
@@ -24,7 +24,7 @@
 	"dependencies": [
 		{
 			"uuid": "c46b9b12-2f2a-490d-a11b-f4a7660966a3",
-		"version": [1,5,5]
+		"version": [1,5,7]
 		}
 	]
 }

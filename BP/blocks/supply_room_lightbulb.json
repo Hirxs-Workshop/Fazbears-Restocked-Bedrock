@@ -100,7 +100,7 @@
 				"components": {
 					"minecraft:material_instances": {
 						"*": {
-							"texture": "office_lamp",
+							"texture": "office_lamp_off",
 							"render_method": "alpha_test"
 						}
 					}

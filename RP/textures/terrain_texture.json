@@ -1,5 +1,5 @@
 {
-    "resource_pack_name": "Fabulous Furnished - v2.2 Official Release",
+    "resource_pack_name": "FR - Internal",
     "texture_name": "atlas.terrain",
     "num_mip_levels": 4,
     "padding": 8,
@@ -324,6 +324,11 @@
                 "textures/blocks/reworked/office_lamp"
             ]
         },
+        "office_lamp_off": {
+            "textures": [
+                "textures/blocks/reworked/office_lamp_off"
+            ]
+        },
         "office_old_pc": {
             "textures": [
                 "textures/blocks/reworked/office_old_pc"
@@ -467,6 +472,11 @@
         "spotlight": {
             "textures": [
                 "textures/blocks/reworked/spotlight"
+            ]
+        },
+        "spotlight_off": {
+            "textures": [
+                "textures/blocks/reworked/spotlight_off"
             ]
         },
         "stage_clouds": {

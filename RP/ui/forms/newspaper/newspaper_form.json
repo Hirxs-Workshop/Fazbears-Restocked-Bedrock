@@ -1,0 +1,163 @@
+{
+  "namespace": "newspaper_screen",
+
+  "newspaper_fade_in_anim": {
+    "anim_type": "alpha",
+    "easing": "in_out_cubic",
+    "duration": 4.0,
+    "from": 1.0,
+    "to": 0.0,
+    "destroy_at_end": "newspaper_fade_overlay"
+  },
+
+  "newspaper_button_fade_anim": {
+    "anim_type": "alpha",
+    "easing": "in_out_cubic",
+    "duration": 4.0,
+    "from": 0.0,
+    "to": 1.0
+  },
+
+  "newspaper_fade_out_anim": {
+    "anim_type": "alpha",
+    "easing": "in_out_cubic",
+    "duration": 4.0,
+    "from": 0.0,
+    "to": 1.0
+  },
+
+  "newspaper_ui": {
+    "type": "panel",
+    "$flag_newspaper": "§N§E§W§S",
+    "size": ["100%", "100%"],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "layer": 1000,
+    "controls": [
+      {
+        "newspaper_image": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/fr_ui/newspaper_fr",
+          "layer": 1001,
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "keep_ratio": false
+        }
+      },
+      {
+        "continue_button_panel": {
+          "type": "panel",
+          "size": [120, 40],
+          "anchor_from": "bottom_right",
+          "anchor_to": "bottom_right",
+          "offset": [-20, -20],
+          "layer": 1002,
+          "alpha": 0.0,
+          "anims": [
+            "@newspaper_screen.newspaper_button_fade_anim"
+          ],
+          "controls": [
+            {
+              "button@common_buttons.light_text_button": {
+                "$pressed_button_name": "button.form_button_click",
+                "size": ["100%", "100%"],
+                "$button_text": "Continue",
+                "$border_visible": false,
+                "$default_button_texture": "textures/fr_ui/side_buttons",
+                "$hover_button_texture": "textures/fr_ui/side_buttons_light",
+                "$pressed_button_texture": "textures/fr_ui/side_buttons_light",
+                "$button_text_color": [1.0, 1.0, 1.0],
+                "$hover_button_text_color": [1.0, 1.0, 1.0],
+                "$pressed_button_text_color": [1.0, 1.0, 1.0],
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  },
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "form_buttons"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "newspaper_fade_overlay": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/ui/Black",
+          "alpha": 1.0,
+          "layer": 1003,
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "anims": [
+            "@newspaper_screen.newspaper_fade_in_anim"
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_name": "#title_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#title_text = $flag_newspaper)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+
+  "newspaper_outro_ui": {
+    "type": "panel",
+    "$flag_newspaper_outro": "§N§E§W§S§O§U§T§R§O",
+    "size": ["100%", "100%"],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "layer": 1000,
+    "controls": [
+      {
+        "newspaper_image": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/fr_ui/newspaper_fr",
+          "layer": 1001,
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "keep_ratio": false
+        }
+      },
+      {
+        "fade_out_overlay": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/ui/Black",
+          "alpha": 0.0,
+          "layer": 1003,
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "anims": [
+            "@newspaper_screen.newspaper_fade_out_anim"
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_name": "#title_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#title_text = $flag_newspaper_outro)",
+        "target_property_name": "#visible"
+      }
+    ]
+  }
+}

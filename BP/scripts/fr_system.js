@@ -1,6 +1,9 @@
 import { world, BlockPermutation, ItemStack, system, EquipmentSlot, Direction } from '@minecraft/server'
 import { ActionFormData, uiManager } from '@minecraft/server-ui'
 
+import * as FRAPI from './fr_api.js'
+export { FRAPI }
+
 import 'updateBlock'
 import 'office_desk_reworked'
 import 'entrance_door'
@@ -12,6 +15,7 @@ import 'connection_system/main_system'
 import 'camera_system/security_camera_system'
 import 'variant_system'
 import 'backstage_shelf_head_system'
+import 'custom_commands'
 
 import { adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, ACTIONBAR_VARIANT_STYLE, customActionbar, variantActionbar } from './utils.js'
 import { securityCameraSystem } from './camera_system/security_camera_system.js'
@@ -81,25 +85,25 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
                 try {
                     const above = dim.getBlock({ x: loc.x, y: loc.y + 1, z: loc.z });
                     if (above && above.typeId === 'fr:gray_locker_upper') above.setPermutation(air);
-                } catch {}
+                } catch { }
             });
-            try { clearLockerOwner(block); } catch {}
-            try { const ent = findLockerInventoryEntity(block); if (ent) ent.kill?.(); } catch {}
+            try { clearLockerOwner(block); } catch { }
+            try { const ent = findLockerInventoryEntity(block); if (ent) ent.kill?.(); } catch { }
         } else {
             system.run(() => {
                 try {
                     const below = dim.getBlock({ x: loc.x, y: loc.y - 1, z: loc.z });
                     if (below && below.typeId === 'fr:gray_locker') below.setPermutation(air);
-                } catch {}
+                } catch { }
             });
             try {
                 const base = dim.getBlock({ x: loc.x, y: loc.y - 1, z: loc.z });
                 clearLockerOwner(base);
                 const ent = findLockerInventoryEntity(base);
                 if (ent) ent.kill?.();
-            } catch {}
+            } catch { }
         }
-    } catch {}
+    } catch { }
 });
 
 function yawFromFacing(block) {
@@ -109,7 +113,7 @@ function yawFromFacing(block) {
         if (f === 'south') return 0;
         if (f === 'east') return 270;
         if (f === 'west') return 90;
-    } catch {}
+    } catch { }
     return 0;
 }
 
@@ -119,7 +123,7 @@ function showLockerHideMenu(player, base, pid) {
         if (!data) return;
 
         let isCreative = false;
-        try { isCreative = player.getGameMode?.() === 'creative'; } catch {}
+        try { isCreative = player.getGameMode?.() === 'creative'; } catch { }
 
         const form = new ActionFormData();
         form.title('§H§I§D§E§N');
@@ -131,7 +135,7 @@ function showLockerHideMenu(player, base, pid) {
                 if (!data) return;
 
                 let isCreativeNow = false;
-                try { isCreativeNow = player.getGameMode?.() === 'creative'; } catch {}
+                try { isCreativeNow = player.getGameMode?.() === 'creative'; } catch { }
                 const canExit = isCreativeNow || (data.oxygen ?? 50) > 10;
 
                 if (!canExit) {
@@ -141,16 +145,16 @@ function showLockerHideMenu(player, base, pid) {
                 }
 
                 const dim = player.dimension;
-                try { player.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch {}
-                try { player.runCommand('hud @s reset'); } catch {}
-                try { player.runCommand('effect @s clear'); } catch {}
-                try { player.runCommand('title @s title bar:0'); } catch {}
+                try { player.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch { }
+                try { player.runCommand('hud @s reset'); } catch { }
+                try { player.runCommand('effect @s clear'); } catch { }
+                try { player.runCommand('title @s title bar:0'); } catch { }
                 setLockerState(base, 'open');
                 lockerHideState.delete(pid);
                 if (data) data.uiState = 'exited';
-            } catch {}
+            } catch { }
         });
-    } catch {}
+    } catch { }
 }
 
 function showLockerLockedMenu(player, base, pid) {
@@ -168,9 +172,9 @@ function showLockerLockedMenu(player, base, pid) {
                 if (!data) return;
 
                 system.run(() => showLockerLockedMenu(player, base, pid));
-            } catch {}
+            } catch { }
         });
-    } catch {}
+    } catch { }
 }
 
 const BlockShellRotationComponent = {
@@ -191,11 +195,11 @@ const BlockShellRotationComponent = {
             const octant = Math.round(normalizedYaw / 45) % 8;
 
             const typeState = (octant % 2 === 0) ? "plus" : "cross";
-            try { permutation = permutation.withState("fr:type", typeState); } catch {}
+            try { permutation = permutation.withState("fr:type", typeState); } catch { }
         }
 
         if (blockTypeId !== "fr:ceiling_stars" && blockFace === "up") {
-            try { permutation = permutation.withState("fr:advanced_rot", rotation); } catch {}
+            try { permutation = permutation.withState("fr:advanced_rot", rotation); } catch { }
         }
 
         event.permutationToPlace = permutation;
@@ -229,89 +233,89 @@ function startLockerTick() {
             return;
         }
         for (const [pid, data] of lockerHideState) {
-        const player = world.getAllPlayers().find(p => p.id === pid);
-        if (!player) { lockerHideState.delete(pid); continue; }
+            const player = world.getAllPlayers().find(p => p.id === pid);
+            if (!player) { lockerHideState.delete(pid); continue; }
 
-        let dim;
-        try { dim = player.dimension; } catch {}
-        if (!dim) { lockerHideState.delete(pid); continue; }
+            let dim;
+            try { dim = player.dimension; } catch { }
+            if (!dim) { lockerHideState.delete(pid); continue; }
 
-        const base = dim.getBlock({ x: data.baseLoc.x, y: data.baseLoc.y, z: data.baseLoc.z });
-        if (!base || (base.typeId !== 'fr:gray_locker')) { lockerHideState.delete(pid); continue; }
+            const base = dim.getBlock({ x: data.baseLoc.x, y: data.baseLoc.y, z: data.baseLoc.z });
+            if (!base || (base.typeId !== 'fr:gray_locker')) { lockerHideState.delete(pid); continue; }
 
-        let isCreative = false;
-        try { isCreative = player.getGameMode?.() === 'creative'; } catch {}
+            let isCreative = false;
+            try { isCreative = player.getGameMode?.() === 'creative'; } catch { }
 
-        const nowSneak = player.isSneaking;
+            const nowSneak = player.isSneaking;
 
-        const canExit = isCreative || (data.oxygen ?? 50) > 10;
-        if (nowSneak && !data.lastSneak && canExit) {
-            try { player.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch {}
-            try { player.runCommand('hud @s reset'); } catch {}
-            try { player.runCommand('effect @s clear'); } catch {}
-            try { player.runCommand('title @s title bar:0'); } catch {}
-            try { uiManager.closeAllForms(player); } catch {}
-            setLockerState(base, 'open');
-            data.uiState = 'exited';
-            lockerHideState.delete(pid);
-            continue;
-        }
-
-        try {
-            player.teleport(data.insidePos, { dimension: dim, keepVelocity: false });
-            player.setVelocity({ x: 0, y: 0, z: 0 });
-        } catch {}
-
-        if (!isCreative) {
+            const canExit = isCreative || (data.oxygen ?? 50) > 10;
+            if (nowSneak && !data.lastSneak && canExit) {
+                try { player.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch { }
+                try { player.runCommand('hud @s reset'); } catch { }
+                try { player.runCommand('effect @s clear'); } catch { }
+                try { player.runCommand('title @s title bar:0'); } catch { }
+                try { uiManager.closeAllForms(player); } catch { }
+                setLockerState(base, 'open');
+                data.uiState = 'exited';
+                lockerHideState.delete(pid);
+                continue;
+            }
 
             try {
-                data.oxyTick = (data.oxyTick ?? 0) + 1;
-                if (data.oxyTick >= 20) {
-                    data.oxyTick = 0;
-                    const prevOxygen = data.oxygen ?? 50;
-                    data.oxygen = Math.max(0, prevOxygen - 1);
-                    player.runCommand(`title @s title bar:${data.oxygen}`);
+                player.teleport(data.insidePos, { dimension: dim, keepVelocity: false });
+                player.setVelocity({ x: 0, y: 0, z: 0 });
+            } catch { }
 
-                    if (data.oxygen === 10 && prevOxygen === 11 && data.uiState === 'normal') {
-                        try {
-                            uiManager.closeAllForms(player);
-                            data.uiState = 'locked';
-                            system.run(() => showLockerLockedMenu(player, base, pid));
-                        } catch {}
+            if (!isCreative) {
+
+                try {
+                    data.oxyTick = (data.oxyTick ?? 0) + 1;
+                    if (data.oxyTick >= 20) {
+                        data.oxyTick = 0;
+                        const prevOxygen = data.oxygen ?? 50;
+                        data.oxygen = Math.max(0, prevOxygen - 1);
+                        player.runCommand(`title @s title bar:${data.oxygen}`);
+
+                        if (data.oxygen === 10 && prevOxygen === 11 && data.uiState === 'normal') {
+                            try {
+                                uiManager.closeAllForms(player);
+                                data.uiState = 'locked';
+                                system.run(() => showLockerLockedMenu(player, base, pid));
+                            } catch { }
+                        }
+
+                        if (data.oxygen === 1 && data.uiState === 'locked') {
+                            try {
+                                uiManager.closeAllForms(player);
+                                data.uiState = 'closed';
+                            } catch { }
+                        }
+
+                        if (data.oxygen <= 10 && data.oxygen > 0) {
+                            try { player.runCommand('effect @s blindness 2 0 true'); } catch { }
+                        }
+
+                        if (data.oxygen === 0) {
+                            try { player.kill(); } catch { }
+                            try { player.runCommand('hud @s reset'); } catch { }
+                            try { player.runCommand('effect @s clear'); } catch { }
+                            try { player.runCommand('title @s title bar:0'); } catch { }
+                            try { uiManager.closeAllForms(player); } catch { }
+                            setLockerState(base, 'open');
+                            data.uiState = 'dead';
+                            lockerHideState.delete(pid);
+                            continue;
+                        }
                     }
+                } catch { }
+            } else {
 
-                    if (data.oxygen === 1 && data.uiState === 'locked') {
-                        try {
-                            uiManager.closeAllForms(player);
-                            data.uiState = 'closed';
-                        } catch {}
-                    }
+                try { player.runCommand('title @s title bar:0'); } catch { }
+            }
 
-                    if (data.oxygen <= 10 && data.oxygen > 0) {
-                        try { player.runCommand('effect @s blindness 2 0 true'); } catch {}
-                    }
-
-                    if (data.oxygen === 0) {
-                        try { player.kill(); } catch {}
-                        try { player.runCommand('hud @s reset'); } catch {}
-                        try { player.runCommand('effect @s clear'); } catch {}
-                        try { player.runCommand('title @s title bar:0'); } catch {}
-                        try { uiManager.closeAllForms(player); } catch {}
-                        setLockerState(base, 'open');
-                        data.uiState = 'dead';
-                        lockerHideState.delete(pid);
-                        continue;
-                    }
-                }
-            } catch {}
-        } else {
-
-            try { player.runCommand('title @s title bar:0'); } catch {}
+            data.lastSneak = nowSneak;
         }
-
-        data.lastSneak = nowSneak;
-    }
-}, 1);
+    }, 1);
 }
 
 function ensureLockerTick() {
@@ -327,7 +331,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const current = block.permutation.getState('fr:switch_type') === true;
                 const newPerm = block.permutation.withState('fr:switch_type', !current);
                 block.setPermutation(newPerm);
-            } catch {}
+            } catch { }
         }
     });
 });
@@ -386,14 +390,14 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                         const base = block?.below?.();
                         const bl = base?.location; const hl = hit.block?.location;
                         isBaseTop = !!(bl && hl && bl.x === hl.x && bl.y === hl.y && bl.z === hl.z);
-                    } catch {}
+                    } catch { }
                     let facing = 'north';
-                    try { facing = e.permutationToPlace?.getState?.('minecraft:cardinal_direction') ?? facing; } catch {}
+                    try { facing = e.permutationToPlace?.getState?.('minecraft:cardinal_direction') ?? facing; } catch { }
                     let nl = { x: -1, z: -1 };
                     if (top && isBaseTop) { const r = pickPlacedFromFaceLocation(fl, facing); placed = r.placed; nl = r.nl; }
                 }
                 e.permutationToPlace = e.permutationToPlace.withState('fr:placed', placed);
-            } catch {}
+            } catch { }
         },
         onPlayerInteract: (e) => {
             try {
@@ -410,12 +414,12 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const fl = hit.faceLocation; if (!fl) return;
                 if (!(hit.face === Direction.Up) || !(((fl.y ?? 0) <= 0.11) || ((fl.y ?? 0) >= 0.89))) return;
                 let facing = 'north';
-                try { facing = block.permutation.getState('minecraft:cardinal_direction') ?? facing; } catch {}
+                try { facing = block.permutation.getState('minecraft:cardinal_direction') ?? facing; } catch { }
                 const r = pickPlacedFromFaceLocation(fl, facing);
                 const placed = r.placed;
                 const newPerm = block.permutation.withState('fr:placed', placed);
                 block.setPermutation(newPerm);
-            } catch {}
+            } catch { }
         }
     });
 });
@@ -429,11 +433,11 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 if (!player.isSneaking) return;
                 const perm = block.permutation;
                 let state = 'false';
-                try { state = perm.getState('fr:pulled'); } catch {}
+                try { state = perm.getState('fr:pulled'); } catch { }
                 const next = state === 'true' ? 'false' : 'true';
                 const newPerm = perm.withState('fr:pulled', next);
                 block.setPermutation(newPerm);
-            } catch {}
+            } catch { }
         }
     });
 });
@@ -465,46 +469,46 @@ system.runInterval(() => {
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent('fr:party_chair_sit', {
-            onPlayerInteract: function (e) {
-                let {
-                  x,
-                  y,
-                  z
-                } = e.block.location;
-                if (e.player.isSneaking) return;
-                const cx = x + 0.5;
-                const cy = y + 0.1;
-                const cz = z + 0.5;
-                let yaw = 0;
-                let seatId = 'fr:south_sit';
-                try {
-                  const face = e.block.permutation.getState('minecraft:cardinal_direction');
-                  if (face === 'north') { yaw = 180; seatId = 'fr:north_sit'; }
-                  else if (face === 'east') { yaw = 270; seatId = 'fr:west_sit'; }
-                  else if (face === 'south') { yaw = 0; seatId = 'fr:south_sit'; }
-                  else if (face === 'west') { yaw = 90; seatId = 'fr:east_sit'; }
-                } catch {}
+        onPlayerInteract: function (e) {
+            let {
+                x,
+                y,
+                z
+            } = e.block.location;
+            if (e.player.isSneaking) return;
+            const cx = x + 0.5;
+            const cy = y + 0.1;
+            const cz = z + 0.5;
+            let yaw = 0;
+            let seatId = 'fr:south_sit';
+            try {
+                const face = e.block.permutation.getState('minecraft:cardinal_direction');
+                if (face === 'north') { yaw = 180; seatId = 'fr:north_sit'; }
+                else if (face === 'east') { yaw = 270; seatId = 'fr:west_sit'; }
+                else if (face === 'south') { yaw = 0; seatId = 'fr:south_sit'; }
+                else if (face === 'west') { yaw = 90; seatId = 'fr:east_sit'; }
+            } catch { }
 
-                e.dimension.runCommand(`summon ${seatId} ${cx} ${cy} ${cz}`);
-                e.dimension.runCommand(`execute positioned ${cx} ${cy} ${cz} as @e[type=${seatId},r=0.8] run tp @s ${cx} ${cy} ${cz}`);
-                e.player.runCommand(`execute at @e[type=player] positioned ${cx} ${cy} ${cz} run ride @s start_riding @e[type=${seatId},r=0.8] teleport_rider`);
-              },
-              onPlayerDestroy: function (e) {
-                if (!e.player) return;
-                let playerLoc = e.player.location;
-                playerLoc.x -= 0.5;
-                playerLoc.z -= 0.5;
+            e.dimension.runCommand(`summon ${seatId} ${cx} ${cy} ${cz}`);
+            e.dimension.runCommand(`execute positioned ${cx} ${cy} ${cz} as @e[type=${seatId},r=0.8] run tp @s ${cx} ${cy} ${cz}`);
+            e.player.runCommand(`execute at @e[type=player] positioned ${cx} ${cy} ${cz} run ride @s start_riding @e[type=${seatId},r=0.8] teleport_rider`);
+        },
+        onPlayerDestroy: function (e) {
+            if (!e.player) return;
+            let playerLoc = e.player.location;
+            playerLoc.x -= 0.5;
+            playerLoc.z -= 0.5;
 
-                if (playerLoc.x != e.block.location.x) return;
-                if (playerLoc.y != e.block.location.y) return;
-                if (playerLoc.z != e.block.location.z) return;
+            if (playerLoc.x != e.block.location.x) return;
+            if (playerLoc.y != e.block.location.y) return;
+            if (playerLoc.z != e.block.location.z) return;
 
-                e.player.runCommand("ride @s stop_riding");
-              },
-              onPlace: function (e) {
-                if (!e.block) return;
-                let block = e.block.above();
-                if (!block) return;
+            e.player.runCommand("ride @s stop_riding");
+        },
+        onPlace: function (e) {
+            if (!e.block) return;
+            let block = e.block.above();
+            if (!block) return;
         }
     });
 });
@@ -531,14 +535,14 @@ function setLockerOwner(block, ownerName) {
     try {
         const key = lockerBaseKey(block);
         lockerOwners.set(key, ownerName);
-    } catch {}
+    } catch { }
 }
 
 function clearLockerOwner(block) {
     try {
         const key = lockerBaseKey(block);
         lockerOwners.delete(key);
-    } catch {}
+    } catch { }
 }
 
 function getLockerOwner(block) {
@@ -581,17 +585,17 @@ function countItemsInEntity(entity) {
 function getHeldItem(player, fallbackFromEvent) {
     try {
         if (fallbackFromEvent) return fallbackFromEvent;
-    } catch {}
+    } catch { }
     try {
         const eq = player.getComponent?.('minecraft:equippable');
         const hand = eq?.getEquipment?.(EquipmentSlot.Mainhand);
         if (hand) return hand;
-    } catch {}
+    } catch { }
     try {
         const inv = player.getComponent?.('minecraft:inventory');
         const ctr = inv?.container;
         if (ctr && typeof player.selectedSlot === 'number') return ctr.getItem(player.selectedSlot);
-    } catch {}
+    } catch { }
     return undefined;
 }
 
@@ -604,7 +608,7 @@ system.runInterval(() => {
             let hit;
             try {
                 hit = player.getBlockFromViewDirection?.({ maxDistance: 5 });
-            } catch {}
+            } catch { }
             const block = hit?.block;
             if (!block) continue;
             const type = block.typeId;
@@ -623,7 +627,7 @@ system.runInterval(() => {
                 lastLockerCheck.set(player.id, actionBarText);
             }
         }
-    } catch {}
+    } catch { }
 }, 10);
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
@@ -659,7 +663,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                             ));
                             return;
                         }
-                    } catch {}
+                    } catch { }
 
                     const owner = getLockerOwner(below);
                     if (owner && owner !== player.name) {
@@ -677,14 +681,14 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                         player?.playSound?.('open.iron_door');
                     }
                 }
-            } catch {}
+            } catch { }
         },
         onPlayerDestroy: (e) => {
             const { block } = e;
             if (!block) return;
             try {
                 removeLockerPairAt(block);
-            } catch {}
+            } catch { }
         }
     });
 });
@@ -702,7 +706,7 @@ function setLockerState(block, state) {
             const perm2 = above.permutation.withState('ff:locker_is', state);
             above.setPermutation(perm2);
         }
-    } catch {}
+    } catch { }
 }
 
 function isLockerOpen(block) {
@@ -722,7 +726,7 @@ function getFacingVector(block) {
         if (f === 'south') return { x: 0, y: 0, z: 1 };
         if (f === 'west') return { x: -1, y: 0, z: 0 };
         if (f === 'east') return { x: 1, y: 0, z: 0 };
-    } catch {}
+    } catch { }
     return { x: 0, y: 0, z: 1 };
 }
 
@@ -734,7 +738,7 @@ function computeLockerHidePositions(baseBlock) {
     const exitOffset = -1.2;
     return {
         insidePos: { x: center.x - fwd.x * insideOffset, y: center.y, z: center.z - fwd.z * insideOffset },
-        exitPos:   { x: center.x + fwd.x * exitOffset,   y: center.y, z: center.z + fwd.z * exitOffset }
+        exitPos: { x: center.x + fwd.x * exitOffset, y: center.y, z: center.z + fwd.z * exitOffset }
     };
 }
 
@@ -753,20 +757,20 @@ function removeLockerPairAt(block) {
             } else {
                 return;
             }
-        } catch {}
+        } catch { }
 
-        try { clearLockerOwner(base); } catch {}
+        try { clearLockerOwner(base); } catch { }
         try {
             const ent = findLockerInventoryEntity(base);
             if (ent) ent.kill?.();
-        } catch {}
+        } catch { }
 
         const air = BlockPermutation.resolve('minecraft:air');
         system.run(() => {
-            try { if (upper && upper.typeId === 'fr:gray_locker_upper') upper.setPermutation(air); } catch {}
-            try { if (base && base.typeId === 'fr:gray_locker') base.setPermutation(air); } catch {}
+            try { if (upper && upper.typeId === 'fr:gray_locker_upper') upper.setPermutation(air); } catch { }
+            try { if (base && base.typeId === 'fr:gray_locker') base.setPermutation(air); } catch { }
         });
-    } catch {}
+    } catch { }
 }
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
@@ -780,7 +784,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 if (above && !(above.isAir ?? (above.typeId === 'minecraft:air'))) {
                     e.cancel = true;
                 }
-            } catch {}
+            } catch { }
         },
         onPlace: (e) => {
             const { block } = e;
@@ -795,7 +799,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 else if (facing === 'south') { dz = offset; }
                 else if (facing === 'east') { dx = offset; }
                 else if (facing === 'west') { dx = -offset; }
-            } catch {}
+            } catch { }
             const spawnPos = { x: loc.x + 0.5 + dx, y: loc.y + 0.5, z: loc.z + 0.5 + dz };
             const entity = block.dimension.spawnEntity('fr:locker_inventory', spawnPos);
             if (entity) {
@@ -815,14 +819,14 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                         upper.setPermutation(upperPerm);
                     }
                 });
-            } catch {}
+            } catch { }
         },
         onPlayerDestroy: (e) => {
             const { block } = e;
             if (!block) return;
             try {
                 removeLockerPairAt(block);
-            } catch {}
+            } catch { }
         },
         onPlayerInteract: (e) => {
             const { block, player } = e;
@@ -839,8 +843,8 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                         player.sendMessage(dynamicToast(
                             "§l§pAlready claimed!",
                             `§7This locker belongs to: ${existingOwner}`,
-                        "textures/fr_ui/warning_icon",
-                        "textures/fr_ui/warning_ui"
+                            "textures/fr_ui/warning_icon",
+                            "textures/fr_ui/warning_ui"
                         ));
                         return;
                     }
@@ -853,7 +857,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                     ));
                     return;
                 }
-            } catch {}
+            } catch { }
 
             const owner = getLockerOwner(block);
             if (owner && owner !== player.name) {
@@ -871,15 +875,15 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const { insidePos, exitPos } = computeLockerHidePositions(base);
                 try {
                     player.teleport(insidePos, { dimension: base.dimension, keepVelocity: false });
-                } catch {}
+                } catch { }
 
                 try {
                     const yaw = (yawFromFacing(base) + 180) % 360;
                     player.setRotation({ x: 0, y: yaw });
-                } catch {}
+                } catch { }
 
-                try { player.runCommand('hud @s hide all'); } catch {}
-                try { player.runCommand('effect @s invisibility 99999 0 true'); } catch {}
+                try { player.runCommand('hud @s hide all'); } catch { }
+                try { player.runCommand('effect @s invisibility 99999 0 true'); } catch { }
                 setLockerState(base, 'closed');
                 const pid = player.id;
                 lockerHideState.set(pid, {
@@ -894,9 +898,9 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 ensureLockerTick();
 
                 let isCreative = false;
-                try { isCreative = player.getGameMode?.() === 'creative'; } catch {}
+                try { isCreative = player.getGameMode?.() === 'creative'; } catch { }
                 if (!isCreative) {
-                    try { player.runCommand('title @s title bar:50'); } catch {}
+                    try { player.runCommand('title @s title bar:50'); } catch { }
                 }
 
                 system.run(() => showLockerHideMenu(player, base, player.id));
@@ -919,20 +923,20 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                     const loc = block.location;
                     const dim = block.dimension;
                     const players = dim.getPlayers?.({ location: { x: loc.x + 0.5, y: loc.y + 0.5, z: loc.z + 0.5 }, maxDistance: 4 })
-                                   ?? world.getPlayers();
+                        ?? world.getPlayers();
                     for (const p of players) {
                         try {
                             if (p.dimension?.id !== dim.id) continue;
                             const dx = (p.location?.x ?? 0) - (loc.x + 0.5);
                             const dy = (p.location?.y ?? 0) - (loc.y + 0.5);
                             const dz = (p.location?.z ?? 0) - (loc.z + 0.5);
-                            const dist2 = dx*dx + dy*dy + dz*dz;
+                            const dist2 = dx * dx + dy * dy + dz * dz;
                             if (dist2 <= 16) {
                                 p.playSound?.('close.iron_door');
                             }
-                        } catch {}
+                        } catch { }
                     }
-                } catch {}
+                } catch { }
             }
         }
     });
@@ -999,7 +1003,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 }
 
                 e.permutationToPlace = permutation;
-            } catch {}
+            } catch { }
         },
 
         onPlayerInteract: (e) => {
@@ -1050,7 +1054,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                             case 'west': yRot = -90; break;
                         }
                         entity.setRotation({ x: 0, y: yRot });
-                    } catch {}
+                    } catch { }
 
                     const blockId = block.typeId;
                     const eType = PLUSH_ENTITY_BY_BLOCK[blockId] ?? entityType;
@@ -1073,7 +1077,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                                 dimension.runCommand(`playanimation @e[type=${eType},x=${x},y=${y},z=${z},r=0.5,c=1] animation.fr_freddy_plush.click`);
                                 dimension.playSound('fnaf1_plushie', { x, y, z }, { pitch: 1.0, volume: 1.0 });
                             }
-                        } catch {}
+                        } catch { }
                     }, 3);
 
                     system.runTimeout(() => {
@@ -1103,10 +1107,10 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                                     ent.remove();
                                 }
                             }
-                        } catch {}
+                        } catch { }
                     }, PLUSH_ANIMATION_DURATION_TICKS);
                 }
-            } catch {}
+            } catch { }
         },
 
         onPlayerDestroy: (e) => {
@@ -1124,9 +1128,9 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 if (entity && entity.isValid()) {
                     try {
                         entity.remove();
-                    } catch {}
+                    } catch { }
                 }
-            } catch {}
+            } catch { }
         }
     });
 
@@ -1159,7 +1163,7 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
                 if (placedOn === 'box') yOffset = -0.45;
                 else if (placedOn === 'medium_box') yOffset = -0.25;
                 else if (placedOn === 'chair') yOffset = -0.4;
-            } catch {}
+            } catch { }
 
             const center = { x: loc.x + 0.5, y: loc.y + yOffset, z: loc.z + 0.5 };
             const entities = dimension.getEntities({
@@ -1209,7 +1213,7 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
                 }, 2);
             }
         }
-    } catch {}
+    } catch { }
 });
 
 world.afterEvents.playerPlaceBlock.subscribe((e) => {
@@ -1253,7 +1257,7 @@ world.afterEvents.playerPlaceBlock.subscribe((e) => {
                 }, 2);
             }
         }
-    } catch {}
+    } catch { }
 });
 
 export function fazDiverNotification(title = '', message = '', icon = 'textures/items/faz-diver_with_item') {
@@ -1270,7 +1274,7 @@ function sendFazDiverActivatedNotification(player) {
             "§7Crouch down and right-click\nto activate the item!",
             "textures/fr_ui/faz-diver_off"
         ));
-    } catch {}
+    } catch { }
 }
 
 function sendFazDiverDeactivatedNotification(player) {
@@ -1280,7 +1284,7 @@ function sendFazDiverDeactivatedNotification(player) {
             "§7System deactivated\n§7Monitoring disabled\n§7Equipment unlocked",
             "textures/fr_ui/faz-diver_security"
         ));
-    } catch {}
+    } catch { }
 }
 
 const FAZ_DIVER_CYCLE_MODES = [
@@ -1341,7 +1345,7 @@ function sendModeChangeNotification(player, newMode) {
                 info.icon
             ));
         }
-    } catch {}
+    } catch { }
 }
 
 world.beforeEvents.playerBreakBlock.subscribe((e) => {
@@ -1376,14 +1380,14 @@ world.beforeEvents.playerBreakBlock.subscribe((e) => {
                         if (hand && FAZ_DIVER_CYCLE_MODES.includes(hand.typeId)) {
                             slot8Type = hand.typeId;
                         }
-                    } catch {}
+                    } catch { }
 
-                    try { player.runCommand('replaceitem entity @s slot.armor.chest 0 fr:faz_diver_without_item 1 0 {"minecraft:item_lock":{"mode":"lock_in_slot"}}'); } catch {}
+                    try { player.runCommand('replaceitem entity @s slot.armor.chest 0 fr:faz_diver_without_item 1 0 {"minecraft:item_lock":{"mode":"lock_in_slot"}}'); } catch { }
                     player.runCommand(`replaceitem entity @s slot.hotbar 8 ${slot8Type} 1 0 {"minecraft:item_lock":{"mode":"lock_in_slot"}}`);
 
                     player.playSound('armor.equip_generic', { pitch: 1.0, volume: 1.0 });
                     sendFazDiverActivatedNotification(player);
-                } catch {}
+                } catch { }
             });
             return;
         } else if (chestplateId === 'fr:faz_diver_without_item') {
@@ -1406,7 +1410,7 @@ world.beforeEvents.playerBreakBlock.subscribe((e) => {
                         }
                         player.playSound('armor.equip_generic', { pitch: 1.0, volume: 1.0 });
                         sendFazDiverDeactivatedNotification(player);
-                    } catch {}
+                    } catch { }
                 });
                 return;
             }
@@ -1425,7 +1429,7 @@ world.beforeEvents.playerBreakBlock.subscribe((e) => {
 
                     player.playSound('armor.equip_generic', { pitch: 1.0, volume: 1.0 });
                     sendFazDiverDeactivatedNotification(player);
-                } catch {}
+                } catch { }
             });
             return;
         }
@@ -1439,10 +1443,10 @@ world.beforeEvents.playerBreakBlock.subscribe((e) => {
 
                 player.playSound('armor.equip_generic', { pitch: 1.0, volume: 1.0 });
                 sendFazDiverActivatedNotification(player);
-            } catch {}
+            } catch { }
         });
 
-    } catch {}
+    } catch { }
 });
 
 world.afterEvents.entityHitEntity.subscribe((e) => {
@@ -1477,7 +1481,7 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
 
                     player.playSound('armor.equip_generic', { pitch: 1.0, volume: 1.0 });
                     sendFazDiverDeactivatedNotification(player);
-                } catch {}
+                } catch { }
             });
             return;
         }
@@ -1488,10 +1492,10 @@ world.afterEvents.entityHitEntity.subscribe((e) => {
 
                 player.playSound('armor.equip_generic', { pitch: 1.0, volume: 1.0 });
                 sendFazDiverActivatedNotification(player);
-            } catch {}
+            } catch { }
         });
 
-    } catch {}
+    } catch { }
 });
 
 system.runInterval(() => {
@@ -1507,10 +1511,10 @@ system.runInterval(() => {
             if (!eq) continue;
 
             const currentChest = eq.getEquipment(EquipmentSlot.Chest);
-            const hasFazDiverBackpack = currentChest && 
-                (currentChest.typeId === 'fr:faz_diver_with_item' || 
-                 currentChest.typeId === 'fr:faz_diver_without_item');
-            
+            const hasFazDiverBackpack = currentChest &&
+                (currentChest.typeId === 'fr:faz_diver_with_item' ||
+                    currentChest.typeId === 'fr:faz_diver_without_item');
+
             if (!hasFazDiverBackpack) {
                 for (let i = 0; i < 9; i++) {
                     const item = cont.getItem(i);
@@ -1535,7 +1539,7 @@ system.runInterval(() => {
                 }
             }
         }
-    } catch {}
+    } catch { }
 }, 10);
 
 world.afterEvents.itemUse.subscribe((event) => {
@@ -1553,13 +1557,13 @@ world.afterEvents.itemUse.subscribe((event) => {
     system.run(() => {
         try {
             const slot = player.selectedSlotIndex;
-            
+
             const equipment = player.getComponent('equippable');
             const chestItem = equipment?.getEquipment('Chest');
-            const hasFazDiverBackpack = chestItem && 
-                (chestItem.typeId === 'fr:faz_diver_with_item' || 
-                 chestItem.typeId === 'fr:faz_diver_without_item');
-            
+            const hasFazDiverBackpack = chestItem &&
+                (chestItem.typeId === 'fr:faz_diver_with_item' ||
+                    chestItem.typeId === 'fr:faz_diver_without_item');
+
             if (hasFazDiverBackpack) {
                 player.runCommand(`replaceitem entity @s slot.hotbar ${slot} ${nextMode} 1 0 {"minecraft:item_lock":{"mode":"lock_in_slot"}}`);
             } else {
@@ -1568,6 +1572,25 @@ world.afterEvents.itemUse.subscribe((event) => {
 
             sendModeChangeNotification(player, nextMode);
             player.playSound('random.click', { pitch: 1.2, volume: 0.5 });
-        } catch {}
+        } catch { }
     });
+});
+
+const WrenchInteractionComponent = {
+    onUse(event) {
+        const { source: player } = event;
+        try {
+            player.playSound('random.click', { pitch: 1.5, volume: 0.3 });
+        } catch {}
+    },
+    onUseOn(event) {
+        const { source: player } = event;
+        try {
+            player.playSound('random.click', { pitch: 1.5, volume: 0.3 });
+        } catch {}
+    }
+};
+
+system.beforeEvents.startup.subscribe(({ itemComponentRegistry }) => {
+    itemComponentRegistry.registerCustomComponent('fr:wrench_interaction', WrenchInteractionComponent);
 });

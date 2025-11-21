@@ -10,7 +10,7 @@
 				"default": "textures/blocks/reworked/plushies/acurate_chica_plush"
 			},
 			"geometry": {
-				"default": "geometry.fr_chica_plush"
+				"default": "geometry.chica_plush"
 			},
 			"animations": {
 				"fr_clicked": "animation.fr_freddy_plush.click",
