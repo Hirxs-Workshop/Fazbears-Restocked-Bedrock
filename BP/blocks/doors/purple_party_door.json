@@ -1,0 +1,192 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fr:purple_party_door_block",
+      "menu_category": {
+                "category": "construction",
+          		"group": "itemGroup.name.door"
+      },
+      "traits": {
+        "minecraft:placement_direction": {
+          "enabled_states": ["minecraft:cardinal_direction"]
+        }
+      },
+      "states": {
+        "fr:open_bit": [false, true],
+        "fr:upper_block_bit": [false, true],
+        "fr:bottom_block_bit": [false, true],
+        "fr:middle_block_bit": [false, true],
+        "fr:destroyed": [false, true],
+        "fr:value": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "permutations": [
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 0, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 180, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 270, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 90, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'north' && !q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 0, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'south' && !q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 180, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'east' && !q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 270, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "query.block_state('minecraft:cardinal_direction') == 'west' && !q.block_state('fr:open_bit')",
+        "components": {
+          "minecraft:transformation": {
+            "rotation": [0, 90, 0]
+          },
+          "minecraft:light_dampening": 0
+        }
+      },
+      {
+        "condition": "q.block_state('fr:open_bit') && !q.block_state('fr:door_hinge_bit')",
+        "components": {
+          "minecraft:collision_box": {
+            "origin": [4, 0, -8],
+            "size": [4, 16, 16]
+          },
+          "minecraft:selection_box": {
+            "origin": [4, 0, -8],
+            "size": [4, 16, 16]
+          },
+          "minecraft:geometry": {
+            "identifier": "geometry.fr_door_inv"
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('fr:open_bit') && q.block_state('fr:door_hinge_bit')",
+        "components": {
+          "minecraft:collision_box": {
+            "origin": [-8, 0, -2],
+            "size": [16, 16, 4]
+          },
+          "minecraft:selection_box": {
+            "origin": [-8, 0, -2],
+            "size": [16, 16, 4]
+          },
+          "minecraft:geometry": {
+            "identifier": "geometry.fr_door_inv"
+          }
+        }
+      },
+      {
+        "condition": "!q.block_state('fr:upper_block_bit')",
+        "components": {
+          "minecraft:custom_components": [
+            "fr:on_place",
+            "fr:on_interact",
+            "fr:on_tick"
+          ],
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "backstage_door",
+              "render_method": "alpha_test_single_sided"
+            }
+          }
+        }
+      },
+      {
+        "condition": "q.block_state('fr:upper_block_bit')",
+        "components": {
+          "minecraft:custom_components": ["fr:on_interact", "fr:on_tick"],
+          "minecraft:material_instances": {
+            "*": {
+              "texture": "backstage_door",
+              "render_method": "alpha_test_single_sided"
+            }
+          }
+        }
+      }
+    ],
+    "components": {
+      "minecraft:custom_components": ["fr:on_interact"],
+      "minecraft:collision_box": {
+        "origin": [-8, 0, -2],
+        "size": [16, 16, 4]
+      },
+      "minecraft:selection_box": {
+        "origin": [-8, 0, -2],
+        "size": [16, 16, 4]
+      },
+      "minecraft:tick": {
+        "interval_range": [3, 3]
+      },
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 3
+      },
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3
+      },
+      "minecraft:geometry": {
+        "identifier": "geometry.fr_door_inv"
+      },
+      "minecraft:movable": {
+        "movement_type": "immovable"
+      }
+    }
+  }
+}

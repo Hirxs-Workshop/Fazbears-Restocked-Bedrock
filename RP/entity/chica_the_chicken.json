@@ -1,0 +1,49 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:fnaf1_chica_entity",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "skeleton",
+				"fr_b": "slime_outer"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/fnaf1/chica_the_chicken_Nopizza",
+				"fr_b": "textures/entity/reworked/fnaf1/chica_the_chicken_Nopizza"
+			},
+			"spawn_egg": {
+				"texture": "chica_the_chicken"
+			},
+			"animations": {
+				"look_at_target": "animation.common.look_at_target",
+				"default": "animation.chica_the_chicken.base",
+				"default_bloody": "animation.chica_the_chicken.base",
+				"walk": "animation.chica_walk",
+				"walk_bloody": "animation.chica_walk_blood",
+				"run": "animation.chica_walk",
+				"run_bloody": "animation.chica_walk_blood",
+				"idle": "animation.Chica_the_Chicken_idle1_normal_nocupcake",
+				"idle_bloody": "animation.Chica_the_Chicken_idle1_normal_nocupcake_blood",
+				"attack": "animation.chica_bite_and_wipe_jumpscare",
+				"base": "controller.animation.fnaf1_bonnie.base",
+				"movement_controller": "controller.animation.fnaf1_bonnie.movement"
+			},
+			"scripts": {
+				"animate": [
+					"base",
+					"movement_controller"
+				]
+			},
+			"geometry": {
+				"default": "geometry.chica_the_chicken",
+				"fr_b": "geometry.chica_the_chicken_blood"
+			},
+			"render_controllers": [
+				"controller.render.fr_render_vars",
+				"controller.render.fr_bonnie_vars"
+			],
+			"enable_attachables": false
+		}
+	}
+}

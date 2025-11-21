@@ -1,0 +1,166 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:gray_locker_upper",
+			"menu_category": {
+				"category": "none",
+				"is_hidden_in_commands": false
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"ff:locker_is": [
+					"closed",
+					"open"
+				]
+			}
+		},
+		"components": {
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0.5
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 0.5
+			},
+			"minecraft:flammable": {
+				"catch_chance_modifier": 30,
+				"destroy_chance_modifier": 30
+			},
+			"minecraft:geometry": "geometry.nothing_block",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "lockers",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"origin": [-8, 0, -2],
+				"size": [16, 16, 10]
+			},
+			"minecraft:selection_box": {
+				"origin": [-8, 0, -2],
+				"size": [16, 16, 10]
+			},
+			"minecraft:tick": {
+				"interval_range": [
+					120,
+					120
+				],
+				"looping": false
+			},
+			"fr:locker_upper_function": {},
+      		"minecraft:movable": {
+       			 "movement_type": "immovable"
+      		}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						],
+						"scale": [
+							1,
+							2,
+							1
+						],
+						"translation": [
+							0,
+							-0.5,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						],
+						"scale": [
+							1,
+							2,
+							1
+						],
+						"translation": [
+							0,
+							-0.5,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						],
+						"scale": [
+							1,
+							2,
+							1
+						],
+						"translation": [
+							0,
+							-0.5,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						],
+						"scale": [
+							1,
+							-2,
+							1
+						],
+						"translation": [
+							0,
+							-0.5,
+							0
+						]
+					}
+				}
+			},	
+			{
+				"condition": "q.block_state('ff:locker_is') == 'closed'",
+				"components": {
+					"minecraft:geometry": "geometry.nothing_block"
+				}
+			},	
+			{
+				"condition": "q.block_state('ff:locker_is') == 'open'",
+				"components": {
+					"minecraft:geometry": "geometry.nothing_block",
+					"minecraft:selection_box": false
+				}
+			}
+		]
+	}
+}

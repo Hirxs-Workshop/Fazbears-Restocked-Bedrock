@@ -1,0 +1,26 @@
+{
+	"format_version": "1.12",
+	"minecraft:recipe_shaped": {
+		"description": {
+			"identifier": "fr:white_pizzeria_floor_block"
+		},
+		"tags": [
+			"crafting_table"
+		],
+		"pattern": [
+			"QC",
+			"CQ"
+		],
+		"key": {
+			"C": {
+				"item": "minecraft:coal"
+			},
+			"Q": {
+				"item": "minecraft:quartz"
+			}
+		},
+		"result": {
+			"item": "fr:white_pizzeria_floor"
+		}
+	}
+}

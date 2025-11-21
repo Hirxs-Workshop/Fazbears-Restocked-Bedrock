@@ -1,0 +1,83 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.pizza_box",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-8, 0, -8],
+							"size": [16, 3, 16],
+							"uv": {
+								"north": {"uv": [12, 32], "uv_size": [16, 3]},
+								"east": {"uv": [32, 12], "uv_size": [16, 3]},
+								"south": {"uv": [32, 15], "uv_size": [16, 3]},
+								"west": {"uv": [48, 12], "uv_size": [-16, 3]},
+								"up": {"uv": [0, 0], "uv_size": [16, 16]},
+								"down": {"uv": [0, 32], "uv_size": [16, -16]}
+							}
+						},
+						{
+							"origin": [-8, 1, -8],
+							"size": [16, 0, 16],
+							"uv": {
+								"up": {"uv": [0, 16], "uv_size": [16, 16]}
+							}
+						},
+						{
+							"origin": [-6, 1.5, -6],
+							"size": [12, 0, 12],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [12, 0]},
+								"east": {"uv": [0, 0], "uv_size": [12, 0]},
+								"south": {"uv": [0, 0], "uv_size": [12, 0]},
+								"west": {"uv": [0, 0], "uv_size": [12, 0]},
+								"up": {"uv": [0, 32], "uv_size": [12, 12]},
+								"down": {"uv": [32, 12], "uv_size": [12, -12]}
+							}
+						}
+					]
+				},
+				{
+					"name": "bone",
+					"pivot": [0, 2, 7],
+					"cubes": [
+						{
+							"origin": [-8, 1, -8],
+							"size": [16, 2, 16],
+							"pivot": [0, 2, 7],
+							"rotation": [-90, 0, 0],
+							"uv": {
+								"north": {"uv": [12, 32], "uv_size": [16, 2]},
+								"east": {"uv": [32, 27], "uv_size": [16, 2]},
+								"south": {"uv": [32, 25], "uv_size": [16, 2]},
+								"west": {"uv": [48, 27], "uv_size": [-16, 2]},
+								"up": {"uv": [16, 0], "uv_size": [16, 16]},
+								"down": {"uv": [16, 32], "uv_size": [16, -16]}
+							}
+						},
+						{
+							"origin": [-8, 2, -8],
+							"size": [16, 0, 16],
+							"pivot": [0, 2, 7],
+							"rotation": [-90, 0, 0],
+							"uv": {
+								"down": {"uv": [0, 32], "uv_size": [16, -16]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

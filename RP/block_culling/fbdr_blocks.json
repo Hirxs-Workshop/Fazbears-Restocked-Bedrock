@@ -1,0 +1,18 @@
+{
+    "format_version": "1.21.40",
+    "minecraft:block_culling_rules": {
+        "description": {
+            "identifier": "fbdr:blocks_culling" 
+        },
+        "rules": [ 
+            {
+                "direction": "down", 
+                "geometry_part": {
+                    "bone": "*", 
+                    "cube": 0, 
+                    "face": "down" 
+                }
+            }
+         ] 
+    }
+}

@@ -1,0 +1,43 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.office_door_buttons",
+				"texture_width": 32,
+				"texture_height": 32,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-4, -2, 3],
+							"size": [8, 20, 2],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [8, 20]},
+								"east": {"uv": [16, 0], "uv_size": [2, 20]},
+								"south": {"uv": [8, 0], "uv_size": [8, 20]},
+								"west": {"uv": [18, 0], "uv_size": [2, 20]},
+								"up": {"uv": [12, 20], "uv_size": [8, 2]},
+								"down": {"uv": [20, 14], "uv_size": [8, -2]}
+							}
+						}
+					]
+				},
+				{
+					"name": "door",
+					"pivot": [0, 3, -2]
+				},
+				{
+					"name": "light",
+					"pivot": [0, -6, -2]
+				}
+			]
+		}
+	]
+}

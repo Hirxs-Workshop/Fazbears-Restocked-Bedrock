@@ -1,0 +1,86 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.backstage_door_state": {
+			"initial_state": "closed",
+			"states": {
+				"closed": {
+					"transitions": [
+						{
+							"opening_front": "query.variant == 1"
+						},
+						{
+							"opening_back": "query.variant == 2"
+						}
+					]
+				},
+				"opening_front": {
+					"animations": [
+						"fr_door_open"
+					],
+					"transitions": [
+						{
+							"open_permanent_front": "query.variant == 1 && query.anim_time >= 1.20"
+						},
+						{
+							"closing_front": "query.variant == 0"
+						}
+					]
+				},
+				"opening_back": {
+					"animations": [
+						"fr_door_open_back"
+					],
+					"transitions": [
+						{
+							"open_permanent_back": "query.variant == 2 && query.anim_time >= 1.20"
+						},
+						{
+							"closing_back": "query.variant == 0"
+						}
+					]
+				},
+				"open_permanent_front": {
+					"animations": [
+						"fr_door_open_perm"
+					],
+					"transitions": [
+						{
+							"closing_front": "query.variant == 0"
+						}
+					]
+				},
+				"open_permanent_back": {
+					"animations": [
+						"fr_door_open_perm_back"
+					],
+					"transitions": [
+						{
+							"closing_back": "query.variant == 0"
+						}
+					]
+				},
+				"closing_front": {
+					"animations": [
+						"fr_door_close"
+					],
+					"transitions": [
+						{
+							"closed": "query.anim_time >= 1.20"
+						}
+					]
+				},
+				"closing_back": {
+					"animations": [
+						"fr_door_close_back"
+					],
+					"transitions": [
+						{
+							"closed": "query.anim_time >= 1.20"
+						}
+					]
+				}
+			}
+		}
+	}
+}

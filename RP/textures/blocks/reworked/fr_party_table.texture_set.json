@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fr_party_table",
+        "metalness_emissive_roughness": "fr_party_table_mer",
+        "heightmap": "fr_party_table_normal"
+    }
+}

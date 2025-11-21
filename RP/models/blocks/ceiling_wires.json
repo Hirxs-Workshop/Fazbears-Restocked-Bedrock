@@ -1,0 +1,66 @@
+{
+	"format_version": "1.21.20",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.ceiling_wires",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "normal",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-8, 0, 0],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [16, 16]},
+								"south": {"uv": [16, 0], "uv_size": [-16, 16]}
+							}
+						},
+						{
+							"origin": [-8, 0, 0],
+							"size": [16, 16, 0],
+							"pivot": [0, 0, 0],
+							"rotation": [0, 87.5, 0],
+							"uv": {
+								"north": {"uv": [16, 0], "uv_size": [-16, 16]},
+								"south": {"uv": [0, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "sided",
+					"pivot": [0, 0, 0],
+					"rotation": [0, 47.5, 0],
+					"cubes": [
+						{
+							"origin": [-8, 0, 0],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [16, 16]},
+								"south": {"uv": [16, 0], "uv_size": [-16, 16]}
+							}
+						},
+						{
+							"origin": [-8, 0, 0],
+							"size": [16, 16, 0],
+							"pivot": [0, 0, 0],
+							"rotation": [0, 87.5, 0],
+							"uv": {
+								"north": {"uv": [16, 0], "uv_size": [-16, 16]},
+								"south": {"uv": [0, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

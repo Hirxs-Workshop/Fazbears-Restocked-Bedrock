@@ -1,0 +1,30 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:foxy_plush_entity",
+			"materials": {
+				"default": "entity_alphatest"
+			},
+			"textures": {
+				"default": "textures/blocks/reworked/plushies/game_foxy_plush"
+			},
+			"geometry": {
+				"default": "geometry.fr_foxy_plush"
+			},
+			"animations": {
+				"fr_clicked": "animation.fr_freddy_plush.click",
+				"fr_idle": "animation.fr_freddy_plush.idle",
+				"plush_controller": "controller.animation.freddy_plush"
+			},
+			"scripts": {
+				"animate": [
+					"plush_controller"
+				]
+			},
+			"render_controllers": [
+				"controller.render.skeleton"
+			]
+		}
+	}
+}

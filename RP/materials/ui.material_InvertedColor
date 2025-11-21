@@ -1,0 +1,10 @@
+{
+	"materials": {
+		"version": "1.0.0",
+		"ui_fill_gradient:ui_base": {
+			"blendSrc": "OneMinusDestColor",
+			"blendDst": "OneMinusSrcColor"
+		}
+	}
+}
+//Remove the '_InvertedColor' name in the file extension to enable this

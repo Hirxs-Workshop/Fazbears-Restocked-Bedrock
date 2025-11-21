@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Stillson_Pipe_Wrench_FNaF_Extra_Tools_Texture",
+        "metalness_emissive_roughness": "Stillson_Pipe_Wrench_FNaF_Extra_Tools_Texture_mer",
+        "heightmap": "Stillson_Pipe_Wrench_FNaF_Extra_Tools_Texture_normal"
+    }
+}

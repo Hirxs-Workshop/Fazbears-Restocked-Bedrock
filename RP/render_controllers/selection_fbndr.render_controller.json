@@ -1,0 +1,33 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+	  "controller.render.fr_outline": {
+		"geometry": "geometry.default",
+		"textures": [ "texture.default" ],
+		"ignore_lighting": true,
+		"part_visibility": [
+			{
+			  "*": false
+			},
+			{
+			  "selection": "v.look_at_entity"
+			}
+		],
+		"materials": [
+		  {
+			"*": "material.default"
+		  }
+		],
+		"uv_anim": {
+			"offset": [
+				0,
+				"math.mod(math.floor(query.life_time*0.7),4)/4"
+			],
+			"scale": [
+				1,
+				"0.1"
+			]
+		}
+	  }
+	}
+  }

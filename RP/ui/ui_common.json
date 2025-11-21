@@ -1,0 +1,504 @@
+{
+    "base_screen_custom": {
+        "$background_animations|default": [
+            "@common.myanimexitpush",
+            "@common.myanimexitpop"
+        ],
+        "$is_full_screen_layout|default": false,
+        "$safezone_screen_matrix_layer|default": 2,
+        "$screen_animations|default": [
+            "@common.myanimexitpush",
+            "@common.myanimexitpop"
+        ],
+        "$screen_bg_content|default": "common.base_screen_empty_panel",
+        "$screen_content|default": "common.base_screen_empty_panel",
+        "$use_loading_bars|default": true,
+        "controls": [
+            {
+                "variables_button_mappings_and_controls": {
+                    "button_mappings": [
+                        {
+                            "from_button_id": "button.menu_up",
+                            "mapping_type": "global",
+                            "scope": "view",
+                            "to_button_id": "button.menu_up"
+                        },
+                        {
+                            "from_button_id": "button.menu_down",
+                            "mapping_type": "global",
+                            "scope": "view",
+                            "to_button_id": "button.menu_down"
+                        },
+                        {
+                            "from_button_id": "button.menu_left",
+                            "mapping_type": "global",
+                            "scope": "view",
+                            "to_button_id": "button.menu_left"
+                        },
+                        {
+                            "from_button_id": "button.menu_right",
+                            "mapping_type": "global",
+                            "scope": "view",
+                            "to_button_id": "button.menu_right"
+                        }
+                    ],
+                    "controls": [
+                        {
+                            "bg_no_safezone_screen_panel@$screen_bg_content": {
+                                "animation_reset_name": "screen_animation_reset",
+                                "anims": "$background_animations",
+                                "disable_anim_fast_forward": true,
+                                "layer": 2,
+                                "propagate_alpha": true
+                            }
+                        },
+                        {
+                            "safezone_screen_matrix@common.safezone_outer_matrix": {
+                                "animation_reset_name": "screen_animation_reset",
+                                "anims": "$screen_animations",
+                                "disable_anim_fast_forward": true,
+                                "layer": "$safezone_screen_matrix_layer",
+                                "propagate_alpha": true
+                            }
+                        },
+                        {
+                            "screen_background@common_dialogs.full_screen_background": {
+                                "animation_reset_name": "screen_animation_reset",
+                                "anims": "$screen_animations",
+                                "disable_anim_fast_forward": true,
+                                "layer": -1,
+                                "propagate_alpha": true
+                            }
+                        }
+                    ],
+                    "hover_enabled": false,
+                    "prevent_touch_input": false,
+                    "ttsSectionContainer": true,
+                    "type": "input_panel",
+                    "variables": [
+                        {
+                            "$choose_realm_screen_size": [
+                                "70%",
+                                "85%"
+                            ],
+                            "$create_realm_upsell_play_screen_size": [
+                                360,
+                                213
+                            ],
+                            "$create_realm_upsell_screen_size": [
+                                360,
+                                183
+                            ],
+                            "$create_world_upsell_screen_size": [
+                                360,
+                                183
+                            ],
+                            "$custom_templates_screen_size": [
+                                "70%",
+                                "85%"
+                            ],
+                            "$day_one_experience_import_progress_screen_size": [
+                                "80%",
+                                "90%"
+                            ],
+                            "$day_one_experience_intro_screen_size": [
+                                "60%",
+                                "85%"
+                            ],
+                            "$extra_large_max_screen_size": [
+                                370,
+                                "100% - 50px"
+                            ],
+                            "$extra_large_screen_size": [
+                                "100% - 4px",
+                                "100% - 4px"
+                            ],
+                            "$gamepad_disconnect_screen_size": [
+                                300,
+                                100
+                            ],
+                            "$large_screen_size": [
+                                317,
+                                "100% - 10px"
+                            ],
+                            "$max_create_world_upsell_screen_size": [
+                                360,
+                                "100% - 4px"
+                            ],
+                            "$max_resource_pack_screen_size": [
+                                400,
+                                246
+                            ],
+                            "$max_skin_pack_screen_size": [
+                                310,
+                                "56.25%x - 65.25px + 118.5px"
+                            ],
+                            "$max_upsell_screen_size": [
+                                250,
+                                259.125
+                            ],
+                            "$min_resource_pack_screen_size": [
+                                372,
+                                232.4
+                            ],
+                            "$mob_effect_screen_size": [
+                                "90%",
+                                "90%"
+                            ],
+                            "$modal_screen_size": [
+                                204,
+                                140
+                            ],
+                            "$narrow_screen_size": [
+                                280,
+                                "100% - 10px"
+                            ],
+                            "$patch_notes_screen_size": [
+                                300,
+                                "100% - 4px"
+                            ],
+                            "$play_screen_size": [
+                                282,
+                                "100% - 50px"
+                            ],
+                            "$purchase_coin_screen_size": [
+                                "90%",
+                                "17%x + 82px"
+                            ],
+                            "$purchase_coin_screen_size_extended": [
+                                "90%",
+                                "17%x + 117px"
+                            ],
+                            "$purchase_coin_screen_size_extended_not_enough": [
+                                "90%",
+                                "17%x + 132px"
+                            ],
+                            "$purchase_coin_screen_size_not_enough": [
+                                "90%",
+                                "17%x + 97px"
+                            ],
+                            "$rating_prompt_screen_size": [
+                                250,
+                                87
+                            ],
+                            "$realms_create_screen_size": [
+                                267,
+                                240
+                            ],
+                            "$resource_pack_screen_size": [
+                                "100% - 50px",
+                                "45%x + 65px"
+                            ],
+                            "$sign_screen_size": [
+                                185,
+                                90
+                            ],
+                            "$skin_pack_screen_size": [
+                                "100% - 4px",
+                                "100% - 50px"
+                            ],
+                            "$storage_migration_progress_size": [
+                                290,
+                                100
+                            ],
+                            "$store_modal_screen_size": [
+                                "80%",
+                                "80%"
+                            ],
+                            "$store_screen_size": [
+                                "100% - 4px",
+                                "100% - 4px"
+                            ],
+                            "$tabbed_upsell_screen_size": [
+                                310,
+                                173
+                            ],
+                            "$tall_modal_screen_size": [
+                                204,
+                                172
+                            ],
+                            "$upsell_screen_size": [
+                                "177%y - 208.5px",
+                                "100% - 4px"
+                            ],
+                            "$world_conversion_complete_screen_size": [
+                                290,
+                                160
+                            ],
+                            "$world_modal_screen_size": [
+                                290,
+                                100
+                            ],
+                            "$xbl_console_signin_screen_size": [
+                                316,
+                                161
+                            ],
+                            "$xbl_console_signin_succeeded_screen_size": [
+                                230,
+                                "100% - 50px"
+                            ],
+                            "$xbl_first_launch_screen_size": [
+                                317,
+                                146
+                            ],
+                            "$xbl_gamer_profile_screen_size": [
+                                260,
+                                "100% - 50px"
+                            ],
+                            "$xbl_immediate_signin_screen_size": [
+                                317,
+                                158
+                            ],
+                            "$xbl_optional_signin_screen_size": [
+                                317,
+                                158
+                            ],
+                            "requires": "$desktop_screen"
+                        },
+                        {
+                            "$choose_realm_screen_size": [
+                                "70%",
+                                "85%"
+                            ],
+                            "$create_realm_upsell_play_screen_size": [
+                                "100% - 4px",
+                                219
+                            ],
+                            "$create_realm_upsell_screen_size": [
+                                "100% - 4px",
+                                223
+                            ],
+                            "$create_world_upsell_screen_size": [
+                                "100% - 4px",
+                                223
+                            ],
+                            "$custom_templates_screen_size": [
+                                "70%",
+                                "85%"
+                            ],
+                            "$day_one_experience_import_progress_screen_size": [
+                                "80%",
+                                "90%"
+                            ],
+                            "$day_one_experience_intro_screen_size": [
+                                "60%",
+                                "85%"
+                            ],
+                            "$extra_large_max_screen_size": [
+                                370,
+                                "100% - 50px"
+                            ],
+                            "$extra_large_screen_size": [
+                                "100% - 4px",
+                                "100% - 4px"
+                            ],
+                            "$gamepad_disconnect_screen_size": [
+                                300,
+                                100
+                            ],
+                            "$large_screen_size": [
+                                "70.3215%",
+                                "100% - 4px"
+                            ],
+                            "$max_create_world_upsell_screen_size": [
+                                "100% - 4px",
+                                "100% - 4px"
+                            ],
+                            "$max_resource_pack_screen_size": [
+                                313.3,
+                                206
+                            ],
+                            "$max_skin_pack_screen_size": [
+                                "100% - 4px",
+                                "56.25%x - 65.25px + 118.5px"
+                            ],
+                            "$max_upsell_screen_size": [
+                                "100% - 76px",
+                                "56.25%x + 118.5px"
+                            ],
+                            "$min_resource_pack_screen_size": [
+                                306,
+                                202.7
+                            ],
+                            "$mob_effect_screen_size": [
+                                "90%",
+                                "90%"
+                            ],
+                            "$modal_screen_size": [
+                                204,
+                                140
+                            ],
+                            "$narrow_screen_size": [
+                                "90.3225%",
+                                "100% - 4px"
+                            ],
+                            "$patch_notes_screen_size": [
+                                300,
+                                "100% - 4px"
+                            ],
+                            "$play_screen_size": [
+                                "83.4375%",
+                                "100% - 4px"
+                            ],
+                            "$purchase_coin_screen_size": [
+                                "90%",
+                                "17%x + 82px"
+                            ],
+                            "$purchase_coin_screen_size_extended": [
+                                "90%",
+                                "17%x + 117px"
+                            ],
+                            "$purchase_coin_screen_size_extended_not_enough": [
+                                "90%",
+                                "17%x + 132px"
+                            ],
+                            "$purchase_coin_screen_size_not_enough": [
+                                "90%",
+                                "17%x + 97px"
+                            ],
+                            "$rating_prompt_screen_size": [
+                                250,
+                                87
+                            ],
+                            "$realms_create_screen_size": [
+                                "71.2766%",
+                                "100% - 4px"
+                            ],
+                            "$resource_pack_screen_size": [
+                                "100% - 50px",
+                                "45%x + 65px"
+                            ],
+                            "$sign_screen_size": [
+                                185,
+                                90
+                            ],
+                            "$skin_pack_screen_size": [
+                                "100% - 4px",
+                                "100% - 4px"
+                            ],
+                            "$storage_migration_progress_size": [
+                                290,
+                                100
+                            ],
+                            "$store_modal_screen_size": [
+                                "100% - 20px",
+                                "100% - 20px"
+                            ],
+                            "$store_screen_size": [
+                                "100% - 4px",
+                                "100% - 4px"
+                            ],
+                            "$tabbed_upsell_screen_size": [
+                                310,
+                                173
+                            ],
+                            "$tall_modal_screen_size": [
+                                204,
+                                172
+                            ],
+                            "$upsell_screen_size": [
+                                "100% - 76px",
+                                "100% - 4px"
+                            ],
+                            "$world_conversion_complete_screen_size": [
+                                290,
+                                160
+                            ],
+                            "$world_modal_screen_size": [
+                                290,
+                                100
+                            ],
+                            "$xbl_console_signin_screen_size": [
+                                316,
+                                161
+                            ],
+                            "$xbl_console_signin_succeeded_screen_size": [
+                                230,
+                                "100% - 4px"
+                            ],
+                            "$xbl_first_launch_screen_size": [
+                                316,
+                                146
+                            ],
+                            "$xbl_gamer_profile_screen_size": [
+                                316,
+                                "100% - 4px"
+                            ],
+                            "$xbl_immediate_signin_screen_size": [
+                                316,
+                                153
+                            ],
+                            "$xbl_optional_signin_screen_size": [
+                                316,
+                                153
+                            ],
+                            "requires": "($pocket_screen or $is_holographic)"
+                        }
+                    ]
+                }
+            },
+            {
+                "loading_bars_background": {
+                    "alpha": 0,
+                    "animation_reset_name": "screen_animation_reset",
+                    "anims": [
+                        "@common.loading_bar_init_animation_push",
+                        "@common.loading_bar_init_animation_pop"
+                    ],
+                    "controls": [
+                        {
+                            "loading_bars@common_store.progress_loading_bars": {
+                                "max_size": [],
+                                "size": [
+                                    "100%",
+                                    "8%x"
+                                ]
+                            }
+                        }
+                    ],
+                    "disable_anim_fast_forward": true,
+                    "propagate_alpha": true,
+                    "size": [
+                        "33%",
+                        "100%c + 16px"
+                    ],
+                    "texture": "textures/ui/effect_background",
+                    "type": "image",
+                    "visible": "$use_loading_bars"
+                }
+            }
+        ],
+        "type": "screen"
+    },
+    "myanimexitpop": {
+        "anim_type": "offset",
+        "duration": 0.3,
+        "easing": "out_cubic",
+        "end_event": "screen.exit_end",
+        "from": [
+            0,
+            0
+        ],
+        "play_event": "screen.exit_pop",
+        "to": [
+            0,
+            0
+        ]
+    },
+    "myanimexitpush": {
+        "anim_type": "offset",
+        "duration": 0.3,
+        "easing": "out_cubic",
+        "end_event": "screen.exit_end",
+        "from": [
+            0,
+            0
+        ],
+        "play_event": "screen.exit_push",
+        "to": [
+            0,
+            0
+        ]
+    },
+    "namespace": "common"
+}

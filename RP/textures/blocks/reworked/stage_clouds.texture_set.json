@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "stage_clouds",
+        "metalness_emissive_roughness": "stage_clouds_mer",
+        "heightmap": "stage_clouds_normal"
+    }
+}

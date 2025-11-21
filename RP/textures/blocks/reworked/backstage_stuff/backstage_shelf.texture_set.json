@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "backstage_shelf",
+        "metalness_emissive_roughness": "backstage_shelf_mer",
+        "heightmap": "backstage_shelf_normal"
+    }
+}

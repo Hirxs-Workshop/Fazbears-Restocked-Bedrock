@@ -1,0 +1,107 @@
+{
+  "namespace": "fr_block_settings_screen",
+
+  "block_settings_ui": {
+    "type": "panel",
+    "$flag_bset": "§5B§S§E§T",
+    "size": ["100%", "100%"],
+    "controls": [
+      {
+        "dark_overlay": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/ui/Black",
+          "alpha": 0.7,
+          "layer": 99
+        }
+      },
+      {
+        "modal_panel": {
+          "type": "panel",
+          "size": [520, 340],
+          "max_size": ["90%", "85%"],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 100,
+          "controls": [
+            { "bg": { "type": "image", "size": ["100%", "100%"], "texture": "textures/fr_ui/terminal_layer2", "layer": 1 } },
+            {
+              "title_bar": {
+                "type": "panel",
+                "size": ["98%", 20],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [0, -2],
+                "layer": 3,
+                "controls": [
+                  {
+                    "title_label": {
+                      "type": "label",
+                      "text": "#title",
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "offset": [4, 0],
+                      "layer": 2,
+                      "font_scale_factor": 0.9,
+                      "color": [0.9, 0.9, 0.9],
+                      "bindings": [
+                        { "binding_type": "global", "binding_name": "#title_text", "binding_name_override": "#title_text" },
+                        { "binding_type": "view", "source_property_name": "(#title_text - $flag_bset)", "target_property_name": "#title" }
+                      ]
+                    }
+                  },
+                  {
+                    "close_button": {
+                      "type": "panel",
+                      "size": [16, 16],
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [2, 1],
+                      "layer": 3,
+                      "controls": [
+                        { "x_close_button": {
+                          "type": "button",
+                          "size": ["100%", "100%"],
+                          "controls": [ { "x_icon": { "type": "image", "size": [10, 10], "anchor_from": "center", "anchor_to": "center", "texture": "textures/fr_ui/x_icon", "layer": 3 } } ],
+                          "button_mappings": [ { "from_button_id": "button.menu_select", "to_button_id": "button.menu_exit", "mapping_type": "pressed" } ]
+                        } }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "content_panel": {
+                "type": "panel",
+                "size": ["100% - 18px", "100% - 44px"],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [0, 20],
+                "layer": 2,
+                "controls": [
+                  { "screen_area": {
+                    "type": "panel",
+                    "size": ["72%", "64%"],
+                    "anchor_from": "center",
+                    "anchor_to": "center",
+                    "offset": [0, 0],
+                    "layer": 2,
+                    "controls": [
+                      { "grid@server_form.block_settings_buttons_content_desktop": {} }
+                    ]
+                  } }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      { "binding_type": "global", "binding_condition": "none", "binding_name": "#title_text", "binding_name_override": "#title_text" },
+      { "binding_name": "#null", "source_property_name": "(not ((#title_text - $flag_bset) = #title_text))", "binding_type": "view", "target_property_name": "#visible" },
+      { "binding_name": "#null", "source_property_name": "(not ((#title_text - $flag_bset) = #title_text))", "binding_type": "view", "target_property_name": "#enabled" }
+    ]
+  }
+}
