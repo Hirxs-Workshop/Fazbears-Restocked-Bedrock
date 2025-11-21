@@ -1,0 +1,53 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:foxy_statue",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "spider"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/fnaf1/foxy_the_pirate"
+			},
+			"animations": {
+				"default_pose": "animation.foxy_stand",
+				"no_pose": "animation.foxy_mugshot",
+				"solemn_pose": "animation.foxy_hw2_render",
+				"athena_pose": "animation.foxy_peek",
+				"brandish_pose": "animation.foxy_exit_cove",
+				"honor_pose": "animation.foxy_jumpscare",
+				"entertain_pose": "animation.foxy_ar_render1",
+				"salute_pose": "animation.foxy_ar_render_2",
+				"riposte_pose": "animation.foxy_look_up",
+				"zombie_pose": "animation.foxy_crouch_look_up",
+				"cancan_a_pose": "animation.foxy_crouch_look_side",
+				"cancan_b_pose": "animation.foxy_floor_sit",
+				"hero_pose": "animation.foxy_dismantled",
+				"wiggle": "animation.foxy_dismantled",
+				"controller.pose": "controller.animation.armor_stand.pose",
+				"controller.wiggling": "controller.animation.armor_stand.wiggle"
+			},
+			"scripts": {
+				"initialize": [
+					"variable.armor_stand.pose_index = 0;",
+					"variable.armor_stand.hurt_time = 0;"
+				],
+				"animate": [
+					"controller.pose",
+					"controller.wiggling"
+				]
+			},
+			"geometry": {
+				"default": "geometry.Foxy_the_Pirate_alt"
+			},
+			"render_controllers": [
+				"controller.render.armor_stand"
+			],
+			"enable_attachables": true,
+			"spawn_egg": {
+				"texture": "foxy_the_fox"
+			}
+		}
+	}
+}

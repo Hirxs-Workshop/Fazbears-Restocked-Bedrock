@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "door_buttons",
+        "metalness_emissive_roughness": "door_buttons_mer",
+        "heightmap": "door_buttons_normal"
+    }
+}

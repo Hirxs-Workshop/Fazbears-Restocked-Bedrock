@@ -1,0 +1,121 @@
+{
+	"format_version": "1.20.80",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:small_speaker",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_position": {
+					"enabled_states": [
+						"minecraft:block_face"
+					]
+				}
+			},
+			"states": {
+				"fr:rotation": {
+					"values": {
+						"min": 0,
+						"max": 15
+					}
+				},
+				"p:changer": {
+					"values": {
+						"min": 0,
+						"max": 4
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+	"origin": [-4, 0, -3.5],
+	"size": [8, 13, 7]
+			},
+			"minecraft:selection_box": {
+	"origin": [-4, 0, -3.5],
+	"size": [8, 13, 7]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.small_speaker",
+				"bone_visibility": {
+					"up_0": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:rotation'), 4)",
+					"up_22_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:rotation') - 1, 4)",
+					"up_45": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:rotation') - 2, 4)",
+					"up_67_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:rotation') - 3, 4)",
+					"side": "q.block_state('minecraft:block_face') != 'up'"
+				}
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "speaker",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:placement_filter": {
+				"conditions": [
+					{
+						"allowed_faces": [
+							"up",
+							"side"
+						]
+					}
+				]
+			},
+            "fr:precise_rotation": {}
+
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:rotation') >= 4 || q.block_state('minecraft:block_face') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:rotation') >= 8 || q.block_state('minecraft:block_face') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:rotation') >= 12 || q.block_state('minecraft:block_face') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:block_face') != 'up'",
+				"components": {
+					"minecraft:collision_box": {
+	"origin": [-4, 0, -5],
+	"size": [8, 3, 10]
+					},
+					"minecraft:selection_box": {
+	"origin": [-4, 0, -5],
+	"size": [8, 3, 10]
+					}
+				}
+			}
+		]
+	}
+}

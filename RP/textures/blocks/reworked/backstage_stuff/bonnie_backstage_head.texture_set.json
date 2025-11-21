@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "bonnie_backstage_head",
+        "metalness_emissive_roughness": "bonnie_backstage_head_mer",
+        "heightmap": "bonnie_backstage_head_normal"
+    }
+}

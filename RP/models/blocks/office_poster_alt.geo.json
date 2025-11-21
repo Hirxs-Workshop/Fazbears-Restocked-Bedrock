@@ -1,0 +1,42 @@
+{
+	"format_version": "1.21.20",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.office_poster_alt",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 3,
+				"visible_bounds_offset": [0, 0.5, 0]
+			},
+			"bones": [
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-6, -13, 7.5],
+							"size": [20, 28, 0],
+							"uv": {
+								"north": {"uv": [32, 0], "uv_size": [20, 28]}
+							}
+						},
+						{
+							"origin": [-1, 0, -1],
+							"size": [2, 2, 2],
+							"uv": {
+								"north": {"uv": [17, 53], "uv_size": [2, 2]},
+								"east": {"uv": [17, 53], "uv_size": [2, 2]},
+								"south": {"uv": [17, 53], "uv_size": [2, 2]},
+								"west": {"uv": [17, 53], "uv_size": [2, 2]},
+								"up": {"uv": [19, 55], "uv_size": [-2, -2]},
+								"down": {"uv": [19, 55], "uv_size": [-2, -2]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

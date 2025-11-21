@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "generator_level_4",
+        "metalness_emissive_roughness": "generator_level_4_mer",
+        "heightmap": "generator_level_4_normal"
+    }
+}

@@ -1,0 +1,119 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:switch",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:switch_type": [
+					false,
+					true
+				]
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"origin": [-3, 3, 6],
+				"size": [6, 11, 2]
+			},
+			"minecraft:selection_box": {
+				"origin": [-3, 3, 6],
+				"size": [6, 11, 2]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.switch_on"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "switch",
+					"render_method": "alpha_test"
+				}
+			},
+			"fr:switch": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:switch_type') == false",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "switch",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:geometry": "geometry.switch_on"
+				}
+			},
+			{
+				"condition": "q.block_state('fr:switch_type') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "switch",
+							"render_method": "alpha_test",
+							"ambient_occlusion": false
+						}
+					},
+					"minecraft:geometry": "geometry.switch_off"
+				}
+			}
+		]
+	}
+}

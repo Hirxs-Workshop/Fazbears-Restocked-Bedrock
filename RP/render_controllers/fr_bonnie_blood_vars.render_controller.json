@@ -1,0 +1,16 @@
+{
+	"format_version": "1.10.0",
+	"render_controllers": {
+		"controller.render.fr_bonnie_vars": {
+			"geometry": "geometry.fr_b",
+			"materials": [
+				{
+					"*": "material.fr_b"
+				}
+			],
+			"textures": [
+				"texture.fr_b"
+			]
+		}
+	}
+}

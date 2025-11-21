@@ -1,0 +1,72 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "fr:entrance_door",
+			"is_spawnable": false,
+			"is_summonable": true,
+			"is_experimental": false
+		},
+		"component_groups": {
+			"despawn_entity": {
+				"minecraft:instant_despawn": {}
+			},
+			"fr_close_door": {
+				"minecraft:variant": {
+					"value": 0
+				}
+			},
+			"fr_open_door": {
+				"minecraft:variant": {
+					"value": 1
+				}
+			}
+		},
+		"components": {
+			"minecraft:variant": {
+				"value": 0
+			},
+			"minecraft:type_family": {
+				"family": [
+					"book",
+					"inanimate"
+				]
+			},
+			"minecraft:collision_box": {
+				"height": 0,
+				"width": 0
+			},
+			"minecraft:health": {
+				"value": 1,
+				"min": 1,
+				"max": 1
+			},
+			"minecraft:fire_immune": {},
+			"minecraft:damage_sensor": {
+				"triggers": {
+					"cause": "all",
+					"deals_damage": false
+				}
+			}
+		},
+		"events": {
+			"destroy": {
+				"add": {
+					"component_groups": [
+						"despawn_entity"
+					]
+				}
+			},
+			"open_door": {
+				"add": {
+					"component_groups": ["fr_open_door"]
+				}
+			},
+			"close_door": {
+				"add": {
+					"component_groups": ["fr_close_door"]
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,35 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.cardboard_box",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-7, 0, -7],
+							"size": [14, 12, 14],
+							"uv": {
+								"north": {"uv": [14, 0], "uv_size": [14, 12]},
+								"east": {"uv": [0, 16], "uv_size": [14, 12]},
+								"south": {"uv": [28, 0], "uv_size": [14, 12]},
+								"west": {"uv": [14, 16], "uv_size": [14, 12]},
+								"up": {"uv": [0, 0], "uv_size": [14, 14]},
+								"down": {"uv": [0, 14], "uv_size": [14, -14]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

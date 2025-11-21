@@ -1,0 +1,46 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.restroom_sign_man",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bathroom_sign",
+					"pivot": [0, 8.5, 7.125],
+					"cubes": [
+						{
+							"origin": [-3.5, 4.5, 6.95],
+							"size": [7, 8, 1],
+							"uv": {
+								"north": {"uv": [1, 0], "uv_size": [7, 8]},
+								"east": {"uv": [0, 0], "uv_size": [1, 8]},
+								"south": {"uv": [8, 0], "uv_size": [-7, 8]},
+								"west": {"uv": [8, 0], "uv_size": [1, 8]},
+								"up": {"uv": [16, 1], "uv_size": [-7, -1]},
+								"down": {"uv": [16, 2], "uv_size": [-7, -1]}
+							}
+						},
+						{
+							"origin": [-3, 5, 6.8],
+							"size": [6, 7, 0],
+							"uv": {
+								"north": {"uv": [0, 8], "uv_size": [6, 7]},
+								"east": {"uv": [0, 8], "uv_size": [0, 7]},
+								"west": {"uv": [0, 8], "uv_size": [0, 7]},
+								"up": {"uv": [0, 8], "uv_size": [6, 0]},
+								"down": {"uv": [0, 8], "uv_size": [6, 0]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

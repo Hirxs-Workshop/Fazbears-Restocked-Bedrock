@@ -1,0 +1,30 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+	  "description": {
+		"identifier": "fr:selection",
+		"materials": {
+		  "default": "fr_light_vfx"
+		},
+		"textures": {
+		  "default": "textures/blocks/reworked/borders"
+		},
+		"geometry": {
+		  "default": "geometry.selection_fr"
+		},
+		"render_controllers": [
+		  "controller.render.fr_outline"
+		],
+		"scripts": {
+			"pre_animation": [
+				"v.horizontal_threshold = 15;",
+				"v.vertical_threshold = 50;",
+				"v.vertical_offset = 0;",
+	  
+				"v.camera_rot = -Math.atan2(-q.distance_from_camera * Math.sin(q.rotation_to_camera(0)) + v.vertical_offset, q.distance_from_camera * Math.cos(q.rotation_to_camera(0)));",
+				"v.look_at_entity = Math.abs(Math.abs(q.rotation_to_camera(1) - q.camera_rotation(1)) - 180) < (v.horizontal_threshold / q.distance_from_camera) && Math.abs(v.camera_rot + q.camera_rotation(0)) < (v.vertical_threshold / q.distance_from_camera);"
+			]
+		}
+	  }
+	}
+  }

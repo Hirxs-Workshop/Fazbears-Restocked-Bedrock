@@ -1,0 +1,55 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.doors.execute_commands": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"execute_command_id_3": "query.skin_id==3"
+						},
+						{
+							"execute_command_id_2": "query.skin_id==2"
+						},
+						{
+							"execute_command_id_1": "query.skin_id==1"
+						}
+					]
+				},
+				"execute_command_id_1": {
+					"transitions": [
+						{
+							"default": "query.skin_id!=1"
+						}
+					],
+					"on_entry": [
+						"/function place",
+						"@s bridge:remove_command_id_1"
+					]
+				},
+				"execute_command_id_2": {
+					"transitions": [
+						{
+							"default": "query.skin_id!=2"
+						}
+					],
+					"on_entry": [
+						"/function rotate",
+						"@s bridge:remove_command_id_2"
+					]
+				},
+				"execute_command_id_3": {
+					"transitions": [
+						{
+							"default": "query.skin_id!=3"
+						}
+					],
+					"on_entry": [
+						"/function moving",
+						"@s bridge:remove_command_id_3"
+					]
+				}
+			}
+		}
+	}
+}

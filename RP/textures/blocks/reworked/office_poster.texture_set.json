@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "office_poster",
+        "metalness_emissive_roughness": "office_poster_mer",
+        "heightmap": "office_poster_normal"
+    }
+}

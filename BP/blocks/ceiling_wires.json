@@ -1,0 +1,123 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:ceiling_wires",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_position": {
+					"enabled_states": [
+						"minecraft:block_face"
+					]
+				}
+			},
+			"states": {
+				"fr:type": [
+					"plus",
+					"cross"
+				],
+				"fr:variants": {
+					"values": {
+						"min": 0,
+						"max": 4
+					}
+				},
+				"fr:advanced_rot": {
+					"values": {
+						"min": 0,
+						"max": 15
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:collision_box": false,
+			"minecraft:selection_box": {
+				"origin": [
+					-4,
+					0,
+					-4
+				],
+				"size": [
+					8,
+					16,
+					8
+				]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.ceiling_wires",
+				"bone_visibility": {
+					"normal": "q.block_state('fr:type') == 'plus'",
+					"sided": "q.block_state('fr:type') == 'cross'"
+				}
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "ceiling_wires_var_1",
+					"render_method": "alpha_test_single_sided"
+				}
+			},
+			"fr:advanced_rot": {},
+			"fr:single_interactive": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ceiling_wires_var_1",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ceiling_wires_var_2",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ceiling_wires_var_3",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ceiling_wires_var_4",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "ceiling_wires_var_5",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			}
+		]
+	}
+}

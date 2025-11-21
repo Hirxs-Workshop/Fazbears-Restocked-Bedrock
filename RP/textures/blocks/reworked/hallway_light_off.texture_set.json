@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "hallway_light_off",
+        "metalness_emissive_roughness": "hallway_light_off_mer",
+        "heightmap": "hallway_light_off_normal"
+    }
+}
