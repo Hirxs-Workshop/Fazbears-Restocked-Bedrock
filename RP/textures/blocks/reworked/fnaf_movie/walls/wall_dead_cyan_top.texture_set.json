@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "wall_dead_cyan_top",
-        "metalness_emissive_roughness": "wall_dead_cyan_top_mer",
-        "heightmap": "wall_dead_cyan_top_normal"
-    }
-}

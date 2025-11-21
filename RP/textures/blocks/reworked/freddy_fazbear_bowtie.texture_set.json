@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "freddy_fazbear_bowtie",
-        "metalness_emissive_roughness": "freddy_fazbear_bowtie_mer",
-        "heightmap": "freddy_fazbear_bowtie_normal"
-    }
-}

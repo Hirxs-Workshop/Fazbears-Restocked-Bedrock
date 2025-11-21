@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "retro_phone_blue",
-        "metalness_emissive_roughness": "retro_phone_blue_mer",
-        "heightmap": "retro_phone_blue_normal"
-    }
-}

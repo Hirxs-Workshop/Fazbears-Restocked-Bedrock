@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "stage_wall_middle_2",
-        "metalness_emissive_roughness": "stage_wall_middle_2_mer",
-        "heightmap": "stage_wall_middle_2_normal"
-    }
-}

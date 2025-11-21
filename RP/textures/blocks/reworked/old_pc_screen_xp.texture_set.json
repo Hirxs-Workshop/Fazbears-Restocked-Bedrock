@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "old_pc_screen_xp",
-        "metalness_emissive_roughness": "old_pc_screen_xp_mer",
-        "heightmap": "old_pc_screen_xp_normal"
-    }
-}

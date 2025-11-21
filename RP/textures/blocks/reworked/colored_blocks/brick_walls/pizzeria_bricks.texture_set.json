@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "pizzeria_bricks",
-        "metalness_emissive_roughness": "pizzeria_bricks_mer",
-        "heightmap": "pizzeria_bricks_normal"
-    }
-}

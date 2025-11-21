@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "fnaf1_bathroom_wall_top",
-        "metalness_emissive_roughness": "fnaf1_bathroom_wall_top_mer",
-        "heightmap": "fnaf1_bathroom_wall_top_normal"
-    }
-}

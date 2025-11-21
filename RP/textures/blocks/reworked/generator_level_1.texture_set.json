@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "generator_level_1",
-        "metalness_emissive_roughness": "generator_level_1_mer",
-        "heightmap": "generator_level_1_normal"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "pirate_cove_curtain_upper",
-        "metalness_emissive_roughness": "pirate_cove_curtain_upper_mer",
-        "heightmap": "pirate_cove_curtain_upper_normal"
-    }
-}

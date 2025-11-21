@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "fnaf4mangle_plush",
-        "metalness_emissive_roughness": "fnaf4mangle_plush_mer",
-        "heightmap": "fnaf4mangle_plush_normal"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "green_curtain_upper",
-        "metalness_emissive_roughness": "green_curtain_upper_mer",
-        "heightmap": "green_curtain_upper_normal"
-    }
-}

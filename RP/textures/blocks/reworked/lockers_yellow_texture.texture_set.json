@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "lockers_yellow_texture",
-        "metalness_emissive_roughness": "lockers_yellow_texture_mer",
-        "heightmap": "lockers_yellow_texture_normal"
-    }
-}

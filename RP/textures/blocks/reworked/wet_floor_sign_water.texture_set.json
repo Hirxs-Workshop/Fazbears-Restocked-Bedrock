@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "wet_floor_sign_water",
-        "metalness_emissive_roughness": "wet_floor_sign_water_mer",
-        "heightmap": "wet_floor_sign_water_normal"
-    }
-}
