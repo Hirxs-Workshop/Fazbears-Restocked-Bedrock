@@ -31,9 +31,11 @@
                 "down":{
                "texture":"dirt",
                "render_method":"opaque"
+                },
                 "up":{
                "texture":"fnaf1_wall_down",
                "render_method":"opaque"
+                },
                 "*": {
                     "texture": "fnaf1_wall_up",
                     "render_method": "opaque",
