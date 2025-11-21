@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "borders",
-        "metalness_emissive_roughness": "borders_mer",
-        "heightmap": "borders_normal"
-    }
-}

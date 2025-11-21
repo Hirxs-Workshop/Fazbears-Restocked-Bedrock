@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "golden_freddy_poster",
-        "metalness_emissive_roughness": "golden_freddy_poster_mer",
-        "heightmap": "golden_freddy_poster_normal"
-    }
-}

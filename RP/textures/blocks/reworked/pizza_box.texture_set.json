@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "pizza_box",
-        "metalness_emissive_roughness": "pizza_box_mer",
-        "heightmap": "pizza_box_normal"
-    }
-}

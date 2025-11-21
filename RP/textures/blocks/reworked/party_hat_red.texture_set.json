@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "party_hat_red",
-        "metalness_emissive_roughness": "party_hat_red_mer",
-        "heightmap": "party_hat_red_normal"
-    }
-}

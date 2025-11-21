@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "wall_stripe_horizontal_down",
-        "metalness_emissive_roughness": "wall_stripe_horizontal_down_mer",
-        "heightmap": "wall_stripe_horizontal_down_normal"
-    }
-}

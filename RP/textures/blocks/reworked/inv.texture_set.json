@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "inv",
-        "metalness_emissive_roughness": "inv_mer",
-        "heightmap": "inv_normal"
-    }
-}

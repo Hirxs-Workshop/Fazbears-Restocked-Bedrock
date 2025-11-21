@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "faz-soda",
-        "metalness_emissive_roughness": "faz-soda_mer",
-        "heightmap": "faz-soda_normal"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "ceiling_wires_var_2",
-        "metalness_emissive_roughness": "ceiling_wires_var_2_mer",
-        "heightmap": "ceiling_wires_var_2_normal"
-    }
-}

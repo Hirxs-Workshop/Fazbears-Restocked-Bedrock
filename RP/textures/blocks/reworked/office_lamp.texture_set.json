@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "office_lamp",
-        "metalness_emissive_roughness": "office_lamp_mer",
-        "heightmap": "office_lamp_normal"
-    }
-}

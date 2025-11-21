@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "game_foxy_plush",
-        "metalness_emissive_roughness": "game_foxy_plush_mer",
-        "heightmap": "game_foxy_plush_normal"
-    }
-}

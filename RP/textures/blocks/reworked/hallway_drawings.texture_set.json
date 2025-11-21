@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "hallway_drawings",
-        "metalness_emissive_roughness": "hallway_drawings_mer",
-        "heightmap": "hallway_drawings_normal"
-    }
-}

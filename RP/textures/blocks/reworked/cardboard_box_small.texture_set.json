@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "cardboard_box_small",
-        "metalness_emissive_roughness": "cardboard_box_small_mer",
-        "heightmap": "cardboard_box_small_normal"
-    }
-}

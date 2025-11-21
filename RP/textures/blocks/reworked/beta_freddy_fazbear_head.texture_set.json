@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "beta_freddy_fazbear_head",
-        "metalness_emissive_roughness": "beta_freddy_fazbear_head_mer",
-        "heightmap": "beta_freddy_fazbear_head_normal"
-    }
-}

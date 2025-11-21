@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "fnaf1_bricks_dark_pattern",
-        "metalness_emissive_roughness": "fnaf1_bricks_dark_pattern_mer",
-        "heightmap": "fnaf1_bricks_dark_pattern_normal"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "format_version": "1.16.100",
-    "minecraft:texture_set": {
-        "color": "red_n_blue_pizzeria_floor",
-        "metalness_emissive_roughness": "red_n_blue_pizzeria_floor_mer",
-        "heightmap": "red_n_blue_pizzeria_floor_normal"
-    }
-}
