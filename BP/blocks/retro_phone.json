@@ -14,7 +14,7 @@
 				}
 			},
 			"states": {
-				"fr:var": [
+				"fr:variants": [
 					0,
 					1
 				]
@@ -37,8 +37,7 @@
 					"texture": "retro_phone_red",
 					"render_method": "alpha_test"
 				}
-			},
-			"fr:retro_phone_vars": {}
+			}
 		},
 		"permutations": [
 			{
@@ -90,7 +89,7 @@
 				}
 			},
 			{
-				"condition": "q.block_state('fr:var') == 0",
+				"condition": "q.block_state('fr:variants') == 0",
 				"components": {
 					"minecraft:material_instances": {
 						"*": {
@@ -101,7 +100,7 @@
 				}
 			},
 			{
-				"condition": "q.block_state('fr:var') == 1",
+				"condition": "q.block_state('fr:variants') == 1",
 				"components": {
 					"minecraft:material_instances": {
 						"*": {
