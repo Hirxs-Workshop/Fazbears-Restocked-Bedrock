@@ -7,6 +7,9 @@
 	"fr:shelf_supply_closet": {
 		"sound": "iron"
 	},
+	"fr:animatronic_work_table": {
+		"sound": "iron"
+	},
     	"fr:white_pizzeria_floor": {
 		"sound": "deepslate_bricks"
 	},

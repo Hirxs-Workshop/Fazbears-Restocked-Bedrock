@@ -4,6 +4,11 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
+	"animatronic_work_table": {
+           	   "textures": [
+		       "textures/blocks/reworked/animatronic_work_table"
+		]
+	},
 	"shelf_supply_closet": {
            	   "textures": [
 		       "textures/blocks/reworked/shelf_supply_closet"
