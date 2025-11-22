@@ -3,8 +3,9 @@ import { ActionFormData, uiManager } from '@minecraft/server-ui'
 
 import * as FRAPI from './fr_api.js'
 export { FRAPI }
+import "double_block_connection"
 
-import 'updateBlock'
+import 'connectables/updateBlock_connection'
 import 'office_desk_reworked'
 import 'entrance_door'
 import 'paper_block_component'

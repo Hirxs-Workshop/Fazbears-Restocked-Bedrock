@@ -25,7 +25,7 @@
 			"minecraft:geometry": "geometry.shelf_supply_closet_bottom",
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "fr_shelf_supply_closet",
+					"texture": "shelf_supply_closet",
 					"render_method": "alpha_test"
 				}
 			},

@@ -4,6 +4,11 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
+	"shelf_supply_closet": {
+           	   "textures": [
+		       "textures/blocks/reworked/shelf_supply_closet"
+		]
+	},
         "arcade_stool": {
             "textures": [
                 "textures/blocks/reworked/arcade_stool"

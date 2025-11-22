@@ -4,16 +4,19 @@
 		1,
 		0
 	],
-    "fbdr:white_pizzeria_floor": {
+	"fr:shelf_supply_closet": {
+		"sound": "iron"
+	},
+    	"fr:white_pizzeria_floor": {
 		"sound": "deepslate_bricks"
 	},
-    "fbdr:red_pizzeria_floor": {
+    	"fr:red_pizzeria_floor": {
 		"sound": "deepslate_bricks"
 	},
-    "fbdr:blue_pizzeria_floor": {
+    	"fr:blue_pizzeria_floor": {
 		"sound": "deepslate_bricks"
 	},
-    "fbdr:red_n_blue_pizzeria_floor": {
+    	"fr:red_n_blue_pizzeria_floor": {
 		"sound": "deepslate_bricks"
 	}
 }
