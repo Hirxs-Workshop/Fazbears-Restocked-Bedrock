@@ -10,8 +10,7 @@
 				"minecraft:placement_direction": {
 					"enabled_states": [
 						"minecraft:cardinal_direction"
-					],
-					"y_rotation_offset": 180
+					]
 				}
 			},
 			"states": {
@@ -57,33 +56,8 @@
 				"fr:shelf_supply_closet"
 			]
 		},
-		"permutations": [
-			{
-				"condition": "query.block_state('minecraft:cardinal_direction') == 'north'",
-				"components": {
-					"minecraft:transformation": {
-						"rotation": [
-							0,
-							0,
-							0
-						]
-					}
-				}
-			},
-			{
-				"condition": "query.block_state('minecraft:cardinal_direction') == 'east'",
-				"components": {
-					"minecraft:transformation": {
-						"rotation": [
-							0,
-							-90,
-							0
-						]
-					}
-				}
-			},
-			{
-				"condition": "query.block_state('minecraft:cardinal_direction') == 'south'",
+		"permutations": [			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
 				"components": {
 					"minecraft:transformation": {
 						"rotation": [
@@ -95,7 +69,31 @@
 				}
 			},
 			{
-				"condition": "query.block_state('minecraft:cardinal_direction') == 'west'",
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
 				"components": {
 					"minecraft:transformation": {
 						"rotation": [
