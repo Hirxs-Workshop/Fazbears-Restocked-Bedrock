@@ -1,0 +1,123 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:shelf_supply_closet",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					],
+					"y_rotation_offset": 180
+				}
+			},
+			"states": {
+				"fr:block_bit": [
+					"bottom",
+					"upper"
+				]
+			}
+		},
+		"components": {
+			"minecraft:geometry": "geometry.shelf_supply_closet_bottom",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "fr_shelf_supply_closet",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"origin": [
+					-8,
+					0,
+					-4
+				],
+				"size": [
+					16,
+					16,
+					12
+				]
+			},
+			"minecraft:selection_box": {
+				"origin": [
+					-8,
+					0,
+					-4
+				],
+				"size": [
+					16,
+					16,
+					12
+				]
+			},
+			"minecraft:custom_components": [
+				"fr:shelf_supply_closet"
+			]
+		},
+		"permutations": [
+			{
+				"condition": "query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:block_bit') == 'bottom'",
+				"components": {
+					"minecraft:geometry": "geometry.shelf_supply_closet_bottom"
+				}
+			},
+			{
+				"condition": "query.block_state('fr:block_bit') == 'upper'",
+				"components": {
+					"minecraft:geometry": "geometry.shelf_supply_closet_top"
+				}
+			}
+		]
+	}
+}
