@@ -4,6 +4,16 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
+	"generator_brown": {
+           	   "textures": [
+		       "textures/blocks/reworked/generator_brown"
+		]
+	},
+	"generator_black": {
+           	   "textures": [
+		       "textures/blocks/reworked/generator_black"
+		]
+	},
 	"animatronic_work_table": {
            	   "textures": [
 		       "textures/blocks/reworked/animatronic_work_table"
