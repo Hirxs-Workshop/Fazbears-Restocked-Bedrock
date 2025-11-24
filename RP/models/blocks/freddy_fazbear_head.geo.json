@@ -479,13 +479,6 @@
 					"scale": [0.5, 0.5, 0.5],
 					"rotation_pivot": [0, 0, 0],
 					"scale_pivot": [0, 0, 0]
-				},
-				"on_shelf": {
-					"rotation": [180, 0, 180],
-					"translation": [0, 0, 0],
-					"scale": [1, 1, 1],
-					"rotation_pivot": [0, 0, 0],
-					"scale_pivot": [0, 0, 0]
 				}
 			}
 		}

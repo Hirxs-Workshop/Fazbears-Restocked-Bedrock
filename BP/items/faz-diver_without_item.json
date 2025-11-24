@@ -9,10 +9,13 @@
             }
         },
         "components": {
+	    "minecraft:display_name": {
+    		"value": "item.fr:faz_diver_without_item.name"
+	    },
             "minecraft:icon": {
                 "textures": {
-					"default": "faz-diver_backpack_without_item",
-					"dyed": "faz-diver_backpack_without_item"
+			"default": "faz-diver_backpack_without_item",
+			"dyed": "faz-diver_backpack_without_item"
                 }
             },
             "minecraft:wearable": {

@@ -401,7 +401,7 @@
         },
         "party_chair": {
             "textures": [
-                "textures/blocks/reworked/party_chair"
+                "textures/blocks/reworked/party_chairs/party_chair"
             ]
         },
         "party_hat_blue": {

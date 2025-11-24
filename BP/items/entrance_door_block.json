@@ -4,9 +4,9 @@
 		"description": {
 			"identifier": "fr:entrance_door_block",
 			"menu_category": {
-                "category": "construction",
-          		"group": "itemGroup.name.door"
-            }
+                		"category": "construction",
+          			"group": "itemGroup.name.door"
+            		}
 		},
 		"components": {
 			"minecraft:max_stack_size": 64,
@@ -15,10 +15,10 @@
 					"default": "entrace_door"
 				}
 			},
-            "minecraft:block_placer": {
+            		"minecraft:block_placer": {
 				"block": "fr:entrance_door_block",
 				"replace_block_item": true
-            }
+           		 }
 		}
 	}
 }

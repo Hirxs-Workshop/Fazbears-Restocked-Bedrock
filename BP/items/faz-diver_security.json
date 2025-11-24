@@ -9,6 +9,9 @@
 			}
 		},
 		"components": {
+			"minecraft:display_name": {
+    				"value": "item.fr:faz-diver_security.name"
+			},
 			"minecraft:max_stack_size": 1,
 			"minecraft:hand_equipped": true,
 			"minecraft:can_destroy_in_creative": false,

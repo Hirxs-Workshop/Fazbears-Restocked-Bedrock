@@ -7,6 +7,12 @@
 	"fr:shelf_supply_closet": {
 		"sound": "iron"
 	},
+	"fr:generator": {
+		"sound": "iron"
+	},
+	"fr:broom_mop_and_bucket": {
+		"sound": "iron"
+	},
 	"fr:animatronic_work_table": {
 		"sound": "iron"
 	},
