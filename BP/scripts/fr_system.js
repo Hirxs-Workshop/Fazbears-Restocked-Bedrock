@@ -16,6 +16,7 @@ import 'camera_system/security_camera_system'
 import 'variant_system'
 import 'backstage_shelf_head_system'
 import 'custom_commands'
+import 'updateBlock'
 
 import { adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, ACTIONBAR_VARIANT_STYLE, customActionbar, variantActionbar } from './utils.js'
 import { securityCameraSystem } from './camera_system/security_camera_system.js'

@@ -33,9 +33,15 @@
                     "render_method":"opaque",
                     "face_dimming":true,
                     "ambient_occlusion":true
-                }
-                ,"down":{
+                },
+                "down":{
                     "texture":"fnaf1_wall_middle",
+                    "render_method":"opaque",
+                    "face_dimming":true,
+                    "ambient_occlusion":true
+                },
+                "*":{
+                    "texture":"fnaf1_wall_up",
                     "render_method":"opaque",
                     "face_dimming":true,
                     "ambient_occlusion":true
