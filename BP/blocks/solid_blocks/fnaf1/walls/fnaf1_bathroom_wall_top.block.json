@@ -35,7 +35,7 @@
                     "ambient_occlusion":true
                 }
                 ,"down":{
-                    "texture": "fnaf1_bathroom_wall",
+                    "texture": "ceiling_black",
                     "render_method": "opaque",
                     "face_dimming": true,
                     "ambient_occlusion": true

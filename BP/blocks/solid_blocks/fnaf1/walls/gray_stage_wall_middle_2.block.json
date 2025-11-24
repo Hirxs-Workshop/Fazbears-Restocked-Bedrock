@@ -28,7 +28,6 @@
                 "redstone_conductor": true
             },
             "minecraft:material_instances": {
-                
                 "*": {
                     "texture": "gray_stage_wall_middle_2",
                     "render_method": "opaque",
