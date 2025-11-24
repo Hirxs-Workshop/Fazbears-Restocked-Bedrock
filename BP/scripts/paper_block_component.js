@@ -1,3 +1,16 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
+
 import { world, BlockPermutation, system } from '@minecraft/server'
 import { dynamicToast, customActionbar, ACTIONBAR_CUSTOM_STYLE } from './utils.js'
 

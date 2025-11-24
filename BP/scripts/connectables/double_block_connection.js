@@ -1,3 +1,15 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
 import { system, world, EquipmentSlot, BlockPermutation } from "@minecraft/server"
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
@@ -14,6 +26,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 }
             }
         },
+// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
         onPlace({ block }) {
             const blockBit = block.permutation.getState("fr:block_bit");
             
@@ -32,7 +45,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
         onPlayerBreak({ block, brokenBlockPermutation }) {
             if (brokenBlockPermutation.getState("fr:block_bit") == 'bottom' && block.above().permutation.getState("fr:block_bit") == 'upper') {
                 block.above().setType("minecraft:air")
-            }
+            }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
             if (brokenBlockPermutation.getState("fr:block_bit") == 'upper' && block.below().permutation.getState("fr:block_bit") == 'bottom') {
                 block.below().setType("minecraft:air")
             }

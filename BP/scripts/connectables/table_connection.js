@@ -1,3 +1,15 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
 import { system, world } from '@minecraft/server'
 
 const TABLE_TYPE_ID = 'fr:party_table';
@@ -26,7 +38,7 @@ const updateStanchionBasesForLine = (center) => {
     if (!(nb && CONNECTABLE_TYPES.includes(nb.typeId))) break;
     start = nb;
   }
-
+// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
   const line = [];
   let cur = start;
   while (cur && CONNECTABLE_TYPES.includes(cur.typeId)) {
@@ -58,7 +70,7 @@ const updateStanchionBasesForLine = (center) => {
       
       if (si % 2 === 0) {
         hasBase = true;
-      } else if (isLast && stanchionCount % 2 === 0) {
+      } else if (isLast && stanchionCount % 2 === 0) {// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
         hasBase = true;
       } else {
         hasBase = false;
@@ -114,7 +126,7 @@ system.beforeEvents.startup.subscribe((eventData) => {
       const { block } = e;
       updateForBlock(block);
       updateNeighborsIfConnectable(block);
-    },
+    },// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
   });
 });
 

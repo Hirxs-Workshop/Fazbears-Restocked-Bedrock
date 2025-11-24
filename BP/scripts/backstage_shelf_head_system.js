@@ -1,3 +1,15 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
 import { world, system, BlockPermutation, ItemStack, EquipmentSlot } from '@minecraft/server'
 
 const headMapping = {
@@ -45,7 +57,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                             eq.setEquipment(EquipmentSlot.Mainhand, heldItem);
                         } else {
                             eq.setEquipment(EquipmentSlot.Mainhand, undefined);
-                        }
+                        } // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
                     }
                 } catch {}
 
@@ -94,7 +106,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                         container.addItem(itemStack);
                     }
                 } catch {}
-
+ // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
                 try {
                     player.playSound('dig.stone', { volume: 1.0 });
                 } catch {}

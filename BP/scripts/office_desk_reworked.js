@@ -1,3 +1,16 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
+
 import { system, world, BlockPermutation, ItemStack } from "@minecraft/server";
 system.beforeEvents.startup.subscribe(initEvent => {
     initEvent.blockComponentRegistry.registerCustomComponent('fr:modular_desk', {

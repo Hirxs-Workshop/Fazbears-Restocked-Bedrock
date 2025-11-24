@@ -1,3 +1,16 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
+
 import { world, system, BlockPermutation, Direction } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
 
@@ -568,7 +581,7 @@ class DoorManager {
     function adjustTextLength(text = '', totalLength = 100) {
       return (text.slice(0, totalLength)).padEnd(totalLength, '\t');
     }
-    return "§N§O§T§I§F§I§C§A§T§I§O§N" +
+    return "§我§的§我§国" +
       adjustTextLength(contents[0], 100) +
       adjustTextLength(contents[1], 200) +
       adjustTextLength(contents[2], 100) +

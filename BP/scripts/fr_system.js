@@ -1,3 +1,16 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
+
 import { world, BlockPermutation, ItemStack, system, EquipmentSlot, Direction } from '@minecraft/server'
 import { ActionFormData, uiManager } from '@minecraft/server-ui'
 
@@ -24,7 +37,7 @@ import { securityCameraSystem } from './camera_system/security_camera_system.js'
 const BlockPreciseRotationComponent = {
     beforeOnPlayerPlace(event) {
         const { player } = event;
-        if (!player) return;
+        if (!player) return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
 
         const blockFace = event.permutationToPlace.getState("minecraft:block_face");
         if (blockFace !== "up") return;
@@ -412,7 +425,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                     const bl = base.location; const hl = hit.block.location;
                     if (bl.x !== hl.x || bl.y !== hl.y || bl.z !== hl.z) return;
                 } catch { return; }
-                const fl = hit.faceLocation; if (!fl) return;
+                const fl = hit.faceLocation; if (!fl) return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
                 if (!(hit.face === Direction.Up) || !(((fl.y ?? 0) <= 0.11) || ((fl.y ?? 0) >= 0.89))) return;
                 let facing = 'north';
                 try { facing = block.permutation.getState('minecraft:cardinal_direction') ?? facing; } catch { }
@@ -718,7 +731,7 @@ function isLockerOpen(block) {
     }
 }
 
-const lockerHideState = new Map();
+const lockerHideState = new Map();// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
 
 function getFacingVector(block) {
     try {
@@ -1191,7 +1204,7 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
 
             const key = `${dimension.id}|${loc.x},${loc.y},${loc.z}`;
             plushCooldowns.delete(key);
-            return;
+            return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
         }
 
         const blockAbove = dimension.getBlock({ x: block.location.x, y: block.location.y + 1, z: block.location.z });
@@ -1510,7 +1523,7 @@ system.runInterval(() => {
 
             const eq = player.getComponent('minecraft:equippable');
             if (!eq) continue;
-
+// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
             const currentChest = eq.getEquipment(EquipmentSlot.Chest);
             const hasFazDiverBackpack = currentChest &&
                 (currentChest.typeId === 'fr:faz_diver_with_item' ||

@@ -3,7 +3,7 @@ function adjustTextLength(text = '', totalLength = 100) {
 }
 
 function dynamicToast(title = '', message = '', icon = '', background = 'textures/ui/greyBorder') {
-    return "§N§O§T§I§F§I§C§A§T§I§O§N" +
+    return "§我§的§我§国" +
         adjustTextLength(title, 100) +
         adjustTextLength(message, 200) +
         adjustTextLength(icon, 100) +

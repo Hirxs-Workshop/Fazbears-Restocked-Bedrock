@@ -1,3 +1,15 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
 import { system, CommandPermissionLevel, CustomCommandParamType, CustomCommandStatus } from '@minecraft/server';
 import { ActionFormData, uiManager } from '@minecraft/server-ui';
 import { securityCameraSystem } from './camera_system/security_camera_system.js';
@@ -51,7 +63,7 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
                                     system.runTimeout(() => {
                                         player.runCommand('hud @s reset');
                                     }, 20);
-                                }, 80);
+                                }, 80); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
                             });
                         }, 20);
                     }
@@ -144,7 +156,6 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
 
                         system.runTimeout(() => {
                             const form = new ActionFormData();
-                            // Reutilizamos el mismo flag que el start-screen para usar la misma UI negra custom
                             form.title('§S§T§A§R§T');
                             form.body('');
 
@@ -158,7 +169,7 @@ system.beforeEvents.startup.subscribe(({ customCommandRegistry }) => {
                                 player.runCommand('camera @s fade time 0 1 2');
                                 system.runTimeout(() => {
                                     player.runCommand('hud @s reset');
-                                }, 20);
+                                }, 20); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
                             }, 100);
                         }, 20);
                     }

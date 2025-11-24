@@ -1,3 +1,16 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
+
 import { world, system } from '@minecraft/server';
 import { securityCameraSystem } from './camera_system/security_camera_system.js';
 import { dynamicToast, showCameraLoading } from './utils.js';
@@ -87,7 +100,7 @@ system.beforeEvents.startup.subscribe(({ itemComponentRegistry }) => {
             const { source: player, itemStack } = event;
             if (!player || !itemStack) return;
             
-            if (player.isSneaking) return;
+            if (player.isSneaking) return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
             
             try {
                 const pcData = getPcDataFromItem(itemStack);

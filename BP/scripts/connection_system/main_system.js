@@ -1,3 +1,15 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
 import { world, system, BlockPermutation, Direction, EquipmentSlot, GameMode } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
 import { dynamicToast, dynamicToastEvent, cleanupLampVfxEntitiesOnReload, getLinePoints, turnOffLight, lampVfxEntities } from "./utils.js";
@@ -14,7 +26,7 @@ let __memGeneratorsES = [];
 system.afterEvents.scriptEventReceive.subscribe((data) => {
   const { id, sourceEntity, message } = data;
   if (id === 'cn:main') {
-    sourceEntity.sendMessage(dynamicToastEvent(message));
+    sourceEntity.sendMessage(dynamicToastEvent(message)); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
   }
 });
 
@@ -119,7 +131,7 @@ function disconnectConnections(player, connectionsToDisconnect) {
       disconn.switch.x === conn.switch.x &&
       disconn.switch.y === conn.switch.y &&
       disconn.switch.z === conn.switch.z &&
-      disconn.switch.dimensionId === conn.switch.dimensionId &&
+      disconn.switch.dimensionId === conn.switch.dimensionId && // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
       disconn.light.x === conn.light.x &&
       disconn.light.y === conn.light.y &&
       disconn.light.z === conn.light.z &&
@@ -320,7 +332,7 @@ function showGeneratorMenu(player, generatorData) {
       default:
         break;
     }
-  });
+  }); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
 }
 function showTestLightMenu(player, blockPos) {
   const connections = getConnections();
@@ -549,7 +561,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
         }
       }
     }
-  }
+  } // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
   
   if (item && item.typeId === "minecraft:lk") {
     showGlobalMenu(player);
@@ -822,7 +834,7 @@ system.runInterval(() => {
       let activeLights = 0;
       const connections = getConnections();
       for (const conn of connections) {
-        if (
+        if ( // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
           conn.switch.x === gen.pos.x &&
           conn.switch.y === gen.pos.y &&
           conn.switch.z === gen.pos.z &&
@@ -979,7 +991,7 @@ function updateLightTestActionBarForPlayer(player) {
   }
   if (selections[player.id]) {
     const selPos = selections[player.id].pos;
-    let isLookingAtSelected = false;
+    let isLookingAtSelected = false; // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
     if (blockData && blockData.block) {
       if (Math.floor(blockData.block.location.x) === selPos.x &&
           Math.floor(blockData.block.location.y) === selPos.y &&
@@ -1043,7 +1055,7 @@ function updateLightTestActionBarForPlayer(player) {
 
 let lastActionBarUpdate = new Map();
 system.runInterval(() => {
-  const players = world.getPlayers();
+  const players = world.getPlayers(); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
   if (players.length === 0) return;
   for (let i = 0; i < players.length; i++) {
     updateLightTestActionBarForPlayer(players[i]);

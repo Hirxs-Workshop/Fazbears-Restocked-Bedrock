@@ -1,4 +1,3 @@
-
 import { Direction } from "@minecraft/server";
 
 export default class FaceSelectionPlains {

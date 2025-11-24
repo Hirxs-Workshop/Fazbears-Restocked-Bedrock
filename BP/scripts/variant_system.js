@@ -1,34 +1,34 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
+
+
 import { world, system } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
 import * as FRAPI from "./fr_api.js";
 
 const VARIANT_REGISTRY = new Map();
 
-/**
- * Registra variantes para un bloque (usa la API interna)
- * @param {string} blockId
- * @param {Array} variants
- */
 export function registerBlockVariants(blockId, variants) {
   if (!blockId || !Array.isArray(variants)) {
     return;
   }
   VARIANT_REGISTRY.set(blockId, { variants });
-  // También registrar en la API global
   FRAPI.registerBlockVariants(blockId, variants);
 }
 
-/**
- * Obtiene las variantes de un bloque (nativas o externas)
- * @param {string} blockId
- * @returns {Array|null}
- */
 function getBlockVariants(blockId) {
-  // Primero buscar en registro nativo
   const entry = VARIANT_REGISTRY.get(blockId);
   if (entry) return entry.variants;
   
-  // Buscar en API externa
   const externalVariants = FRAPI.getBlockVariants(blockId);
   if (externalVariants) return externalVariants;
   
@@ -53,7 +53,7 @@ function getVariantsStateRange(block) {
       
       return { min: 0, max, current: currentValue };
     }
-  } catch {}
+  } catch {}// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
   return null;
 }
 
@@ -109,7 +109,7 @@ async function showVariantMenu(player, block) {
     try {
       const newPerm = block.permutation.withState("fr:variants", selectedButton.index);
       block.setPermutation(newPerm);
-      
+      // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
       player.sendMessage(`§aVariant changed to: §7${selectedButton.label}`);
       player.playSound("random.click");
     } catch (err) {
@@ -163,7 +163,7 @@ registerBlockVariants("fr:ceiling_stars", [
     color: "gray" 
   }
 ]);
-
+// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
 registerBlockVariants("fr:ceiling_wires", [
   { 
     label: "Normal", 
@@ -262,7 +262,7 @@ registerBlockVariants("fr:gray_locker", [
     color: "cyan" 
   }
 ]);
-
+// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
 registerBlockVariants("fr:backstage_shelf_freddy_head", [
   { 
     label: "Position 1", 
@@ -352,3 +352,4 @@ registerBlockVariants("fr:wall_wire", [
     color: "gray" 
   }
 ]);
+// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ

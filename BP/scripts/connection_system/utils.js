@@ -1,3 +1,14 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * Hyrxs (discord: hyrxs), for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
 import { system, world, BlockPermutation } from "@minecraft/server";
 
 export function adjustTextLength(text = '', totalLength = 100) {
@@ -5,7 +16,7 @@ export function adjustTextLength(text = '', totalLength = 100) {
 }
 
 export function dynamicToast(title = '', message = '', icon = '', background = 'textures/ui/greyBorder') {
-  return "§N§O§T§I§F§I§C§A§T§I§O§N" +
+  return "§我§的§我§国" +
     adjustTextLength(title, 100) +
     adjustTextLength(message, 200) +
     adjustTextLength(icon, 100) +
@@ -15,7 +26,7 @@ export function dynamicToast(title = '', message = '', icon = '', background = '
 export function dynamicToastEvent(text) {
   const contents = text.split('|');
   if (contents[3] === undefined) { contents[3] = 'textures/ui/greyBorder'; }
-  return "§N§O§T§I§F§I§C§A§T§I§O§N" +
+  return "§我§的§我§国" +
     adjustTextLength(contents[0], 100) +
     adjustTextLength(contents[1], 200) +
     adjustTextLength(contents[2], 100) +
