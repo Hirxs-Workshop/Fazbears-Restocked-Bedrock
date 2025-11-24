@@ -17,5 +17,7 @@ Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!
 
 ---
 
-## 🔧 Available for Bedrock & Java
+## 🔧 Available for Bedrock
 - Download in releases section!
+  
+(SOON FOR JAVA)
