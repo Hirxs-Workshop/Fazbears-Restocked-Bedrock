@@ -27,8 +27,20 @@
                 "allows_wire_to_step_down": true,
                 "redstone_conductor": true
             },
-            "minecraft:material_instances": {
-                "*": {
+            "minecraft:material_instances":{
+                "up":{
+                    "texture":"fnaf1_dark_wall_middle",
+                    "render_method": "opaque",
+                    "face_dimming": true,
+                    "ambient_occlusion": true
+                }
+                ,"down":{
+                    "texture": "fnaf1_dark_wall_middle",
+                    "render_method": "opaque",
+                    "face_dimming": true,
+                    "ambient_occlusion": true
+                }
+                ,"*": {
                     "texture": "fnaf1_wall_top_tiles_black",
                     "render_method": "opaque",
                     "face_dimming": true,
