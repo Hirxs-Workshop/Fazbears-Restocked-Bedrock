@@ -433,7 +433,9 @@ fr:itemGroup.name.fnaf1_bricks=FNaF1 Bricks
 fr:itemGroup.name.fnaf_movie_walls=FNaF Movie Walls
 fr:itemGroup.name.flat_colored_walls=Flat Colored Walls
 
+tile.fr:supply_room_lightbulb.name=Supply Room Lightbulb
 tile.fr:animatronic_work_table.name=Animatronic Work Table
 tile.fr:shelf_supply_closet.name=Shelf Supply Closet
 tile.fr:office_drawings.name=Office Drawings
 tile.fr:broom_mop_and_bucket.name=Broom and Mop and Bucket
+tile.fr:office_phone.name=Office Phone

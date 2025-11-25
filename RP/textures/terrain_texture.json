@@ -4,6 +4,16 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
+	"office_phone": {
+           	   "textures": [
+		       "textures/blocks/reworked/office_phone"
+		]
+	},
+	"retro_phone_black": {
+           	   "textures": [
+		       "textures/blocks/reworked/retro_phone_black"
+		]
+	},
 	"generator_brown": {
            	   "textures": [
 		       "textures/blocks/reworked/generator_brown"

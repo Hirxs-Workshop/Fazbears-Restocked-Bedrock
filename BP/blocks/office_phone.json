@@ -2,7 +2,7 @@
 	"format_version": "1.21.30",
 	"minecraft:block": {
 		"description": {
-			"identifier": "fr:generator",
+			"identifier": "fr:office_phone",
 			"menu_category": {
 				"category": "construction"
 			},
@@ -12,47 +12,25 @@
 						"minecraft:cardinal_direction"
 					]
 				}
-			},
-			"states": {
-				"fr:energy_level": {
-					"values": {
-						"min": 1,
-						"max": 5
-					}
-				}
 			}
 		},
 		"components": {
-			"minecraft:geometry": "geometry.generator",
-			"minecraft:material_instances": {
-				"*": {
-					"texture": "generator_brown",
-					"render_method": "alpha_test"
-				}
-			},
 			"minecraft:collision_box": {
-				"origin": [
-					-8,
-					0,
-					-8
-				],
-				"size": [
-					16,
-					16,
-					16
-				]
+				"origin": [-5, 0, -6],
+				"size": [10, 3, 12]
 			},
 			"minecraft:selection_box": {
-				"origin": [
-					-8,
-					0,
-					-8
-				],
-				"size": [
-					16,
-					16,
-					16
-				]
+				"origin": [-5, 0, -6],
+				"size": [10, 3, 12]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.office_phone"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "office_phone",
+					"render_method": "alpha_test"
+				}
 			}
 		},
 		"permutations": [

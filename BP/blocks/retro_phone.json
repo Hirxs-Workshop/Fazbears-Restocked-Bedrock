@@ -16,18 +16,19 @@
 			"states": {
 				"fr:variants": [
 					0,
-					1
+					1,
+					2
 				]
 			}
 		},
 		"components": {
 			"minecraft:collision_box": {
-				"origin": [-3, 3, 6],
-				"size": [6, 11, 2]
+				"origin": [-6.15, 0, -3],
+				"size": [11.3, 7.2, 6]
 			},
 			"minecraft:selection_box": {
-				"origin": [-3, 3, 6],
-				"size": [6, 11, 2]
+				"origin": [-6.15, 0, -3],
+				"size": [11.3, 7.2, 6]
 			},
 			"minecraft:geometry": {
 				"identifier": "geometry.retro_phone"
@@ -105,6 +106,17 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "retro_phone_blue",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "retro_phone_black",
 							"render_method": "alpha_test"
 						}
 					}
