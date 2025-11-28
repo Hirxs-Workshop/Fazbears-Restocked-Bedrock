@@ -28,7 +28,19 @@
                 "redstone_conductor": true
             },
             "minecraft:material_instances": {
-                "*": {
+                "up":{
+                    "texture": "fnaf1_bricks_dark",
+                    "render_method": "opaque",
+                    "face_dimming": true,
+                    "ambient_occlusion": true
+                }
+                ,"down":{
+                    "texture": "fnaf1_bricks_dark",
+                    "render_method": "opaque",
+                    "face_dimming": true,
+                    "ambient_occlusion": true
+                }
+                ,"*": {
                     "texture": "fnaf1_bricks_dark_pattern_black",
                     "render_method": "opaque",
                     "face_dimming": true,
