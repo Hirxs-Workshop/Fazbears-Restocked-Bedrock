@@ -4,6 +4,11 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
+	"fnaf1_advanced_wall": {
+           	   "textures": [
+		       "textures/blocks/reworked/fnaf1/walls/fnaf1_advanced_wall"
+		]
+	},
 	"office_phone": {
            	   "textures": [
 		       "textures/blocks/reworked/office_phone"

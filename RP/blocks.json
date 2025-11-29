@@ -16,6 +16,93 @@
 	"fr:animatronic_work_table": {
 		"sound": "iron"
 	},
+	"fr:fnaf1_advanced_wall": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_backstage_wall_middle": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_bathroom_wall": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_backstage_wall_middle": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_bathroom_wall_bottom": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_bathroom_wall_top": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_dark_wall_down": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_dark_wall_middle": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_dark_wall_up": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_dark_wall_middle_tiles": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_dark_wall_middle_tiles_black": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_wall_down": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_wall_middle": {
+		"sound": "stone"
+	},
+	"fr:fnaf1_wall_middle_tiles": {
+		"sound": "deepslate bricks"
+	},
+	"fnaf1_wall_middle_tiles_2": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_wall_middle_tiles_3": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_wall_middle_tiles_4": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_wall_middle_tiles_black": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_wall_middle_tiles_hw": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_wall_top_tiles": {
+		"sound": "deepslate bricks"
+	},
+	"fr:fnaf1_wall_top_tiles_black": {
+		"sound": "deepslate bricks"
+	},
+	"fr:gray_stage_wall_middle": {
+		"sound": "stone"
+	},
+	"fr:gray_stage_wall_middle_2": {
+		"sound": "stone"
+	},
+	"fr:gray_stage_wall_middle_tiles": {
+		"sound": "deepslate bricks"
+	},
+	"fr:stage_wall_down": {
+		"sound": "stone"
+	},
+	"fr:stage_wall_middle": {
+		"sound": "stone"
+	},
+	"fr:stage_wall_middle_tiles": {
+		"sound": "deepslate bricks"
+	},
+	"fr:stage_wall_middle_tiles_3": {
+		"sound": "deepslate bricks"
+	},
+	"fr:stage_wall_up": {
+		"sound": "stone"
+	},
     	"fr:white_pizzeria_floor": {
 		"sound": "deepslate_bricks"
 	},

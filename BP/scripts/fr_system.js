@@ -25,11 +25,13 @@ import 'connectables/table_connection'
 import 'connectables/door_frame_connection'
 import 'connection_system/main_system'
 
+import 'block_data_view'
 import 'camera_system/security_camera_system'
 import 'variant_system'
 import 'backstage_shelf_head_system'
 import 'custom_commands'
 import 'updateBlock'
+import 'advanced_wall'
 
 import { adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, ACTIONBAR_VARIANT_STYLE, customActionbar, variantActionbar } from './utils.js'
 import { securityCameraSystem } from './camera_system/security_camera_system.js'
@@ -48,6 +50,20 @@ const BlockPreciseRotationComponent = {
         event.permutationToPlace = event.permutationToPlace.withState("fr:rotation", rotation);
     },
 };
+const BlockShellRotationComponent = {
+    beforeOnPlayerPlace(event) {
+        const { player } = event;
+        if (!player) return;
+
+        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
+        if (blockFace !== "up") return;
+
+        const playerYRotation = player.getRotation().y;
+        const rotation = getPreciseRotation(playerYRotation);
+
+        event.permutationToPlace = event.permutationToPlace.withState("fr:advanced_rot", rotation);
+    },
+};
 
 const BlockDownPreciseRotationComponent = {
     beforeOnPlayerPlace(event) {
@@ -61,6 +77,21 @@ const BlockDownPreciseRotationComponent = {
         const rotation = getPreciseRotation(playerYRotation);
 
         event.permutationToPlace = event.permutationToPlace.withState("fr:rotation", rotation);
+    },
+};
+
+const BlockUpPreciseRotationComponent = {
+    beforeOnPlayerPlace(event) {
+        const { player } = event;
+        if (!player) return;
+
+        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
+        if (blockFace !== "up") return;
+
+        const playerYRotation = player.getRotation().y;
+        const rotation = getPreciseRotation(playerYRotation);
+
+        event.permutationToPlace = event.permutationToPlace.withState("fr:advanced_rot", rotation);
     },
 };
 
@@ -78,6 +109,21 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
         BlockDownPreciseRotationComponent
     );
 });
+
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent(
+        "fr:advanced_rotation_down",
+        BlockUpPreciseRotationComponent
+    );
+});
+
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent(
+        "fr:advanced_rotation",
+        BlockShellRotationComponent
+    );
+});
+
 
 function getPreciseRotation(playerYRotation) {
     if (playerYRotation < 0) playerYRotation += 360;
@@ -191,41 +237,6 @@ function showLockerLockedMenu(player, base, pid) {
     } catch { }
 }
 
-const BlockShellRotationComponent = {
-    beforeOnPlayerPlace(event) {
-        const { player } = event;
-        if (!player) return;
-
-        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
-
-        const playerYRotation = player.getRotation().y;
-        const rotation = getPreciseRotation(playerYRotation);
-        const blockTypeId = event.permutationToPlace?.type?.id;
-
-        let permutation = event.permutationToPlace;
-
-        if (blockTypeId === "fr:ceiling_stars") {
-            const normalizedYaw = ((playerYRotation % 360) + 360) % 360;
-            const octant = Math.round(normalizedYaw / 45) % 8;
-
-            const typeState = (octant % 2 === 0) ? "plus" : "cross";
-            try { permutation = permutation.withState("fr:type", typeState); } catch { }
-        }
-
-        if (blockTypeId !== "fr:ceiling_stars" && blockFace === "up") {
-            try { permutation = permutation.withState("fr:advanced_rot", rotation); } catch { }
-        }
-
-        event.permutationToPlace = permutation;
-    },
-};
-
-system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent(
-        "fr:advanced_rot",
-        BlockShellRotationComponent
-    );
-});
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent("fr:single_interactive", {
