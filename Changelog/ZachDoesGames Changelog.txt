@@ -17,6 +17,6 @@ item.fr:blue_party_door_block
 item.fr:purple_party_door_block
 item.fr:red_party_door_block=Red Party Door
 
-added all advanced rotatable blocks to a separte folder
+added all advanced rotatable blocks to a separate folder
 fixed some hitbox collisions to certain blocks
 added advanced wall
