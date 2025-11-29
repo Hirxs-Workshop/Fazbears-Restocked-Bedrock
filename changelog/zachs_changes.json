@@ -1,0 +1,18 @@
+added the following blocks to the en_US.Lang
+
+tile.fr:door_frame
+tile.fr:fnaf1_advanced_wall
+tile.fr:backstage_door_block
+tile.fr:blank_door_block
+tile.fr:blue_party_door_block
+tile.fr:purple_party_door_block
+tile.fr:red_party_door_block
+tile.fr:restroom_sign_women
+tile.fr:restroom_sign_men
+tile.fr:walls_pepperoni_pizza_wooden
+
+item.fr:backstage_door_block
+item.fr:blank_door_block
+item.fr:blue_party_door_block
+item.fr:purple_party_door_block
+item.fr:red_party_door_block=Red Party Door

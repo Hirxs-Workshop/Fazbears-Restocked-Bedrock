@@ -1,0 +1,811 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.fnaf1_advanced_wall",
+				"texture_width": 96,
+				"texture_height": 64,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "pot_0",
+					"pivot": [0, 8, -8],
+					"cubes": [
+						{
+							"origin": [-8, 0, -8],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [-8, 0, -8],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [32, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_bottom_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [48, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_middle_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [32, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_top_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [0, 48], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_down_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [-8, 0, -8],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [80, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_dark_wall_down_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [64, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_backstage_wall_middle_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [16, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_middle_tiles_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [48, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_up_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [16, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_down_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [80, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_tiles_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [0, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_middle_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [0, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_up_0",
+					"parent": "pot_0",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, -7.975],
+							"size": [16, 16, 0],
+							"uv": {
+								"north": {"uv": [16, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "pot_1",
+					"pivot": [0, 8, -8],
+					"cubes": [
+						{
+							"origin": [-7.999, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [0, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [-7.999, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [32, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_bottom_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [48, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_middle_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [32, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_top_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [0, 48], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_down_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [-7.999, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [80, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_dark_wall_down_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [64, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_backstage_wall_middle_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [16, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_middle_tiles_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [48, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_up_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [16, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_down_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [80, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_tiles_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [0, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_middle_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [0, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_up_1",
+					"parent": "pot_1",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-7.974, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"east": {"uv": [16, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "pot_2",
+					"pivot": [0, 8, -8],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.999],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [0, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.999],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [32, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_bottom_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [48, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_middle_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [32, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_top_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [0, 48], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_down_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.999],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [80, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_dark_wall_down_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [64, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_backstage_wall_middle_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [16, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_middle_tiles_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [48, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_up_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [16, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_down_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [80, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_tiles_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [0, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_middle_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [0, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_up_2",
+					"parent": "pot_2",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [-8, 0, 7.974],
+							"size": [16, 16, 0],
+							"uv": {
+								"south": {"uv": [16, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "pot_3",
+					"pivot": [0, 8, -8],
+					"cubes": [
+						{
+							"origin": [8, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [0, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [8, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [32, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_bottom_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [48, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_middle_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [32, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_bathroom_wall_top_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [0, 48], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_down_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -8],
+					"cubes": [
+						{
+							"origin": [8, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [80, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_dark_wall_down_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [64, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_backstage_wall_middle_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [16, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_middle_tiles_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [48, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "fnaf1_wall_up_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [16, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_down_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [80, 0], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_tiles_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [0, 32], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_middle_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [0, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "stage_wall_up_3",
+					"parent": "pot_3",
+					"pivot": [-8, 0, -7.975],
+					"cubes": [
+						{
+							"origin": [7.975, 0, -8],
+							"size": [0, 16, 16],
+							"uv": {
+								"west": {"uv": [16, 16], "uv_size": [16, 16]}
+							}
+						}
+					]
+				},
+				{
+					"name": "handle",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-8, 0, -8],
+							"size": [16, 16, 16],
+							"uv": {
+								"up": {"uv": [16, 16], "uv_size": [-16, -16], "material_instance": "handle"},
+								"down": {"uv": [16, 16], "uv_size": [-16, -16], "material_instance": "handle_bottom"}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}
