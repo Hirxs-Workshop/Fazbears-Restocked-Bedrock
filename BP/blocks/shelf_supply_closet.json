@@ -16,7 +16,7 @@
 			"states": {
 				"fr:block_bit": [
 					"bottom",
-					"top"
+					"upper"
 				]
 			}
 		},
@@ -100,7 +100,7 @@
 				}
 			},
 			{
-				"condition": "query.block_state('fr:block_bit') == 'top'",
+				"condition": "query.block_state('fr:block_bit') == 'upper'",
 				"components": {
 					"minecraft:geometry": "geometry.shelf_supply_closet_top"
 				}
