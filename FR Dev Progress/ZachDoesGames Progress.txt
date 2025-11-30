@@ -20,3 +20,5 @@ item.fr:red_party_door_block=Red Party Door
 added all advanced rotatable blocks to a separate folder
 fixed some hitbox collisions to certain blocks
 added advanced wall
+
+changed shelf supply closet ('fr:block_state') == 'upper' to ('fr:block_state') == 'top' and the script for it too.

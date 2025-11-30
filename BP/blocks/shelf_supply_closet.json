@@ -16,7 +16,7 @@
 			"states": {
 				"fr:block_bit": [
 					"bottom",
-					"upper"
+					"top"
 				]
 			}
 		},
@@ -53,10 +53,11 @@
 				]
 			},
 			"minecraft:custom_components": [
-				"fr:shelf_supply_closet"
+				"fr:double_block"
 			]
 		},
-		"permutations": [			{
+		"permutations": [
+			{
 				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
 				"components": {
 					"minecraft:transformation": {
@@ -99,7 +100,7 @@
 				}
 			},
 			{
-				"condition": "query.block_state('fr:block_bit') == 'upper'",
+				"condition": "query.block_state('fr:block_bit') == 'top'",
 				"components": {
 					"minecraft:geometry": "geometry.shelf_supply_closet_top"
 				}

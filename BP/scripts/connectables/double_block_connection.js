@@ -13,7 +13,7 @@
 import { system, world, EquipmentSlot, BlockPermutation } from "@minecraft/server"
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent("fr:shelf_supply_closet", {
+    blockComponentRegistry.registerCustomComponent("fr:double_block", {
         beforeOnPlayerPlace(event) {
             const blockBit = event.permutationToPlace.getState("fr:block_bit");
             
@@ -33,7 +33,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
             if (blockBit === 'bottom') {
                 const aboveBlock = block.above();
                 const direction = block.permutation.getState("minecraft:cardinal_direction");
-                let upperPermutation = block.permutation.withState("fr:block_bit", "upper");
+                let upperPermutation = block.permutation.withState("fr:block_bit", "top");
                 
                 if (direction) {
                     upperPermutation = upperPermutation.withState("minecraft:cardinal_direction", direction);
@@ -43,10 +43,10 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
             }
         },
         onPlayerBreak({ block, brokenBlockPermutation }) {
-            if (brokenBlockPermutation.getState("fr:block_bit") == 'bottom' && block.above().permutation.getState("fr:block_bit") == 'upper') {
+            if (brokenBlockPermutation.getState("fr:block_bit") == 'bottom' && block.above().permutation.getState("fr:block_bit") == 'top') {
                 block.above().setType("minecraft:air")
             }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
-            if (brokenBlockPermutation.getState("fr:block_bit") == 'upper' && block.below().permutation.getState("fr:block_bit") == 'bottom') {
+            if (brokenBlockPermutation.getState("fr:block_bit") == 'top' && block.below().permutation.getState("fr:block_bit") == 'bottom') {
                 block.below().setType("minecraft:air")
             }
         }
