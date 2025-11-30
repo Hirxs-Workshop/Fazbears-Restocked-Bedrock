@@ -414,8 +414,6 @@ tile.fr:wall_yellow_red_top.name=Wall Yellow Red Top
 tile.fr:wall_yellow_red_top_rotted.name=Wall Yellow Red Top Rotted
 tile.fr:wall_yellow_top.name=Wall Yellow Top
 tile.fr:walls_pizza_wooden.name=Walls Pizza Wooden\n
-tile.fr:walls_pizza_wooden_2.name=Walls Pizza Wooden 2\n
-tile.fr:walls_pizza_wooden_3.name=Walls Pizza Wooden 3\n
 tile.fr:wet_floor_sign.name=Wet Floor Sign
 tile.fr:white_pizzeria_floor.name=White Pizzeria Floor
 tile.fr:white_purple_pizzeria_floor.name=White Purple Pizzeria Floor
@@ -441,6 +439,7 @@ tile.fr:shelf_supply_closet.name=Shelf Supply Closet
 tile.fr:office_drawings.name=Office Drawings
 tile.fr:broom_mop_and_bucket.name=Broom and Mop and Bucket
 tile.fr:office_phone.name=Office Phone
+tile.fr:walls_pepperoni_pizza_wooden.name=Walls Pepperoni Pizza Wooden\n
 
 tile.fr:backstage_door_block.name=Backstage Door
 tile.fr:blank_door_block.name=Blank Door
