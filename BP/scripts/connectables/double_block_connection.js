@@ -15,7 +15,7 @@ import { system, world, EquipmentSlot, BlockPermutation } from "@minecraft/serve
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent("fr:double_block", {
         beforeOnPlayerPlace(event) {
-            const blockBit = event.permutationupperlace.getState("fr:block_bit");
+            const blockBit = event.permutationToPlace.getState("fr:block_bit");
             
             if (!blockBit || blockBit === 'bottom') {
                 const aboveBlock = event.block.above();
