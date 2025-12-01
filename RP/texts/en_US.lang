@@ -441,16 +441,12 @@ tile.fr:broom_mop_and_bucket.name=Broom and Mop and Bucket
 tile.fr:office_phone.name=Office Phone
 tile.fr:walls_pepperoni_pizza_wooden.name=Walls Pepperoni Pizza Wooden\n
 
-tile.fr:backstage_door_block.name=Backstage Door
-tile.fr:blank_door_block.name=Blank Door
-tile.fr:blue_party_door_block.name=Blue Party Door
-tile.fr:purple_party_door_block.name=Purple Party Door
-tile.fr:red_party_door_block.name=Red Party Door
-
 item.fr:backstage_door_block=Backstage Door
 item.fr:blank_door_block=Blank Door
 item.fr:blue_party_door_block=Blue Party Door
 item.fr:purple_party_door_block=Purple Party Door
 item.fr:red_party_door_block=Red Party Door
 tile.fr:restroom_sign_women.name=Restroom Sign Women
-tile.fr:restroom_sign_men.name=Restroom Sign Men
+tile.fr:restroom_sign_man.name=Restroom Sign Man
+tile.fr:fnaf1_black_stage_floor.name=Fnaf1 Black Stage Floor
+tile.fr:fnaf1_classic_stage_floor.name=Fnaf1 Classic Stage Floor
