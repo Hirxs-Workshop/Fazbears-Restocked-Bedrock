@@ -452,6 +452,7 @@ tile.fr:small_speaker.name=Small Speaker
 tile.fr:restroom_sign_women.name=Restroom Sign Women
 tile.fr:restroom_sign_man.name=Restroom Sign Man
 <<<<<<< HEAD
+<<<<<<< HEAD
 tile.fr:black_stage_floor.name=Black Stage Floor
 tile.fr:classic_stage_floor.name=Classic Stage Floor
 tile.fr:stanchion.name=Stanchion
@@ -474,6 +475,10 @@ tile.fr:stage_sun.name=Stage Sun
 item.fr:restroom_stall_door=Restroom Stall Door
 tile.condiment_bottles.name=Condiment Bottles
 tile.fr:vending_machine.name=Vending Machine
+=======
+tile.fr:fnaf1_black_stage_floor.name=Fnaf1 Black Stage Floor
+tile.fr:fnaf1_classic_stage_floor.name=Fnaf1 Classic Stage Floor
+>>>>>>> 45ddea0596214092e80d452e68dbae25712cc1a9
 =======
 tile.fr:fnaf1_black_stage_floor.name=Fnaf1 Black Stage Floor
 tile.fr:fnaf1_classic_stage_floor.name=Fnaf1 Classic Stage Floor
