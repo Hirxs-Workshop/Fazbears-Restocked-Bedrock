@@ -3,8 +3,8 @@
 	"header": {
 		"name": "BP | Fazbear's Restocked | Public early build 1",
 		"description": "Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!",
-        "version": [1,5,7],
-        "min_engine_version": [ 1, 21, 120 ],
+        	"version": [1,5,7],
+        	"min_engine_version": [ 1, 21, 120 ],
 		"uuid": "c46b9b12-2f2a-490d-a11b-f4a7660966a3"
 	},
 	"modules": [
