@@ -1,5 +1,5 @@
 {
-	"format_version": "1.21.30",
+	"format_version": "1.21.60",
 	"minecraft:block": {
 		"description": {
 			"identifier": "fr:shelf_supply_closet",
@@ -16,12 +16,19 @@
 			"states": {
 				"fr:block_bit": [
 					"bottom",
-					"upper"
+					"top"
 				]
 			}
 		},
 		"components": {
-			"minecraft:geometry": "geometry.shelf_supply_closet_bottom",
+			"minecraft:geometry": {
+				"identifier": "geometry.shelf_supply_closet",
+				"bone_visibility": {
+					"top_side": "query.block_state('fr:block_bit') == 'upper'",
+					"bottom_side": "query.block_state('fr:block_bit') == 'bottom'",
+					"item_visual": false
+				}
+			},
 			"minecraft:material_instances": {
 				"*": {
 					"texture": "shelf_supply_closet",
@@ -52,9 +59,23 @@
 					12
 				]
 			},
-			"minecraft:custom_components": [
-				"fr:double_block"
-			]
+			"minecraft:item_visual": {
+				"geometry": {
+					"identifier": "geometry.shelf_supply_closet",
+					"bone_visibility": {
+						"top_side": false,
+						"bottom_side": false,
+						"item_visual": true
+					}
+				},
+				"material_instances": {
+					"*": {
+						"texture": "shelf_supply_closet",
+						"render_method": "alpha_test"
+					}
+				}
+			},
+			"fr:double_block": {}
 		},
 		"permutations": [
 			{
@@ -91,18 +112,6 @@
 						"rotation": [0, 90, 0],
 						"translation": [0, 0, -0.5]
 					}
-				}
-			},
-			{
-				"condition": "query.block_state('fr:block_bit') == 'bottom'",
-				"components": {
-					"minecraft:geometry": "geometry.shelf_supply_closet_bottom"
-				}
-			},
-			{
-				"condition": "query.block_state('fr:block_bit') == 'upper'",
-				"components": {
-					"minecraft:geometry": "geometry.shelf_supply_closet_top"
 				}
 			}
 		]

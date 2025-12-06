@@ -13,6 +13,7 @@
         }
       },
       "states": {
+	"fr:door_hinge_bit": [false, true],
         "fr:open_bit": [false, true],
         "fr:upper_block_bit": [false, true],
         "fr:bottom_block_bit": [false, true],

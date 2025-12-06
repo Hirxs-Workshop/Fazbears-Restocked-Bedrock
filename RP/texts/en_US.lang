@@ -441,16 +441,40 @@ tile.fr:broom_mop_and_bucket.name=Broom and Mop and Bucket
 tile.fr:office_phone.name=Office Phone
 tile.fr:walls_pepperoni_pizza_wooden.name=Walls Pepperoni Pizza Wooden\n
 
-tile.fr:backstage_door_block.name=Backstage Door
-tile.fr:blank_door_block.name=Blank Door
-tile.fr:blue_party_door_block.name=Blue Party Door
-tile.fr:purple_party_door_block.name=Purple Party Door
-tile.fr:red_party_door_block.name=Red Party Door
-
 item.fr:backstage_door_block=Backstage Door
 item.fr:blank_door_block=Blank Door
 item.fr:blue_party_door_block=Blue Party Door
 item.fr:purple_party_door_block=Purple Party Door
 item.fr:red_party_door_block=Red Party Door
+
+tile.fr:big_speaker.name=Big Speaker
+tile.fr:small_speaker.name=Small Speaker
 tile.fr:restroom_sign_women.name=Restroom Sign Women
-tile.fr:restroom_sign_men.name=Restroom Sign Men
+tile.fr:restroom_sign_man.name=Restroom Sign Man
+<<<<<<< HEAD
+tile.fr:black_stage_floor.name=Black Stage Floor
+tile.fr:classic_stage_floor.name=Classic Stage Floor
+tile.fr:stanchion.name=Stanchion
+
+tile.fr:condiment_bottles.name=Condiment Bottles
+tile.fr:fridge.name=Fridge
+tile.fr:rules_for_safety.name=Rules For Safety
+tile.fr:shelf_supply_closet_1.name=Shelf Supply Closet
+tile.fr:wide_backstage_table.name=Wide Backstage Table
+tile.fr:wide_party_table.name=Wide Party Table
+tile.fr:restroom_stall.name=Restroom Stall
+tile.fr:restroom_stall_door.name=Restroom Stall Door
+tile.fr:stone_oven.name=Stone Oven
+tile.fr:newspaper_1.name=Newspaper 1
+tile.fr:newspaper_2.name=Newspaper 2
+tile.fr:newspaper_3.name=Newspaper 3
+tile.fr:paper_balls.name=Paper Balls
+tile.fr:trash.name=Trash
+tile.fr:stage_sun.name=Stage Sun
+item.fr:restroom_stall_door=Restroom Stall Door
+tile.condiment_bottles.name=Condiment Bottles
+tile.fr:vending_machine.name=Vending Machine
+=======
+tile.fr:fnaf1_black_stage_floor.name=Fnaf1 Black Stage Floor
+tile.fr:fnaf1_classic_stage_floor.name=Fnaf1 Classic Stage Floor
+>>>>>>> 45ddea0596214092e80d452e68dbae25712cc1a9

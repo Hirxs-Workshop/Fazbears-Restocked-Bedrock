@@ -1,0 +1,144 @@
+{
+	"format_version": "1.21.60",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:stone_oven",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:block_bit": [
+					"bottom",
+					"middle",
+					"upper"
+				],
+				"fr:lit": [
+					false,
+					true
+				]
+			}
+		},
+		"components": {
+			"minecraft:geometry": {
+				"identifier": "geometry.stone_oven",
+				"bone_visibility": {
+					"top_side": "query.block_state('fr:block_bit') == 'upper'",
+					"middle_side": "query.block_state('fr:block_bit') == 'middle'",
+					"bottom_side": "query.block_state('fr:block_bit') == 'bottom'",
+					"item_visual": false
+				}
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "stone_oven",
+					"render_method": "alpha_test",
+					"ambient_occlusion": false,
+					"face_dimming": false
+				}
+			},
+			"minecraft:item_visual": {
+				"geometry": {
+					"identifier": "geometry.stone_oven",
+					"bone_visibility": {
+						"top_side": false,
+						"middle_side": false,
+						"bottom_side": false,
+						"item_visual": true
+					}
+				},
+				"material_instances": {
+					"*": {
+						"texture": "stone_oven",
+						"render_method": "alpha_test"
+					}
+				}
+			},
+			"fr:triple_block": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:lit') == false",
+				"components": {
+					"minecraft:light_emission": 0,
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "stone_oven",
+							"render_method": "alpha_test",
+							"ambient_occlusion": false,
+							"face_dimming": false
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:lit') == true",
+				"components": {
+					"minecraft:light_emission": 13,
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "stone_oven_lit",
+							"render_method": "alpha_test",
+							"ambient_occlusion": false,
+							"face_dimming": false
+						}
+					}
+				}
+			}
+		]
+	}
+}

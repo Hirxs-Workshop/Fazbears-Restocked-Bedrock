@@ -1,0 +1,225 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:restroom_stall_door",
+			"menu_category": {
+				"category": "construction",
+          			"group": "itemGroup.name.door"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:block_bit": [
+					"bottom",
+					"upper"
+				],
+				"fr:open_bit": [
+					false,
+					true
+				]
+			}
+		},
+		"components": {
+			"minecraft:geometry": {
+				"identifier": "geometry.restroom_stall_door",
+				"bone_visibility": {
+					"top_side": "q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == false",
+					"bottom_side": "q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == false",
+					"opened_top_side": "q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == true",
+					"opened_bottom_side": "q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == true"
+				}
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "restroom_stall_locked",
+					"render_method": "alpha_test",
+					"ambient_occlusion": false,
+					"face_dimming": false
+				}
+			},
+			"fr:onPlayerInteract": {},
+			"fr:double_block": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 180, 0 ]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, -90, 0 ]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 0, 0 ]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 90, 0 ]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == false",
+				"components": {
+					"minecraft:selection_box": {
+						"origin": [-7, 2, -2],
+						"size": [14, 14, 1]
+					},
+					"minecraft:collision_box": {
+						"origin": [-7, 2, -2],
+						"size": [14, 14, 1]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == false",
+				"components": {
+					"minecraft:selection_box": {
+						"origin": [-7, 0, -2],
+						"size": [14, 16, 1]
+					},
+					"minecraft:collision_box": {
+						"origin": [-7, 0, -2],
+						"size": [14, 16, 1]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:selection_box": {
+						"origin": [6, 0, -7],
+						"size": [1, 16, 14]
+					},
+					"minecraft:collision_box": {
+						"origin": [6, 0, -7],
+						"size": [1, 16, 14]
+					},
+					"minecraft:transformation": {
+						"rotation": [ 0, 180, 0 ],
+						"translation": [0, 0, 0.5]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:selection_box": {
+						"origin": [6, 2, -7],
+						"size": [1, 14, 14]
+					},
+					"minecraft:collision_box": {
+						"origin": [6, 2, -7],
+						"size": [1, 14, 14]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:selection_box": {
+						"origin": [6, 0, -7],
+						"size": [1, 16, 14]
+					},
+					"minecraft:collision_box": {
+						"origin": [6, 0, -7],
+						"size": [1, 16, 14]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 180, 0 ],
+						"translation": [0, 0, 0.5]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 180, 0 ],
+						"translation": [0, 0, 0.5]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 90, 0 ],
+						"translation": [-0.5, 0, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 90, 0 ],
+						"translation": [-0.5, 0, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, -90, 0 ],
+						"translation": [0.5, 0, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, -90, 0 ],
+						"translation": [0.5, 0, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('fr:block_bit') == 'bottom' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 0, 0 ],
+						"translation": [0, 0, -0.5]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('fr:block_bit') == 'upper' && q.block_state('fr:open_bit') == true",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [ 0, 0, 0 ],
+						"translation": [0, 0, -0.5]
+					}
+				}
+			}
+		]
+	}
+}

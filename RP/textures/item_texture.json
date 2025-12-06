@@ -1,6 +1,11 @@
 {
     "texture_name": "atlas.items",
     "texture_data": {
+        "restroom_stall_door": {
+            "textures": [
+                "textures/items/restroom_stall_door"
+            ]
+        },
         "backstage_door": {
             "textures": [
                 "textures/items/backstage_door"

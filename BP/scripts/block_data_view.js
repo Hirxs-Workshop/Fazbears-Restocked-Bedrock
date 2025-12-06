@@ -33,7 +33,7 @@ function getTPSStatus(tps) {
 }
 
 const lastViewedBlock = new Map();
-const ALLOWED_PLAYER = "Y4H1RX 11";
+const ALLOWED_PLAYER = "ZachDoesGames";
 
 const profilingData = new Map();
 let lastProfileReport = 0;

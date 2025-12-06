@@ -1,12 +1,12 @@
 {
-	"format_version": "1.21.30",
+	"format_version": "1.21.100",
 	"minecraft:item": {
 		"description": {
 			"identifier": "fr:purple_party_door_block",
 			"menu_category": {
-                "category": "construction",
-          		"group": "itemGroup.name.door"
-            }
+				"category": "construction",
+				"group": "minecraft:itemGroup.name.door"
+			}
 		},
 		"components": {
 			"minecraft:max_stack_size": 64,
@@ -15,10 +15,10 @@
 					"default": "purple_party_door"
 				}
 			},
-            "minecraft:block_placer": {
+            		"minecraft:block_placer": {
 				"block": "fr:purple_party_door_block",
 				"replace_block_item": true
-            }
+            		}
 		}
 	}
 }

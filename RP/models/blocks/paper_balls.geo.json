@@ -13,7 +13,7 @@
 			"bones": [
 				{
 					"name": "paperballs",
-					"pivot": [8, 16, -4],
+					"pivot": [1.33333, 1.33333, -0.66667],
 					"cubes": [
 						{
 							"origin": [-6, 0, -1],

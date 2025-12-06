@@ -17,6 +17,7 @@ import { ActionFormData, uiManager } from '@minecraft/server-ui'
 import * as FRAPI from './fr_api.js'
 export { FRAPI }
 import "connectables/double_block_connection"
+import "connectables/triple_block_connection"
 
 import 'office_desk_reworked'
 import 'entrance_door'

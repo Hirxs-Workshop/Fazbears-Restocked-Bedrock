@@ -1,0 +1,89 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.restroom_stall_door",
+				"texture_width": 112,
+				"texture_height": 112,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 4,
+				"visible_bounds_offset": [0, 1, 0]
+			},
+			"bones": [
+				{
+					"name": "top_side",
+					"pivot": [0, 8, -1.5],
+					"cubes": [
+						{
+							"origin": [-7, 0, -2],
+							"size": [14, 16, 1],
+							"uv": {
+								"north": {"uv": [2, 64], "uv_size": [20, 18]},
+								"east": {"uv": [1, 64], "uv_size": [1, 18]},
+								"south": {"uv": [24, 64], "uv_size": [20, 18]},
+								"west": {"uv": [22, 64], "uv_size": [1, 18]},
+								"up": {"uv": [2, 63], "uv_size": [20, 1]},
+								"down": {"uv": [22, 64], "uv_size": [20, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "bottom_side",
+					"pivot": [0, 0, -1],
+					"cubes": [
+						{
+							"origin": [-7, 2, -2],
+							"size": [14, 14, 1],
+							"uv": {
+								"north": {"uv": [2, 82], "uv_size": [20, 14]},
+								"east": {"uv": [2, 82], "uv_size": [1, 14]},
+								"south": {"uv": [24, 82], "uv_size": [20, 14]},
+								"west": {"uv": [22, 82], "uv_size": [1, 14]},
+								"up": {"uv": [2, 63], "uv_size": [20, 1]},
+								"down": {"uv": [22, 64], "uv_size": [20, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "opened_top_side",
+					"pivot": [6.5, 8, 0],
+					"cubes": [
+						{
+							"origin": [6, 0, -7],
+							"size": [1, 16, 14],
+							"uv": {
+								"north": {"uv": [1, 64], "uv_size": [1, 18]},
+								"east": {"uv": [24, 64], "uv_size": [20, 18]},
+								"south": {"uv": [22, 64], "uv_size": [1, 18]},
+								"west": {"uv": [2, 64], "uv_size": [20, 18]},
+								"up": {"uv": [2, 63], "uv_size": [20, 1], "uv_rotation": 270},
+								"down": {"uv": [22, 64], "uv_size": [20, -1], "uv_rotation": 90}
+							}
+						}
+					]
+				},
+				{
+					"name": "opened_bottom_side",
+					"pivot": [6.5, 9, 0],
+					"cubes": [
+						{
+							"origin": [6, 2, -7],
+							"size": [1, 14, 14],
+							"uv": {
+								"north": {"uv": [2, 82], "uv_size": [1, 14]},
+								"east": {"uv": [24, 82], "uv_size": [20, 14]},
+								"south": {"uv": [22, 82], "uv_size": [1, 14]},
+								"west": {"uv": [2, 82], "uv_size": [20, 14]},
+								"up": {"uv": [2, 63], "uv_size": [20, 1], "uv_rotation": 270},
+								"down": {"uv": [22, 64], "uv_size": [20, -1], "uv_rotation": 90}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

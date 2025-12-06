@@ -959,3 +959,36 @@ class DoorManager {
 }
 
 const doorManager = new DoorManager();
+
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent("fr:onPlayerInteract", {
+        onPlayerInteract({ block, dimension, face, player }) {
+            if (block.typeId === "fr:restroom_stall_door") {
+		if (block.permutation.getState("fr:open_bit") == false && block.above().permutation.getState("fr:open_bit") == false) {
+		    player.playSound("open.wooden_door")
+                    block.setPermutation(block.permutation.withState("fr:open_bit", true))
+                    block.above().setPermutation(block.above().permutation.withState("fr:open_bit", true))
+                    return;
+           	}
+		if (block.below().permutation.getState("fr:open_bit") == false && block.permutation.getState("fr:open_bit") == false) {
+		    player.playSound("open.wooden_door")
+                    block.setPermutation(block.permutation.withState("fr:open_bit", true))
+                    block.below().setPermutation(block.below().permutation.withState("fr:open_bit", true))
+                    return;
+           	}
+		if (block.permutation.getState("fr:open_bit") == true && block.above().permutation.getState("fr:open_bit") == true) {
+		    player.playSound("close.wooden_door")
+                    block.setPermutation(block.permutation.withState("fr:open_bit", false))
+                    block.above().setPermutation(block.above().permutation.withState("fr:open_bit", false))
+                    return;
+           	}
+		if (block.below().permutation.getState("fr:open_bit") == true && block.permutation.getState("fr:open_bit") == true) {
+		    player.playSound("close.wooden_door")
+                    block.setPermutation(block.permutation.withState("fr:open_bit", false))
+                    block.below().setPermutation(block.below().permutation.withState("fr:open_bit", false))
+                    return;
+           	}
+            }
+        }
+    })
+})

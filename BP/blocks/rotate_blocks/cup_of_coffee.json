@@ -39,13 +39,13 @@
 					"side": "q.block_state('minecraft:block_face') != 'up'"
 				}
 			},
-			"minecraft:selection_box": {
-				"origin": [-2.5, 0, -4],
-				"size": [6, 6, 8]
-			},
 			"minecraft:collision_box": {
-				"origin": [-2.5, 0, -4],
-				"size": [6, 6, 8]
+				"origin": [-3, 0, -2.5],
+				"size": [6, 6, 6]
+			},
+			"minecraft:selection_box": {
+				"origin": [-3, 0, -2.5],
+				"size": [6, 6, 6]
 			},
 			"fr:advanced_rotation_down": {}
 		},
@@ -90,12 +90,12 @@
 				"condition": "q.block_state('minecraft:block_face') != 'up'",
 				"components": {
 					"minecraft:collision_box": {
-						"origin": [-2.5, 0, -4],
-						"size": [6, 6, 8]
+						"origin": [-3, 0, -2.5],
+						"size": [6, 6, 6]
 					},
 					"minecraft:selection_box": {
-						"origin": [-2.5, 0, -4],
-						"size": [6, 6, 8]
+						"origin": [-3, 0, -2.5],
+						"size": [6, 6, 6]
 					}
 				}
 			}

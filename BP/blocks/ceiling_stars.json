@@ -7,9 +7,9 @@
 				"category": "construction"
 			},
 			"traits": {
-				"minecraft:placement_position": {
+				"minecraft:placement_direction": {
 					"enabled_states": [
-						"minecraft:block_face"
+						"minecraft:cardinal_direction"
 					]
 				}
 			},
@@ -22,12 +22,6 @@
 					"values": {
 						"min": 0,
 						"max": 4
-					}
-				},
-				"fr:advanced_rot": {
-					"values": {
-						"min": 0,
-						"max": 15
 					}
 				}
 			}
@@ -59,7 +53,6 @@
 					"render_method": "alpha_test_single_sided"
 				}
 			},
-			"fr:advanced_rot": {},
 			"fr:single_interactive": {}
 		},
 		"permutations": [
@@ -115,6 +108,55 @@
 							"texture": "ceiling_stars_var_5",
 							"render_method": "alpha_test_single_sided"
 						}
+					}
+				}
+			},
+
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
 					}
 				}
 			}
