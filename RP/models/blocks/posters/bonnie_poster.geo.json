@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.bonnie_poster",
+				"identifier": "geometry.Bonnie_Poster",
 				"texture_width": 56,
 				"texture_height": 56,
 				"visible_bounds_width": 2,
@@ -16,10 +16,15 @@
 					"pivot": [0, 0, 0],
 					"cubes": [
 						{
-							"origin": [-7, 0, 7.9],
-							"size": [14, 19, 0],
+							"origin": [-7, 1, 7.9],
+							"size": [14, 18, 0],
 							"uv": {
-								"north": {"uv": [0, 20], "uv_size": [14, 19]}
+								"north": {"uv": [0, 20], "uv_size": [14, 18]},
+								"east": {"uv": [0, 0], "uv_size": [0, 0]},
+								"south": {"uv": [0, 0], "uv_size": [0, 0]},
+								"west": {"uv": [0, 0], "uv_size": [0, 0]},
+								"up": {"uv": [0, 0], "uv_size": [0, 0]},
+								"down": {"uv": [0, 0], "uv_size": [0, 0]}
 							}
 						}
 					]
