@@ -28,7 +28,19 @@
                 "redstone_conductor": true
             },
             "minecraft:material_instances": {
-                "*": {
+                "up":{
+                    "texture": "wall_purple_middle",
+                    "render_method": "opaque",
+                    "face_dimming": true,
+                    "ambient_occlusion": true
+                }
+                ,"down":{
+                    "texture": "wall_purple_middle",
+                    "render_method": "opaque",
+                    "face_dimming": true,
+                    "ambient_occlusion": true
+                }
+                ,"*": {
                     "texture": "wall_purple_bottom_rotted",
                     "render_method": "opaque",
                     "face_dimming": true,
