@@ -111,7 +111,7 @@ async function showVariantMenu(player, block) {
       block.setPermutation(newPerm);
       // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
       player.sendMessage(`§aVariant changed to: §7${selectedButton.label}`);
-      player.playSound("random.click");
+      player.playSound("random.orb");
     } catch (err) {
       player.sendMessage(`§cFailed to change variant: ${err.message}`);
     }
@@ -385,7 +385,20 @@ registerBlockVariants("fr:retro_phone", [
   { 
     label: "Black", 
     icon: "textures/fr_ui/icons/retro_phone_black", 
-    color: "gray" 
+    color: "black" 
+  }
+]);
+
+registerBlockVariants("fr:wall_clock", [
+  { 
+    label: "Black", 
+    icon: "textures/fr_ui/icons/wall_clock_v1", 
+    color: "vlack" 
+  },
+  { 
+    label: "Green", 
+    icon: "textures/fr_ui/icons/wall_clock_v2", 
+    color: "green" 
   }
 ]);
 // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ

@@ -11,5 +11,17 @@
       3,
       4
     ]
+  },
+  {
+    "flipbook_texture": "textures/blocks/reworked/wall_clock_v1",
+    "atlas_tile": "wall_clock_v1",
+    "ticks_per_frame": 3,
+    "blend_frames": false
+  },
+  {
+    "flipbook_texture": "textures/blocks/reworked/wall_clock_v2",
+    "atlas_tile": "wall_clock_v1",
+    "ticks_per_frame": 3,
+    "blend_frames": false
   }
 ]

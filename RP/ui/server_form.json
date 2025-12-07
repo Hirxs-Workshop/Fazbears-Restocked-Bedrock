@@ -3723,6 +3723,20 @@
         }
       },
       {
+        "black_bg": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "texture": "textures/fr_ui/buttons/button_black_background",
+          "layer": 5,
+          "bindings": [
+            { "binding_type": "collection", "binding_collection_name": "form_buttons", "binding_name": "#form_button_text", "binding_name_override": "#label" },
+            { "binding_type": "view", "source_property_name": "(not ((#label - 'black') = #label))", "target_property_name": "#visible" }
+          ]
+        }
+      },
+      {
         "pink_bg": {
           "type": "image",
           "size": ["100%", "100%"],
@@ -3779,7 +3793,7 @@
           "color": [1, 1, 1],
           "bindings": [
             { "binding_type": "collection", "binding_collection_name": "form_buttons", "binding_name": "#form_button_text", "binding_name_override": "#label" },
-            { "binding_type": "view", "source_property_name": "((((((((((#label - 'yellow ') - 'blue ') - 'green ') - 'red ') - 'purple ') - 'cyan ') - 'gray ') - 'pink ') - 'orange ') - '§a✓ §r')", "target_property_name": "#text" }
+            { "binding_type": "view", "source_property_name": "(((((((((((#label - 'yellow ') - 'blue ') - 'green ') - 'red ') - 'purple ') - 'cyan ') - 'gray ') - 'pink ') - 'orange ') - 'black ') - '§a✓ §r')", "target_property_name": "#text" }
           ]
         }
       }

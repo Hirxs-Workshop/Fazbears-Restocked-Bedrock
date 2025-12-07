@@ -4,6 +4,16 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
+	"wall_clock_v1": {
+		"textures": [
+			"textures/blocks/reworked/wall_clock_v1"
+		]
+	},
+	"wall_clock_v2": {
+		"textures": [
+			"textures/blocks/reworked/wall_clock_v2"
+		]
+	},
 	"trash": {
 		"textures": [
 			"textures/blocks/reworked/trash"
