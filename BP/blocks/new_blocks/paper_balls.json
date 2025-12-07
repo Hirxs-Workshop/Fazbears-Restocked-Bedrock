@@ -18,7 +18,7 @@
 			"minecraft:collision_box": false,
 			"minecraft:selection_box": {
 				"origin": [-8, 0, -8],
-				"size": [16, 0.2, 16]
+				"size": [16, 1, 16]
 			},
 			"minecraft:geometry": "geometry.paper_balls",
 			"minecraft:material_instances": {
