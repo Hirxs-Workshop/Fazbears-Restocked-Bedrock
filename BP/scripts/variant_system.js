@@ -393,7 +393,7 @@ registerBlockVariants("fr:wall_clock", [
   { 
     label: "Black", 
     icon: "textures/fr_ui/icons/wall_clock_v1", 
-    color: "vlack" 
+    color: "black" 
   },
   { 
     label: "Green", 
