@@ -29,13 +29,13 @@
             },
             "minecraft:material_instances": {
                 "up":{
-                    "texture": "pizzeria_bricks_middle",
+                    "texture": "pizzeria_bricks_2_middle",
                     "render_method": "opaque",
                     "face_dimming": true,
                     "ambient_occlusion": true
                 }
                 ,"down":{
-                    "texture": "pizzeria_bricks_middle",
+                    "texture": "pizzeria_bricks_2_middle",
                     "render_method": "opaque",
                     "face_dimming": true,
                     "ambient_occlusion": true
