@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "party_hat_green",
+        "metalness_emissive_roughness": "party_hat_green_mer",
+        "heightmap": "party_hat_green_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "exterior_dark_wall_chizeled",
+        "metalness_emissive_roughness": "exterior_dark_wall_chizeled_mer",
+        "heightmap": "exterior_dark_wall_chizeled_normal"
+    }
+}

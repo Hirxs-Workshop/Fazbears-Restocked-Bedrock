@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "exterior_wall_middle_tiles",
+        "metalness_emissive_roughness": "exterior_wall_middle_tiles_mer",
+        "heightmap": "exterior_wall_middle_tiles_normal"
+    }
+}

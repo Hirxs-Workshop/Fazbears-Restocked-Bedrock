@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "party_chair",
+        "metalness_emissive_roughness": "party_chair_mer",
+        "heightmap": "party_chair_normal"
+    }
+}
