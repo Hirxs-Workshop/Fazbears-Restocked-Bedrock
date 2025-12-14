@@ -29,13 +29,13 @@
             },
             "minecraft:material_instances": {
                 "up":{
-                    "texture": "fnaf1_bathroom_wall",
+                    "texture": "ceiling_black",
                     "render_method": "opaque",
                     "face_dimming": true,
                     "ambient_occlusion":true
                 }
                 ,"down":{
-                    "texture": "ceiling_black",
+                    "texture": "fnaf1_bathroom_wall",
                     "render_method": "opaque",
                     "face_dimming": true,
                     "ambient_occlusion": true

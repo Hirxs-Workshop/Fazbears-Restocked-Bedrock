@@ -29,7 +29,7 @@
             },
             "minecraft:material_instances": {
                 "up":{
-                    "texture": "wall_yellow_chizeled_rotted",
+                    "texture": "wall_yellow_middle",
                     "render_method": "opaque",
                     "face_dimming": true,
                     "ambient_occlusion": true
