@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "stage_curtain_upper",
+        "metalness_emissive_roughness": "stage_curtain_upper_mer",
+        "heightmap": "stage_curtain_upper_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "bonnie_backstage_pupils",
+        "metalness_emissive_roughness": "bonnie_backstage_pupils_mer",
+        "heightmap": "bonnie_backstage_pupils_normal"
+    }
+}

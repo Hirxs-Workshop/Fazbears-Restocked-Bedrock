@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wall_purple_stripe_verticle",
+        "metalness_emissive_roughness": "wall_purple_stripe_verticle_mer",
+        "heightmap": "wall_purple_stripe_verticle_normal"
+    }
+}
