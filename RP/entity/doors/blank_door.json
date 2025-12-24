@@ -1,0 +1,34 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:blank_door",
+			"materials": {
+				"default": "entity_alphatest"
+			},
+			"textures": {
+				"default": "textures/entity/blank_door"
+			},
+			"geometry": {
+				"default": "geometry.blank_door"
+			},
+			"animations": {
+				"fr_door_open": "animation.backstage_door.open_door",
+				"fr_door_open_back": "animation.backstage_door.open_door_alt",
+				"fr_door_close": "animation.backstage_door.close_door",
+				"fr_door_close_back": "animation.backstage_door.close_door_alt",
+				"fr_door_open_perm": "animation.backstage_door.open_door.perm",
+				"fr_door_open_perm_back": "animation.backstage_door.open_door.perm_alt",
+				"controller.door_state": "controller.animation.backstage_door_state"
+			},
+			"scripts": {
+				"animate": [
+					"controller.door_state"
+				]
+			},
+			"render_controllers": [
+				"controller.render.skeleton"
+			]
+		}
+	}
+}

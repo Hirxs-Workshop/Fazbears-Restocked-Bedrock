@@ -1,6 +1,11 @@
 {
     "texture_name": "atlas.items",
     "texture_data": {
+        "freezer_door": {
+            "textures": [
+                "textures/items/freezer_door"
+            ]
+        },
         "restroom_stall_door": {
             "textures": [
                 "textures/items/restroom_stall_door"
@@ -36,9 +41,9 @@
                 "textures/items/endo"
             ]
         },
-        "entrace_door": {
+        "entrance_door": {
             "textures": [
-                "textures/items/entrace_door"
+                "textures/items/entrance_door"
             ]
         },
         "faz-diver": {

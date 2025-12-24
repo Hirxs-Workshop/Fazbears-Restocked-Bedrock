@@ -2,15 +2,15 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {
-			"identifier": "fr:red_party_door",
+			"identifier": "fr:blue_party_door",
 			"materials": {
 				"default": "entity_alphatest"
 			},
 			"textures": {
-				"default": "textures/entity/red_party_door"
+				"default": "textures/entity/blue_party_door"
 			},
 			"geometry": {
-				"default": "geometry.backstage_door"
+				"default": "geometry.blue_party_door"
 			},
 			"animations": {
 				"fr_door_open": "animation.backstage_door.open_door",

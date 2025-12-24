@@ -6,7 +6,7 @@
 				"identifier": "geometry.bonnie_head",
 				"texture_width": 16,
 				"texture_height": 16,
-				"visible_bounds_width": 2,
+				"visible_bounds_width": 3,
 				"visible_bounds_height": 2.5,
 				"visible_bounds_offset": [0, 0.75, 0]
 			},
@@ -286,12 +286,12 @@
 				{
 					"name": "bone5",
 					"parent": "jaw",
-					"pivot": [0, 1, -2.5]
+					"pivot": [0, 0.21007, -2.1939]
 				},
 				{
 					"name": "bone7",
 					"parent": "jaw",
-					"pivot": [0, 2, -1.5]
+					"pivot": [0, 1.21007, -1.1939]
 				},
 				{
 					"name": "headendo",

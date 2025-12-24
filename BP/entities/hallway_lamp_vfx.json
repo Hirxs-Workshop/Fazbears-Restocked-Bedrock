@@ -21,6 +21,13 @@
 							"event": "destroy",
 							"target": "self"
 						}
+					},
+					{
+						"block": "fr:hallway_light",
+						"exited_block_event": {
+							"event": "destroy",
+							"target": "self"
+						}
 					}
 				]
 			},

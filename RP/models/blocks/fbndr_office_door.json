@@ -24,6 +24,18 @@
 					]
 				},
 				{
+					"name": "single",
+					"parent": "bone",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-1, 0, -1],
+							"size": [2, 2, 2],
+							"uv": {}
+						}
+					]
+				},
+				{
 					"name": "upper",
 					"parent": "bone",
 					"pivot": [0, 0, 0],
@@ -62,6 +74,18 @@
 								"up": {"uv": [23, 4], "uv_size": [-16, -4]},
 								"down": {"uv": [23, 47], "uv_size": [-16, -4]}
 							}
+						}
+					]
+				},
+				{
+					"name": "single_open",
+					"parent": "bone",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-1, 0, -1],
+							"size": [2, 2, 2],
+							"uv": {}
 						}
 					]
 				},

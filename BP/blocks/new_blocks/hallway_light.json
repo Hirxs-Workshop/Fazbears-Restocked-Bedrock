@@ -1,0 +1,66 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:hallway_light",
+			"menu_category": {
+				"category": "construction"
+			},
+			"states": {
+				"fr:lit": [
+					false,
+					true
+				]
+			}
+		},
+		"components": {
+			"minecraft:geometry": "geometry.hallway_light",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "hallway_light",
+					"render_method": "alpha_test"
+				}
+			},
+			"fr:single_interactive": {},
+			"minecraft:collision_box": {
+				"origin": [-7, 0, -7],
+				"size": [14, 4, 14]
+			},
+			"minecraft:selection_box": {
+				"origin": [-7, 0, -7],
+				"size": [14, 4, 14]
+			},
+			"minecraft:transformation": {
+				"translation": [0, 0.8, 0]
+			}
+		},
+		"permutations": [
+			{
+				"condition": "!q.block_state('fr:lit')",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "hallway_light_off",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:lit')",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "hallway_light",
+							"render_method": "alpha_test",
+							"ambient_occlusion": false,
+							"emissive": true,
+							"face_dimming": false
+						}
+					},
+					"minecraft:light_emission": 13
+				}
+			}
+		]
+	}
+}

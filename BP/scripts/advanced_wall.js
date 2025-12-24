@@ -49,8 +49,8 @@ const plants = {
         value: "stage_wall_down",
         sound: "block.lantern.break",
     },
-    "fr:stage_wall_tiles": {
-        value: "stage_wall_tiles",
+    "fr:stage_wall_middle_tiles": {
+        value: "stage_wall_middle_tiles",
         sound: "block.lantern.break",
     },
     "fr:stage_wall_middle": {

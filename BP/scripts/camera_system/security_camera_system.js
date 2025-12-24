@@ -1,18 +1,6 @@
-/**
- * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
- * Hyrxs (discord: hyrxs), for more information and authorization
- * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
-*/
-
 import { world, system } from "@minecraft/server";
 import { ActionFormData, ModalFormData, uiManager } from "@minecraft/server-ui";
 import { dynamicToast, showCameraLoading } from "../utils.js";
-import * as FRAPI from "../fr_api.js";
 
 class SecurityCameraSystem {
   constructor() {
@@ -44,84 +32,6 @@ class SecurityCameraSystem {
     this.flashlightBlocks = new Map();
     this.FLASHLIGHT_RANGE = 5;
   }
-
-  isCamera(blockOrTypeId) {
-    const typeId = typeof blockOrTypeId === 'string' ? blockOrTypeId : blockOrTypeId?.typeId;
-    if (!typeId) return false;
-    
-    if (typeId === "fr:security_cameras") return true;
-    
-    return FRAPI.getCameraConfig(typeId) !== null;
-  }
-
-  getBlockRotationSystem(block) {
-    if (!block) return null;
-    
-    try {
-      const frRotation = block.permutation.getState("fr:rotation");
-      if (frRotation !== undefined && frRotation !== null) return "fr:rotation";
-    } catch {}
-    
-    try {
-      const cardinalDir = block.permutation.getState("minecraft:cardinal_direction");
-      if (cardinalDir !== undefined && cardinalDir !== null) return "cardinal_direction";
-    } catch {}
-    
-    return null;
-  }
-
-  yawToCardinalDirection(yaw) {
-    let normalizedYaw = ((yaw % 360) + 360) % 360;
-    
-    if (normalizedYaw >= 315 || normalizedYaw < 45) return "south";
-    if (normalizedYaw >= 45 && normalizedYaw < 135) return "west";
-    if (normalizedYaw >= 135 && normalizedYaw < 225) return "north";
-    return "east";
-  }
-
-  cardinalDirectionToYaw(direction) {
-    const directionMap = {
-      "south": 0,
-      "west": 90,
-      "north": 180,
-      "east": 270
-    };
-    return directionMap[direction] ?? 180;
-  }
-
-  getBlockRotation(block) {
-    if (!block) return null;
-    
-    const rotationSystem = this.getBlockRotationSystem(block);
-    
-    if (rotationSystem === "fr:rotation") {
-      try {
-        return block.permutation.getState("fr:rotation");
-      } catch {}
-    } else if (rotationSystem === "cardinal_direction") {
-      try {
-        return block.permutation.getState("minecraft:cardinal_direction");
-      } catch {}
-    }
-    
-    return null;
-  }
-
-  setBlockRotation(block, rotation) {
-    if (!block || rotation === null || rotation === undefined) return;
-    
-    const rotationSystem = this.getBlockRotationSystem(block);
-    
-    try {
-      if (rotationSystem === "fr:rotation") {
-        const newPerm = block.permutation.withState("fr:rotation", rotation);
-        block.setPermutation(newPerm);
-      } else if (rotationSystem === "cardinal_direction") {
-        const newPerm = block.permutation.withState("minecraft:cardinal_direction", rotation);
-        block.setPermutation(newPerm);
-      }
-    } catch {}
-  } // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
 
   async getWorldTimeLabelsAsync(player) {
     let day;
@@ -204,7 +114,7 @@ class SecurityCameraSystem {
       const ampm = hour24 < 12 ? " AM" : " PM";
       return `${h}${ampm}`;
     } catch { return ""; }
-  } // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+  }
 
   initialize() {
     world.afterEvents.playerInteractWithBlock.subscribe((event) => this.onBlockInteract(event));
@@ -275,10 +185,11 @@ class SecurityCameraSystem {
             try {
               const dimension = world.getDimension(session.dim);
               const camBlock = this.blockFromLocStr(dimension, session.cam);
-              if (camBlock && this.isCamera(camBlock)) {
-                const currentRotation = this.getBlockRotation(camBlock);
+              if (camBlock && camBlock.typeId === "fr:security_cameras") {
+                const currentRotation = camBlock.permutation.getState("fr:rotation");
                 if (currentRotation !== initialRotation) {
-                  this.setBlockRotation(camBlock, initialRotation);
+                  const newPerm = camBlock.permutation.withState("fr:rotation", initialRotation);
+                  camBlock.setPermutation(newPerm);
                 }
               }
             } catch {}
@@ -313,6 +224,8 @@ class SecurityCameraSystem {
       }
     } catch (e) {
       console.warn("Error toggling flashlight:", e);
+      this.flashlightActive.set(player.id, false);
+      this.removeFlashlightBlocks(player.id, dimension);
     }
   }
 
@@ -322,7 +235,7 @@ class SecurityCameraSystem {
       this.removeFlashlightBlocks(pid, dimension);
       
       const cam = this.blockFromLocStr(dimension, camPosStr);
-      if (!cam || !this.isCamera(cam)) return;
+      if (!cam || cam.typeId !== "fr:security_cameras") return;
       
       const baseYawValue = this.baseYaw.get(pid);
       if (baseYawValue === undefined) return;
@@ -369,7 +282,7 @@ class SecurityCameraSystem {
     } catch (e) {
       console.warn("Error placing flashlight blocks:", e);
     }
-  } // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+  }
 
   removeFlashlightBlocks(playerId, dimension = null) {
     try {
@@ -393,7 +306,7 @@ class SecurityCameraSystem {
       for (const pos of blocks) {
         try {
           const block = dimension.getBlock(pos);
-          if (block && block.typeId.includes("light_block")) {
+          if (block && (block.typeId.includes("light_block") || block.typeId === "minecraft:light_block")) {
             block.setType("minecraft:air");
           }
         } catch {}
@@ -402,6 +315,7 @@ class SecurityCameraSystem {
       this.flashlightBlocks.delete(playerId);
     } catch (e) {
       console.warn("Error removing flashlight blocks:", e);
+      this.flashlightBlocks.delete(playerId);
     }
   }
 
@@ -412,7 +326,7 @@ class SecurityCameraSystem {
     const blockId = block.typeId;
     const itemId = itemStack?.typeId;
 
-    if (this.isCamera(blockId)) {
+    if (blockId === "fr:security_cameras") {
       if (itemId === "fr:faz-diver_security") {
         this.selectCamera(player, block);
       }
@@ -458,9 +372,7 @@ class SecurityCameraSystem {
       for (const loc of attachedLocations) {
         try {
           const block = dimension.getBlock(loc);
-          if (!block) continue;
-          
-          if (!this.isCamera(block)) continue;
+          if (!block || block.typeId !== "fr:security_cameras") continue;
 
           const camPosStr = this.locStr({ x: Math.floor(loc.x), y: Math.floor(loc.y), z: Math.floor(loc.z) });
 
@@ -505,7 +417,7 @@ class SecurityCameraSystem {
               }
             }
             this.saveConnections();
-          }, 10); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+          }, 10);
         } catch {}
       }
     } catch {}
@@ -521,7 +433,7 @@ class SecurityCameraSystem {
     player.sendMessage(
       dynamicToast(
         "§l§aCAMERA SELECTED",
-        `§qID: §f§f${block.typeId}\n§qPos: §f${pos.x}, ${pos.y}, ${pos.z}`,
+        `§qID: §f§ffr:security_cameras\n§qPos: §f${pos.x}, ${pos.y}, ${pos.z}`,
         "textures/fr_ui/approve_icon",
         "textures/fr_ui/approve_ui"
       )
@@ -661,7 +573,7 @@ class SecurityCameraSystem {
         system.runTimeout(() => showLockedForm(), 40);
       } else {
         showLockedForm();
-      } // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      }
     } catch {
       this.resetPlayerCamera(player);
     }
@@ -676,7 +588,7 @@ class SecurityCameraSystem {
         const validCameras = [];
         for (const camPosStr of camList) {
           const camBlock = this.blockFromLocStr(pcBlock.dimension, camPosStr);
-          if (camBlock && this.isCamera(camBlock)) {
+          if (camBlock && camBlock.typeId === "fr:security_cameras") {
             validCameras.push(camPosStr);
           }
         }
@@ -711,6 +623,7 @@ class SecurityCameraSystem {
         const form = new ActionFormData().title("§O§L§D§P§C").body("§7Open the primary camera or manage links");
 form.button("bt:b_Open camera", "textures/fr_ui/security_camera_icon");
 form.button("bt:g_Manage cameras", "textures/fr_ui/gear");
+form.button("bt:g_Changelog", "textures/fr_ui/folder_icon");
 
 form.label("tx:welcome_textures/fr_ui/welcome_text_terminal");
 
@@ -809,10 +722,14 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
             this.manageCameras(player, pcBlock);
             return;
           }
+          if (idx === 2) {
+            this.showChangelog(player, pcBlock);
+            return;
+          }
           this.resetPlayerCamera(player);
         }).catch(() => {});
       };
- // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+
       if (skipAnimation) {
         showMainForm();
       } else {
@@ -840,7 +757,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
     }
     
     const camBlock = this.blockFromLocStr(dimension, camPosStr);
-    if (!camBlock || !this.isCamera(camBlock)) {
+    if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
       const camList = this.connections.get(pcPosStr) ?? [];
       const index = camList.indexOf(camPosStr);
       if (index > -1) {
@@ -900,7 +817,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       }
     }
 
-    const initialRotation = this.getBlockRotation(camBlock);
+    const initialRotation = camBlock.permutation.getState("fr:rotation");
     const basePose = this.frontPoseOf(camBlock);
     
     const alreadyViewing = this.viewers.has(pid);
@@ -987,11 +904,11 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
         }
 
         try {
-          const sess = this.viewSessions.get(pid); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+          const sess = this.viewSessions.get(pid);
           if (!sess) continue;
           const dim = player.dimension;
           const camBlock = this.blockFromLocStr(dim, sess.cam ?? "");
-          if (!camBlock || !this.isCamera(camBlock)) {
+          if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
             const camList = this.connections.get(sess.pc) ?? [];
             const oldIdx = camList.indexOf(sess.cam);
             if (oldIdx > -1) camList.splice(oldIdx, 1);
@@ -1112,6 +1029,10 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       let pcPosStr = null;
       let dimId = null;
       let fromFazTab = false;
+      
+      this.removeFlashlightBlocks(pid);
+      this.flashlightActive.delete(pid);
+      
       if (session && session.cam) {
         pcPosStr = session.pc;
         dimId = session.dim;
@@ -1121,10 +1042,11 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
           try {
             const dimension = world.getDimension(session.dim);
             const camBlock = this.blockFromLocStr(dimension, session.cam);
-            if (camBlock && this.isCamera(camBlock)) {
-              const currentRotation = this.getBlockRotation(camBlock);
+            if (camBlock && camBlock.typeId === "fr:security_cameras") {
+              const currentRotation = camBlock.permutation.getState("fr:rotation");
               if (currentRotation !== initialRotation) {
-                this.setBlockRotation(camBlock, initialRotation);
+                const newPerm = camBlock.permutation.withState("fr:rotation", initialRotation);
+                camBlock.setPermutation(newPerm);
               }
             }
           } catch {}
@@ -1141,12 +1063,9 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       this.cameraAnimateVariant.delete(pid);
       this.lastAppliedYaw.delete(pid);
       
-      this.removeFlashlightBlocks(pid);
-      this.flashlightActive.delete(pid);
-      
       try { uiManager.closeAllForms(player); } catch {}
       
-      if (fromFazTab) { // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      if (fromFazTab) {
         try { player.runCommand(`camera @s fade time 0.5 1 0.5 color 0 0 0`); } catch {}
         system.runTimeout(() => {
           try { player.runCommand(`camera @s clear`); } catch {}
@@ -1207,6 +1126,9 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       let dimId = null;
       let fromFazTab = false;
       
+      this.removeFlashlightBlocks(pid);
+      this.flashlightActive.delete(pid);
+      
       if (session && session.cam) {
         pcPosStr = session.pc;
         dimId = session.dim;
@@ -1220,9 +1142,6 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       this.baseRotations.delete(pid);
       this.baseYaw.delete(pid);
       this.blockUpdateCounter.delete(pid);
-      
-      this.removeFlashlightBlocks(pid);
-      this.flashlightActive.delete(pid);
       
       try { uiManager.closeAllForms(player); } catch {}
       
@@ -1303,40 +1222,28 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
   updateCameraBlockRotation(dimension, camPosStr, currentYaw) {
     try {
       const camBlock = this.blockFromLocStr(dimension, camPosStr);
-      if (!camBlock || !this.isCamera(camBlock)) return;
+      if (!camBlock || camBlock.typeId !== "fr:security_cameras") return;
       
       let blockFace = "down";
       try {
         blockFace = camBlock.permutation.getState("minecraft:block_face") ?? "down";
       } catch {}
       
-      const rotationSystem = this.getBlockRotationSystem(camBlock);
+      if (blockFace !== "down") return;
       
-      if (rotationSystem === "fr:rotation") {
-        if (blockFace !== "down") return;
-        
-        const rotationIndex = this.yawToRotationIndex(currentYaw);
-        const currentRotation = camBlock.permutation.getState("fr:rotation");
-        
-        if (currentRotation !== rotationIndex) {
-          const newPerm = camBlock.permutation.withState("fr:rotation", rotationIndex);
-          camBlock.setPermutation(newPerm);
-        }
-      } else if (rotationSystem === "cardinal_direction") {
-        const cardinalDir = this.yawToCardinalDirection(currentYaw);
-        const currentDir = camBlock.permutation.getState("minecraft:cardinal_direction");
-        
-        if (currentDir !== cardinalDir) {
-          const newPerm = camBlock.permutation.withState("minecraft:cardinal_direction", cardinalDir);
-          camBlock.setPermutation(newPerm);
-        }
+      const rotationIndex = this.yawToRotationIndex(currentYaw);
+      const currentRotation = camBlock.permutation.getState("fr:rotation");
+      
+      if (currentRotation !== rotationIndex) {
+        const newPerm = camBlock.permutation.withState("fr:rotation", rotationIndex);
+        camBlock.setPermutation(newPerm);
       }
     } catch (e) {}
   }
 
   updateCameraBlockRotationThrottled(playerId, dimension, camPosStr, currentYaw) {
     const counter = this.blockUpdateCounter.get(playerId) ?? 0;
-    if (counter >= this.BLOCK_UPDATE_INTERVAL) { // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    if (counter >= this.BLOCK_UPDATE_INTERVAL) {
       this.updateCameraBlockRotation(dimension, camPosStr, currentYaw);
       this.blockUpdateCounter.set(playerId, 0);
     } else {
@@ -1389,24 +1296,13 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       };
       yaw = faceYaws[blockFace] ?? 180;
     } else {
-      const rotationSystem = this.getBlockRotationSystem(block);
-      
-      if (rotationSystem === "fr:rotation") {
-        try {
-          const rotation = block.permutation.getState("fr:rotation");
-          if (rotation !== undefined && rotation !== null) {
-            const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
-            yaw = (rotation >= 0 && rotation < angles.length) ? angles[rotation] : 180;
-          }
-        } catch {}
-      } else if (rotationSystem === "cardinal_direction") {
-        try {
-          const direction = block.permutation.getState("minecraft:cardinal_direction");
-          if (direction) {
-            yaw = this.cardinalDirectionToYaw(direction);
-          }
-        } catch {}
-      }
+      try {
+        const rotation = block.permutation.getState("fr:rotation");
+        if (rotation !== undefined && rotation !== null) {
+          const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
+          yaw = (rotation >= 0 && rotation < angles.length) ? angles[rotation] : 180;
+        }
+      } catch {}
     }
     
     const yawRad = yaw * this.DEG_TO_RAD;
@@ -1506,7 +1402,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
         }
       }
     } catch {}
-    return applied; // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    return applied;
   }
 
   trySetCamera(player, pos, yaw, pitch) {
@@ -1615,7 +1511,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
             if (baseYawValue === undefined) return;
             
             const cam = this.blockFromLocStr(dimension, camPosStr);
-            if (!cam || !this.isCamera(cam)) {
+            if (!cam || cam.typeId !== "fr:security_cameras") {
               this.exitView(player);
               return;
             }
@@ -1670,10 +1566,11 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
           if (initialRot !== undefined) {
             try {
               const currentCamBlock = this.blockFromLocStr(dimension, camPosStr);
-              if (currentCamBlock && this.isCamera(currentCamBlock)) {
-                const currentRot = this.getBlockRotation(currentCamBlock);
+              if (currentCamBlock && currentCamBlock.typeId === "fr:security_cameras") {
+                const currentRot = currentCamBlock.permutation.getState("fr:rotation");
                 if (currentRot !== initialRot) {
-                  this.setBlockRotation(currentCamBlock, initialRot);
+                  const resetPerm = currentCamBlock.permutation.withState("fr:rotation", initialRot);
+                  currentCamBlock.setPermutation(resetPerm);
                 }
               }
             } catch {}
@@ -1698,10 +1595,11 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
           if (initialRot !== undefined) {
             try {
               const currentCamBlock = this.blockFromLocStr(dimension, camPosStr);
-              if (currentCamBlock && this.isCamera(currentCamBlock)) {
-                const currentRot = this.getBlockRotation(currentCamBlock);
+              if (currentCamBlock && currentCamBlock.typeId === "fr:security_cameras") {
+                const currentRot = currentCamBlock.permutation.getState("fr:rotation");
                 if (currentRot !== initialRot) {
-                  this.setBlockRotation(currentCamBlock, initialRot);
+                  const resetPerm = currentCamBlock.permutation.withState("fr:rotation", initialRot);
+                  currentCamBlock.setPermutation(resetPerm);
                 }
               }
             } catch {}
@@ -1736,7 +1634,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       const validCameras = [];
       for (const camPosStr of camList) {
         const camBlock = this.blockFromLocStr(player.dimension, camPosStr);
-        if (camBlock && this.isCamera(camBlock)) { // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        if (camBlock && camBlock.typeId === "fr:security_cameras") {
           validCameras.push(camPosStr);
         }
       }
@@ -1796,17 +1694,12 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       const pcBlock = this.blockFromLocStr(player.dimension, pcPosStr);
       const camBlock = this.blockFromLocStr(player.dimension, camPosStr);
       
-      if (!camBlock || !this.isCamera(camBlock)) {
+      if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
         player.sendMessage("§cCamera not found or invalid");
         return;
       }
 
-      let currentRotation = 0;
-      const rotationSystem = this.getBlockRotationSystem(camBlock);
-      if (rotationSystem === "fr:rotation") {
-        currentRotation = camBlock.permutation.getState("fr:rotation") ?? 0;
-      }
-      
+      const currentRotation = camBlock.permutation.getState("fr:rotation") ?? 0;
       const settings = this.cameraSettings.get(camPosStr) ?? { verticalPitch: 0, rotationRange: 85, autoRotate: true };
       
       if (settings.verticalOffset !== undefined && settings.verticalPitch === undefined) {
@@ -1908,17 +1801,8 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
   adjustCameraRotation(player, pcPosStr, camPosStr) {
     try {
       const camBlock = this.blockFromLocStr(player.dimension, camPosStr);
-      if (!camBlock || !this.isCamera(camBlock)) {
+      if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
         player.sendMessage("§cCamera not found");
-        return;
-      }
-      
-      const rotationSystem = this.getBlockRotationSystem(camBlock);
-      if (rotationSystem !== "fr:rotation") {
-        player.sendMessage("§cThis camera doesn't support manual rotation adjustment");
-        system.runTimeout(() => {
-          this.editCamera(player, pcPosStr, camPosStr);
-        }, 20);
         return;
       }
       
@@ -1941,7 +1825,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
         
         try {
           const freshCamBlock = this.blockFromLocStr(player.dimension, camPosStr);
-          if (freshCamBlock && this.isCamera(freshCamBlock)) {
+          if (freshCamBlock && freshCamBlock.typeId === "fr:security_cameras") {
             const newPerm = freshCamBlock.permutation.withState("fr:rotation", newRotation);
             freshCamBlock.setPermutation(newPerm);
             player.sendMessage(
@@ -1958,7 +1842,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
         } catch {
           player.sendMessage("§cFailed to set rotation");
         }
- // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+
         system.runTimeout(() => {
           this.editCamera(player, pcPosStr, camPosStr);
         }, 20);
@@ -2121,6 +2005,37 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
     } catch {}
   }
 
+  showChangelog(player, pcBlock) {
+    try {
+      const form = new ActionFormData()
+        .title("§C§H§A§N§G§E§L§O§G")
+        .header("§f§lPre-Beta 0.6.0")
+        .divider()
+.header(`§f§l[NEW FEATURES]§r§f`)
+.label(`§7- The animatronics now have a showtime animation`)
+.header(`§f§l[CHANGES]§r§f`)
+.label(`§7- The selection boxes on the door frames were improved`)
+.header(`§f§l[BUG FIXES]§r§f`)
+.label(`§7- The door frame no longer exists
+- Hand and spear animation
+- Disappearance of doors over long distances
+- The vanilla menu appeared behind the camera settings
+- Sometimes the flashlight wouldn't turn off when leaving the PC or simply when it rotated too much
+- The wall blocks did not have a different top and bottom face
+- Some texts in some items did not have a translation
+- The animatronics couldn't pass through the door frame
+- Now, when you select a door block, it gives you the door item and no longer a glitched door block`)
+      
+      form.show(player).then((res) => {
+        this.showPcMainMenu(player, pcBlock, true);
+      }).catch(() => {
+        this.showPcMainMenu(player, pcBlock, true);
+      });
+    } catch {
+      this.showPcMainMenu(player, pcBlock, true);
+    }
+  }
+
   saveConnections() {
     try {
       const arr = Array.from(this.connections.entries());
@@ -2163,44 +2078,6 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
     } catch {
       this.cameraSettings.clear();
     }
-  }
-
-  setCameraConfigFromAPI(camPosStr, config) {
-    if (!camPosStr || !config) return;
-    
-    const settings = {
-      verticalPitch: config.verticalPitch ?? 0,
-      rotationRange: config.rotationRange ?? 85,
-      autoRotate: config.autoRotate ?? true,
-      autoRotateSpeed: config.autoRotateSpeed ?? 0.8
-    };
-    
-    this.cameraSettings.set(camPosStr, settings);
-    this.saveCameraSettings();
-  }
-
-  getCameraConfig(camPosStr, blockId = null) {
-    let settings = this.cameraSettings.get(camPosStr);
-    if (settings) return settings;
-    
-    if (blockId) {
-      const apiConfig = FRAPI.getCameraConfig(blockId); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
-      if (apiConfig) {
-        return {
-          verticalPitch: apiConfig.verticalPitch ?? 0,
-          rotationRange: apiConfig.rotationRange ?? 85,
-          autoRotate: apiConfig.autoRotate ?? true,
-          autoRotateSpeed: apiConfig.autoRotateSpeed ?? 0.8
-        };
-      }
-    }
-    
-    return {
-      verticalPitch: 0,
-      rotationRange: 85,
-      autoRotate: true,
-      autoRotateSpeed: 0.8
-    };
   }
 }
 

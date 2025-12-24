@@ -2,15 +2,15 @@
 	"format_version": "1.10.0",
 	"minecraft:client_entity": {
 		"description": {
-			"identifier": "fr:blank_door",
+			"identifier": "fr:purple_party_door",
 			"materials": {
 				"default": "entity_alphatest"
 			},
 			"textures": {
-				"default": "textures/entity/blank_door"
+				"default": "textures/entity/purple_party_door"
 			},
 			"geometry": {
-				"default": "geometry.backstage_door"
+				"default": "geometry.purple_party_door"
 			},
 			"animations": {
 				"fr_door_open": "animation.backstage_door.open_door",

@@ -1,0 +1,114 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:wall_clock",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:variants": [
+					0,
+					1
+				]
+			}
+		},
+		"components": {
+			"minecraft:collision_box": false,
+			"minecraft:selection_box": {
+				"origin": [-8, 0, -8],
+				"size": [16, 1, 16]
+			},
+			"minecraft:geometry": "geometry.wall_clock",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "wall_clock_black",
+					"render_method": "alpha_test"
+				}
+			}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "wall_clock_black",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "wall_clock_green",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			}
+		]
+	}
+}

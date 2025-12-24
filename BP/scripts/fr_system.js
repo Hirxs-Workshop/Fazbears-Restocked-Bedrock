@@ -32,6 +32,7 @@ import 'variant_system'
 import 'backstage_shelf_head_system'
 import 'custom_commands'
 import 'updateBlock'
+import 'faz_tab_system'
 import 'advanced_wall'
 
 import { adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, ACTIONBAR_VARIANT_STYLE, customActionbar, variantActionbar } from './utils.js'

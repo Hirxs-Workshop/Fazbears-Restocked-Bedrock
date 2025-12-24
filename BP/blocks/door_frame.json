@@ -6,33 +6,35 @@
             "menu_category": {
                 "category": "construction"
             },
-	    "traits": {
-		"minecraft:placement_direction": {
-			"enabled_states": [
-				"minecraft:cardinal_direction"
-			]
-		  }
-	    },
-	    "states": {
-		"fr:left_connection": [0, 1],
-		"fr:right_connection": [0, 1],
-		"fr:above_connection": [0, 1],
-		"fr:below_connection": [0, 1]
-	    }
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:left_connection": [0, 1],
+				"fr:right_connection": [0, 1],
+				"fr:above_connection": [0, 1],
+				"fr:below_connection": [0, 1]
+			}
         },
         "components": {
             "fr:door_frame_connection": {},
             "tag:minecraft:is_pickaxe_item_destructible": {},
+            "tag:minecraft:door": {},
+            "minecraft:light_dampening": 0,
             "minecraft:geometry": {
                 "identifier": "geometry.fr_door_frame_alt",
-		"bone_visibility": {
-			"single": false,
-			"left_frame": false,
-			"right_frame": false,
-			"left_corner_frame": false,
-			"right_corner_frame": false,
-			"top_frame": false
-		}
+			"bone_visibility": {
+				"single": false,
+				"left_frame": false,
+				"right_frame": false,
+				"left_corner_frame": false,
+				"right_corner_frame": false,
+				"top_frame": false
+			}
             },
             "minecraft:destructible_by_explosion": {
                 "explosion_resistance": 5
@@ -46,30 +48,30 @@
                 "allows_wire_to_step_down": true,
                 "redstone_conductor": true
             },
-	    "minecraft:collision_box": {
-		    "origin": [
-		              4,
-		              0,
-		              6
-		    ],
-		    "size": [
-		              4,
-		              16,
-		              2
-		    ]
-	    },
-	    "minecraft:selection_box": {
-		    "origin": [
-		              4,
-		              0,
-		              6
-		    ],
-		    "size": [
-		              4,
-		              16,
-		              2
-		    ]
-	    },
+			"minecraft:collision_box": {
+				"origin": [
+					4,
+					0,
+					6
+				],
+				"size": [
+					4,
+					16,
+					2
+				]
+			},
+			"minecraft:selection_box": {
+				"origin": [
+					4,
+					0,
+					6
+				],
+				"size": [
+					4,
+					16,
+					2
+				]
+			},
             "minecraft:material_instances": {
                 "*": {
                     "texture": "door_frames",
@@ -79,7 +81,7 @@
                 }
             }
         },
-	"permutations": [
+		"permutations": [
 		{
 			"condition": "!q.block_state('fr:left_connection') && !q.block_state('fr:right_connection') && !q.block_state('fr:above_connection') && !q.block_state('fr:below_connection')",
 			"components": {
@@ -94,12 +96,9 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 0, 6],
-					"size": [16, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}
@@ -118,12 +117,9 @@
 						"top_frame": true
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 14, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}
@@ -142,10 +138,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 0, 6],
 					"size": [3, 16, 2]
@@ -166,10 +159,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [5, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [5, 0, 6],
 					"size": [3, 16, 2]
@@ -190,10 +180,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [5, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [5, 0, 6],
 					"size": [3, 16, 2]
@@ -214,10 +201,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 0, 6],
 					"size": [3, 16, 2]
@@ -238,12 +222,9 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 14, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}
@@ -262,17 +243,14 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 14, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}
 		},
-		{
+				{
 			"condition": "q.block_state('fr:left_connection') && q.block_state('fr:right_connection') && !q.block_state('fr:above_connection') && q.block_state('fr:below_connection')",
 			"components": {
 				"minecraft:geometry": {
@@ -286,12 +264,9 @@
 						"top_frame": true
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 14, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}
@@ -338,7 +313,7 @@
 				}
 			}
 		},
-		{
+				{
 			"condition": "!q.block_state('fr:left_connection') && !q.block_state('fr:right_connection') && !q.block_state('fr:above_connection') && q.block_state('fr:below_connection')",
 			"components": {
 				"minecraft:geometry": {
@@ -373,17 +348,14 @@
 						"top_frame": true
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 14, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}
 		},
-		{
+				{
 			"condition": "q.block_state('fr:left_connection') && !q.block_state('fr:right_connection') && !q.block_state('fr:above_connection') && !q.block_state('fr:below_connection')",
 			"components": {
 				"minecraft:geometry": {
@@ -397,17 +369,14 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 14, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}
 		},
-		{
+				{
 			"condition": "!q.block_state('fr:left_connection') && q.block_state('fr:right_connection') && !q.block_state('fr:above_connection') && !q.block_state('fr:below_connection')",
 			"components": {
 				"minecraft:geometry": {
@@ -421,12 +390,9 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 14, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
-					"origin": [-8, 14, 6],
+					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
 				}
 			}

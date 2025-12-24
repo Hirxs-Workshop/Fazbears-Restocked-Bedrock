@@ -589,11 +589,6 @@
 							}
 						}
 					]
-				},
-				{
-					"name": "neck",
-					"parent": "feddyHed",
-					"pivot": [0, 7, 2]
 				}
 			]
 		}

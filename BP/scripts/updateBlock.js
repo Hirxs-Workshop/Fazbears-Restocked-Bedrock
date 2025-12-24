@@ -21,7 +21,8 @@ class DoorManager {
       "fr:red_party_door_block": "fr:red_party_door",
       "fr:blue_party_door_block": "fr:blue_party_door",
       "fr:purple_party_door_block": "fr:purple_party_door",
-      "fr:blank_door_block": "fr:blank_door"
+      "fr:blank_door_block": "fr:blank_door",
+      "fr:freezer_door_block": "fr:freezer_door"
     };
 
     this.doorEntityToBlock = {
@@ -29,7 +30,8 @@ class DoorManager {
       "fr:red_party_door": "fr:red_party_door_block",
       "fr:blue_party_door": "fr:blue_party_door_block",
       "fr:purple_party_door": "fr:purple_party_door_block",
-      "fr:blank_door": "fr:blank_door_block"
+      "fr:blank_door": "fr:blank_door_block",
+      "fr:freezer_door": "fr:freezer_door_block"
     };
 
     world.afterEvents.worldLoad.subscribe(() => {
@@ -863,7 +865,6 @@ class DoorManager {
     }
     if (newOpenState) player.playSound("open.wooden_door");
     else player.playSound("close.wooden_door");
-
     
 
 

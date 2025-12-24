@@ -13,15 +13,65 @@
     ]
   },
   {
-    "flipbook_texture": "textures/blocks/reworked/wall_clock_v1",
-    "atlas_tile": "wall_clock_v1",
-    "ticks_per_frame": 3,
-    "blend_frames": false
+    "flipbook_texture": "textures/blocks/reworked/wall_clock_black",
+    "atlas_tile": "wall_clock_black",
+    "ticks_per_frame": 20.5,
+    "blend_frames": false,
+    "frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ]
   },
   {
-    "flipbook_texture": "textures/blocks/reworked/wall_clock_v2",
-    "atlas_tile": "wall_clock_v1",
-    "ticks_per_frame": 3,
-    "blend_frames": false
+    "flipbook_texture": "textures/blocks/reworked/wall_clock_green",
+    "atlas_tile": "wall_clock_green",
+    "ticks_per_frame": 20.5,
+    "blend_frames": false,
+    "frames": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16
+    ]
+  },
+  {
+    "flipbook_texture": "textures/blocks/reworked/security_desk_props",
+    "atlas_tile": "security_desk_props",
+    "ticks_per_frame": 0.1,
+    "blend_frames": false,
+    "frames": [
+      0,
+      1,
+      2,
+      3
+    ]
   }
 ]

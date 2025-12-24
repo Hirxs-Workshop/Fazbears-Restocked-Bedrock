@@ -3,20 +3,20 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.door_buttons",
+				"identifier": "geometry.left_door_buttons_office",
 				"texture_width": 32,
 				"texture_height": 32,
 				"visible_bounds_width": 2,
-				"visible_bounds_height": 2.5,
-				"visible_bounds_offset": [0, 0.75, 0]
+				"visible_bounds_height": 3,
+				"visible_bounds_offset": [0, 0.5, 0]
 			},
 			"bones": [
 				{
 					"name": "bb_main",
-					"pivot": [0, 0, 0],
+					"pivot": [-4, 0, 0],
 					"cubes": [
 						{
-							"origin": [-4, -2, 6],
+							"origin": [-8, -2, 6],
 							"size": [8, 20, 2],
 							"uv": {
 								"north": {"uv": [0, 0], "uv_size": [8, 20]},
@@ -30,19 +30,11 @@
 					]
 				},
 				{
-					"name": "door",
-					"pivot": [0, 3, -2]
-				},
-				{
-					"name": "light",
-					"pivot": [0, -6, -2]
-				},
-				{
-					"name": "door2",
-					"pivot": [0, 3, 1],
+					"name": "door_off",
+					"pivot": [-4, 0, -1],
 					"cubes": [
 						{
-							"origin": [-3, 10, 5],
+							"origin": [-7, 10, 5],
 							"size": [6, 6, 1],
 							"uv": {
 								"north": {"uv": [0, 20], "uv_size": [6, 6]},
@@ -56,11 +48,47 @@
 					]
 				},
 				{
-					"name": "light2",
-					"pivot": [0, -6, 1],
+					"name": "door_on",
+					"pivot": [-4, 0, 0],
 					"cubes": [
 						{
-							"origin": [-3, 1, 5],
+							"origin": [-7, 10, 6],
+							"size": [6, 6, 1],
+							"uv": {
+								"north": {"uv": [0, 20], "uv_size": [6, 6]},
+								"east": {"uv": [20, 14], "uv_size": [1, 6]},
+								"south": {"uv": [20, 0], "uv_size": [6, 6]},
+								"west": {"uv": [20, 20], "uv_size": [1, 6]},
+								"up": {"uv": [21, 14], "uv_size": [6, 1]},
+								"down": {"uv": [21, 16], "uv_size": [6, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "light_off",
+					"pivot": [-4, 0, 0],
+					"cubes": [
+						{
+							"origin": [-7, 1, 6],
+							"size": [6, 6, 1],
+							"uv": {
+								"north": {"uv": [6, 20], "uv_size": [6, 6]},
+								"east": {"uv": [21, 16], "uv_size": [1, 6]},
+								"south": {"uv": [20, 6], "uv_size": [6, 6]},
+								"west": {"uv": [12, 22], "uv_size": [1, 6]},
+								"up": {"uv": [13, 22], "uv_size": [6, 1]},
+								"down": {"uv": [22, 17], "uv_size": [6, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "light_on",
+					"pivot": [-4, 0, -1],
+					"cubes": [
+						{
+							"origin": [-7, 1, 5],
 							"size": [6, 6, 1],
 							"uv": {
 								"north": {"uv": [6, 20], "uv_size": [6, 6]},

@@ -1,0 +1,242 @@
+{
+	"format_version": "1.21.60",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:office_window",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:variants": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7
+				]
+			}
+		},
+		"components": {
+            		"minecraft:destructible_by_explosion": {
+                		"explosion_resistance": 5
+            		},
+            		"minecraft:destructible_by_mining": {
+                		"seconds_to_destroy": 3
+            		},
+            		"minecraft:flammable": false,
+            		"minecraft:map_color": "#222d75",
+            		"minecraft:light_dampening": 15,
+            		"minecraft:redstone_conductivity": {
+               			"allows_wire_to_step_down": true,
+                		"redstone_conductor": true
+            		},
+			"minecraft:geometry": {
+				"identifier": "geometry.office_wall_window_bottom_left"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "office_window",
+					"render_method": "alpha_test",
+					"ambient_occlusion": true,
+					"face_dimming": true
+				}
+			}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_wall_window_bottom_left"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_wall_window_upper_left"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_wall_window_bottom_right"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_wall_window_upper_right"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_window_bottom_left"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 5",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_window_upper_left"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 6",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_window_bottom_right"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 7",
+				"components": {
+            				"minecraft:light_dampening": 15,
+					"minecraft:geometry": {
+						"identifier": "geometry.office_window_upper_right"
+					},
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_window",
+							"render_method": "alpha_test",
+							"ambient_occlusion": true,
+							"face_dimming": true
+						}
+					}
+				}
+			}
+		]
+	}
+}

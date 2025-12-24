@@ -24,18 +24,15 @@
 				"identifier": "geometry.cigarrete"
 			},
 			"minecraft:material_instances": {
-				"basic": {
+				"cigarrete": {
 					"texture": "cigarrete",
-					"render_method": "opaque"
+					"render_method": "alpha_test"
 				},
 				"*": {
 					"texture": "cigarrete",
 					"render_method": "blend"
 				}
-			},
-			"minecraft:custom_components": [
-				"fr:cigarrete_smoke"
-			]
+			}
 		},
 		"permutations": [
 			{

@@ -356,17 +356,17 @@ registerBlockVariants("fr:wall_wire", [
 registerBlockVariants("fr:trash", [
   { 
     label: "Pattern 1", 
-    icon: "textures/fr_ui/icons/trash1", 
+    icon: "textures/fr_ui/icons/trash_1", 
     color: "gray" 
   },
   { 
     label: "Pattern 2", 
-    icon: "textures/fr_ui/icons/trash2", 
+    icon: "textures/fr_ui/icons/trash_2", 
     color: "gray" 
   },
   { 
     label: "Pattern 3", 
-    icon: "textures/fr_ui/icons/trash3", 
+    icon: "textures/fr_ui/icons/trash_3", 
     color: "gray" 
   }
 ]);
@@ -392,13 +392,55 @@ registerBlockVariants("fr:retro_phone", [
 registerBlockVariants("fr:wall_clock", [
   { 
     label: "Black", 
-    icon: "textures/fr_ui/icons/wall_clock_v1", 
+    icon: "textures/fr_ui/icons/wall_clock_black", 
     color: "black" 
   },
   { 
     label: "Green", 
-    icon: "textures/fr_ui/icons/wall_clock_v2", 
+    icon: "textures/fr_ui/icons/wall_clock_green", 
     color: "green" 
+  }
+]);
+registerBlockVariants("fr:office_window", [
+  { 
+    label: "Office Wall Window Bottom Left", 
+    icon: "textures/fr_ui/icons/office_wall_window_bottom_left", 
+    color: "black" 
+  },
+  { 
+    label: "Office Wall Window Upper Left", 
+    icon: "textures/fr_ui/icons/office_wall_window_upper_left", 
+    color: "black" 
+  },
+  { 
+    label: "Office Wall Window Bottom Right", 
+    icon: "textures/fr_ui/icons/office_wall_window_bottom_right", 
+    color: "black" 
+  },
+  { 
+    label: "Office Wall Window Upper Right", 
+    icon: "textures/fr_ui/icons/office_wall_window_upper_right", 
+    color: "black" 
+  },
+  { 
+    label: "Office Window Bottom Left", 
+    icon: "textures/fr_ui/icons/office_window_bottom_left", 
+    color: "black" 
+  },
+  { 
+    label: "Office Window Upper Left", 
+    icon: "textures/fr_ui/icons/office_window_upper_left", 
+    color: "black" 
+  },
+  { 
+    label: "Office Window Bottom Right", 
+    icon: "textures/fr_ui/icons/office_window_bottom_right", 
+    color: "black" 
+  },
+  { 
+    label: "Office Window Upper Right", 
+    icon: "textures/fr_ui/icons/office_window_upper_right", 
+    color: "black" 
   }
 ]);
 // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ

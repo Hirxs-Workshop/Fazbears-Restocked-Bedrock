@@ -14,18 +14,16 @@
 			}
 		},
 		"components": {
-			"minecraft:collision_box": false,
+			"minecraft:collision_box": {
+				"origin": [-7, 0, -7],
+				"size": [14, 4, 14]
+			},
 			"minecraft:selection_box": {
-				"origin": [
-					-4,
-					0,
-					-4
-				],
-				"size": [
-					8,
-					16,
-					8
-				]
+				"origin": [-7, 0, -7],
+				"size": [14, 4, 14]
+			},
+			"minecraft:transformation": {
+				"translation": [0, 0.8, 0]
 			},
 			"minecraft:geometry": {
 				"identifier": "geometry.hallway_light"

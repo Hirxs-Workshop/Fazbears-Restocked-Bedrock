@@ -14,12 +14,22 @@
 				}
 			},
 			"states": {
-				"fr:energy_level": {
-					"values": {
-						"min": 1,
-						"max": 5
-					}
-				}
+				"fr:switch_type": [
+					false,
+					true
+				],
+				"fr:lit": [
+					false,
+					true
+				],
+				"fr:energy_level": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5
+				]
 			}
 		},
 		"components": {

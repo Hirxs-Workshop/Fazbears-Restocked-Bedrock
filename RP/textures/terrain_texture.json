@@ -4,14 +4,19 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
-	"wall_clock_v1": {
+	"office_window": {
 		"textures": [
-			"textures/blocks/reworked/wall_clock_v1"
+			"textures/blocks/reworked/office_window"
 		]
 	},
-	"wall_clock_v2": {
+	"wall_clock_black": {
 		"textures": [
-			"textures/blocks/reworked/wall_clock_v2"
+			"textures/blocks/reworked/wall_clock_black"
+		]
+	},
+	"wall_clock_green": {
+		"textures": [
+			"textures/blocks/reworked/wall_clock_green"
 		]
 	},
 	"trash": {
@@ -344,14 +349,14 @@
                 "textures/blocks/reworked/hallway_drawings"
             ]
         },
-        "hallway_light": {
-            "textures": [
-                "textures/blocks/reworked/hallway_light"
-            ]
-        },
         "hallway_light_off": {
             "textures": [
                 "textures/blocks/reworked/hallway_light_off"
+            ]
+        },
+        "hallway_light": {
+            "textures": [
+                "textures/blocks/reworked/hallway_light"
             ]
         },
         "hallway_monitors": {
