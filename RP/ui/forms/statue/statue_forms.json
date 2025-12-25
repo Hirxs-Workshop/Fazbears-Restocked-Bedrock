@@ -1065,6 +1065,17 @@
       {
         "binding_type": "collection_details",
         "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#button_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (#button_text = ' '))",
+        "target_property_name": "#visible"
       }
     ],
     "controls": [
@@ -1083,7 +1094,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_gray_background",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background",
                 "layer": 110
               }
             },
@@ -1108,7 +1119,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_gray_background_hover",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
                 "layer": 110
               }
             },
@@ -1119,7 +1130,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_select",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
                 "layer": 111
               }
             },
@@ -1144,7 +1155,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_gray_background_hover",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
                 "layer": 110
               }
             },
@@ -1155,7 +1166,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_select",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
                 "layer": 111
               }
             },
@@ -1526,6 +1537,17 @@
       {
         "binding_type": "collection_details",
         "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#button_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (#button_text = ' '))",
+        "target_property_name": "#visible"
       }
     ],
     "controls": [
@@ -1544,7 +1566,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_gray_background",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background",
                 "layer": 110
               }
             },
@@ -1569,7 +1591,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_gray_background_hover",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
                 "layer": 110
               }
             },
@@ -1580,7 +1602,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_select",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
                 "layer": 111
               }
             },
@@ -1605,7 +1627,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_gray_background_hover",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
                 "layer": 110
               }
             },
@@ -1616,7 +1638,7 @@
                   "100%",
                   "100%"
                 ],
-                "texture": "textures/fr_ui/buttons/button_select",
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
                 "layer": 111
               }
             },
@@ -1945,6 +1967,76 @@
       }
     ]
   },
+  "statue_page_indicator": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "nav_page",
+      "control_name": "fr_statue_screen.statue_page_indicator_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_page_indicator_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "bg": {
+          "type": "image",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "layer": 0
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 10)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
   "statue_nav_next": {
     "type": "stack_panel",
     "size": [
@@ -2011,7 +2103,7 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 10)",
+        "source_property_name": "(#collection_index = 11)",
         "target_property_name": "#visible"
       }
     ]
@@ -2087,6 +2179,76 @@
       }
     ]
   },
+  "statue_variant_nav_page": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "var_nav_page",
+      "control_name": "fr_statue_screen.statue_variant_nav_page_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_variant_nav_page_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "bg": {
+          "type": "image",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "layer": 0
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 7)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
   "statue_variant_nav_next": {
     "type": "stack_panel",
     "size": [
@@ -2153,7 +2315,7 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 7)",
+        "source_property_name": "(#collection_index = 8)",
         "target_property_name": "#visible"
       }
     ]
@@ -2175,6 +2337,21 @@
       15
     ],
     "controls": [
+      {
+        "dummy_focus_trap": {
+          "type": "button",
+          "size": [
+            1,
+            1
+          ],
+          "offset": [
+            10000,
+            10000
+          ],
+          "default_focus_precedence": 10,
+          "layer": -10
+        }
+      },
       {
         "tabs_panel": {
           "type": "stack_panel",
@@ -2886,10 +3063,28 @@
                             ],
                             "controls": [
                               {
-                                "nav_prev@fr_statue_screen.statue_variant_nav_prev": {}
+                                "nav_prev@fr_statue_screen.statue_variant_nav_prev": {
+                                  "size": [
+                                    "33%",
+                                    "100%"
+                                  ]
+                                }
                               },
                               {
-                                "nav_next@fr_statue_screen.statue_variant_nav_next": {}
+                                "nav_page@fr_statue_screen.statue_variant_nav_page": {
+                                  "size": [
+                                    "34%",
+                                    "100%"
+                                  ]
+                                }
+                              },
+                              {
+                                "nav_next@fr_statue_screen.statue_variant_nav_next": {
+                                  "size": [
+                                    "33%",
+                                    "100%"
+                                  ]
+                                }
                               }
                             ]
                           }
@@ -2989,10 +3184,28 @@
                             ],
                             "controls": [
                               {
-                                "nav_prev@fr_statue_screen.statue_nav_prev": {}
+                                "nav_prev@fr_statue_screen.statue_nav_prev": {
+                                  "size": [
+                                    "33%",
+                                    "100%"
+                                  ]
+                                }
                               },
                               {
-                                "nav_next@fr_statue_screen.statue_nav_next": {}
+                                "page_indicator@fr_statue_screen.statue_page_indicator": {
+                                  "size": [
+                                    "34%",
+                                    "100%"
+                                  ]
+                                }
+                              },
+                              {
+                                "nav_next@fr_statue_screen.statue_nav_next": {
+                                  "size": [
+                                    "33%",
+                                    "100%"
+                                  ]
+                                }
                               }
                             ]
                           }

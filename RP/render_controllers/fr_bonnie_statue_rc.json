@@ -16,7 +16,9 @@
 					"Array.variants": [
 						"Texture.default",
 						"Texture.variant_1",
-						"Texture.variant_2"
+						"Texture.variant_2",
+						"Texture.variant_3",
+						"Texture.variant_4"
 					]
 				}
 			}

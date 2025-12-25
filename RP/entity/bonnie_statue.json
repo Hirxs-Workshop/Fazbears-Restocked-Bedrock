@@ -8,8 +8,10 @@
 			},
 			"textures": {
 				"default": "textures/entity/reworked/fnaf1/bonnie_the_rabbit_bowtie",
-				"variant_1": "textures/entity/reworked/fnaf1/bonnie_the_rabbit_HW_guitair_bowtie_v2",
-				"variant_2": "textures/entity/reworked/fnaf1/chocolate_bonnie"
+				"variant_1": "textures/entity/reworked/fnaf1/chocolate_bonnie",
+				"variant_2": "textures/entity/reworked/fnaf1/bonnie_the_Elf",
+				"variant_3": "textures/entity/reworked/fnaf1/bonnie_the_rabbit_HW_guitair_bowtie_v2",
+				"variant_4": "textures/entity/reworked/fnaf1/bonnie_the_rabbit_black_eyes_bowtie_v2-1-1"
 			},
 			"animations": {
 				"pose_0": "animation.bonnie_stand",
@@ -23,22 +25,82 @@
 				"pose_8": "animation.bonnie_ar_render_2",
 				"pose_9": "animation.bonnie_mugshot",
 				"pose_10": "animation.bonnie_cam_lean",
-				"pose_11": "animation.bonnie_look_up"
+				"pose_11": "animation.bonnie_look_up",
+				"pose_12": "animation.bonnie_wave",
+				"pose_13": "animation.bonnie_ar_render",
+				"pose_14": "animation.bonnie_ucn_jumpscare",
+				"pose_15": "animation.bonnie_hold_heart",
+				"pose_16": "animation.bonnie_sit_open",
+				"pose_17": "animation.bonnie_floor_sit",
+				"pose_18": "animation.bonnie_floor_sit_open",
+				"pose_19": "animation.bonnie_lay",
+				"pose_20": "animation.bonnie_dismebembered"
 			},
 			"scripts": {
 				"animate": [
-					{ "pose_0": "q.property('fr:pose') == 0" },
-					{ "pose_1": "q.property('fr:pose') == 1" },
-					{ "pose_2": "q.property('fr:pose') == 2" },
-					{ "pose_3": "q.property('fr:pose') == 3" },
-					{ "pose_4": "q.property('fr:pose') == 4" },
-					{ "pose_5": "q.property('fr:pose') == 5" },
-					{ "pose_6": "q.property('fr:pose') == 6" },
-					{ "pose_7": "q.property('fr:pose') == 7" },
-					{ "pose_8": "q.property('fr:pose') == 8" },
-					{ "pose_9": "q.property('fr:pose') == 9" },
-					{ "pose_10": "q.property('fr:pose') == 10" },
-					{ "pose_11": "q.property('fr:pose') == 11" }
+					{
+						"pose_0": "q.property('fr:pose') == 0"
+					},
+					{
+						"pose_1": "q.property('fr:pose') == 1"
+					},
+					{
+						"pose_2": "q.property('fr:pose') == 2"
+					},
+					{
+						"pose_3": "q.property('fr:pose') == 3"
+					},
+					{
+						"pose_4": "q.property('fr:pose') == 4"
+					},
+					{
+						"pose_5": "q.property('fr:pose') == 5"
+					},
+					{
+						"pose_6": "q.property('fr:pose') == 6"
+					},
+					{
+						"pose_7": "q.property('fr:pose') == 7"
+					},
+					{
+						"pose_8": "q.property('fr:pose') == 8"
+					},
+					{
+						"pose_9": "q.property('fr:pose') == 9"
+					},
+					{
+						"pose_10": "q.property('fr:pose') == 10"
+					},
+					{
+						"pose_11": "q.property('fr:pose') == 11"
+					},
+					{
+						"pose_12": "q.property('fr:pose') == 12"
+					},
+					{
+						"pose_13": "q.property('fr:pose') == 13"
+					},
+					{
+						"pose_14": "q.property('fr:pose') == 14"
+					},
+					{
+						"pose_15": "q.property('fr:pose') == 15"
+					},
+					{
+						"pose_16": "q.property('fr:pose') == 16"
+					},
+					{
+						"pose_17": "q.property('fr:pose') == 17"
+					},
+					{
+						"pose_18": "q.property('fr:pose') == 18"
+					},
+					{
+						"pose_19": "q.property('fr:pose') == 19"
+					},
+					{
+						"pose_20": "q.property('fr:pose') == 20"
+					}
 				]
 			},
 			"geometry": {

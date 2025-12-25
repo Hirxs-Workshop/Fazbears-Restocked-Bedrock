@@ -10,12 +10,21 @@ const POSES = [
   { name: "ending.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_ending" },
   { name: "celebrate.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_celebrate" },
   { name: "jam.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_jam" },
-  { name: "sit.anim", icon: "textures/fr_ui/poses/brick" },
-  { name: "thank_you.anim", icon: "textures/fr_ui/poses/feather" },
-  { name: "ar_render.anim", icon: "textures/fr_ui/poses/blaze_rod" },
-  { name: "mugshot.anim", icon: "textures/fr_ui/poses/iron_sword" },
-  { name: "cam_lean.anim", icon: "textures/fr_ui/poses/ender_pearl" },
-  { name: "look_up.anim", icon: "textures/fr_ui/poses/glowstone_dust" }
+  { name: "sit.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_sit" },
+  { name: "thank_you.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_thanks_you" },
+  { name: "ar_render.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_ar_render" },
+  { name: "mugshot.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_mugshot" },
+  { name: "cam_lean.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_cam_lean" },
+  { name: "look_up.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_look_up" },
+  { name: "wave.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_wave" },
+  { name: "ar_render_two.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_ar_render_2" },
+  { name: "ucn_jumpscare.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_ucn_jumpscare" },
+  { name: "hold_heart.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_hold_heart" },
+  { name: "sit_open.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_sit_open" },
+  { name: "floor_sit.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_floor_sit" },
+  { name: "floor_sit_open.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_floor_sit_open" },
+  { name: "lay.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_lay" },
+  { name: "dismebembered.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_dismebembered" },
 ];
 
 const POSES_PER_PAGE = 6;
@@ -1336,6 +1345,7 @@ export function showEntityEditor(player, entity, section = "statue") {
     }
 
     form.button(`Prev`);
+    form.button(`${currentVarPage + 1}`);
     form.button(`Next`);
   } else if (section === "poses") {
 
@@ -1353,6 +1363,7 @@ export function showEntityEditor(player, entity, section = "statue") {
     }
 
     form.button(`—€ Prev`);
+    form.button(`${currentPage + 1}`);
     form.button(`Next –¶`);
   }
 
@@ -1411,7 +1422,7 @@ export function showEntityEditor(player, entity, section = "statue") {
         system.run(() => showEntityEditor(player, entity, "variants"));
         return;
       }
-      if (sel === 7) {
+      if (sel === 8) {
 
         const newPage = (currentVarPage + 1) % totalVarPages;
         playerVariantPage.set(player.id, newPage);
@@ -1439,7 +1450,7 @@ export function showEntityEditor(player, entity, section = "statue") {
         system.run(() => showEntityEditor(player, entity, "poses"));
         return;
       }
-      if (sel === 10) {
+      if (sel === 11) {
 
         const newPage = (currentPage + 1) % totalPages;
         playerPosePage.set(player.id, newPage);
