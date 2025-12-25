@@ -39,8 +39,8 @@
 				"*": {
 					"texture": "restroom_stall_locked",
 					"render_method": "alpha_test",
-					"ambient_occlusion": false,
-					"face_dimming": false
+					"ambient_occlusion": true,
+					"face_dimming": true
 				}
 			},
 			"fr:onPlayerInteract": {},

@@ -1,0 +1,41 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:fnaf1_foxy_entity",
+			"materials": {
+				"default": "enderman"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/fnaf1/foxy_the_pirate",
+				"glowing_eyes": "textures/entity/reworked/fnaf1/foxy_the_pirate_glow_eyes"
+			},
+			"spawn_egg": {
+				"texture": "foxy_the_fox"
+			},
+			"animations": {
+				"look_at_target": "animation.common.look_at_target",
+				"default": "animation.fr_foxy_base",
+				"walk": "animation.fr_foxy_walk",
+				"run": "animation.fr_foxy_running",
+				"idle": "animation.fr_foxy_idle",
+				"attack": "animation.fr_foxy_attack",
+				"base": "controller.animation.fnaf1_foxy.base",
+				"movement_controller": "controller.animation.fnaf1_foxy.movement"
+			},
+			"scripts": {
+				"animate": [
+					"base",
+					"movement_controller"
+				]
+			},
+			"geometry": {
+				"default": "geometry.fr_foxy_the_pirate"
+			},
+			"render_controllers": [
+				"controller.render.fr_render_vars"
+			],
+			"enable_attachables": false
+		}
+	}
+}

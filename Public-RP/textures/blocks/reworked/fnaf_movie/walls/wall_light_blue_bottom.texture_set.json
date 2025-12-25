@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wall_light_blue_bottom",
+        "metalness_emissive_roughness": "wall_light_blue_bottom_mer",
+        "heightmap": "wall_light_blue_bottom_normal"
+    }
+}

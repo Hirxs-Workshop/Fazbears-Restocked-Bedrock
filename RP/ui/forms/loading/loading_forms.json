@@ -1,0 +1,144 @@
+﻿{
+  "namespace": "fr_loading_screen",
+
+  "loading_screen": {
+    "type": "panel",
+    "$flag_loading": "§A§L§T",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "loading_ui@common.base_screen_custom": {
+          "enabled": false,
+          "visible": false,
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/Black",
+                "alpha": 0.8,
+                "layer": 1
+              }
+            },
+            {
+              "loading_panel": {
+                "type": "panel",
+                "size": [
+                  "60%",
+                  "40%"
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "layer": 500,
+                "controls": [
+                  {
+                    "panel_bg": {
+                      "type": "image",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "texture": "textures/fr_ui/modal_backgroud",
+                      "layer": 41
+                    }
+                  },
+                  {
+                    "loading_image_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "80%",
+                        "70%"
+                      ],
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "offset": [
+                        0,
+                        -10
+                      ],
+                      "layer": 42,
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "images",
+                        "control_name": "fr_oldpc_screen.loading_image_from_buttons"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_contents",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "loading_text": {
+                      "type": "label",
+                      "text": "§8Initializing security system...",
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "bottom_middle",
+                      "offset": [
+                        0,
+                        -30
+                      ],
+                      "layer": 43,
+                      "font_scale_factor": 0.9,
+                      "color": [
+                        0.8,
+                        0.8,
+                        0.8
+                      ]
+                    }
+                  },
+                  {
+                    "loading_button_hint": {
+                      "type": "label",
+                      "text": "§8Press 'Connect' to continue",
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "bottom_middle",
+                      "offset": [
+                        0,
+                        -10
+                      ],
+                      "layer": 43,
+                      "font_scale_factor": 0.8,
+                      "color": [
+                        0.5,
+                        1,
+                        0.5
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "global",
+              "binding_condition": "none",
+              "binding_name": "#title_text",
+              "binding_name_override": "#title_text"
+            },
+            {
+              "binding_name": "#null",
+              "source_property_name": "(not ((#title_text - $flag_loading) = #title_text))",
+              "binding_type": "view",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_name": "#null",
+              "source_property_name": "(not ((#title_text - $flag_loading) = #title_text))",
+              "binding_type": "view",
+              "target_property_name": "#enabled"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

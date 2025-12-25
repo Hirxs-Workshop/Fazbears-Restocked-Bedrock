@@ -2,10 +2,14 @@
   "ui_defs": [
     "ui/forms/camera/camera_forms.json",
     "ui/forms/editor/editor_forms.json",
-    "ui/forms/variants/variants_forms.json",
     "ui/forms/block_settings/block_settings_forms.json",
     "ui/forms/newspaper/newspaper_form.json",
     "ui/forms/start_screen/start_screen_form.json",
-    "ui/forms/bonnie_editor/bonnie_editor_forms.json"
+    "ui/forms/bonnie_editor/bonnie_editor_forms.json",
+    "ui/forms/dynamic_offset_system.json",
+    "ui/forms/minimap/minimap_form.json",
+    "ui/forms/statue/statue_forms.json",
+    "ui/forms/oldpc/oldpc_forms.json",
+    "ui/forms/variants/variants_forms.json"
   ]
 }

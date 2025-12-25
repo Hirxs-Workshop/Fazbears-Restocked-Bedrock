@@ -1,0 +1,84 @@
+{
+	"format_version": "1.10.0",
+	"animations": {
+		"animation.player.sitting": {
+			"loop": true,
+			"animation_length": 2.8333,
+			"bones": {
+				"leftArm": {
+					"rotation": {
+						"0.0": [0, 0, -10],
+						"0.4583": [0, 0, -75]
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"0.0": [0, 0, 7.5],
+						"0.4167": [0, 0, 70]
+					}
+				},
+				"leftLeg": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.25": [20, 0, 0],
+						"0.5": [0, 0, 0]
+					},
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.5": [0, 0, 3]
+					}
+				},
+				"rightLeg": {
+					"rotation": {
+						"0.0": [0, 0, 10],
+						"0.25": [0, 0, 0],
+						"0.4583": [0, 0, 70]
+					}
+				},
+				"head": {
+					"rotation": [-7.5, 0, 0],
+					"position": {
+						"0.0": [0, 0, 0],
+						"0.25": [0, 5, 0]
+					}
+				},
+				"hat": {
+					"rotation": [0, 0, 0]
+				}
+			}
+		},
+		"animation.player.party_chair": {
+			"loop": true,
+			"bones": {
+				"leftArm": {
+					"rotation": [24.13852, -17.63823, -17.70975],
+					"position": [0, 0, -8]
+				},
+				"rightArm": {
+					"rotation": [-158.44387, -6.60796, 16.24074],
+					"position": [0, 0, -9]
+				},
+				"leftLeg": {
+					"rotation": [-8.30711, -15.98419, -5.01185],
+					"position": [0, 0, -9]
+				},
+				"rightLeg": {
+					"rotation": [-8.53783, 13.5323, 5.38726],
+					"position": [0, 0, -9]
+				},
+				"body": {
+					"rotation": [12.5, 0, 0],
+					"position": [0, 0, -9]
+				},
+				"head": {
+					"rotation": [32.40109, -2.68407, 4.22005],
+					"position": [0, 0, -8]
+				},
+				"hat": {
+					"rotation": [0, 0, 0],
+					"position": [0, 0, -8]
+				}
+			}
+		}
+	}
+}

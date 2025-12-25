@@ -1,0 +1,47 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.spotlight_vfx",
+				"texture_width": 64,
+				"texture_height": 64,
+				"visible_bounds_width": 4,
+				"visible_bounds_height": 3,
+				"visible_bounds_offset": [0, 0.5, 0]
+			},
+			"bones": [
+				{
+					"name": "spotlight",
+					"pivot": [0, 8, 1],
+					"rotation": [35, 0, 0],
+					"cubes": [
+						{
+							"origin": [-2.5, 5, -39],
+							"size": [5, 5, 35],
+							"uv": {
+								"east": {"uv": [0, 2], "uv_size": [6.25, 33.75], "uv_rotation": 270},
+								"west": {"uv": [0, 2], "uv_size": [6.25, 33.75], "uv_rotation": 90},
+								"up": {"uv": [0, 2], "uv_size": [6.25, 33.75]},
+								"down": {"uv": [0, 35.75], "uv_size": [6.25, -33.75]}
+							}
+						}
+					]
+				},
+				{
+					"name": "bone",
+					"pivot": [0.9, 0, -3],
+					"cubes": [
+						{
+							"origin": [-5.5, -2, -4],
+							"size": [11, 11, 0],
+							"uv": {
+								"north": {"uv": [38, 3], "uv_size": [15, 15]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

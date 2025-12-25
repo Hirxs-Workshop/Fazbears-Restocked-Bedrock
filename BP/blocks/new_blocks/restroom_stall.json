@@ -1,5 +1,5 @@
 {
-	"format_version": "1.21.60",
+	"format_version": "1.21.130",
 	"minecraft:block": {
 		"description": {
 			"identifier": "fr:restroom_stall",
@@ -21,6 +21,16 @@
 			}
 		},
 		"components": {
+    		"minecraft:collision_box": [
+		        {
+		            "origin": [-8, 0, -8],
+		            "size": [1, 22, 16]
+		        },
+		        {
+		            "origin": [7, 0, -8],
+		            "size": [1, 22, 16]
+		        }
+		    ],
 			"minecraft:geometry": {
 				"identifier": "geometry.restroom_stall",
 				"bone_visibility": {
@@ -33,8 +43,8 @@
 				"*": {
 					"texture": "restroom_stall_locked",
 					"render_method": "alpha_test",
-					"ambient_occlusion": false,
-					"face_dimming": false
+					"ambient_occlusion": true,
+					"face_dimming": true
 				}
 			},
 			"minecraft:item_visual": {
@@ -49,7 +59,8 @@
 				"material_instances": {
 					"*": {
 						"texture": "restroom_stall_locked",
-						"render_method": "alpha_test"
+						"render_method": "alpha_test",
+						"ambient_occlusion": true
 					}
 				}
 			},

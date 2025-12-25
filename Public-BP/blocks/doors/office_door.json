@@ -1,0 +1,260 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fr:office_door",
+      "states": {
+        "fr:door_open": [
+          false,
+          true
+        ],
+        "fr:bottom": [
+          false,
+          true
+        ],
+        "fr:middle": [
+          false,
+          true
+        ],
+        "fr:upper": [
+          true,
+          false
+        ]
+      },
+      "menu_category": {
+        "category": "construction"
+      },
+      "traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			}
+    },
+    "components": {
+      "tag:fr:office_door": {},
+      "tag:minecraft:is_pickaxe_item_destructible": {},
+      "minecraft:destructible_by_explosion": {
+        "explosion_resistance": 3
+      },
+      "minecraft:light_dampening": 15,
+      "minecraft:destructible_by_mining": {
+        "seconds_to_destroy": 4
+      },
+			"fr:single_interactive": {},
+      "minecraft:collision_box": {
+	      "origin": [-8, 0, -2],
+	      "size": [16, 16, 4]
+      },
+      "minecraft:selection_box": {
+	      "origin": [-8, 0, -2],
+	      "size": [16, 16, 4]
+      },
+      "minecraft:geometry": {
+        "identifier": "geometry.office_door_blocks",
+        "bone_visibility": {
+          "upper": false,
+          "bottom": false,
+          "middle": false,
+          "single": true,
+          "upper_open": false,
+          "bottom_open": false,
+          "middle_open": false,
+          "single_open": false
+        }
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "liftgate_door",
+          "render_method": "alpha_test"
+        }
+      },
+      "minecraft:movable": {
+        "movement_type": "immovable"
+      }
+    },
+    "permutations": [
+      {
+        "condition": "query.block_state('fr:door_open') == false && query.block_state('fr:upper') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.office_door_blocks",
+            "bone_visibility": {
+              "upper": false,
+              "bottom": false,
+              "middle": false,
+              "single": true,
+              "upper_open": true,
+              "bottom_open": false,
+              "middle_open": false,
+              "single_open": false
+            }
+          },
+          "minecraft:collision_box": {
+	          "origin": [-8, 14, -2],
+	          "size": [16, 2, 4]
+          },
+          "minecraft:selection_box": {
+	          "origin": [-8, 10, -2],
+	          "size": [16, 6, 4]
+          }
+        }
+      },
+      {
+        "condition": "query.block_state('fr:door_open') == true && query.block_state('fr:upper') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.office_door_blocks",
+            "bone_visibility": {
+              "upper": true,
+              "bottom": false,
+              "middle": false,
+              "single": true,
+              "upper_open": false,
+              "bottom_open": false,
+              "middle_open": false,
+              "single_open": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "query.block_state('fr:door_open') == false && query.block_state('fr:middle') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.office_door_blocks",
+            "bone_visibility": {
+              "upper": false,
+              "bottom": false,
+              "middle": false,
+              "single": false,
+              "upper_open": false,
+              "bottom_open": false,
+              "middle_open": true,
+              "single_open": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "query.block_state('fr:door_open') == true && query.block_state('fr:middle') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.office_door_blocks",
+            "bone_visibility": {
+              "upper": false,
+              "bottom": false,
+              "middle": true,
+              "single": false,
+              "upper_open": false,
+              "bottom_open": false,
+              "middle_open": false,
+              "single_open": false
+            }
+          },
+          "minecraft:collision_box": {
+	          "origin": [-8, 0, -2],
+	          "size": [16, 16, 4]
+          },
+          "minecraft:selection_box": {
+	          "origin": [-8, 0, -2],
+	          "size": [16, 16, 4]
+          }
+        }
+      },
+      {
+        "condition": "query.block_state('fr:door_open') == false && query.block_state('fr:bottom') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.office_door_blocks",
+            "bone_visibility": {
+              "upper": false,
+              "bottom": false,
+              "middle": false,
+              "single": false,
+              "upper_open": false,
+              "bottom_open": true,
+              "middle_open": false,
+              "single_open": false
+            }
+          }
+        }
+      },
+      {
+        "condition": "query.block_state('fr:door_open') == true && query.block_state('fr:bottom') == true",
+        "components": {
+          "minecraft:geometry": {
+            "identifier": "geometry.office_door_blocks",
+            "bone_visibility": {
+              "upper": false,
+              "bottom": true,
+              "middle": false,
+              "single": false,
+              "upper_open": false,
+              "bottom_open": false,
+              "middle_open": false,
+              "single_open": false
+            }
+          },
+          "minecraft:collision_box": {
+	          "origin": [-8, 0, -2],
+	          "size": [16, 16, 4]
+          },
+          "minecraft:selection_box": {
+	          "origin": [-8, 0, -2],
+	          "size": [16, 16, 4]
+          }
+        }
+      },
+      {
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			}
+    ]
+  }
+}

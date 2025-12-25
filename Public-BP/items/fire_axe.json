@@ -1,0 +1,49 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fr:fire_axe",
+			"menu_category": {
+				"category": "equipment"
+			}
+		},
+		"components": {
+	    		"minecraft:display_name": {
+    				"value": "item.fr:fire_axe.name"
+	    		},
+			"minecraft:max_stack_size": 1,
+			"minecraft:hand_equipped": true,
+			"minecraft:icon": {
+				"textures": {
+					"default": "fire_axe"
+				}
+			},
+			"minecraft:damage": {
+				"value": 6
+			},
+			"minecraft:durability": {
+				"damage_chance": {
+					"min": 5,
+					"max": 10
+				},
+				"max_durability": 450
+			},
+			"minecraft:enchantable": {
+				"slot": "axe",
+				"value": 9
+			},
+			"minecraft:repairable": {
+				"repair_items": [
+                    {
+                        "items": [ "minecraft:iron_ingot" ],
+                        "repair_amount": "q.max_durability * 0.25"
+                    },
+					{
+                        "items": [ "fr:fire_axe" ],
+                        "repair_amount": "q.max_durability * 0.35"
+                    }
+				]
+			}
+		}
+	}
+}

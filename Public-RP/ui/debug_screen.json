@@ -1,0 +1,157 @@
+{
+    "namespace": "debug_screen",
+  
+    "access_button@common_buttons.light_content_button": {
+      "$pressed_button_name": "button.access",
+      "size": [ 20, 20 ],
+      "offset": [ 20, 20 ],
+      "anchor_to": "top_middle",
+      "anchor_from": "top_middle",
+      "focus_enabled": false,
+      "bindings": [
+        {
+          "binding_name": "#access_screen_visible",
+          "binding_name_override": "#visible"
+        }
+      ]
+    },
+      "fbmark": {
+          "type": "label",
+          "text": "§fDon't leak our work, there was a lot of dedication in this...",
+          "color": [
+              1.0,
+              1.0,
+              1.0
+          ],
+          "shadow": true,
+          "font_size": "normal",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "alpha": 0.5
+      },
+      "fbmark2": {
+        "type": "label",
+        "text": "§fSubject to change!",
+        "color": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "shadow": true,
+        "font_size": "normal",
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "alpha": 0.5
+    },
+      "auto_save_animation2": {
+  "anim_type": "flip_book",
+  "initial_uv": [
+    0,
+    0
+  ],
+  "frame_count": 4,
+  "frame_step": 18,
+  "fps": 10,
+  "reversible": true,
+  "easing": "linear"
+},
+"warning2": {
+  "type": "image",
+  "layer": 81,
+  "shadow": true,
+  "texture": "textures/fr_ui/test_anim",
+  "anchor_from": "left_middle",
+  "anchor_to": "left_middle",
+  "size": [
+    25,
+    25
+  ],
+  "uv_size": [
+    16,
+    16
+  ],
+  "uv": "@auto_save_animation2",
+  "disable_anim_fast_forward": true
+},
+      "fbmark3": {
+        "layer": 81,
+        "type": "label",
+        "text": "§fFazbear's Restocked\nTest build #1 | v0.0.1",
+        "color": [
+            1.0,
+            1.0,
+            1.0
+        ],
+        "offset": [
+            "-5px",
+            0
+          ],
+        "shadow": true,
+        "font_size": "normal",
+        "anchor_from": "right_middle",
+        "anchor_to": "right_middle"
+    },
+    "special_render": {
+      "type": "custom",
+      "renderer": "debug_screen_renderer"
+    },
+
+    "image_uv_animation": {
+        "anim_type": "flip_book",
+        "initial_uv": [0, 0]
+	},
+
+    "testtt": {
+  "type": "image",
+  "size": [
+    "100%c + 12px",
+    "100%c + 5px"
+  ],
+  "anchor_from": "bottom_left",
+  "offset": [
+    "75px",
+    "-25px"
+  ],
+  "texture": "textures/fr_ui/default_ui",
+  "alpha": 1,
+  "controls": [
+  ]
+},
+  
+    "content_panel": {
+      "type": "panel",
+      "clips_children": false,
+      "size": [ "100%", "100%" ],
+      "controls": [
+        {
+          "access_button@debug_screen.access_button": {
+          }
+        },
+        {
+          "special_render@debug_screen.special_render": {
+          }
+        },
+              {
+                "fbmark@debug_screen.fbmark2": {}
+            }
+      ]
+    },
+  
+  
+  
+    "debug_screen@common.base_screen": {
+      "send_telemetry": false,
+      "screen_not_flushable": true,
+      "render_game_behind": true,
+      "is_showing_menu": false,
+      "low_frequency_rendering": true,
+      "is_modal": true,
+      "should_steal_mouse": false,
+      "render_only_when_topmost": false,
+      "screen_draws_last": true,
+      "always_accepts_input": true,
+      "$screen_content": "debug_screen.content_panel",
+      "$screen_animations": [],
+      "$use_loading_bars": false
+    }
+  }

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "bricks_yellow",
+        "metalness_emissive_roughness": "bricks_yellow_mer",
+        "heightmap": "bricks_yellow_normal"
+    }
+}

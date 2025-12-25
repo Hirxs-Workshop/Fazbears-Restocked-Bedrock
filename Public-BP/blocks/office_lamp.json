@@ -1,0 +1,65 @@
+{
+	"format_version": "1.21.120",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:office_lamp",
+			"menu_category": {
+				"category": "construction"
+			},
+			"states": {
+				"fr:lit": [
+					false,
+					true
+				]
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"origin": [-6, 5, -6],
+				"size": [12, 6, 12]
+			},
+			"minecraft:selection_box": {
+				"origin": [-6, 5, -6],
+				"size": [12, 6, 12]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.office_lamp"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "office_lamp",
+					"render_method": "alpha_test_single_sided"
+				}
+			},
+			"fr:single_interactive": {}
+		},
+		"permutations": [
+			{
+				"condition": "!q.block_state('fr:lit')",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_lamp",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:lit')",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "office_lamp",
+							"render_method": "alpha_test",
+							"ambient_occlusion": false,
+							"emissive": true,
+							"face_dimming": false
+						}
+					},
+					"minecraft:light_emission": 13
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,130 @@
+{
+    "texture_name": "atlas.items",
+    "texture_data": {
+        "backstage_door": {
+            "textures": [
+                "textures/items/backstage_door"
+            ]
+        },
+        "blank_door": {
+            "textures": [
+                "textures/items/blank_door"
+            ]
+        },
+        "blue_party_door": {
+            "textures": [
+                "textures/items/blue_party_door"
+            ]
+        },
+        "bonnie_the_rabbit": {
+            "textures": [
+                "textures/items/bonnie_the_rabbit"
+            ]
+        },
+        "chica_the_chicken": {
+            "textures": [
+                "textures/items/chica_the_chicken"
+            ]
+        },
+        "endo": {
+            "textures": [
+                "textures/items/endo"
+            ]
+        },
+        "entrace_door": {
+            "textures": [
+                "textures/items/entrace_door"
+            ]
+        },
+        "faz-diver": {
+            "textures": [
+                "textures/items/faz-diver"
+            ]
+        },
+        "faz-diver_backpack_without_item": {
+            "textures": [
+                "textures/items/faz-diver_backpack_without_item"
+            ]
+        },
+        "faz-diver_backpack_with_item": {
+            "textures": [
+                "textures/items/faz-diver_backpack_with_item"
+            ]
+        },
+        "faz-diver_manager": {
+            "textures": [
+                "textures/items/faz-diver_manager"
+            ]
+        },
+        "faz-diver_off": {
+            "textures": [
+                "textures/items/faz-diver_off"
+            ]
+        },
+        "faz-diver_security": {
+            "textures": [
+                "textures/items/faz-diver_security"
+            ]
+        },
+        "faz_diver_employee": {
+            "textures": [
+                "textures/items/faz_diver_employee"
+            ]
+        },
+        "faz_diver_executive": {
+            "textures": [
+                "textures/items/faz_diver_executive"
+            ]
+        },
+        "faz_diver_repairman": {
+            "textures": [
+                "textures/items/faz_diver_repairman"
+            ]
+        },
+        "fire_axe": {
+            "textures": [
+                "textures/items/fire_axe"
+            ]
+        },
+        "foxy_the_fox": {
+            "textures": [
+                "textures/items/foxy_the_fox"
+            ]
+        },
+        "freddy_fazbear": {
+            "textures": [
+                "textures/items/freddy_fazbear"
+            ]
+        },
+        "office_door": {
+            "textures": [
+                "textures/items/office_door"
+            ]
+        },
+        "purple_party_door": {
+            "textures": [
+                "textures/items/purple_party_door"
+            ]
+        },
+        "red_party_door": {
+            "textures": [
+                "textures/items/red_party_door"
+            ]
+        },
+        "sparky_the_dog": {
+            "textures": [
+                "textures/items/sparky_the_dog"
+            ]
+        },
+        "tablet": {
+            "textures": [
+                "textures/items/tablet"
+            ]
+        },
+        "wrench": {
+            "textures": [
+                "textures/items/wrench"
+            ]
+        }
+    }
+}

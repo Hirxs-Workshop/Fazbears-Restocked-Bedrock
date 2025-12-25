@@ -1,9 +1,8 @@
 {
-	"format_version": "1.13.0",
+	"format_version": "1.21.0",
 	"minecraft:entity": {
 		"description": {
 			"identifier": "fr:bonnie_statue",
-			"runtime_identifier": "minecraft:armor_stand",
 			"is_spawnable": true,
 			"is_summonable": true,
 			"is_experimental": false,
@@ -14,6 +13,26 @@
 			},
 			"animations": {
 				"bridge_execute_commands": "controller.animation.bridge_bonnie.execute_commands"
+			},
+			"properties": {
+				"fr:pose": {
+					"client_sync": true,
+					"type": "int",
+					"default": 0,
+					"range": [
+						0,
+						11
+					]
+				},
+				"fr:variant": {
+					"client_sync": true,
+					"type": "int",
+					"default": 0,
+					"range": [
+						0,
+						2
+					]
+				}
 			}
 		},
 		"components": {
@@ -29,12 +48,15 @@
 				"height": 1.975
 			},
 			"minecraft:health": {
-				"value": 6,
-				"max": 6
+				"value": 1,
+				"max": 1
 			},
-			"minecraft:item_controllable": {
-				"control_items": [
-					"fr:wrench"
+			"minecraft:interact": {
+				"interactions": [
+					{
+						"use_item": false,
+						"interact_text": "action.interact.animatronic_menu"
+					}
 				]
 			},
 			"minecraft:hurt_on_condition": {
@@ -141,6 +163,81 @@
 					"component_groups": [
 						"bridge:execute_command_id_3"
 					]
+				}
+			},
+			"fr:set_pose_0": {
+				"set_property": {
+					"fr:pose": 0
+				}
+			},
+			"fr:set_pose_1": {
+				"set_property": {
+					"fr:pose": 1
+				}
+			},
+			"fr:set_pose_2": {
+				"set_property": {
+					"fr:pose": 2
+				}
+			},
+			"fr:set_pose_3": {
+				"set_property": {
+					"fr:pose": 3
+				}
+			},
+			"fr:set_pose_4": {
+				"set_property": {
+					"fr:pose": 4
+				}
+			},
+			"fr:set_pose_5": {
+				"set_property": {
+					"fr:pose": 5
+				}
+			},
+			"fr:set_pose_6": {
+				"set_property": {
+					"fr:pose": 6
+				}
+			},
+			"fr:set_pose_7": {
+				"set_property": {
+					"fr:pose": 7
+				}
+			},
+			"fr:set_pose_8": {
+				"set_property": {
+					"fr:pose": 8
+				}
+			},
+			"fr:set_pose_9": {
+				"set_property": {
+					"fr:pose": 9
+				}
+			},
+			"fr:set_pose_10": {
+				"set_property": {
+					"fr:pose": 10
+				}
+			},
+			"fr:set_pose_11": {
+				"set_property": {
+					"fr:pose": 11
+				}
+			},
+			"fr:set_variant_0": {
+				"set_property": {
+					"fr:variant": 0
+				}
+			},
+			"fr:set_variant_1": {
+				"set_property": {
+					"fr:variant": 1
+				}
+			},
+			"fr:set_variant_2": {
+				"set_property": {
+					"fr:variant": 2
 				}
 			}
 		}

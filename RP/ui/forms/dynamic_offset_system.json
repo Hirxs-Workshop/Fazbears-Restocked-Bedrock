@@ -1,0 +1,286 @@
+{
+  "namespace": "dynamic_offset",
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // DYNAMIC OFFSET SYSTEM - Permite posicionar elementos con coordenadas X,Y
+  // desde scripts usando el texto del botón como data carrier
+  // 
+  // Formato de datos: |XX|X|YY|Y| donde:
+  //   XX = decenas de X (0-16 = 0-160px en pasos de 10)
+  //   X  = unidades de X (0-9px)
+  //   YY = decenas de Y (0-16 = 0-160px en pasos de 10)
+  //   Y  = unidades de Y (0-9px)
+  //
+  // Ejemplo: posición [135, 78] = |13|5|07|8|
+  // ═══════════════════════════════════════════════════════════════════════════
+
+  // Template principal - Panel que se puede posicionar dinámicamente
+  "offsetable_panel": {
+    "type": "collection_panel",
+    "anchor_from": "top_left",
+    "anchor_to": "center",
+    "controls": [
+      {
+        "$parent_name": {
+          "type": "panel",
+          "offset": "#offset",
+          "visible": false,
+          "property_bag": {
+            "#big_offset_x_0": [0, 0],
+            "#big_offset_x_1": [10, 0],
+            "#big_offset_x_2": [20, 0],
+            "#big_offset_x_3": [30, 0],
+            "#big_offset_x_4": [40, 0],
+            "#big_offset_x_5": [50, 0],
+            "#big_offset_x_6": [60, 0],
+            "#big_offset_x_7": [70, 0],
+            "#big_offset_x_8": [80, 0],
+            "#big_offset_x_9": [90, 0],
+            "#big_offset_x_10": [100, 0],
+            "#big_offset_x_11": [110, 0],
+            "#big_offset_x_12": [120, 0],
+            "#big_offset_x_13": [130, 0],
+            "#big_offset_x_14": [140, 0],
+            "#big_offset_x_15": [150, 0],
+            "#big_offset_x_16": [160, 0],
+            "#big_offset_x_17": [170, 0],
+            "#big_offset_x_18": [180, 0],
+            "#big_offset_x_19": [190, 0],
+            "#big_offset_x_20": [200, 0]
+          },
+          "bindings": [
+            {
+              "binding_collection_name": "form_buttons",
+              "binding_type": "collection_details"
+            },
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not (#form_button_text = ''))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "('§§' + #form_button_text)",
+              "target_property_name": "#text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "('#big_offset_x_' + (('%.6s' * #text) - ('%.4s' * #text) - '|'))",
+              "target_property_name": "#offset"
+            }
+          ],
+          "controls": [
+            {
+              "x_small_offset": {
+                "type": "panel",
+                "offset": "#offset",
+                "property_bag": {
+                  "#small_offset_x_0": [0, 0],
+                  "#small_offset_x_1": [1, 0],
+                  "#small_offset_x_2": [2, 0],
+                  "#small_offset_x_3": [3, 0],
+                  "#small_offset_x_4": [4, 0],
+                  "#small_offset_x_5": [5, 0],
+                  "#small_offset_x_6": [6, 0],
+                  "#small_offset_x_7": [7, 0],
+                  "#small_offset_x_8": [8, 0],
+                  "#small_offset_x_9": [9, 0]
+                },
+                "bindings": [
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "$parent_name",
+                    "source_property_name": "#text",
+                    "target_property_name": "#text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "('#small_offset_x_' + (('%.8s' * #text) - ('%.6s' * #text) - '|'))",
+                    "target_property_name": "#offset"
+                  }
+                ],
+                "controls": [
+                  {
+                    "y_big_offset": {
+                      "type": "panel",
+                      "offset": "#offset",
+                      "property_bag": {
+                        "#big_offset_y_0": [0, 0],
+                        "#big_offset_y_1": [0, 10],
+                        "#big_offset_y_2": [0, 20],
+                        "#big_offset_y_3": [0, 30],
+                        "#big_offset_y_4": [0, 40],
+                        "#big_offset_y_5": [0, 50],
+                        "#big_offset_y_6": [0, 60],
+                        "#big_offset_y_7": [0, 70],
+                        "#big_offset_y_8": [0, 80],
+                        "#big_offset_y_9": [0, 90],
+                        "#big_offset_y_10": [0, 100],
+                        "#big_offset_y_11": [0, 110],
+                        "#big_offset_y_12": [0, 120],
+                        "#big_offset_y_13": [0, 130],
+                        "#big_offset_y_14": [0, 140],
+                        "#big_offset_y_15": [0, 150],
+                        "#big_offset_y_16": [0, 160],
+                        "#big_offset_y_17": [0, 170],
+                        "#big_offset_y_18": [0, 180],
+                        "#big_offset_y_19": [0, 190],
+                        "#big_offset_y_20": [0, 200]
+                      },
+                      "bindings": [
+                        {
+                          "binding_type": "view",
+                          "source_control_name": "$parent_name",
+                          "source_property_name": "#text",
+                          "target_property_name": "#text"
+                        },
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "('#big_offset_y_' + (('%.11s' * #text) - ('%.8s' * #text) - '|'))",
+                          "target_property_name": "#offset"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "y_small_offset": {
+                            "type": "panel",
+                            "offset": "#offset",
+                            "property_bag": {
+                              "#small_offset_y_0": [0, 0],
+                              "#small_offset_y_1": [0, 1],
+                              "#small_offset_y_2": [0, 2],
+                              "#small_offset_y_3": [0, 3],
+                              "#small_offset_y_4": [0, 4],
+                              "#small_offset_y_5": [0, 5],
+                              "#small_offset_y_6": [0, 6],
+                              "#small_offset_y_7": [0, 7],
+                              "#small_offset_y_8": [0, 8],
+                              "#small_offset_y_9": [0, 9]
+                            },
+                            "bindings": [
+                              {
+                                "binding_type": "view",
+                                "source_control_name": "$parent_name",
+                                "source_property_name": "#text",
+                                "target_property_name": "#text"
+                              },
+                              {
+                                "binding_type": "view",
+                                "source_property_name": "('#small_offset_y_' + (('%.13s' * #text) - ('%.11s' * #text) - '|'))",
+                                "target_property_name": "#offset"
+                              }
+                            ],
+                            "controls": [
+                              {
+                                "content@$content": {}
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // PLAYER MARKER - Flecha del jugador con rotación dinámica
+  // El texto incluye rotación: |XX|X|YY|Y|RR| donde RR = rotación (0-15)
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  "player_marker": {
+    "type": "image",
+    "size": [12, 12],
+    "texture": "#texture",
+    "property_bag": {
+      "#texture_0": "textures/fr_ui/map/0",
+      "#texture_1": "textures/fr_ui/map/1",
+      "#texture_2": "textures/fr_ui/map/2",
+      "#texture_3": "textures/fr_ui/map/3",
+      "#texture_4": "textures/fr_ui/map/4",
+      "#texture_5": "textures/fr_ui/map/5",
+      "#texture_6": "textures/fr_ui/map/6",
+      "#texture_7": "textures/fr_ui/map/7",
+      "#texture_8": "textures/fr_ui/map/8",
+      "#texture_9": "textures/fr_ui/map/9",
+      "#texture_10": "textures/fr_ui/map/10",
+      "#texture_11": "textures/fr_ui/map/11",
+      "#texture_12": "textures/fr_ui/map/12",
+      "#texture_13": "textures/fr_ui/map/13",
+      "#texture_14": "textures/fr_ui/map/14",
+      "#texture_15": "textures/fr_ui/map/15"
+    },
+    "bindings": [
+      {
+        "binding_collection_name": "form_buttons",
+        "binding_type": "collection_details"
+      },
+      {
+        "binding_name": "#form_button_text",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "('§§' + #form_button_text)",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "('#texture_' + (('%.16s' * #text) - ('%.13s' * #text) - '|'))",
+        "target_property_name": "#texture"
+      }
+    ]
+  },
+
+  // Marcador simple (punto/icono sin rotación)
+  "simple_marker": {
+    "type": "image",
+    "size": [8, 8],
+    "texture": "#texture",
+    "bindings": [
+      {
+        "binding_name": "#form_button_texture",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "#form_button_texture",
+        "target_property_name": "#texture"
+      }
+    ]
+  },
+
+  // ═══════════════════════════════════════════════════════════════════════════
+  // ANIMACIONES para el marcador
+  // ═══════════════════════════════════════════════════════════════════════════
+  
+  "anim_marker_pulse": {
+    "anim_type": "size",
+    "from": [10, 10],
+    "to": [14, 14],
+    "duration": 0.6,
+    "easing": "in_out_sine",
+    "next": "@dynamic_offset.anim_marker_pulse_2"
+  },
+  "anim_marker_pulse_2": {
+    "anim_type": "size",
+    "from": [14, 14],
+    "to": [10, 10],
+    "duration": 0.6,
+    "easing": "in_out_sine",
+    "next": "@dynamic_offset.anim_marker_pulse"
+  }
+}

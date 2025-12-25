@@ -37,6 +37,7 @@ import 'advanced_wall'
 
 import { adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, ACTIONBAR_VARIANT_STYLE, customActionbar, variantActionbar } from './utils.js'
 import { securityCameraSystem } from './camera_system/security_camera_system.js'
+import { initStatueEditorSystem } from './statue_editor.js'
 
 const BlockPreciseRotationComponent = {
     beforeOnPlayerPlace(event) {
@@ -1536,7 +1537,7 @@ system.runInterval(() => {
 
             const eq = player.getComponent('minecraft:equippable');
             if (!eq) continue;
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+            // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
             const currentChest = eq.getEquipment(EquipmentSlot.Chest);
             const hasFazDiverBackpack = currentChest &&
                 (currentChest.typeId === 'fr:faz_diver_with_item' ||
@@ -1608,16 +1609,18 @@ const WrenchInteractionComponent = {
         const { source: player } = event;
         try {
             player.playSound('random.click', { pitch: 1.5, volume: 0.3 });
-        } catch {}
+        } catch { }
     },
     onUseOn(event) {
         const { source: player } = event;
         try {
             player.playSound('random.click', { pitch: 1.5, volume: 0.3 });
-        } catch {}
+        } catch { }
     }
 };
 
 system.beforeEvents.startup.subscribe(({ itemComponentRegistry }) => {
     itemComponentRegistry.registerCustomComponent('fr:wrench_interaction', WrenchInteractionComponent);
 });
+
+initStatueEditorSystem();

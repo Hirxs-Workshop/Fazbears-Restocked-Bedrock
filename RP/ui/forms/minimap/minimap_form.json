@@ -1,0 +1,959 @@
+{
+  "namespace": "minimap_form",
+
+  "main_panel": {
+    "type": "collection_panel",
+    "collection_name": "form_buttons",
+    "size": [160, 160],
+    "controls": [
+      { "bg@minimap_form.map_background": {} },
+      { "map@minimap_form.map_image": { "collection_index": 0 } },
+            { "border@minimap_form.map_border": {} },
+      {
+        "cam_0@minimap_form.offsetable_panel": {
+          "collection_index": 3,
+          "layer": 5,
+          "$parent_name": "cam0_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_1@minimap_form.offsetable_panel": {
+          "collection_index": 4,
+          "layer": 5,
+          "$parent_name": "cam1_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_2@minimap_form.offsetable_panel": {
+          "collection_index": 5,
+          "layer": 5,
+          "$parent_name": "cam2_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_3@minimap_form.offsetable_panel": {
+          "collection_index": 6,
+          "layer": 5,
+          "$parent_name": "cam3_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_4@minimap_form.offsetable_panel": {
+          "collection_index": 7,
+          "layer": 5,
+          "$parent_name": "cam4_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_5@minimap_form.offsetable_panel": {
+          "collection_index": 8,
+          "layer": 5,
+          "$parent_name": "cam5_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_6@minimap_form.offsetable_panel": {
+          "collection_index": 9,
+          "layer": 5,
+          "$parent_name": "cam6_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_7@minimap_form.offsetable_panel": {
+          "collection_index": 10,
+          "layer": 5,
+          "$parent_name": "cam7_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_8@minimap_form.offsetable_panel": {
+          "collection_index": 11,
+          "layer": 5,
+          "$parent_name": "cam8_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_9@minimap_form.offsetable_panel": {
+          "collection_index": 12,
+          "layer": 5,
+          "$parent_name": "cam9_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_10@minimap_form.offsetable_panel": {
+          "collection_index": 13,
+          "layer": 5,
+          "$parent_name": "cam10_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_11@minimap_form.offsetable_panel": {
+          "collection_index": 14,
+          "layer": 5,
+          "$parent_name": "cam11_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_12@minimap_form.offsetable_panel": {
+          "collection_index": 15,
+          "layer": 5,
+          "$parent_name": "cam12_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_13@minimap_form.offsetable_panel": {
+          "collection_index": 16,
+          "layer": 5,
+          "$parent_name": "cam13_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "cam_14@minimap_form.offsetable_panel": {
+          "collection_index": 17,
+          "layer": 5,
+          "$parent_name": "cam14_off",
+          "$content": "minimap_form.camera_button"
+        }
+      },
+      {
+        "player_arrow@minimap_form.offsetable_panel": {
+          "collection_index": 1,
+          "layer": 7,
+          "$parent_name": "player_offsetable",
+          "$content": "minimap_form.player_arrow"
+        }
+      },
+      {
+        "objective_icon@minimap_form.offsetable_panel": {
+          "collection_index": 2,
+          "layer": 6,
+          "$parent_name": "objective_offsetable",
+          "$content": "minimap_form.objective_icon"
+        }
+      },
+      { "lineH_0@minimap_form.line_h_offsetable_panel": { "collection_index": 19, "layer": 4, "$parent_name": "lineH0" } },
+      { "lineH_1@minimap_form.line_h_offsetable_panel": { "collection_index": 20, "layer": 4, "$parent_name": "lineH1" } },
+      { "lineH_2@minimap_form.line_h_offsetable_panel": { "collection_index": 21, "layer": 4, "$parent_name": "lineH2" } },
+      { "lineH_3@minimap_form.line_h_offsetable_panel": { "collection_index": 22, "layer": 4, "$parent_name": "lineH3" } },
+      { "lineH_4@minimap_form.line_h_offsetable_panel": { "collection_index": 23, "layer": 4, "$parent_name": "lineH4" } },
+      { "lineH_5@minimap_form.line_h_offsetable_panel": { "collection_index": 24, "layer": 4, "$parent_name": "lineH5" } },
+      { "lineH_6@minimap_form.line_h_offsetable_panel": { "collection_index": 25, "layer": 4, "$parent_name": "lineH6" } },
+      { "lineH_7@minimap_form.line_h_offsetable_panel": { "collection_index": 26, "layer": 4, "$parent_name": "lineH7" } },
+      { "lineH_8@minimap_form.line_h_offsetable_panel": { "collection_index": 27, "layer": 4, "$parent_name": "lineH8" } },
+      { "lineH_9@minimap_form.line_h_offsetable_panel": { "collection_index": 28, "layer": 4, "$parent_name": "lineH9" } },
+      { "lineH_10@minimap_form.line_h_offsetable_panel": { "collection_index": 29, "layer": 4, "$parent_name": "lineH10" } },
+      { "lineH_11@minimap_form.line_h_offsetable_panel": { "collection_index": 30, "layer": 4, "$parent_name": "lineH11" } },
+      { "lineH_12@minimap_form.line_h_offsetable_panel": { "collection_index": 31, "layer": 4, "$parent_name": "lineH12" } },
+      { "lineH_13@minimap_form.line_h_offsetable_panel": { "collection_index": 32, "layer": 4, "$parent_name": "lineH13" } },
+      { "lineH_14@minimap_form.line_h_offsetable_panel": { "collection_index": 33, "layer": 4, "$parent_name": "lineH14" } },
+      { "lineH_15@minimap_form.line_h_offsetable_panel": { "collection_index": 34, "layer": 4, "$parent_name": "lineH15" } },
+      { "lineH_16@minimap_form.line_h_offsetable_panel": { "collection_index": 35, "layer": 4, "$parent_name": "lineH16" } },
+      { "lineH_17@minimap_form.line_h_offsetable_panel": { "collection_index": 36, "layer": 4, "$parent_name": "lineH17" } },
+      { "lineH_18@minimap_form.line_h_offsetable_panel": { "collection_index": 37, "layer": 4, "$parent_name": "lineH18" } },
+      { "lineH_19@minimap_form.line_h_offsetable_panel": { "collection_index": 38, "layer": 4, "$parent_name": "lineH19" } },
+      { "lineH_20@minimap_form.line_h_offsetable_panel": { "collection_index": 39, "layer": 4, "$parent_name": "lineH20" } },
+      { "lineH_21@minimap_form.line_h_offsetable_panel": { "collection_index": 40, "layer": 4, "$parent_name": "lineH21" } },
+      { "lineH_22@minimap_form.line_h_offsetable_panel": { "collection_index": 41, "layer": 4, "$parent_name": "lineH22" } },
+      { "lineH_23@minimap_form.line_h_offsetable_panel": { "collection_index": 42, "layer": 4, "$parent_name": "lineH23" } },
+      { "lineH_24@minimap_form.line_h_offsetable_panel": { "collection_index": 43, "layer": 4, "$parent_name": "lineH24" } },
+      { "lineV_0@minimap_form.line_v_offsetable_panel": { "collection_index": 44, "layer": 4, "$parent_name": "lineV0" } },
+      { "lineV_1@minimap_form.line_v_offsetable_panel": { "collection_index": 45, "layer": 4, "$parent_name": "lineV1" } },
+      { "lineV_2@minimap_form.line_v_offsetable_panel": { "collection_index": 46, "layer": 4, "$parent_name": "lineV2" } },
+      { "lineV_3@minimap_form.line_v_offsetable_panel": { "collection_index": 47, "layer": 4, "$parent_name": "lineV3" } },
+      { "lineV_4@minimap_form.line_v_offsetable_panel": { "collection_index": 48, "layer": 4, "$parent_name": "lineV4" } },
+      { "lineV_5@minimap_form.line_v_offsetable_panel": { "collection_index": 49, "layer": 4, "$parent_name": "lineV5" } },
+      { "lineV_6@minimap_form.line_v_offsetable_panel": { "collection_index": 50, "layer": 4, "$parent_name": "lineV6" } },
+      { "lineV_7@minimap_form.line_v_offsetable_panel": { "collection_index": 51, "layer": 4, "$parent_name": "lineV7" } },
+      { "lineV_8@minimap_form.line_v_offsetable_panel": { "collection_index": 52, "layer": 4, "$parent_name": "lineV8" } },
+      { "lineV_9@minimap_form.line_v_offsetable_panel": { "collection_index": 53, "layer": 4, "$parent_name": "lineV9" } },
+      { "lineV_10@minimap_form.line_v_offsetable_panel": { "collection_index": 54, "layer": 4, "$parent_name": "lineV10" } },
+      { "lineV_11@minimap_form.line_v_offsetable_panel": { "collection_index": 55, "layer": 4, "$parent_name": "lineV11" } },
+      { "lineV_12@minimap_form.line_v_offsetable_panel": { "collection_index": 56, "layer": 4, "$parent_name": "lineV12" } },
+      { "lineV_13@minimap_form.line_v_offsetable_panel": { "collection_index": 57, "layer": 4, "$parent_name": "lineV13" } },
+      { "lineV_14@minimap_form.line_v_offsetable_panel": { "collection_index": 58, "layer": 4, "$parent_name": "lineV14" } },
+      { "lineV_15@minimap_form.line_v_offsetable_panel": { "collection_index": 59, "layer": 4, "$parent_name": "lineV15" } },
+      { "lineV_16@minimap_form.line_v_offsetable_panel": { "collection_index": 60, "layer": 4, "$parent_name": "lineV16" } },
+      { "lineV_17@minimap_form.line_v_offsetable_panel": { "collection_index": 61, "layer": 4, "$parent_name": "lineV17" } },
+      { "lineV_18@minimap_form.line_v_offsetable_panel": { "collection_index": 62, "layer": 4, "$parent_name": "lineV18" } },
+      { "lineV_19@minimap_form.line_v_offsetable_panel": { "collection_index": 63, "layer": 4, "$parent_name": "lineV19" } },
+      { "lineV_20@minimap_form.line_v_offsetable_panel": { "collection_index": 64, "layer": 4, "$parent_name": "lineV20" } },
+      { "lineV_21@minimap_form.line_v_offsetable_panel": { "collection_index": 65, "layer": 4, "$parent_name": "lineV21" } },
+      { "lineV_22@minimap_form.line_v_offsetable_panel": { "collection_index": 66, "layer": 4, "$parent_name": "lineV22" } },
+      { "lineV_23@minimap_form.line_v_offsetable_panel": { "collection_index": 67, "layer": 4, "$parent_name": "lineV23" } },
+      { "lineV_24@minimap_form.line_v_offsetable_panel": { "collection_index": 68, "layer": 4, "$parent_name": "lineV24" } },
+      { "close_btn@minimap_form.close_button": {} }
+    ]
+  },
+
+  "map_background": {
+    "type": "image",
+    "texture": "textures/fr_ui/nothing",
+    "keep_ratio": false
+  },
+
+  "map_image": {
+    "type": "image",
+    "texture": "#texture",
+    "visible": false,
+    "layer": 20,
+    "property_bag": {
+      "#pizzaplex-floor1": "textures/fr_ui/nothing",
+      "#pizzaplex-floor2": "textures/fr_ui/nothing",
+      "#pizzaplex-floor3": "textures/fr_ui/nothing",
+      "#lobby": "textures/fr_ui/nothing",
+      "#default": "textures/fr_ui/nothing"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_text",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "('#' + #form_button_text)",
+        "target_property_name": "#texture"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (#form_button_text = ''))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+
+  "map_border": {
+    "type": "image",
+    "size": ["100% + 16px", "100% + 16px"],
+    "texture": "textures/fr_ui/cameras_menu_modal",
+    "layer": 5
+  },
+
+  "offsetable_panel": {
+    "type": "collection_panel",
+    "anchor_from": "top_left",
+    "anchor_to": "center",
+    "controls": [
+      {
+        "$parent_name": {
+          "type": "panel",
+          "offset": "#offset",
+          "visible": false,
+          "property_bag": {
+            "#big_offset_x_0": [0, 0],
+            "#big_offset_x_1": [10, 0],
+            "#big_offset_x_2": [20, 0],
+            "#big_offset_x_3": [30, 0],
+            "#big_offset_x_4": [40, 0],
+            "#big_offset_x_5": [50, 0],
+            "#big_offset_x_6": [60, 0],
+            "#big_offset_x_7": [70, 0],
+            "#big_offset_x_8": [80, 0],
+            "#big_offset_x_9": [90, 0],
+            "#big_offset_x_A": [100, 0],
+            "#big_offset_x_B": [110, 0],
+            "#big_offset_x_C": [120, 0],
+            "#big_offset_x_D": [130, 0],
+            "#big_offset_x_E": [140, 0],
+            "#big_offset_x_F": [150, 0],
+            "#big_offset_x_G": [160, 0]
+          },
+          "bindings": [
+            {
+              "binding_collection_name": "form_buttons",
+              "binding_type": "collection_details"
+            },
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not (#form_button_text = ''))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "('@@' + #form_button_text)",
+              "target_property_name": "#text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "('#big_offset_x_' + (('%.4s' * #text) - ('%.3s' * #text)))",
+              "target_property_name": "#offset"
+            }
+          ],
+          "controls": [
+            {
+              "x_small_offset": {
+                "type": "panel",
+                "offset": "#offset",
+                "property_bag": {
+                  "#small_offset_x_0": [0, 0],
+                  "#small_offset_x_1": [1, 0],
+                  "#small_offset_x_2": [2, 0],
+                  "#small_offset_x_3": [3, 0],
+                  "#small_offset_x_4": [4, 0],
+                  "#small_offset_x_5": [5, 0],
+                  "#small_offset_x_6": [6, 0],
+                  "#small_offset_x_7": [7, 0],
+                  "#small_offset_x_8": [8, 0],
+                  "#small_offset_x_9": [9, 0]
+                },
+                "bindings": [
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "$parent_name",
+                    "source_property_name": "#text",
+                    "target_property_name": "#text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "('#small_offset_x_' + (('%.6s' * #text) - ('%.5s' * #text)))",
+                    "target_property_name": "#offset"
+                  }
+                ],
+                "controls": [
+                  {
+                    "y_big_offset": {
+                      "type": "panel",
+                      "offset": "#offset",
+                      "property_bag": {
+                        "#big_offset_y_0": [0, 0],
+                        "#big_offset_y_1": [0, 10],
+                        "#big_offset_y_2": [0, 20],
+                        "#big_offset_y_3": [0, 30],
+                        "#big_offset_y_4": [0, 40],
+                        "#big_offset_y_5": [0, 50],
+                        "#big_offset_y_6": [0, 60],
+                        "#big_offset_y_7": [0, 70],
+                        "#big_offset_y_8": [0, 80],
+                        "#big_offset_y_9": [0, 90],
+                        "#big_offset_y_A": [0, 100],
+                        "#big_offset_y_B": [0, 110],
+                        "#big_offset_y_C": [0, 120],
+                        "#big_offset_y_D": [0, 130],
+                        "#big_offset_y_E": [0, 140],
+                        "#big_offset_y_F": [0, 150],
+                        "#big_offset_y_G": [0, 160]
+                      },
+                      "bindings": [
+                        {
+                          "binding_type": "view",
+                          "source_control_name": "$parent_name",
+                          "source_property_name": "#text",
+                          "target_property_name": "#text"
+                        },
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "('#big_offset_y_' + (('%.8s' * #text) - ('%.7s' * #text)))",
+                          "target_property_name": "#offset"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "y_small_offset": {
+                            "type": "panel",
+                            "offset": "#offset",
+                            "property_bag": {
+                              "#small_offset_y_0": [0, 0],
+                              "#small_offset_y_1": [0, 1],
+                              "#small_offset_y_2": [0, 2],
+                              "#small_offset_y_3": [0, 3],
+                              "#small_offset_y_4": [0, 4],
+                              "#small_offset_y_5": [0, 5],
+                              "#small_offset_y_6": [0, 6],
+                              "#small_offset_y_7": [0, 7],
+                              "#small_offset_y_8": [0, 8],
+                              "#small_offset_y_9": [0, 9]
+                            },
+                            "bindings": [
+                              {
+                                "binding_type": "view",
+                                "source_control_name": "$parent_name",
+                                "source_property_name": "#text",
+                                "target_property_name": "#text"
+                              },
+                              {
+                                "binding_type": "view",
+                                "source_property_name": "('#small_offset_y_' + (('%.10s' * #text) - ('%.9s' * #text)))",
+                                "target_property_name": "#offset"
+                              }
+                            ],
+                            "controls": [{ "content@$content": {} }]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "line_h_offsetable_panel": {
+    "type": "collection_panel",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "controls": [
+      {
+        "$parent_name": {
+          "type": "panel",
+          "offset": "#offset",
+          "visible": false,
+          "property_bag": {
+            "#big_offset_x_0": [0, 0], "#big_offset_x_1": [10, 0], "#big_offset_x_2": [20, 0], "#big_offset_x_3": [30, 0],
+            "#big_offset_x_4": [40, 0], "#big_offset_x_5": [50, 0], "#big_offset_x_6": [60, 0], "#big_offset_x_7": [70, 0],
+            "#big_offset_x_8": [80, 0], "#big_offset_x_9": [90, 0], "#big_offset_x_A": [100, 0], "#big_offset_x_B": [110, 0],
+            "#big_offset_x_C": [120, 0], "#big_offset_x_D": [130, 0], "#big_offset_x_E": [140, 0], "#big_offset_x_F": [150, 0],
+            "#big_offset_x_G": [160, 0]
+          },
+          "bindings": [
+            { "binding_collection_name": "form_buttons", "binding_type": "collection_details" },
+            { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+            { "binding_type": "view", "source_property_name": "(not (#form_button_text = ''))", "target_property_name": "#visible" },
+            { "binding_type": "view", "source_property_name": "('@@' + #form_button_text)", "target_property_name": "#text" },
+            { "binding_type": "view", "source_property_name": "('#big_offset_x_' + (('%.4s' * #text) - ('%.3s' * #text)))", "target_property_name": "#offset" }
+          ],
+          "controls": [
+            {
+              "x_small_offset": {
+                "type": "panel",
+                "offset": "#offset",
+                "property_bag": {
+                  "#small_offset_x_0": [0, 0], "#small_offset_x_1": [1, 0], "#small_offset_x_2": [2, 0], "#small_offset_x_3": [3, 0],
+                  "#small_offset_x_4": [4, 0], "#small_offset_x_5": [5, 0], "#small_offset_x_6": [6, 0], "#small_offset_x_7": [7, 0],
+                  "#small_offset_x_8": [8, 0], "#small_offset_x_9": [9, 0]
+                },
+                "bindings": [
+                  { "binding_type": "view", "source_control_name": "$parent_name", "source_property_name": "#text", "target_property_name": "#text" },
+                  { "binding_type": "view", "source_property_name": "('#small_offset_x_' + (('%.6s' * #text) - ('%.5s' * #text)))", "target_property_name": "#offset" }
+                ],
+                "controls": [
+                  {
+                    "y_big_offset": {
+                      "type": "panel",
+                      "offset": "#offset",
+                      "property_bag": {
+                        "#big_offset_y_0": [0, 0], "#big_offset_y_1": [0, 10], "#big_offset_y_2": [0, 20], "#big_offset_y_3": [0, 30],
+                        "#big_offset_y_4": [0, 40], "#big_offset_y_5": [0, 50], "#big_offset_y_6": [0, 60], "#big_offset_y_7": [0, 70],
+                        "#big_offset_y_8": [0, 80], "#big_offset_y_9": [0, 90], "#big_offset_y_A": [0, 100], "#big_offset_y_B": [0, 110],
+                        "#big_offset_y_C": [0, 120], "#big_offset_y_D": [0, 130], "#big_offset_y_E": [0, 140], "#big_offset_y_F": [0, 150],
+                        "#big_offset_y_G": [0, 160]
+                      },
+                      "bindings": [
+                        { "binding_type": "view", "source_control_name": "$parent_name", "source_property_name": "#text", "target_property_name": "#text" },
+                        { "binding_type": "view", "source_property_name": "('#big_offset_y_' + (('%.8s' * #text) - ('%.7s' * #text)))", "target_property_name": "#offset" }
+                      ],
+                      "controls": [
+                        {
+                          "y_small_offset": {
+                            "type": "panel",
+                            "offset": "#offset",
+                            "size": "#size",
+                            "clips_children": true,
+                            "property_bag": {
+                              "#small_offset_y_0": [0, 0], "#small_offset_y_1": [0, 1], "#small_offset_y_2": [0, 2], "#small_offset_y_3": [0, 3],
+                              "#small_offset_y_4": [0, 4], "#small_offset_y_5": [0, 5], "#small_offset_y_6": [0, 6], "#small_offset_y_7": [0, 7],
+                              "#small_offset_y_8": [0, 8], "#small_offset_y_9": [0, 9],
+                              "#size": [2, 2],
+                              "#size_0": [2, 2], "#size_1": [8, 2], "#size_2": [16, 2], "#size_3": [24, 2], "#size_4": [32, 2],
+                              "#size_5": [40, 2], "#size_6": [48, 2], "#size_7": [56, 2], "#size_8": [64, 2], "#size_9": [72, 2],
+                              "#size_A": [80, 2], "#size_B": [88, 2], "#size_C": [96, 2], "#size_D": [104, 2], "#size_E": [112, 2],
+                              "#size_F": [120, 2], "#size_G": [128, 2], "#size_H": [136, 2], "#size_I": [144, 2], "#size_J": [152, 2],
+                              "#size_K": [160, 2]
+                            },
+                            "bindings": [
+                              { "binding_type": "view", "source_control_name": "$parent_name", "source_property_name": "#text", "target_property_name": "#text" },
+                              { "binding_type": "view", "source_property_name": "('#small_offset_y_' + (('%.10s' * #text) - ('%.9s' * #text)))", "target_property_name": "#offset" },
+                              { "binding_type": "view", "source_property_name": "('#size_' + (('%.14s' * #text) - ('%.13s' * #text)))", "target_property_name": "#size" }
+                            ],
+                            "controls": [{ "line@minimap_form.white_line_h": {} }]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "line_v_offsetable_panel": {
+    "type": "collection_panel",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "controls": [
+      {
+        "$parent_name": {
+          "type": "panel",
+          "offset": "#offset",
+          "visible": false,
+          "property_bag": {
+            "#big_offset_x_0": [0, 0], "#big_offset_x_1": [10, 0], "#big_offset_x_2": [20, 0], "#big_offset_x_3": [30, 0],
+            "#big_offset_x_4": [40, 0], "#big_offset_x_5": [50, 0], "#big_offset_x_6": [60, 0], "#big_offset_x_7": [70, 0],
+            "#big_offset_x_8": [80, 0], "#big_offset_x_9": [90, 0], "#big_offset_x_A": [100, 0], "#big_offset_x_B": [110, 0],
+            "#big_offset_x_C": [120, 0], "#big_offset_x_D": [130, 0], "#big_offset_x_E": [140, 0], "#big_offset_x_F": [150, 0],
+            "#big_offset_x_G": [160, 0]
+          },
+          "bindings": [
+            { "binding_collection_name": "form_buttons", "binding_type": "collection_details" },
+            { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+            { "binding_type": "view", "source_property_name": "(not (#form_button_text = ''))", "target_property_name": "#visible" },
+            { "binding_type": "view", "source_property_name": "('@@' + #form_button_text)", "target_property_name": "#text" },
+            { "binding_type": "view", "source_property_name": "('#big_offset_x_' + (('%.4s' * #text) - ('%.3s' * #text)))", "target_property_name": "#offset" }
+          ],
+          "controls": [
+            {
+              "x_small_offset": {
+                "type": "panel",
+                "offset": "#offset",
+                "property_bag": {
+                  "#small_offset_x_0": [0, 0], "#small_offset_x_1": [1, 0], "#small_offset_x_2": [2, 0], "#small_offset_x_3": [3, 0],
+                  "#small_offset_x_4": [4, 0], "#small_offset_x_5": [5, 0], "#small_offset_x_6": [6, 0], "#small_offset_x_7": [7, 0],
+                  "#small_offset_x_8": [8, 0], "#small_offset_x_9": [9, 0]
+                },
+                "bindings": [
+                  { "binding_type": "view", "source_control_name": "$parent_name", "source_property_name": "#text", "target_property_name": "#text" },
+                  { "binding_type": "view", "source_property_name": "('#small_offset_x_' + (('%.6s' * #text) - ('%.5s' * #text)))", "target_property_name": "#offset" }
+                ],
+                "controls": [
+                  {
+                    "y_big_offset": {
+                      "type": "panel",
+                      "offset": "#offset",
+                      "property_bag": {
+                        "#big_offset_y_0": [0, 0], "#big_offset_y_1": [0, 10], "#big_offset_y_2": [0, 20], "#big_offset_y_3": [0, 30],
+                        "#big_offset_y_4": [0, 40], "#big_offset_y_5": [0, 50], "#big_offset_y_6": [0, 60], "#big_offset_y_7": [0, 70],
+                        "#big_offset_y_8": [0, 80], "#big_offset_y_9": [0, 90], "#big_offset_y_A": [0, 100], "#big_offset_y_B": [0, 110],
+                        "#big_offset_y_C": [0, 120], "#big_offset_y_D": [0, 130], "#big_offset_y_E": [0, 140], "#big_offset_y_F": [0, 150],
+                        "#big_offset_y_G": [0, 160]
+                      },
+                      "bindings": [
+                        { "binding_type": "view", "source_control_name": "$parent_name", "source_property_name": "#text", "target_property_name": "#text" },
+                        { "binding_type": "view", "source_property_name": "('#big_offset_y_' + (('%.8s' * #text) - ('%.7s' * #text)))", "target_property_name": "#offset" }
+                      ],
+                      "controls": [
+                        {
+                          "y_small_offset": {
+                            "type": "panel",
+                            "offset": "#offset",
+                            "size": "#size",
+                            "clips_children": true,
+                            "property_bag": {
+                              "#small_offset_y_0": [0, 0], "#small_offset_y_1": [0, 1], "#small_offset_y_2": [0, 2], "#small_offset_y_3": [0, 3],
+                              "#small_offset_y_4": [0, 4], "#small_offset_y_5": [0, 5], "#small_offset_y_6": [0, 6], "#small_offset_y_7": [0, 7],
+                              "#small_offset_y_8": [0, 8], "#small_offset_y_9": [0, 9],
+                              "#size": [2, 2],
+                              "#size_0": [2, 2], "#size_1": [2, 8], "#size_2": [2, 16], "#size_3": [2, 24], "#size_4": [2, 32],
+                              "#size_5": [2, 40], "#size_6": [2, 48], "#size_7": [2, 56], "#size_8": [2, 64], "#size_9": [2, 72],
+                              "#size_A": [2, 80], "#size_B": [2, 88], "#size_C": [2, 96], "#size_D": [2, 104], "#size_E": [2, 112],
+                              "#size_F": [2, 120], "#size_G": [2, 128], "#size_H": [2, 136], "#size_I": [2, 144], "#size_J": [2, 152],
+                              "#size_K": [2, 160]
+                            },
+                            "bindings": [
+                              { "binding_type": "view", "source_control_name": "$parent_name", "source_property_name": "#text", "target_property_name": "#text" },
+                              { "binding_type": "view", "source_property_name": "('#small_offset_y_' + (('%.10s' * #text) - ('%.9s' * #text)))", "target_property_name": "#offset" },
+                              { "binding_type": "view", "source_property_name": "('#size_' + (('%.14s' * #text) - ('%.13s' * #text)))", "target_property_name": "#size" }
+                            ],
+                            "controls": [{ "line@minimap_form.white_line_v": {} }]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "player_arrow": {
+    "type": "button",
+    "size": [14, 14],
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "property_bag": {
+      "#texture_0": "textures/fr_ui/map/0",
+      "#texture_1": "textures/fr_ui/map/1",
+      "#texture_2": "textures/fr_ui/map/2",
+      "#texture_3": "textures/fr_ui/map/3",
+      "#texture_4": "textures/fr_ui/map/4",
+      "#texture_5": "textures/fr_ui/map/5",
+      "#texture_6": "textures/fr_ui/map/6",
+      "#texture_7": "textures/fr_ui/map/7",
+      "#texture_8": "textures/fr_ui/map/8",
+      "#texture_9": "textures/fr_ui/map/9",
+      "#texture_A": "textures/fr_ui/map/10",
+      "#texture_B": "textures/fr_ui/map/11",
+      "#texture_C": "textures/fr_ui/map/12",
+      "#texture_D": "textures/fr_ui/map/13",
+      "#texture_E": "textures/fr_ui/map/14",
+      "#texture_F": "textures/fr_ui/map/15"
+    },
+    "bindings": [
+      {
+        "binding_collection_name": "form_buttons",
+        "binding_type": "collection_details"
+      },
+      {
+        "binding_name": "#form_button_text",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "('@@' + #form_button_text)",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "('#texture_' + (('%.12s' * #text) - ('%.11s' * #text)))",
+        "target_property_name": "#texture"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "controls": [
+      {
+        "default": {
+          "type": "image",
+          "size": [10, 10],
+          "texture": "#texture",
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "player_arrow",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "image",
+          "size": [12, 12],
+          "texture": "#texture",
+          "color": [1, 1, 0.5],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "player_arrow",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "image",
+          "size": [10, 10],
+          "texture": "#texture",
+          "color": [1, 0.5, 0.5],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "player_arrow",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "objective_icon": {
+    "type": "button",
+    "size": [12, 12],
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "bindings": [
+      {
+        "binding_name": "#form_button_texture",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "#form_button_texture",
+        "target_property_name": "#texture"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "controls": [
+      {
+        "default": {
+          "type": "image",
+          "size": [8, 8],
+          "texture": "#texture",
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "objective_icon",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "image",
+          "size": [10, 10],
+          "texture": "#texture",
+          "color": [1, 1, 0.5],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "objective_icon",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "image",
+          "size": [8, 8],
+          "texture": "#texture",
+          "color": [1, 0.5, 0.5],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "objective_icon",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "camera_button": {
+    "type": "button",
+    "size": [14, 14],
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "bindings": [
+      {
+        "binding_collection_name": "form_buttons",
+        "binding_type": "collection_details"
+      },
+      {
+        "binding_name": "#form_button_texture",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "#form_button_texture",
+        "target_property_name": "#texture"
+      },
+      {
+        "binding_name": "#form_button_text",
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (#form_button_text = ''))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "controls": [
+      {
+        "default": {
+          "type": "image",
+          "size": [10, 10],
+          "texture": "#texture",
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "camera_button",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "image",
+          "size": [12, 12],
+          "texture": "#texture",
+          "color": [0.5, 1, 0.5],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "camera_button",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "image",
+          "size": [10, 10],
+          "texture": "#texture",
+          "color": [0.5, 1, 1],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "camera_button",
+              "source_property_name": "#texture",
+              "target_property_name": "#texture"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+"white_pixel": {
+    "type": "image",
+    "size": [8, 8],
+    "texture": "textures/ui/White",
+    "color": [1, 1, 1],
+    "layer": 20
+  },
+  
+  "white_pixel_small": {
+    "type": "image",
+    "size": [5, 5],
+    "texture": "textures/ui/White",
+    "color": [1, 1, 1],
+    "layer": 20
+  },
+  
+  "white_pixel_large": {
+    "type": "image",
+    "size": [12, 12],
+    "texture": "textures/ui/White",
+    "color": [1, 1, 1],
+    "layer": 20
+  },
+
+  "white_line_h": {
+    "type": "image",
+    "size": [160, 2],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "texture": "textures/ui/White",
+    "color": [1, 1, 1],
+    "layer": 20
+  },
+
+  "white_line_v": {
+    "type": "image",
+    "size": [2, 160],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "texture": "textures/ui/White",
+    "color": [1, 1, 1],
+    "layer": 20
+  },
+
+  
+  "close_button": {
+    "type": "button",
+    "size": [16, 16],
+    "offset": [4, -4],
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "layer": 20,
+    "$pressed_button_name": "button.menu_exit",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/fr_ui/x_icon",
+          "color": [0.8, 0.8, 0.8]
+        }
+      },
+      {
+        "hover": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/fr_ui/x_icon",
+          "color": [1, 0.3, 0.3]
+        }
+      },
+      {
+        "pressed": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/fr_ui/x_icon",
+          "color": [1, 0.5, 0.5]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ]
+  }
+}

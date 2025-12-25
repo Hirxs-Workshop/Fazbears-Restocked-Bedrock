@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fazbear_furnace",
+        "metalness_emissive_roughness": "fazbear_furnace_mer",
+        "heightmap": "fazbear_furnace_normal"
+    }
+}

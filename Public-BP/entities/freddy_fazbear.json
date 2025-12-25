@@ -1,0 +1,544 @@
+{
+	"format_version": "1.13.0",
+	"minecraft:entity": {
+		"description": {
+			"identifier": "fr:fnaf1_freddy_entity",
+			"runtime_identifier": "minecraft:zombie",
+			"is_spawnable": true,
+			"is_summonable": true,
+			"is_experimental": false,
+			"properties": {
+				"freddy:attack_time": {
+					"type": "float",
+					"default": 0.0,
+					"range": [0.0, 10.0]
+				}
+			},
+			"animations": {
+				"attack_animation": "controller.animation.fnaf1_freddy.attack"
+			},
+			"scripts": {
+				"animate": [
+					"attack_animation"
+				]
+			}
+		},
+		"component_groups": {
+			"freddy_hostile": {
+				"minecraft:behavior.nearest_attackable_target": {
+					"priority": 1,
+					"must_see": false,
+					"reselect_targets": true,
+					"entity_types": [
+						{
+							"filters": {
+								"all_of": [
+									{
+										"test": "is_family",
+										"subject": "other",
+										"value": "player"
+									},
+									{
+										"test": "has_tag",
+										"subject": "self",
+										"value": "ignore_player_now",
+										"operator": "not"
+									}
+								]
+							},
+							"max_dist": 16
+						}
+					]
+				},
+				"minecraft:navigation.walk": {
+					"can_path_over_water": false,
+					"avoid_water": false,
+					"avoid_damage_blocks": false,
+					"can_pass_doors": true,
+					"can_open_doors": true
+				},
+				"minecraft:movement.basic": {
+					"max_turn": 0
+				},
+				"minecraft:movement": {
+					"value": 0.2
+				},
+				"minecraft:behavior.hurt_by_target": {
+					"priority": 1
+				},
+				"minecraft:behavior.melee_attack": {
+					"priority": 2,
+					"speed_multiplier": 1.25,
+					"reach_multiplier": 2.0
+				},
+				"minecraft:behavior.look_at_target": {
+					"priority": 3
+				}
+			},
+			"freddy_chasing": {
+				"minecraft:rideable": {
+				"seat_count": 1,
+				"seats": [
+				  {
+					"position": [0, 0.6, 1.9], "rotate_rider_by": 180, "lock_rider_rotation": 0
+				  }
+				]
+			},
+				"minecraft:movement": {
+					"value": 0.152
+				},
+				"minecraft:navigation.walk": {
+					"can_path_over_water": false,
+					"avoid_water": true,
+					"avoid_damage_blocks": true,
+					"can_pass_doors": true,
+					"can_open_doors": true
+				},
+				"minecraft:movement.basic": {},
+				"minecraft:behavior.nearest_attackable_target": {
+					"priority": 1,
+					"must_see": false,
+					"reselect_targets": true,
+					"within_radius": 16.0,
+					"entity_types": [
+						{
+							"filters": {
+								"all_of": [
+									{
+										"test": "is_family",
+										"subject": "other",
+										"value": "player"
+									},
+									{
+										"test": "has_tag",
+										"subject": "self",
+										"value": "ignore_player_now",
+										"operator": "not"
+									}
+								]
+							},
+							"max_dist": 16
+						}
+					]
+				},
+				"minecraft:behavior.hurt_by_target": {
+					"priority": 1
+				},
+				"minecraft:behavior.melee_attack": {
+					"priority": 2,
+					"speed_multiplier": 1.5,
+					"reach_multiplier": 2.0
+				},
+				"minecraft:behavior.random_stroll": {
+					"priority": 8,
+					"speed_multiplier": 0.8
+				},
+				"minecraft:behavior.look_at_target": {
+					"priority": 9
+				},
+				"minecraft:behavior.random_look_around": {
+					"priority": 10
+				}
+			},
+			"freddy_attacking": {
+				"minecraft:variant": {
+					"value": 1
+				},
+				"minecraft:rideable": {
+				"seat_count": 1,
+				"seats": [
+				  {
+					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
+				  }
+				]
+			},
+				"minecraft:movement": {
+					"value": 0.0
+				},
+				"minecraft:navigation.walk": {
+					"can_path_over_water": false,
+					"avoid_water": false,
+					"avoid_damage_blocks": false,
+					"can_pass_doors": true,
+					"can_open_doors": true
+				},
+				"minecraft:movement.basic": {
+					"max_turn": 0
+				},
+				"minecraft:behavior.melee_attack": {
+					"priority": 1,
+					"speed_multiplier": 1.0,
+					"reach_multiplier": 2.0,
+					"on_attack": {
+						"event": "freddy_hit_particles",
+						"target": "self"
+					}
+				}
+			},
+			"freddy_attack_timer": {
+								
+				"minecraft:rideable": {
+				"seat_count": 1,
+				"seats": [
+				  {
+					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
+				  }
+				]
+			},
+				"minecraft:movement": {
+					"value": 0.0
+				},
+				"minecraft:navigation.walk": {
+					"can_path_over_water": false,
+					"avoid_water": false,
+					"avoid_damage_blocks": false,
+					"can_pass_doors": true,
+					"can_open_doors": true
+				},
+				"minecraft:movement.basic": {
+					"max_turn": 0
+				},
+				"minecraft:timer": {
+					"time": 3.8,
+					"looping": false,
+					"time_down_event": {
+						"event": "freddy_end_attack"
+					}
+				}
+			},
+			"freddy_scare_cooldown": {
+				"minecraft:timer": {
+					"time": 8.0,
+					"looping": false,
+					"time_down_event": {
+						"event": "freddy_reset_scare"
+					}
+				}
+			},
+			"freddy_normal": {
+				"minecraft:variant": {
+					"value": 0
+				}
+			},
+			"freddy_ignoring_player": {
+				"minecraft:variant": {
+					"value": 0
+				},
+				"minecraft:movement": {
+					"value": 0.152
+				},
+				"minecraft:navigation.walk": {
+					"can_path_over_water": false,
+					"avoid_water": true,
+					"avoid_damage_blocks": true,
+					"can_pass_doors": true,
+					"can_open_doors": true
+				},
+				"minecraft:movement.basic": {},
+				"minecraft:behavior.random_stroll": {
+					"priority": 8,
+					"speed_multiplier": 0.8
+				},
+				"minecraft:behavior.random_look_around": {
+					"priority": 10
+				}
+			},
+			"freddy_post_attack": {
+				"minecraft:variant": {
+					"value": 1
+				},
+				"minecraft:interact": {
+					"interactions": [
+						{
+							"on_interact": {
+								"filters": {
+									"all_of": [
+										{
+											"test": "is_family",
+											"subject": "other",
+											"value": "player"
+										},
+										{
+											"test": "has_equipment",
+											"subject": "other",
+											"domain": "hand",
+											"value": "minecraft:paper"
+										}
+									]
+								},
+								"event": "freddy_clean_blood",
+								"target": "self"
+							},
+							"use_item": true,
+							"interact_text": "action.interact.clean_blood"
+						}
+					]
+				}
+			}
+		},
+		"components": {
+			"minecraft:type_family": {
+				"family": ["freddy", "animatronic", "hostile"]
+			},
+			"minecraft:collision_box": {
+				"width": 0.4,
+				"height": 1.4
+			},
+			"minecraft:health": {
+				"value": 100,
+				"max": 100
+			},
+			"minecraft:movement": {
+				"value": 0.2
+			},
+			"minecraft:navigation.walk": {
+				"can_path_over_water": false,
+				"avoid_water": true,
+				"avoid_damage_blocks": true,
+				"can_pass_doors": true,
+				"can_open_doors": true
+			},
+			"minecraft:movement.basic": {},
+			"minecraft:jump.static": {},
+			"minecraft:can_climb": {},
+			"minecraft:behavior.float": {
+				"priority": 0
+			},
+			"minecraft:knockback_resistance": {
+				"value": 100,
+				"max": 100
+			},
+			"minecraft:behavior.random_stroll": {
+				"priority": 8,
+				"speed_multiplier": 0.8
+			},
+			"minecraft:behavior.look_at_player": {
+				"priority": 9,
+				"look_distance": 8.0,
+				"probability": 0.02
+			},
+			"minecraft:behavior.random_look_around": {
+				"priority": 10
+			},
+			"minecraft:timer": {
+				"time": [1.0, 2.0],
+				"looping": true,
+				"time_down_event": {
+					"event": "freddy_check_for_player"
+				}
+			},
+			"minecraft:physics": {},
+			"minecraft:pushable": {
+				"is_pushable": true,
+				"is_pushable_by_piston": true
+			},
+			"minecraft:conditional_bandwidth_optimization": {},
+			"minecraft:attack": {
+				"damage": 0
+			}
+		},
+		"events": {
+			"minecraft:entity_spawned": {
+				"add": {
+					"component_groups": ["freddy_hostile", "freddy_normal"]
+				}
+			},
+			"freddy_start_chase": {
+				"add": {
+					"component_groups": ["freddy_chasing"]
+				},
+				"remove": {
+					"component_groups": ["freddy_hostile"]
+				}
+			},
+			"freddy_stop_chase": {
+				"add": {
+					"component_groups": ["freddy_hostile"]
+				},
+				"remove": {
+					"component_groups": ["freddy_chasing", "freddy_scare_cooldown"]
+				},
+				"queue_command": {
+					"command": [
+						"tag @s remove played_scare"
+					]
+				}
+			},
+			"freddy_set_attack_time_1": {
+				"set_property": {
+					"freddy:attack_time": "1.0"
+				}
+			},
+			"freddy_set_attack_time_0": {
+				"set_property": {
+					"freddy:attack_time": "0.0"
+				}
+			},
+			"freddy_kill_player": {
+				"queue_command": {
+					"command": "kill @p"
+				}
+			},
+			"freddy_hit_particles": {
+				"queue_command": {
+					"command": [
+						"execute at @p positioned ~ ~ ~ run particle minecraft:endrod ~ ~ ~"
+					]
+				}
+			},
+			"freddy_start_attack": {
+				"add": {
+					"component_groups": ["freddy_attacking", "freddy_attack_timer"]
+				},
+				"remove": {
+					"component_groups": ["freddy_chasing", "freddy_hostile"]
+				},
+				"set_property": {
+					"freddy:attack_time": "1.0"
+				},
+				"queue_command": {
+					"command": [
+						"say (DEBUG) freddy start attack executed",
+						"effect @p slowness 5 5 true",
+						"effect @p darkness 5 5 true",
+						"ride @p start_riding @s teleport_ride",
+						"camerashake add @p 0.05 3.4 rotational",
+						"hud @p hide all",
+						"execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip ~ ~0.6 ~",
+						"execute at @p positioned ~ ~ ~ run tag @p add freddy_hit"
+					]
+				}
+			},
+			"freddy_sitting_player": {
+				"queue_command": {
+					"command": [
+						"ride @p start_riding @s teleport_ride"
+					]
+				}
+			},
+			"freddy_end_attack": {
+				"remove": {
+					"component_groups": ["freddy_attacking", "freddy_attack_timer", "freddy_normal"]
+				},
+				"add": {
+					"component_groups": ["freddy_chasing", "freddy_post_attack"]
+				},
+				"set_property": {
+					"freddy:attack_time": "0.0"
+				},
+				"queue_command": {
+					"command": [
+						"say (DEBUG) freddy end attack executed - should be variant 2 now",
+						"effect @s slowness 7 10 true",
+						"hud @p reset all",
+						"execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip_final ~ ~0.6 ~",
+						"kill @p[tag=freddy_hit]",
+						"execute at @p positioned ~ ~ ~ run tag @p remove freddy_hit",
+						"tag @s remove played_scare"
+					]
+				}
+			},
+			"freddy_reset_scare": {
+				"queue_command": {
+					"command": [
+						"say (DEBUG) freddy scare cooldown finished",
+						"tag @s remove played_scare"
+					]
+				},
+				"remove": {
+					"component_groups": ["freddy_scare_cooldown"]
+				}
+			},
+			"freddy_clean_blood": {
+				"remove": {
+					"component_groups": ["freddy_post_attack"]
+				},
+				"add": {
+					"component_groups": ["freddy_normal"]
+				},
+				"queue_command": {
+					"command": [
+						"say (DEBUG) freddy blood cleaned, back to variant 0",
+						"execute at @p positioned ~ ~ ~ run particle minecraft:splash ~ ~1 ~ 0.5 0.5 0.5 0.1 10"
+					]
+				}
+			},
+			"freddy_check_for_player": {
+				"sequence": [
+					{
+						"filters": {
+							"all_of": [
+								{ "test": "has_target" },
+								{ "test": "has_tag", "subject": "self", "value": "played_scare", "operator": "not" }
+							]
+						},
+						"add": {
+							"component_groups": ["freddy_chasing", "freddy_scare_cooldown"]
+						},
+						"remove": {
+							"component_groups": ["freddy_hostile"]
+						},
+						"queue_command": {
+							"command": [
+								"execute at @s run playsound fnaf1_freddy_scare @a[r=16] ~ ~ ~ 1 1",
+								"tag @s add played_scare"
+							]
+						}
+					},
+					{
+						"filters": {
+							"test": "has_target",
+							"operator": "not"
+						},
+						"add": {
+							"component_groups": ["freddy_hostile"]
+						},
+						"remove": {
+							"component_groups": ["freddy_chasing"]
+						},
+						"queue_command": {
+							"command": [
+								"tag @s remove played_scare"
+							]
+						}
+					}
+				]
+			},
+			"freddy_ignore_player": {
+				"add": {
+					"component_groups": ["freddy_ignoring_player"]
+				},
+				"remove": {
+					"component_groups": ["freddy_hostile", "freddy_chasing"]
+				}
+			},
+			"freddy_stop_ignore_player": {
+				"sequence": [
+					{
+						"filters": {
+							"test": "has_target"
+						},
+						"add": {
+							"component_groups": ["freddy_chasing"]
+						},
+						"remove": {
+							"component_groups": ["freddy_ignoring_player"]
+						}
+					},
+					{
+						"filters": {
+							"test": "has_target",
+							"operator": "not"
+						},
+						"add": {
+							"component_groups": ["freddy_hostile"]
+						},
+						"remove": {
+							"component_groups": ["freddy_ignoring_player"]
+						}
+					}
+				]
+			}
+		}
+	}
+}

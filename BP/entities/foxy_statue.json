@@ -32,9 +32,12 @@
 				"value": 6,
 				"max": 6
 			},
-			"minecraft:item_controllable": {
-				"control_items": [
-					"fr:wrench"
+			"minecraft:interact": {
+				"interactions": [
+					{
+						"use_item": false,
+						"interact_text": "action.interact.animatronic_menu"
+					}
 				]
 			},
 			"minecraft:hurt_on_condition": {

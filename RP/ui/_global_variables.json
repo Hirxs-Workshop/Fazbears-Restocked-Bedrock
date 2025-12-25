@@ -4,5 +4,10 @@
   "$flag_editor": "§E§D§I§T§O§R",
   "$flag_newspaper": "§N§E§W§S",
   "$flag_newspaper_outro": "§N§E§W§S§O§U§T§R§O",
-  "$flag_start_screen": "§S§T§A§R§T"
+  "$flag_start_screen": "§S§T§A§R§T",
+  "$flag_statue": "§S§T§A§T§U§E",
+  "$flag_statue_sec_variants": "§s§e§c§:§1",
+  "$flag_statue_sec_poses": "§s§e§c§:§2",
+  "$flag_statue_sec_statue": "§s§e§c§:§3",
+  "$flag_minimap": "§M§I§N§I§M§A§P"
 }

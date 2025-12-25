@@ -1,48 +1,51 @@
 {
-	"format_version": "1.10.0",
+	"format_version": "1.21.0",
 	"minecraft:client_entity": {
 		"description": {
 			"identifier": "fr:bonnie_statue",
-			"min_engine_version": "1.8.0",
 			"materials": {
 				"default": "spider"
 			},
 			"textures": {
-				"default": "textures/entity/reworked/fnaf1/bonnie_the_rabbit_bowtie"
+				"default": "textures/entity/reworked/fnaf1/bonnie_the_rabbit_bowtie",
+				"variant_1": "textures/entity/reworked/fnaf1/bonnie_the_rabbit_HW_guitair_bowtie_v2",
+				"variant_2": "textures/entity/reworked/fnaf1/chocolate_bonnie"
 			},
 			"animations": {
-				"default_pose": "animation.bonnie_stand",
-				"no_pose": "animation.bonnie_thank_you",
-				"solemn_pose": "animation.bonnie_stage",
-				"athena_pose": "animation.bonnie_stage_stare",
-				"brandish_pose": "animation.bonnie_ending_pose",
-				"honor_pose": "animation.bonnie_ending_pose",
-				"entertain_pose": "animation.bonnie_celebrate",
-				"salute_pose": "animation.bonnie_jam",
-				"riposte_pose": "animation.bonnie_dismebembered",
-				"zombie_pose": "animation.bonnie_look_up",
-				"cancan_a_pose": "animation.bonnie_cam_lean",
-				"cancan_b_pose": "animation.bonnie_ar_render_2",
-				"hero_pose": "animation.bonnie_mugshot",
-				"wiggle": "animation.bonnie_sit",
-				"controller.pose": "controller.animation.armor_stand.pose",
-				"controller.wiggling": "controller.animation.armor_stand.wiggle"
+				"pose_0": "animation.bonnie_stand",
+				"pose_1": "animation.bonnie_stage",
+				"pose_2": "animation.bonnie_stage_stare",
+				"pose_3": "animation.bonnie_ending_pose",
+				"pose_4": "animation.bonnie_celebrate",
+				"pose_5": "animation.bonnie_jam",
+				"pose_6": "animation.bonnie_sit",
+				"pose_7": "animation.bonnie_thank_you",
+				"pose_8": "animation.bonnie_ar_render_2",
+				"pose_9": "animation.bonnie_mugshot",
+				"pose_10": "animation.bonnie_cam_lean",
+				"pose_11": "animation.bonnie_look_up"
 			},
 			"scripts": {
-				"initialize": [
-					"variable.armor_stand.pose_index = 0;",
-					"variable.armor_stand.hurt_time = 0;"
-				],
 				"animate": [
-					"controller.pose",
-					"controller.wiggling"
+					{ "pose_0": "q.property('fr:pose') == 0" },
+					{ "pose_1": "q.property('fr:pose') == 1" },
+					{ "pose_2": "q.property('fr:pose') == 2" },
+					{ "pose_3": "q.property('fr:pose') == 3" },
+					{ "pose_4": "q.property('fr:pose') == 4" },
+					{ "pose_5": "q.property('fr:pose') == 5" },
+					{ "pose_6": "q.property('fr:pose') == 6" },
+					{ "pose_7": "q.property('fr:pose') == 7" },
+					{ "pose_8": "q.property('fr:pose') == 8" },
+					{ "pose_9": "q.property('fr:pose') == 9" },
+					{ "pose_10": "q.property('fr:pose') == 10" },
+					{ "pose_11": "q.property('fr:pose') == 11" }
 				]
 			},
 			"geometry": {
 				"default": "geometry.bonnie_the_rabbit"
 			},
 			"render_controllers": [
-				"controller.render.armor_stand"
+				"controller.render.fr_bonnie_statue_rc"
 			],
 			"enable_attachables": false,
 			"spawn_egg": {

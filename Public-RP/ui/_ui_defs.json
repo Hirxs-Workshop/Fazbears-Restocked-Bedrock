@@ -1,0 +1,9 @@
+{
+  "ui_defs": [
+    "ui/forms/camera/camera_forms.json",
+    "ui/forms/editor/editor_forms.json",
+    "ui/forms/variants/variants_forms.json",
+    "ui/forms/block_settings/block_settings_forms.json",
+    "ui/forms/changelog/changelog_forms.json"
+  ]
+}

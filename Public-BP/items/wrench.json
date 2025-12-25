@@ -1,0 +1,25 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fr:wrench",
+			"menu_category": {
+				"category": "equipment"
+			}
+		},
+		"components": {
+	    		"minecraft:display_name": {
+    				"value": "item.fr:wrench.name"
+	    		},
+			"minecraft:max_stack_size": 1,
+			"minecraft:hand_equipped": true,
+			"minecraft:icon": {
+				"textures": {
+					"default": "wrench"
+				}
+			},
+			"minecraft:allow_off_hand": false,
+			"minecraft:should_despawn": true
+		}
+	}
+}
