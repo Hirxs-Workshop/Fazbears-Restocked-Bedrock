@@ -15,26 +15,27 @@
 			},
 			"animations": {
 				"pose_0": "animation.bonnie_stand",
-				"pose_1": "animation.bonnie_stage",
-				"pose_2": "animation.bonnie_stage_stare",
-				"pose_3": "animation.bonnie_ending_pose",
-				"pose_4": "animation.bonnie_celebrate",
-				"pose_5": "animation.bonnie_jam",
-				"pose_6": "animation.bonnie_sit",
-				"pose_7": "animation.bonnie_thank_you",
-				"pose_8": "animation.bonnie_ar_render_2",
-				"pose_9": "animation.bonnie_mugshot",
-				"pose_10": "animation.bonnie_cam_lean",
-				"pose_11": "animation.bonnie_look_up",
-				"pose_12": "animation.bonnie_wave",
-				"pose_13": "animation.bonnie_ar_render",
-				"pose_14": "animation.bonnie_ucn_jumpscare",
-				"pose_15": "animation.bonnie_hold_heart",
-				"pose_16": "animation.bonnie_sit_open",
-				"pose_17": "animation.bonnie_floor_sit",
-				"pose_18": "animation.bonnie_floor_sit_open",
-				"pose_19": "animation.bonnie_lay",
-				"pose_20": "animation.bonnie_dismebembered"
+				"pose_1": "animation.bonnie_showtime",
+				"pose_2": "animation.bonnie_stage",
+				"pose_3": "animation.bonnie_stage_stare",
+				"pose_4": "animation.bonnie_ending_pose",
+				"pose_5": "animation.bonnie_celebrate",
+				"pose_6": "animation.bonnie_jam",
+				"pose_7": "animation.bonnie_sit",
+				"pose_8": "animation.bonnie_thank_you",
+				"pose_9": "animation.bonnie_ar_render_2",
+				"pose_10": "animation.bonnie_mugshot",
+				"pose_11": "animation.bonnie_cam_lean",
+				"pose_12": "animation.bonnie_look_up",
+				"pose_13": "animation.bonnie_wave",
+				"pose_14": "animation.bonnie_ar_render",
+				"pose_15": "animation.bonnie_ucn_jumpscare",
+				"pose_16": "animation.bonnie_hold_heart",
+				"pose_17": "animation.bonnie_sit_open",
+				"pose_18": "animation.bonnie_floor_sit",
+				"pose_19": "animation.bonnie_floor_sit_open",
+				"pose_20": "animation.bonnie_lay",
+				"pose_21": "animation.bonnie_dismebembered"
 			},
 			"scripts": {
 				"animate": [
@@ -100,6 +101,9 @@
 					},
 					{
 						"pose_20": "q.property('fr:pose') == 20"
+					},
+					{
+						"pose_21": "q.property('fr:pose') == 21"
 					}
 				]
 			},

@@ -5,6 +5,7 @@ import { ActionFormData } from "@minecraft/server-ui";
 
 const POSES = [
   { name: "stand.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_stand" },
+  { name: "showtime.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_showtime" },
   { name: "stage.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_stage" },
   { name: "stare.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_stare" },
   { name: "ending.anim", icon: "textures/fr_ui/poses/bonnie_statue_pose_ending" },
@@ -1473,9 +1474,11 @@ export function showEntityEditor(player, entity, section = "statue") {
 
 function getEntityVariants(entity) {
   return [
-    { name: "classic.exe", icon: "textures/fr_ui/variants/bonnie_regular" },
-    { name: "hw_guitar.exe", icon: "textures/fr_ui/variants/bonnie_hw_guitar" },
-    { name: "chocolate.exe", icon: "textures/fr_ui/variants/bonnie_chocolate" }
+    { name: "classic.theme", icon: "textures/fr_ui/variants/bonnie_regular" },
+    { name: "chocolate.theme", icon: "textures/fr_ui/variants/bonnie_chocolate" },
+    { name: "elf.theme", icon: "textures/fr_ui/variants/bonnie_elf" },
+    { name: "hw_guitar.theme", icon: "textures/fr_ui/variants/bonnie_hw_guitar" },
+    { name: "black_eyes.theme", icon: "textures/fr_ui/variants/bonnie_black_eyes" }
   ];
 }
 

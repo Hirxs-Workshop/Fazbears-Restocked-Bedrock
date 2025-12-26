@@ -10,7 +10,10 @@
 				"foxy:attack_time": {
 					"type": "float",
 					"default": 0.0,
-					"range": [0.0, 10.0]
+					"range": [
+						0.0,
+						10.0
+					]
 				}
 			},
 			"animations": {
@@ -76,15 +79,20 @@
 				"minecraft:variant": {
 					"value": 0
 				},
-				
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.6,
+								1.6
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.32
 				},
@@ -140,15 +148,20 @@
 				}
 			},
 			"foxy_attacking": {
-								
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.6,
+								1.6
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:variant": {
 					"value": 1
 				},
@@ -174,15 +187,20 @@
 				}
 			},
 			"foxy_attack_timer": {
-								
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.6,
+								1.6
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:variant": {
 					"value": 1
 				},
@@ -238,7 +256,11 @@
 		},
 		"components": {
 			"minecraft:type_family": {
-				"family": ["foxy", "animatronic", "hostile"]
+				"family": [
+					"foxy",
+					"animatronic",
+					"hostile"
+				]
 			},
 			"minecraft:collision_box": {
 				"width": 0.8,
@@ -283,7 +305,10 @@
 				"priority": 10
 			},
 			"minecraft:timer": {
-				"time": [1.0, 2.0],
+				"time": [
+					1.0,
+					2.0
+				],
 				"looping": true,
 				"time_down_event": {
 					"event": "foxy_check_for_player"
@@ -302,23 +327,34 @@
 		"events": {
 			"minecraft:entity_spawned": {
 				"add": {
-					"component_groups": ["foxy_hostile"]
+					"component_groups": [
+						"foxy_hostile"
+					]
 				}
 			},
 			"foxy_start_chase": {
 				"add": {
-					"component_groups": ["foxy_chasing"]
+					"component_groups": [
+						"foxy_chasing"
+					]
 				},
 				"remove": {
-					"component_groups": ["foxy_hostile"]
+					"component_groups": [
+						"foxy_hostile"
+					]
 				}
 			},
 			"foxy_stop_chase": {
 				"add": {
-					"component_groups": ["foxy_hostile"]
+					"component_groups": [
+						"foxy_hostile"
+					]
 				},
 				"remove": {
-					"component_groups": ["foxy_chasing", "foxy_scare_cooldown"]
+					"component_groups": [
+						"foxy_chasing",
+						"foxy_scare_cooldown"
+					]
 				},
 				"queue_command": {
 					"command": [
@@ -350,10 +386,16 @@
 			},
 			"foxy_start_attack": {
 				"add": {
-					"component_groups": ["foxy_attacking", "foxy_attack_timer"]
+					"component_groups": [
+						"foxy_attacking",
+						"foxy_attack_timer"
+					]
 				},
 				"remove": {
-					"component_groups": ["foxy_chasing", "foxy_hostile"]
+					"component_groups": [
+						"foxy_chasing",
+						"foxy_hostile"
+					]
 				},
 				"set_property": {
 					"foxy:attack_time": "1.0"
@@ -380,10 +422,15 @@
 			},
 			"foxy_end_attack": {
 				"remove": {
-					"component_groups": ["foxy_attacking", "foxy_attack_timer"]
+					"component_groups": [
+						"foxy_attacking",
+						"foxy_attack_timer"
+					]
 				},
 				"add": {
-					"component_groups": ["foxy_chasing"]
+					"component_groups": [
+						"foxy_chasing"
+					]
 				},
 				"set_property": {
 					"foxy:attack_time": "0.0"
@@ -407,7 +454,9 @@
 					]
 				},
 				"remove": {
-					"component_groups": ["foxy_scare_cooldown"]
+					"component_groups": [
+						"foxy_scare_cooldown"
+					]
 				}
 			},
 			"foxy_check_for_player": {
@@ -415,15 +464,27 @@
 					{
 						"filters": {
 							"all_of": [
-								{ "test": "has_target" },
-								{ "test": "has_tag", "subject": "self", "value": "played_scare", "operator": "not" }
+								{
+									"test": "has_target"
+								},
+								{
+									"test": "has_tag",
+									"subject": "self",
+									"value": "played_scare",
+									"operator": "not"
+								}
 							]
 						},
 						"add": {
-							"component_groups": ["foxy_chasing", "foxy_scare_cooldown"]
+							"component_groups": [
+								"foxy_chasing",
+								"foxy_scare_cooldown"
+							]
 						},
 						"remove": {
-							"component_groups": ["foxy_hostile"]
+							"component_groups": [
+								"foxy_hostile"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -438,10 +499,14 @@
 							"operator": "not"
 						},
 						"add": {
-							"component_groups": ["foxy_hostile"]
+							"component_groups": [
+								"foxy_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["foxy_chasing"]
+							"component_groups": [
+								"foxy_chasing"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -453,10 +518,15 @@
 			},
 			"foxy_ignore_player": {
 				"add": {
-					"component_groups": ["foxy_ignoring_player"]
+					"component_groups": [
+						"foxy_ignoring_player"
+					]
 				},
 				"remove": {
-					"component_groups": ["foxy_hostile", "foxy_chasing"]
+					"component_groups": [
+						"foxy_hostile",
+						"foxy_chasing"
+					]
 				}
 			},
 			"foxy_stop_ignore_player": {
@@ -466,10 +536,14 @@
 							"test": "has_target"
 						},
 						"add": {
-							"component_groups": ["foxy_chasing"]
+							"component_groups": [
+								"foxy_chasing"
+							]
 						},
 						"remove": {
-							"component_groups": ["foxy_ignoring_player"]
+							"component_groups": [
+								"foxy_ignoring_player"
+							]
 						}
 					},
 					{
@@ -478,10 +552,14 @@
 							"operator": "not"
 						},
 						"add": {
-							"component_groups": ["foxy_hostile"]
+							"component_groups": [
+								"foxy_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["foxy_ignoring_player"]
+							"component_groups": [
+								"foxy_ignoring_player"
+							]
 						}
 					}
 				]
