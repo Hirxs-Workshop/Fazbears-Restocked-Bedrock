@@ -1,4 +1,5 @@
-![](https://hirxs-workshop.net/wp-content/uploads/2025/10/e0c6f89a1f31452dbc4c94d3a8282f6a.png)
+
+<img width="2048" height="690" alt="fr" src="https://github.com/user-attachments/assets/b9c8ea34-3fbb-4969-b620-37bb8b34539f" />
 
 ## 📦 ⏤ Fazbear's Restocked - Early beta__
 Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!
