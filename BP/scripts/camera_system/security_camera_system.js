@@ -579,6 +579,129 @@ class SecurityCameraSystem {
     }
   }
 
+  showNoCamerasUI(player, pcBlock, skipAnimation = false) {
+    try {
+      const showNoCamerasForm = () => {
+        try { player.runCommand(`hud @s hide all`); } catch {}
+        
+        const form = new ActionFormData()
+          .title("§O§L§D§P§C")
+          .body("§7No cameras connected to this PC");
+
+        form.button("bt:d_Open camera", "textures/fr_ui/security_camera_icon_locked");
+        form.button("bt:d_Manage cameras", "textures/fr_ui/gear_locked");
+        form.button("bt:g_Changelog", "textures/fr_ui/folder_icon");
+
+        form.label("tx:welcome_textures/fr_ui/welcome_text_terminal");
+        form.label("tx:hero_textures/fr_ui/fr_info_img");
+        form.label("tx:banner_textures/fr_ui/system_badge");
+
+        form.label("sys:name_§0Fazbear-OS");
+        form.label("sys:build_§0First edition");
+        form.label("sys:ver_§01.21.110 A");
+
+        form.label("reg:name_§0PlayerName");
+        form.label("reg:id_§0000-000-000");
+
+        form.label(`pc:cpu_§0GenuineIntel`);
+        form.label("pc:model_§0Pentium(R) II");
+        form.label("pc:ram_§064.00MB RAM");
+
+        form.label("cr:sub_");
+        form.label(`cr:txt_§0§lHead Director§r§0
+- Polarfrederick
+
+§lAssistant Director§r§0
+- Kristoffer1976
+
+§lMain Developer§r§0
+- Hyrxs
+
+§lConcept art§r§0
+- Electro1987
+- Guipcbonnie
+
+§lMusic/Sound Designer§r§0
+- Werty_is_me
+- Foxlyticalxd
+
+§lAnimator§r§0
+- M.forbidden.
+- Kiandraomg
+
+§lCoders§r§0
+- Sgtsarnt3
+- Warden45._31258
+
+§lTexture designer§r§0
+- Mansam47
+- Kilokegor
+- Guipcbonnie
+- Foxisgaming_
+- Firecaptain221
+- Polarfrederick
+- Hyrxs
+- Kristoffer1976
+
+§lBlock Modeler§r§0
+- Mansam47
+- Kilokegor
+- Guipcbonnie
+- Foxisgaming_
+- Firecaptain221
+- Polarfrederick
+- Hyrxs
+- Kristoffer1976
+
+
+
+
+
+
+`);
+
+        this.getWorldTimeLabelsAsync(player).then((labels) => {
+          try { 
+            form.label(`dock:right3_§l${labels.clock}\n§r${labels.period}`);
+            form.label("dock:right2_§lFaz-diver:\n§rNo found!");
+            form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player"}`); 
+          } catch {}
+          return form.show(player);
+        }).catch(() => {
+          try { form.label("dock:right_"); } catch {}
+          return form.show(player);
+        }).then((res) => {
+          if (res.canceled) { 
+            this.resetPlayerCamera(player); 
+            return; 
+          }
+          const idx = res.selection;
+          if (idx === 2) {
+            this.showChangelog(player, pcBlock);
+            return;
+          }
+          this.resetPlayerCamera(player);
+        }).catch(() => {
+          this.resetPlayerCamera(player);
+        });
+      };
+
+      if (skipAnimation) {
+        showNoCamerasForm();
+      } else {
+        try { player.runCommand(`camera @s fov_set 30`); } catch {}
+        const animated = this.animatePcApproach(player, pcBlock);
+        if (animated) {
+          system.runTimeout(() => showNoCamerasForm(), 40);
+        } else {
+          showNoCamerasForm();
+        }
+      }
+    } catch {
+      this.resetPlayerCamera(player);
+    }
+  }
+
   showPcMainMenu(player, pcBlock, skipAnimation = false) {
     try {
       const pcPosStr = this.locStr(this.posOf(pcBlock));
@@ -601,19 +724,7 @@ class SecurityCameraSystem {
       }
       
       if (!camList || camList.length === 0) {
-        try { player.runCommand(`camera @s clear`); } catch {}
-        try { player.runCommand(`camera @s fade time 0 0 0`); } catch {}
-        try { player.runCommand(`camera @s fov_reset`); } catch {}
-        try { player.runCommand(`hud @s reset`); } catch {}
-        
-        player.sendMessage(
-          dynamicToast(
-            "§l§cNO CAMERAS",
-            "§7This PC has no cameras linked\n§7Use Faz-Diver to connect cameras",
-            "textures/fr_ui/deny_icon",
-            "textures/fr_ui/deny_ui"
-          )
-        );
+        this.showNoCamerasUI(player, pcBlock, skipAnimation);
         return;
       }
 

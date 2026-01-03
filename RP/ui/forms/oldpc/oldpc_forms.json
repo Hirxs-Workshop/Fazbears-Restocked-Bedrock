@@ -45,7 +45,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "((#form_button_text - 'bt:b_') = #form_button_text)",
+              "source_property_name": "(((#form_button_text - 'bt:b_') = #form_button_text) and ((#form_button_text - 'bt:d_') = #form_button_text))",
               "target_property_name": "#visible"
             }
           ]
@@ -77,7 +77,45 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "(not ((#form_button_text - 'bt:b_') = #form_button_text))",
+              "source_property_name": "((not ((#form_button_text - 'bt:b_') = #form_button_text)) and ((#form_button_text - 'bt:d_') = #form_button_text))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "btn_disabled@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.do_nothing",
+          "$default_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$hover_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$pressed_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$locked_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$border_visible": false,
+          "size": [
+            "70%",
+            42
+          ],
+          "layer": 10,
+          "$button_text": "#null",
+          "$button_text_binding_type": "collection",
+          "$button_text_grid_collection_name": "form_buttons",
+          "$button_text_max_size": [
+            "70%",
+            22
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#form_button_text - 'bt:d_') = #form_button_text))",
               "target_property_name": "#visible"
             }
           ]
@@ -143,7 +181,44 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "(((((#form_button_text - 'bt:r_') - 'bt:b_') - 'bt:g_') - 'bt:y_'))",
+              "source_property_name": "((((((#form_button_text - 'bt:r_') - 'bt:b_') - 'bt:g_') - 'bt:y_') - 'bt:d_'))",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "lbl_disabled": {
+          "type": "label",
+          "font_scale_factor": 0.7,
+          "text": "#text",
+          "color": [0.5, 0.5, 0.5],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [
+            0,
+            66
+          ],
+          "layer": 201,
+          "text_alignment": "center",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#form_button_text - 'bt:d_') = #form_button_text))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#form_button_text - 'bt:d_')",
               "target_property_name": "#text"
             }
           ]
@@ -195,7 +270,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "((#form_button_text - 'bt:b_') = #form_button_text)",
+              "source_property_name": "(((#form_button_text - 'bt:b_') = #form_button_text) and ((#form_button_text - 'bt:d_') = #form_button_text))",
               "target_property_name": "#visible"
             }
           ]
@@ -227,7 +302,45 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "(not ((#form_button_text - 'bt:b_') = #form_button_text))",
+              "source_property_name": "((not ((#form_button_text - 'bt:b_') = #form_button_text)) and ((#form_button_text - 'bt:d_') = #form_button_text))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "btn_disabled@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.do_nothing",
+          "$default_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$hover_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$pressed_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$locked_button_texture": "textures/fr_ui/old_pc_button_gray_locked",
+          "$border_visible": false,
+          "size": [
+            "70%",
+            42
+          ],
+          "layer": 10,
+          "$button_text": "#null",
+          "$button_text_binding_type": "collection",
+          "$button_text_grid_collection_name": "form_buttons",
+          "$button_text_max_size": [
+            "70%",
+            22
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#form_button_text - 'bt:d_') = #form_button_text))",
               "target_property_name": "#visible"
             }
           ]
@@ -293,7 +406,44 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "(((((#form_button_text - 'bt:r_') - 'bt:b_') - 'bt:g_') - 'bt:y_'))",
+              "source_property_name": "((((((#form_button_text - 'bt:r_') - 'bt:b_') - 'bt:g_') - 'bt:y_') - 'bt:d_'))",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "lbl_disabled": {
+          "type": "label",
+          "font_scale_factor": 0.7,
+          "text": "#text",
+          "color": [0.5, 0.5, 0.5],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [
+            0,
+            66
+          ],
+          "layer": 201,
+          "text_alignment": "center",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_name": "#form_button_text",
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#form_button_text - 'bt:d_') = #form_button_text))",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#form_button_text - 'bt:d_')",
               "target_property_name": "#text"
             }
           ]
