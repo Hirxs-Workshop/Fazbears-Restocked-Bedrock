@@ -4612,7 +4612,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "((((((((((#label - 'yellow ') - 'blue ') - 'green ') - 'red ') - 'purple ') - 'cyan ') - 'gray ') - 'pink ') - 'orange ') - 'black ') - '§a✓ §r')",
+              "source_property_name": "(((((((((((#label - 'yellow ') - 'blue ') - 'green ') - 'red ') - 'purple ') - 'cyan ') - 'gray ') - 'pink ') - 'orange ') - 'black ') - '§a✓ §r')",
               "target_property_name": "#text"
             }
           ]
