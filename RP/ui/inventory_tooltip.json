@@ -1,0 +1,866 @@
+{
+  "namespace": "fr_tooltip",
+
+  "employee_item_highlight": {
+    "type": "panel",
+    "controls": [
+      {
+        "repairman@employee_highlight_template": {
+          "$codec": "$flag_employee_compatible"
+        }
+      },
+      {
+        "security@employee_highlight_template": {
+          "$codec": "$flag_security"
+        }
+      },
+      {
+        "manager@employee_highlight_template": {
+          "$codec": "$flag_manager"
+        }
+      },
+      {
+        "executive@employee_highlight_template": {
+          "$codec": "$flag_executive"
+        }
+      },
+      {
+        "employee@employee_highlight_template": {
+          "$codec": "$flag_employee"
+        }
+      },
+      {
+        "off@employee_highlight_template": {
+          "$codec": "$flag_off"
+        }
+      }
+    ]
+  },
+
+  "employee_highlight_template": {
+    "type": "image",
+    "texture": "textures/fr_ui/faz-diver_repairman_icon",
+    "layer": 40,
+    "bindings": [
+      {
+        "binding_name": "#hover_text",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not((#hover_text-$codec)=#hover_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "$h_size|default": ["100% - 2px", "100% - 2px"],
+    "size": "$h_size"
+  },
+
+  "employee_badge": {
+    "type": "panel",
+    "size": [10, 10],
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "offset": [-1, 1]
+  },
+
+  "item_name_bg": {
+    "type": "image",
+    "texture": "textures/ui/purpleBorder",
+    "allow_clipping": false,
+    "layer": 1001
+  },
+
+  "employee_tooltip_panel": {
+    "type": "panel",
+    "allow_clipping": false,
+    "size": ["100%cm", "100%cm"],
+    "layer": 1005,
+    "bindings": [
+      {
+        "binding_name": "#hover_text",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not((#hover_text-$flag_employee_compatible)=#hover_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "content_wrapper": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%cm", "100%c"],
+          "controls": [
+            {
+              "tooltip_content": {
+                "type": "panel",
+                "size": ["100%cm", "100%cm"],
+                "controls": [
+                  {
+                    "bg": {
+                      "type": "image",
+                      "texture": "textures/fr_ui/editor_modal",
+                      "size": ["100%sm + 20px", "100%sm + 10px"],
+                      "layer": 1000
+                    }
+                  },
+                  {
+                    "content_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": ["100%cm", "100%c"],
+                      "layer": 1001,
+                      "controls": [
+                        {
+                          "title_row": {
+                            "type": "panel",
+                            "size": ["100%cm", 10],
+                            "controls": [
+                              {
+                                "title_text": {
+                                  "type": "label",
+                                  "text": "        REPAIRMAN        ",
+                                  "color": [0.592, 0.855, 0.063, 1.0],
+                                  "font_size": "normal",
+                                  "shadow": true
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacing_v": {
+                            "type": "panel",
+                            "size": [0, 3]
+                          }
+                        },
+                        {
+                          "content_row": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": ["100%cm", "100%cm"],
+                            "controls": [
+                              {
+                                "icon_panel": {
+                                  "type": "panel",
+                                  "size": [16, 16],
+                                  "controls": [
+                                    {
+                                      "icon": {
+                                        "type": "image",
+                                        "texture": "textures/fr_ui/faz-diver_repairman",
+                                        "size": [16, 16]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "spacing_h": {
+                                  "type": "panel",
+                                  "size": [4, 0]
+                                }
+                              },
+                              {
+                                "desc_panel": {
+                                  "type": "panel",
+                                  "size": ["100%cm", "100%cm"],
+                                  "controls": [
+                                    {
+                                      "desc_text": {
+                                        "type": "label",
+                                        "text": "Use this item to\nmodify this statue",
+                                        "color": [0.592, 0.855, 0.063, 1.0],
+                                        "font_size": "normal",
+                                        "shadow": true
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacing_bottom": {
+                "type": "panel",
+                "size": ["100%", 5]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "security_tooltip_panel": {
+    "type": "panel",
+    "allow_clipping": false,
+    "size": ["100%cm", "100%cm"],
+    "layer": 1005,
+    "bindings": [
+      {
+        "binding_name": "#hover_text",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not((#hover_text-$flag_security)=#hover_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "content_wrapper": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%cm", "100%c"],
+          "controls": [
+            {
+              "tooltip_content": {
+                "type": "panel",
+                "size": ["100%cm", "100%cm"],
+                "controls": [
+                  {
+                    "bg": {
+                      "type": "image",
+                      "texture": "textures/fr_ui/editor_modal",
+                      "size": ["100%sm + 20px", "100%sm + 10px"],
+                      "layer": 1000
+                    }
+                  },
+                  {
+                    "content_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": ["100%cm", "100%c"],
+                      "layer": 1001,
+                      "controls": [
+                        {
+                          "title_row": {
+                            "type": "panel",
+                            "size": ["100%cm", 10],
+                            "controls": [
+                              {
+                                "title_text": {
+                                  "type": "label",
+                                  "text": "        SECURITY        ",
+                                  "color": [0.592, 0.855, 0.063, 1.0],
+                                  "font_size": "normal",
+                                  "shadow": true
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacing_v": {
+                            "type": "panel",
+                            "size": [0, 3]
+                          }
+                        },
+                        {
+                          "content_row": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": ["100%cm", "100%cm"],
+                            "controls": [
+                              {
+                                "icon_panel": {
+                                  "type": "panel",
+                                  "size": [16, 16],
+                                  "controls": [
+                                    {
+                                      "icon": {
+                                        "type": "image",
+                                        "texture": "textures/fr_ui/faz-diver_security",
+                                        "size": [16, 16]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "spacing_h": {
+                                  "type": "panel",
+                                  "size": [4, 0]
+                                }
+                              },
+                              {
+                                "desc_panel": {
+                                  "type": "panel",
+                                  "size": ["100%cm", "100%cm"],
+                                  "controls": [
+                                    {
+                                      "desc_text": {
+                                        "type": "label",
+                                        "text": "Use this item to\nmanage security systems",
+                                        "color": [0.592, 0.855, 0.063, 1.0],
+                                        "font_size": "normal",
+                                        "shadow": true
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacing_bottom": {
+                "type": "panel",
+                "size": ["100%", 5]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "manager_tooltip_panel": {
+    "type": "panel",
+    "allow_clipping": false,
+    "size": ["100%cm", "100%cm"],
+    "layer": 1005,
+    "bindings": [
+      {
+        "binding_name": "#hover_text",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not((#hover_text-$flag_manager)=#hover_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "content_wrapper": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%cm", "100%c"],
+          "controls": [
+            {
+              "tooltip_content": {
+                "type": "panel",
+                "size": ["100%cm", "100%cm"],
+                "controls": [
+                  {
+                    "bg": {
+                      "type": "image",
+                      "texture": "textures/fr_ui/editor_modal",
+                      "size": ["100%sm + 20px", "100%sm + 10px"],
+                      "layer": 1000
+                    }
+                  },
+                  {
+                    "content_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": ["100%cm", "100%c"],
+                      "layer": 1001,
+                      "controls": [
+                        {
+                          "title_row": {
+                            "type": "panel",
+                            "size": ["100%cm", 10],
+                            "controls": [
+                              {
+                                "title_text": {
+                                  "type": "label",
+                                  "text": "        MANAGER        ",
+                                  "color": [0.592, 0.855, 0.063, 1.0],
+                                  "font_size": "normal",
+                                  "shadow": true
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacing_v": {
+                            "type": "panel",
+                            "size": [0, 3]
+                          }
+                        },
+                        {
+                          "content_row": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": ["100%cm", "100%cm"],
+                            "controls": [
+                              {
+                                "icon_panel": {
+                                  "type": "panel",
+                                  "size": [16, 16],
+                                  "controls": [
+                                    {
+                                      "icon": {
+                                        "type": "image",
+                                        "texture": "textures/fr_ui/faz-diver_manager",
+                                        "size": [16, 16]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "spacing_h": {
+                                  "type": "panel",
+                                  "size": [4, 0]
+                                }
+                              },
+                              {
+                                "desc_panel": {
+                                  "type": "panel",
+                                  "size": ["100%cm", "100%cm"],
+                                  "controls": [
+                                    {
+                                      "desc_text": {
+                                        "type": "label",
+                                        "text": "Use this item to\nmanage pizzeria operations",
+                                        "color": [0.592, 0.855, 0.063, 1.0],
+                                        "font_size": "normal",
+                                        "shadow": true
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacing_bottom": {
+                "type": "panel",
+                "size": ["100%", 5]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "executive_tooltip_panel": {
+    "type": "panel",
+    "allow_clipping": false,
+    "size": ["100%cm", "100%cm"],
+    "layer": 1005,
+    "bindings": [
+      {
+        "binding_name": "#hover_text",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not((#hover_text-$flag_executive)=#hover_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "content_wrapper": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%cm", "100%c"],
+          "controls": [
+            {
+              "tooltip_content": {
+                "type": "panel",
+                "size": ["100%cm", "100%cm"],
+                "controls": [
+                  {
+                    "bg": {
+                      "type": "image",
+                      "texture": "textures/fr_ui/editor_modal",
+                      "size": ["100%sm + 20px", "100%sm + 10px"],
+                      "layer": 1000
+                    }
+                  },
+                  {
+                    "content_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": ["100%cm", "100%c"],
+                      "layer": 1001,
+                      "controls": [
+                        {
+                          "title_row": {
+                            "type": "panel",
+                            "size": ["100%cm", 10],
+                            "controls": [
+                              {
+                                "title_text": {
+                                  "type": "label",
+                                  "text": "        EXECUTIVE        ",
+                                  "color": [0.592, 0.855, 0.063, 1.0],
+                                  "font_size": "normal",
+                                  "shadow": true
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacing_v": {
+                            "type": "panel",
+                            "size": [0, 3]
+                          }
+                        },
+                        {
+                          "content_row": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": ["100%cm", "100%cm"],
+                            "controls": [
+                              {
+                                "icon_panel": {
+                                  "type": "panel",
+                                  "size": [16, 16],
+                                  "controls": [
+                                    {
+                                      "icon": {
+                                        "type": "image",
+                                        "texture": "textures/fr_ui/faz-diver_executive",
+                                        "size": [16, 16]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "spacing_h": {
+                                  "type": "panel",
+                                  "size": [4, 0]
+                                }
+                              },
+                              {
+                                "desc_panel": {
+                                  "type": "panel",
+                                  "size": ["100%cm", "100%cm"],
+                                  "controls": [
+                                    {
+                                      "desc_text": {
+                                        "type": "label",
+                                        "text": "Use this item for\nexecutive level access",
+                                        "color": [0.592, 0.855, 0.063, 1.0],
+                                        "font_size": "normal",
+                                        "shadow": true
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacing_bottom": {
+                "type": "panel",
+                "size": ["100%", 5]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "employee_role_tooltip_panel": {
+    "type": "panel",
+    "allow_clipping": false,
+    "size": ["100%cm", "100%cm"],
+    "layer": 1005,
+    "bindings": [
+      {
+        "binding_name": "#hover_text",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not((#hover_text-$flag_employee)=#hover_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "content_wrapper": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%cm", "100%c"],
+          "controls": [
+            {
+              "tooltip_content": {
+                "type": "panel",
+                "size": ["100%cm", "100%cm"],
+                "controls": [
+                  {
+                    "bg": {
+                      "type": "image",
+                      "texture": "textures/fr_ui/editor_modal",
+                      "size": ["100%sm + 20px", "100%sm + 10px"],
+                      "layer": 1000
+                    }
+                  },
+                  {
+                    "content_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": ["100%cm", "100%c"],
+                      "layer": 1001,
+                      "controls": [
+                        {
+                          "title_row": {
+                            "type": "panel",
+                            "size": ["100%cm", 10],
+                            "controls": [
+                              {
+                                "title_text": {
+                                  "type": "label",
+                                  "text": "        EMPLOYEE        ",
+                                  "color": [0.592, 0.855, 0.063, 1.0],
+                                  "font_size": "normal",
+                                  "shadow": true
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacing_v": {
+                            "type": "panel",
+                            "size": [0, 3]
+                          }
+                        },
+                        {
+                          "content_row": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": ["100%cm", "100%cm"],
+                            "controls": [
+                              {
+                                "icon_panel": {
+                                  "type": "panel",
+                                  "size": [16, 16],
+                                  "controls": [
+                                    {
+                                      "icon": {
+                                        "type": "image",
+                                        "texture": "textures/fr_ui/faz-diver_employee",
+                                        "size": [16, 16]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "spacing_h": {
+                                  "type": "panel",
+                                  "size": [4, 0]
+                                }
+                              },
+                              {
+                                "desc_panel": {
+                                  "type": "panel",
+                                  "size": ["100%cm", "100%cm"],
+                                  "controls": [
+                                    {
+                                      "desc_text": {
+                                        "type": "label",
+                                        "text": "Use this item for\nbasic employee tasks",
+                                        "color": [0.592, 0.855, 0.063, 1.0],
+                                        "font_size": "normal",
+                                        "shadow": true
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacing_bottom": {
+                "type": "panel",
+                "size": ["100%", 5]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "off_tooltip_panel": {
+    "type": "panel",
+    "allow_clipping": false,
+    "size": ["100%cm", "100%cm"],
+    "layer": 1005,
+    "bindings": [
+      {
+        "binding_name": "#hover_text",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not((#hover_text-$flag_off)=#hover_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "content_wrapper": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%cm", "100%c"],
+          "controls": [
+            {
+              "tooltip_content": {
+                "type": "panel",
+                "size": ["100%cm", "100%cm"],
+                "controls": [
+                  {
+                    "bg": {
+                      "type": "image",
+                      "texture": "textures/fr_ui/editor_modal",
+                      "size": ["100%sm + 20px", "100%sm + 10px"],
+                      "layer": 1000
+                    }
+                  },
+                  {
+                    "content_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": ["100%cm", "100%c"],
+                      "layer": 1001,
+                      "controls": [
+                        {
+                          "title_row": {
+                            "type": "panel",
+                            "size": ["100%cm", 10],
+                            "controls": [
+                              {
+                                "title_text": {
+                                  "type": "label",
+                                  "text": "          OFF          ",
+                                  "color": [0.592, 0.855, 0.063, 1.0],
+                                  "font_size": "normal",
+                                  "shadow": true
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacing_v": {
+                            "type": "panel",
+                            "size": [0, 3]
+                          }
+                        },
+                        {
+                          "content_row": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": ["100%cm", "100%cm"],
+                            "controls": [
+                              {
+                                "icon_panel": {
+                                  "type": "panel",
+                                  "size": [16, 16],
+                                  "controls": [
+                                    {
+                                      "icon": {
+                                        "type": "image",
+                                        "texture": "textures/fr_ui/faz-diver_off",
+                                        "size": [16, 16]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "spacing_h": {
+                                  "type": "panel",
+                                  "size": [4, 0]
+                                }
+                              },
+                              {
+                                "desc_panel": {
+                                  "type": "panel",
+                                  "size": ["100%cm", "100%cm"],
+                                  "controls": [
+                                    {
+                                      "desc_text": {
+                                        "type": "label",
+                                        "text": "Faz-Diver is\ncurrently disabled",
+                                        "color": [0.592, 0.855, 0.063, 1.0],
+                                        "font_size": "normal",
+                                        "shadow": true
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacing_bottom": {
+                "type": "panel",
+                "size": ["100%", 5]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

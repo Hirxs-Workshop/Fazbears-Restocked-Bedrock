@@ -1,0 +1,67 @@
+{
+	"format_version": "1.21.120",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:pizzeria_lamp",
+			"menu_category": {
+				"category": "construction"
+			},
+			"states": {
+				"fr:lit": [
+					false,
+					true
+				]
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"origin": [-7, 0, -7],
+				"size": [14, 4, 14]
+			},
+			"minecraft:selection_box": {
+				"origin": [-7, 0, -7],
+				"size": [14, 4, 14]
+			},
+			"minecraft:transformation": {
+				"translation": [0, 0.8, 0]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.hallway_light"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "pizzeria_light",
+					"render_method": "alpha_test"
+				}
+			}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:lit') == false",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "pizzeria_light_off",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:lit') == true",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "pizzeria_light",
+							"render_method": "alpha_test",
+							"ambient_occlusion": false,
+							"emissive": true,
+							"face_dimming": false
+						}
+					},
+					"minecraft:light_emission": 13
+				}
+			}
+		]
+	}
+}

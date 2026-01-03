@@ -22,6 +22,7 @@ export function registerConnectionType(config) {
       type: config.type,
       alias: config.alias,
       icon: config.icon || "textures/fr_ui/default_icon",
+      vfxEntity: config.vfxEntity || null,
       requiredStates: config.requiredStates || [],
       metadata: config.metadata || {}
     });

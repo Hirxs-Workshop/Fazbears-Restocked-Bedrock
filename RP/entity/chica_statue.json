@@ -1,48 +1,114 @@
 {
-	"format_version": "1.10.0",
+	"format_version": "1.21.0",
 	"minecraft:client_entity": {
 		"description": {
 			"identifier": "fr:chica_statue",
-			"min_engine_version": "1.8.0",
 			"materials": {
 				"default": "spider"
 			},
 			"textures": {
-				"default": "textures/entity/reworked/fnaf1/chica_the_chicken_Nopizza"
+				"default": "textures/entity/reworked/fnaf1/chica_the_chicken_Nopizza",
+				"variant_1": "textures/entity/reworked/fnaf1/chica_the_chicken",
+				"variant_2": "textures/entity/reworked/fnaf1/chica_the_snowbird",
+				"variant_3": "textures/entity/reworked/fnaf1/chica_the_chicken_cursed_cupcake",
+				"variant_4": "textures/entity/reworked/fnaf1/sotm_chica_the_chicken",
+				"variant_5": "textures/entity/reworked/fnaf1/withered_classic_chica_the_chicken"
 			},
 			"animations": {
-				"default_pose": "animation.chica_stand",
-				"no_pose": "animation.chica_thank_you",
-				"solemn_pose": "animation.chica_stage",
-				"athena_pose": "animation.chica_ar_render",
-				"brandish_pose": "animation.chica_eat_pizza",
-				"honor_pose": "animation.chica_wink",
-				"entertain_pose": "animation.chica_teaser",
-				"salute_pose": "animation.chica_sit_cupcake",
-				"riposte_pose": "animation.chica_look_up",
-				"zombie_pose": "animation.chica_look_up",
-				"cancan_a_pose": "animation.chica_dining_room",
-				"cancan_b_pose": "animation.chica_west_hall",
-				"hero_pose": "animation.chica_dismantled",
-				"wiggle": "animation.chica_sit",
-				"controller.pose": "controller.animation.armor_stand.pose",
-				"controller.wiggling": "controller.animation.armor_stand.wiggle"
+				"pose_0": "animation.chica_stand",
+				"pose_1": "animation.chica_thank_you",
+				"pose_2": "animation.chica_stage",
+				"pose_3": "animation.chica_ar_render",
+				"pose_4": "animation.chica_eat_pizza",
+				"pose_5": "animation.chica_wink",
+				"pose_6": "animation.chica_teaser",
+				"pose_7": "animation.chica_sit_cupcake",
+				"pose_8": "animation.chica_look_up",
+				"pose_9": "animation.chica_dining_room",
+				"pose_10": "animation.chica_west_hall",
+				"pose_11": "animation.chica_dismantled",
+				"pose_12": "animation.chica_sit",
+				"pose_13": "animation.chica_walk",
+				"pose_14": "animation.Chica_the_Chicken_idle1_normal",
+				"pose_15": "animation.chica_bite_and_wipe_jumpscare",
+				"pose_16": "animation.chica_showtime",
+				"pose_17": "animation.chica_stare",
+				"pose_18": "animation.chica_floor_sit_cupcake",
+				"pose_19": "animation.chica_walk_blood",
+				"pose_20": "animation.Chica_the_Chicken_idle1_normal_nocupcake_blood"
 			},
 			"scripts": {
-				"initialize": [
-					"variable.armor_stand.pose_index = 0;",
-					"variable.armor_stand.hurt_time = 0;"
-				],
 				"animate": [
-					"controller.pose",
-					"controller.wiggling"
+					{
+						"pose_0": "q.property('fr:pose') == 0"
+					},
+					{
+						"pose_1": "q.property('fr:pose') == 1"
+					},
+					{
+						"pose_2": "q.property('fr:pose') == 2"
+					},
+					{
+						"pose_3": "q.property('fr:pose') == 3"
+					},
+					{
+						"pose_4": "q.property('fr:pose') == 4"
+					},
+					{
+						"pose_5": "q.property('fr:pose') == 5"
+					},
+					{
+						"pose_6": "q.property('fr:pose') == 6"
+					},
+					{
+						"pose_7": "q.property('fr:pose') == 7"
+					},
+					{
+						"pose_8": "q.property('fr:pose') == 8"
+					},
+					{
+						"pose_9": "q.property('fr:pose') == 9"
+					},
+					{
+						"pose_10": "q.property('fr:pose') == 10"
+					},
+					{
+						"pose_11": "q.property('fr:pose') == 11"
+					},
+					{
+						"pose_12": "q.property('fr:pose') == 12"
+					},
+					{
+						"pose_13": "q.property('fr:pose') == 13"
+					},
+					{
+						"pose_14": "q.property('fr:pose') == 14"
+					},
+					{
+						"pose_15": "q.property('fr:pose') == 15"
+					},
+					{
+						"pose_16": "q.property('fr:pose') == 16"
+					},
+					{
+						"pose_17": "q.property('fr:pose') == 17"
+					},
+					{
+						"pose_18": "q.property('fr:pose') == 18"
+					},
+					{
+						"pose_19": "q.property('fr:pose') == 19"
+					},
+					{
+						"pose_20": "q.property('fr:pose') == 20"
+					}
 				]
 			},
 			"geometry": {
 				"default": "geometry.chica_the_chicken"
 			},
 			"render_controllers": [
-				"controller.render.armor_stand"
+				"controller.render.fr_chica_statue_rc"
 			],
 			"enable_attachables": false,
 			"spawn_egg": {

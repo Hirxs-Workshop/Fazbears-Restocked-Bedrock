@@ -1,0 +1,66 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:sparky_statue",
+			"materials": {
+				"default": "spider"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/fnaf1/sparky_the_dog",
+				"variant_1": "textures/entity/reworked/fnaf1/Fixed_Sparky",
+				"variant_2": "textures/entity/reworked/fnaf1/accurate_Sparky",
+				"variant_3": "textures/entity/reworked/fnaf1/accurate_Sparky_withered",
+				"variant_4": "textures/entity/reworked/fnaf1/Sparky_Hot_chocolate_"
+			},
+			"animations": {
+				"pose_0": "animation.sparky_stand",
+				"pose_1": "animation.sparky_eat_bone",
+				"pose_2": "animation.sparky_hoax_pose",
+				"pose_3": "animation.sparky_floor_sit",
+				"pose_4": "animation.sparky_table_sit",
+				"pose_5": "animation.sparky_slab_sit",
+				"pose_6": "animation.sparky_lay",
+				"pose_7": "animation.sparky_dismantled"
+			},
+			"scripts": {
+				"animate": [
+					{
+						"pose_0": "q.property('fr:pose') == 0"
+					},
+					{
+						"pose_1": "q.property('fr:pose') == 1"
+					},
+					{
+						"pose_2": "q.property('fr:pose') == 2"
+					},
+					{
+						"pose_3": "q.property('fr:pose') == 3"
+					},
+					{
+						"pose_4": "q.property('fr:pose') == 4"
+					},
+					{
+						"pose_5": "q.property('fr:pose') == 5"
+					},
+					{
+						"pose_6": "q.property('fr:pose') == 6"
+					},
+					{
+						"pose_7": "q.property('fr:pose') == 7"
+					}
+				]
+			},
+			"geometry": {
+				"default": "geometry.sparky_the_dog"
+			},
+			"render_controllers": [
+				"controller.render.fr_sparky_statue_rc"
+			],
+			"enable_attachables": false,
+			"spawn_egg": {
+				"texture": "sparky_the_dog"
+			}
+		}
+	}
+}

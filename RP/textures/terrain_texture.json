@@ -4,6 +4,96 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
+	"kitchencounter": {
+		"textures": [
+			"textures/blocks/reworked/kitchen/kitchencounter"
+		]
+	},
+	"kitchencounter_drawer": {
+		"textures": [
+			"textures/blocks/reworked/kitchen/kitchencounter_drawer"
+		]
+	},
+	"kitchencounter_drawer1": {
+		"textures": [
+			"textures/blocks/reworked/kitchen/kitchencounter_drawer1"
+		]
+	},
+	"kitchencounter_drawer3": {
+		"textures": [
+			"textures/blocks/reworked/kitchen/kitchencounter_drawer3"
+		]
+	},
+	"wall_tear_hole_1": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/wall_tear_hole_1"
+		]
+	},
+	"wall_tear_hole_2": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/wall_tear_hole_2"
+		]
+	},
+	"brick_tear_1": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_1"
+		]
+	},
+	"brick_tear_2": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_2"
+		]
+	},
+	"brick_tear_bottom": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_bottom"
+		]
+	},
+	"brick_tear_bottom_left_corner": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_bottom_left_corner"
+		]
+	},
+	"brick_tear_bottom_right_corner": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_bottom_right_corner"
+		]
+	},
+	"brick_tear_left": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_left"
+		]
+	},
+	"brick_tear_left_big": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_left_big"
+		]
+	},
+	"brick_tear_right": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_right"
+		]
+	},
+	"brick_tear_right_big": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_right_big"
+		]
+	},
+	"brick_tear_top": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_top"
+		]
+	},
+	"brick_tear_top_left_corner": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_top_left_corner"
+		]
+	},
+	"brick_tear_top_right_corner": {
+		"textures": [
+			"textures/blocks/reworked/cracked_wall/brick_tear_top_right_corner"
+		]
+	},
 	"office_window": {
 		"textures": [
 			"textures/blocks/reworked/office_window"
@@ -37,6 +127,11 @@
 	"restroom_stall_unlocked": {
 		"textures": [
 			"textures/blocks/reworked/restroom_stall_unlocked"
+		]
+	},
+    "fr_block": {
+		"textures": [
+			"textures/blocks/reworked/fr_block"
 		]
 	},
 	"restroom_stall_locked": {
@@ -357,6 +452,16 @@
         "hallway_light": {
             "textures": [
                 "textures/blocks/reworked/hallway_light"
+            ]
+        },
+        "fr_long_ceilinglight_off": {
+            "textures": [
+                "textures/blocks/reworked/fr_long_ceilinglight_off"
+            ]
+        },
+        "fr_long_ceilinglight_on": {
+            "textures": [
+                "textures/blocks/reworked/fr_long_ceilinglight_on"
             ]
         },
         "hallway_monitors": {
@@ -1259,6 +1364,11 @@
                 "textures/blocks/reworked/dev/sgt_dev_plush"
             ]
         },
+        "mansam_plush": {
+            "textures": [
+                "textures/blocks/reworked/dev/mansam_plush"
+            ]
+        },
         "blue_pizzeria_floor": {
             "textures": [
                 "textures/blocks/reworked/fnaf1/floors/blue_pizzeria_floor"
@@ -2064,6 +2174,71 @@
                 "textures/blocks/reworked/fnaf_movie/walls/lines/wall_stripe_horizontal_down"
             ]
         },
+        "carpet_blue": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/floors/carpet_blue"
+            ]
+        },
+        "carpet_dark_blue": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/floors/carpet_dark_blue"
+            ]
+        },
+        "carpet_dark_blue_with_confetti": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/floors/carpet_dark_blue_with_confetti"
+            ]
+        },
+        "carpet_deep_wine": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/floors/carpet_deep_wine"
+            ]
+        },
+        "carpet_with_confetti": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/floors/carpet_with_confetti"
+            ]
+        },
+        "shit_stain_yellow_n_moldy_blue_pizzeria_floor": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/floors/shit_stain_yellow_n_moldy_blue_pizzeria_floor"
+            ]
+        },
+        "pizzeria_bricks_bottom_purple_top": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/pizzeria_bricks_bottom_purple_top"
+            ]
+        },
+        "wall_brown_black_bottom": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/wall_brown_black_bottom"
+            ]
+        },
+        "wall_brown_black_top": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/wall_brown_black_top"
+            ]
+        },
+        "wall_brown_middle": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/wall_brown_middle"
+            ]
+        },
+        "wall_brown_pattern": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/wall_brown_pattern"
+            ]
+        },
+        "wall_dbd_pattern": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/wall_dbd_pattern"
+            ]
+        },
+        "wall_purple_dbd_big_pattern": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/wall_purple_dbd_big_pattern"
+            ]
+        },
         "gifts_gameroom_1": {
             "textures": [
                 "textures/blocks/reworked/gifts/gifts_gameroom_1"
@@ -2219,6 +2394,11 @@
                 "textures/blocks/reworked/plushies/game_foxy_plush"
             ]
         },
+        "bizabizow_Foxy_plush": {
+            "textures": [
+                "textures/blocks/reworked/plushies/bizabizow_Foxy_plush"
+            ]
+        },
         "golden_freddy_plush": {
             "textures": [
                 "textures/blocks/reworked/plushies/golden_freddy_plush"
@@ -2292,6 +2472,21 @@
         "ceiling_wires_var_5": {
             "textures": [
                 "textures/blocks/reworked/wires/ceiling_wires_var_5"
+            ]
+        },
+        "caution_of_animatronics_poster_texture": {
+            "textures": [
+                "textures/blocks/reworked/caution_of_animatronics_poster_texture"
+            ]
+        },
+        "pizzeria_light": {
+            "textures": [
+                "textures/blocks/reworked/pizzeria_light"
+            ]
+        },
+        "pizzeria_light_off": {
+            "textures": [
+                "textures/blocks/reworked/pizzeria_light_off"
             ]
         }
     }

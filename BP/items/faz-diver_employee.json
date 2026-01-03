@@ -30,9 +30,14 @@
                    			}
 				]
 			},
+			"minecraft:cooldown": {
+				"category": "wrench_use",
+				"duration": 0.2
+			},
+			"minecraft:use_animation": "crossbow",
 			"minecraft:use_modifiers": {
-				"use_duration": 0,
-				"movement_modifier": 1.0
+				"movement_modifier": 0.8,
+				"use_duration": 10
 			},
 			"minecraft:icon": {
 				"textures": {
@@ -40,7 +45,8 @@
 				}
 			},
 			"minecraft:custom_components": [
-				"fr:faz_diver_mode_switch"
+				"fr:faz_diver_mode_switch",
+				"fr:wrench_interaction"
 			]
 		}
 	}

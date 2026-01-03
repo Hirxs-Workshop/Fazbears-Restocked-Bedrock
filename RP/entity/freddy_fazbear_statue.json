@@ -1,48 +1,171 @@
 {
-	"format_version": "1.10.0",
+	"format_version": "1.21.0",
 	"minecraft:client_entity": {
 		"description": {
 			"identifier": "fr:freddy_fazbear_statue",
-			"min_engine_version": "1.8.0",
 			"materials": {
 				"default": "spider"
 			},
 			"textures": {
-				"default": "textures/entity/reworked/fnaf1/freddy_fazbear_bowtie"
+				"default": "textures/entity/reworked/fnaf1/freddy_fazbear_bowtie",
+				"variant_1": "textures/entity/reworked/fnaf1/freddy_fazbear_blackeyes_bowtie",
+				"variant_2": "textures/entity/reworked/fnaf1/freddy_fazbear_hardmode_bowtie_v2",
+				"variant_3": "textures/entity/reworked/fnaf1/Frostbear_Freddy",
+				"variant_4": "textures/entity/reworked/fnaf1/Santa_Freddy",
+				"variant_5": "textures/entity/reworked/fnaf1/blacklight_freddy_fazbear",
+				"variant_6": "textures/entity/reworked/fnaf1/bear5_mygod",
+				"variant_7": "textures/entity/reworked/fnaf1/Venom_Freddy_Fazbear"
 			},
 			"animations": {
-				"default_pose": "animation.freddy_stand",
-				"no_pose": "animation.freddy_wave",
-				"solemn_pose": "animation.freddy_greet",
-				"athena_pose": "animation.freddy_stage",
-				"brandish_pose": "animation.freddy_stare",
-				"honor_pose": "animation.freddy_lets_party_poster",
-				"entertain_pose": "animation.freddy_ending_pose",
-				"salute_pose": "animation.freddy_celebrate",
-				"riposte_pose": "animation.freddy_stand_arms_down",
-				"zombie_pose": "animation.freddy_ar_render",
-				"cancan_a_pose": "animation.freddy.TeaserImage",
-				"cancan_b_pose": "animation.freddy_gift",
-				"hero_pose": "animation.freddy_dismantled",
-				"wiggle": "animation.freddy_sit",
-				"controller.pose": "controller.animation.armor_stand.pose",
-				"controller.wiggling": "controller.animation.armor_stand.wiggle"
+				"pose_0": "animation.freddy_stand",
+				"pose_1": "animation.freddy_wave",
+				"pose_2": "animation.freddy_greet",
+				"pose_3": "animation.freddy_stage",
+				"pose_4": "animation.freddy_stare",
+				"pose_5": "animation.freddy_lets_party_poster",
+				"pose_6": "animation.freddy_ending_pose",
+				"pose_7": "animation.freddy_celebrate",
+				"pose_8": "animation.freddy_stand_arms_down",
+				"pose_9": "animation.freddy_ar_render",
+				"pose_10": "animation.freddy.TeaserImage",
+				"pose_11": "animation.freddy_gift",
+				"pose_12": "animation.freddy_dismantled",
+				"pose_13": "animation.freddy_sit",
+				"pose_14": "animation.freddy_jumpscare",
+				"pose_15": "animation.freddy_walk",
+				"pose_16": "animation.freddy_walk_mic",
+				"pose_17": "animation.freddy_walk_blood",
+				"pose_18": "animation.freddy_idle_no_mic",
+				"pose_19": "animation.freddy_idle_mic",
+				"pose_20": "animation.freddy_idle_no_mic_blood",
+				"pose_21": "animation.freddy_lean",
+				"pose_22": "animation.freddy_look_up",
+				"pose_23": "animation.freddy_angry",
+				"pose_24": "animation.freddy_mugshot",
+				"pose_25": "animation.freddy_hold_mask",
+				"pose_26": "animation.freddy_hold_mask_reach",
+				"pose_27": "animation.freddy_space",
+				"pose_28": "animation.freddy_stuffed",
+				"pose_29": "animation.freddy_sit_floor",
+				"pose_30": "animation.freddy_sit_hatch",
+				"pose_31": "animation.freddy_lay",
+				"pose_32": "animation.freddy_showtime"
 			},
 			"scripts": {
-				"initialize": [
-					"variable.armor_stand.pose_index = 0;",
-					"variable.armor_stand.hurt_time = 0;"
-				],
 				"animate": [
-					"controller.pose",
-					"controller.wiggling"
+					{
+						"pose_0": "q.property('fr:pose') == 0"
+					},
+					{
+						"pose_1": "q.property('fr:pose') == 1"
+					},
+					{
+						"pose_2": "q.property('fr:pose') == 2"
+					},
+					{
+						"pose_3": "q.property('fr:pose') == 3"
+					},
+					{
+						"pose_4": "q.property('fr:pose') == 4"
+					},
+					{
+						"pose_5": "q.property('fr:pose') == 5"
+					},
+					{
+						"pose_6": "q.property('fr:pose') == 6"
+					},
+					{
+						"pose_7": "q.property('fr:pose') == 7"
+					},
+					{
+						"pose_8": "q.property('fr:pose') == 8"
+					},
+					{
+						"pose_9": "q.property('fr:pose') == 9"
+					},
+					{
+						"pose_10": "q.property('fr:pose') == 10"
+					},
+					{
+						"pose_11": "q.property('fr:pose') == 11"
+					},
+					{
+						"pose_12": "q.property('fr:pose') == 12"
+					},
+					{
+						"pose_13": "q.property('fr:pose') == 13"
+					},
+					{
+						"pose_14": "q.property('fr:pose') == 14"
+					},
+					{
+						"pose_15": "q.property('fr:pose') == 15"
+					},
+					{
+						"pose_16": "q.property('fr:pose') == 16"
+					},
+					{
+						"pose_17": "q.property('fr:pose') == 17"
+					},
+					{
+						"pose_18": "q.property('fr:pose') == 18"
+					},
+					{
+						"pose_19": "q.property('fr:pose') == 19"
+					},
+					{
+						"pose_20": "q.property('fr:pose') == 20"
+					},
+					{
+						"pose_21": "q.property('fr:pose') == 21"
+					},
+					{
+						"pose_22": "q.property('fr:pose') == 22"
+					},
+					{
+						"pose_23": "q.property('fr:pose') == 23"
+					},
+					{
+						"pose_24": "q.property('fr:pose') == 24"
+					},
+					{
+						"pose_25": "q.property('fr:pose') == 25"
+					},
+					{
+						"pose_26": "q.property('fr:pose') == 26"
+					},
+					{
+						"pose_27": "q.property('fr:pose') == 27"
+					},
+					{
+						"pose_28": "q.property('fr:pose') == 28"
+					},
+					{
+						"pose_29": "q.property('fr:pose') == 29"
+					},
+					{
+						"pose_30": "q.property('fr:pose') == 30"
+					},
+					{
+						"pose_31": "q.property('fr:pose') == 31"
+					},
+					{
+						"pose_32": "q.property('fr:pose') == 32"
+					}
 				]
 			},
 			"geometry": {
-				"default": "geometry.fr_freddy_fazbear"
+				"default": "geometry.fr_freddy_fazbear",
+				"variant_1": "geometry.fr_freddy_fazbear",
+				"variant_2": "geometry.fr_freddy_fazbear",
+				"variant_3": "geometry.fr_freddy_fazbear",
+				"variant_4": "geometry.fr_freddy_fazbear",
+				"variant_5": "geometry.fr_freddy_fazbear",
+				"variant_6": "geometry.bear_five_mygod",
+				"variant_7": "geometry.fr_freddy_fazbear"
 			},
 			"render_controllers": [
-				"controller.render.armor_stand"
+				"controller.render.fr_freddy_statue_rc"
 			],
 			"enable_attachables": false,
 			"spawn_egg": {

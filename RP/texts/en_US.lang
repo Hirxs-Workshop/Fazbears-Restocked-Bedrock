@@ -28,17 +28,17 @@ entity.fr:south_sit.name=South Sit
 entity.fr:sparky_the_dog.name=Sparky The Dog
 entity.fr:thin_door_frame.name=Thin Door Frame
 entity.fr:west_sit.name=West Sit
-item.fr:door_item.name=Door Item\n
-item.fr:faz-diver_employee.name=Faz-Diver Employee\n
-item.fr:faz-diver_executive.name=Faz-Diver Executive\n
-item.fr:faz-diver_manager.name=Faz-Diver Manager\n
-item.fr:faz-diver_off.name=Faz-Diver Off\n
-item.fr:faz-diver_repairman.name=Faz-Diver Repairman\n
-item.fr:faz-diver_security.name=Faz-Diver Security\n
-item.fr:faz_diver_with_item.name=Faz Diver With Item\n
-item.fr:faz_diver_without_item.name=Faz Diver Without Item\n
-item.fr:fire_axe.name=Fire Axe\n
-item.fr:wrench.name=Wrench\n
+item.fr:door_item.name=Door Item
+item.fr:faz-diver_employee.name=§E§M§P§L§O§Y§E§EFaz-Diver Employee
+item.fr:faz-diver_executive.name=§E§X§E§C§U§T§I§V§EFaz-Diver Executive
+item.fr:faz-diver_manager.name=§M§A§N§A§G§E§RFaz-Diver Manager
+item.fr:faz-diver_off.name=§O§F§FFaz-Diver Off
+item.fr:faz-diver_repairman.name=§©§-Faz-Diver Repairman
+item.fr:faz-diver_security.name=§S§E§C§U§R§I§T§YFaz-Diver Security
+item.fr:faz_diver_with_item.name=Faz Diver With Item
+item.fr:faz_diver_without_item.name=Faz Diver Without Item
+item.fr:fire_axe.name=Fire Axe
+item.fr:wrench.name=Wrench
 item.spawn_egg.entity.ef:nothing.name=Nothing
 item.spawn_egg.entity.fr:door_buttons_entity.name=Door Buttons Entity
 item.spawn_egg.entity.fr:east_sit.name=East Sit
@@ -153,7 +153,7 @@ tile.fr:ceiling_black.name=Ceiling Black
 tile.fr:ceiling_stars.name=Ceiling Stars
 tile.fr:ceiling_wires.name=Ceiling Wires
 tile.fr:chica_head.name=Chica Head
-tile.fr:acurate_chica_plush.name=Accurate Chica Plush
+tile.fr:acurate_chica_plush.name=Bazabizow Chica Plush
 tile.fr:chica_hwplush.name=Chica Plush HW
 tile.fr:chica_plush.name=Chica Plush
 tile.fr:chica_poster.name=Chica Poster
@@ -222,6 +222,7 @@ tile.fr:foxy_poster.name=Foxy Poster
 tile.fr:freddy_beta_head.name=Freddy Beta Head
 tile.fr:freddy_head_off_poster.name=Freddy Head Off Poster
 tile.fr:freddy_plush.name=Freddy Plush
+tile.fr:endo_01_plush.name=Endo 01 Plush
 tile.fr:freddy_plushhw.name=Freddy Plush HW
 tile.fr:freddy_poster.name=Freddy Poster
 tile.fr:generator.name=Generator
@@ -246,8 +247,7 @@ tile.fr:movie_wall_top.name=Movie Wall Top
 tile.fr:movie_wall_top2.name=Movie Wall Top2
 tile.fr:office_door.name=Office Door
 tile.fr:office_lamp.name=Office Lamp
-tile.fr:office_light.name=Office Light
-tile.fr:office_light2.name=Office Light2
+tile.fr:office_light.name=Office Light 
 tile.fr:office_poster.name=Office Poster
 tile.fr:old_pc.name=Old Pc
 tile.fr:party_chair.name=Party Chair
@@ -445,7 +445,7 @@ tile.fr:trash.name=Trash
 tile.fr:stage_sun.name=Stage Sun
 item.fr:restroom_stall_door=Restroom Stall Door
 tile.fr:vending_machine.name=Vending Machine
-tile.fr:office_window.name=Office Window
+tile.fr:office_window.name=Office Window 
 
 entity.fr:backstage_door.name=Backstage Door
 entity.fr:blank_door.name=Blank Door
@@ -463,6 +463,12 @@ item.spawn_egg.entity.fr:purple_party_door.name=Purple Party Door
 item.spawn_egg.entity.fr:red_party_door.name=Red Party Door
 item.spawn_egg.entity.fr:freezer_door.name=Freezer Door
 
+item.spawn_egg.entity.fr:freddy_fazbear_statue.name=§©§-Freddy Fazbear Statue
+item.spawn_egg.entity.fr:bonnie_statue.name=§©§-Bonnie Statue
+item.spawn_egg.entity.fr:chica_statue.name=§©§-Chica Statue
+item.spawn_egg.entity.fr:foxy_statue.name=§©§-Foxy Statue
+item.spawn_egg.entity.fr:sparky_statue.name=§©§-Sparky Statue
+
 tile.fr:backstage_door_block.name=Backstage Door Block
 tile.fr:blank_door_block.name=Blank Door Block
 tile.fr:blue_party_door_block.name=Blue Party Door Block
@@ -478,3 +484,47 @@ item.fr:entrance_door_block=Entrance Door
 item.fr:purple_party_door_block=Purple Party Door
 item.fr:red_party_door_block=Red Party Door
 item.fr:freezer_door_block=Freezer Door
+
+## Missing Block Translations
+
+tile.fr:ceiling_light.name=Ceiling Light
+tile.fr:pizzeria_lamp.name=Pizzeria Lamp
+tile.fr:wall_tear_holes.name=Wall Tear Holes
+tile.fr:kitchen_counter_drawers.name=Kitchen Counter Drawers
+tile.fr:stage_spotlight.name=Stage Spotlight
+tile.fr:wall_clock.name=Wall Clock
+tile.fr:caution_of_animatronics_poster.name=Caution of Animatronics Poster
+tile.fr:fr_block.name=FR Block
+
+## Dev Plushies
+tile.fr:drixs_dev_plush.name=Drixs Dev Plush
+tile.fr:egor_dev_plush.name=Egor Dev Plush
+tile.fr:electro_dev_plush.name=Electro Dev Plush
+tile.fr:forb_dev_plush.name=Forb Dev Plush
+tile.fr:fox_dev_plush.name=Fox Dev Plush
+tile.fr:gui_dev_plush.name=Gui Dev Plush
+tile.fr:hyrxs_dev_plush.name=Hyrxs Dev Plush
+tile.fr:kris_dev_plush.name=Kris Dev Plush
+tile.fr:mansam_plush.name=Mansam Plush
+tile.fr:polar_dev_plush.name=Polar Dev Plush
+tile.fr:sgt_dev_plush.name=Sgt Dev Plush
+
+## Carpets (FNaF Movie)
+tile.fr:carpet_blue.name=Carpet Blue
+tile.fr:carpet_dark_blue.name=Carpet Dark Blue
+tile.fr:carpet_dark_blue_with_confetti.name=Carpet Dark Blue With Confetti
+tile.fr:carpet_deep_wine.name=Carpet Deep Wine
+tile.fr:carpet_with_confetti.name=Carpet With Confetti
+tile.fr:shit_stain_yellow_n_moldy_blue_pizzeria_floor.name=Stained Yellow and Moldy Blue Pizzeria Floor
+
+## Walls (FNaF Movie)
+tile.fr:wall_brown_black_bottom.name=Wall Brown Black Bottom
+tile.fr:wall_brown_black_top.name=Wall Brown Black Top
+tile.fr:wall_brown_middle.name=Wall Brown Middle
+tile.fr:wall_brown_pattern.name=Wall Brown Pattern
+tile.fr:wall_dbd_pattern.name=Wall DBD Pattern
+tile.fr:wall_purple_dbd_big_pattern.name=Wall Purple DBD Big Pattern
+tile.fr:pizzeria_bricks_bottom_purple_top.name=Pizzeria Bricks Bottom Purple Top
+
+## Fnaf1 Wall Top Tiles Thin (missing)
+tile.fr:fnaf1_wall_top_tiles_thin.name=Fnaf1 Wall Top Tiles Thin

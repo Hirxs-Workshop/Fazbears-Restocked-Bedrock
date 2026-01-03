@@ -14,9 +14,41 @@ import { world, system, BlockPermutation, Direction, EquipmentSlot, GameMode } f
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
 import { dynamicToast, dynamicToastEvent, cleanupLampVfxEntitiesOnReload, getLinePoints, turnOffLight, lampVfxEntities } from "./utils.js";
 import { LIGHT_TYPES, SWITCH_TYPES, GENERATOR_TYPES, LIGHT_ALIASES, SWITCH_ALIASES, GENERATOR_ALIASES, LIGHT_ICONS, SWITCH_ICONS, GENERATOR_ICONS, CONNECTIONS_KEY, GENERATORS_KEY, MAX_ENERGY, DEFAULT_CONSUMPTION_RATE, CONSUMPTION_MULTIPLIER, NEAR_DISTANCE, getAllLightTypes, getAllSwitchTypes, isLightType, isSwitchType, getBlockAlias, getBlockIcon } from "./connection_types.js";
+import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType, registerCleanupHandler } from "./selection_manager.js";
 import './door_buttons.js'
 
 let selections = {};
+
+
+
+registerCleanupHandler(SelectionType.SWITCH, (playerId, data) => {
+  if (selections[playerId]) {
+    delete selections[playerId];
+  }
+});
+
+registerCleanupHandler(SelectionType.GENERATOR, (playerId, data) => {
+  if (selections[playerId]) {
+    delete selections[playerId];
+  }
+});
+
+
+export function clearSwitchSelection(playerId) {
+  if (selections[playerId]) {
+    try {
+      const oldPos = selections[playerId].pos;
+      const oldDim = world.getDimension(oldPos.dimensionId);
+      oldDim.runCommand(`execute at @e[type=fr:selection] positioned ${oldPos.x} ${oldPos.y} ${oldPos.z} run event entity @e[r=1] destroy`);
+    } catch {}
+    delete selections[playerId];
+  }
+}
+
+
+export function hasSwitchSelection(playerId) {
+  return !!selections[playerId];
+}
 
 cleanupLampVfxEntitiesOnReload();
 
@@ -43,6 +75,123 @@ function setConnections(connections) {
     world.setDynamicProperty(CONNECTIONS_KEY, JSON.stringify(connections));
   } catch {
     __memConnectionsES = connections;
+  }
+}
+
+
+export function isLightConnectedToSwitch(lightPos, dimensionId) {
+  const connections = getConnections();
+  return connections.some(conn =>
+    conn.light.x === lightPos.x &&
+    conn.light.y === lightPos.y &&
+    conn.light.z === lightPos.z &&
+    conn.light.dimensionId === dimensionId
+  );
+}
+
+
+function isLightConnectedToDoorButton(lightPos, dimensionId) {
+  try {
+    const json = world.getDynamicProperty("connections");
+    const doorButtonConnections = json ? JSON.parse(json) : [];
+    return doorButtonConnections.some(conn => {
+      const lightData = conn.lightBlock || conn.officeLightBlock;
+      return lightData &&
+        lightData.x === lightPos.x &&
+        lightData.y === lightPos.y &&
+        lightData.z === lightPos.z &&
+        lightData.dimensionId === dimensionId;
+    });
+  } catch {
+    return false;
+  }
+}
+
+
+export { getConnections as getSwitchConnections };
+
+function cleanupOrphanedConnections() {
+  let connections = getConnections();
+  let changed = false;
+  connections = connections.filter(conn => {
+    try {
+      const dimension = world.getDimension(conn.switch.dimensionId);
+      const switchPos = { x: conn.switch.x, y: conn.switch.y, z: conn.switch.z };
+      const lightPos = { x: conn.light.x, y: conn.light.y, z: conn.light.z };
+      
+
+      let switchBlock, lightBlock;
+      try {
+        switchBlock = dimension.getBlock(switchPos);
+      } catch {
+
+        return true;
+      }
+      try {
+        lightBlock = world.getDimension(conn.light.dimensionId).getBlock(lightPos);
+      } catch {
+
+        return true;
+      }
+      
+
+      if (!switchBlock || !lightBlock) {
+        return true;
+      }
+      
+
+      const switchValid = isSwitchType(switchBlock.typeId) || GENERATOR_TYPES.has(switchBlock.typeId);
+      const lightValid = isLightType(lightBlock.typeId);
+      
+      if (!switchValid || !lightValid) {
+        changed = true;
+        return false;
+      }
+      return true;
+    } catch {
+
+      return true;
+    }
+  });
+  if (changed) {
+    setConnections(connections);
+  }
+}
+
+function cleanupOrphanedGenerators() {
+  let generators = getGenerators();
+  let changed = false;
+  generators = generators.filter(gen => {
+    try {
+      const dimension = world.getDimension(gen.pos.dimensionId);
+      const pos = { x: gen.pos.x, y: gen.pos.y, z: gen.pos.z };
+      
+      let block;
+      try {
+        block = dimension.getBlock(pos);
+      } catch {
+
+        return true;
+      }
+      
+
+      if (!block) {
+        return true;
+      }
+      
+
+      if (!GENERATOR_TYPES.has(block.typeId)) {
+        changed = true;
+        return false;
+      }
+      return true;
+    } catch {
+
+      return true;
+    }
+  });
+  if (changed) {
+    setGenerators(generators);
   }
 }
 function getGenerators() {
@@ -450,7 +599,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
   };
   const item = event.itemStack;
   
-  if (item && item.typeId === "fr:wrench") {
+  if (item && (item.typeId === "fr:faz-diver_security")) {
     const category = (function getBlockCategory(block) {
       if (isLightType(block.typeId)) return "light";
       if (isSwitchType(block.typeId)) return "switch";
@@ -464,6 +613,11 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
         oldDim.runCommand(`execute at @e[type=fr:selection] positioned ${oldPos.x} ${oldPos.y} ${oldPos.z} run event entity @e[r=1] destroy`);
       }
       selections[player.id] = { pos: blockPos, category: category };
+      
+
+      const selectionType = category === "switch" ? SelectionType.SWITCH : SelectionType.GENERATOR;
+      setSelection(player.id, selectionType, { pos: blockPos, category: category });
+      
       if (category === "generator") {
         let generators = getGenerators();
         let gen = generators.find(g =>
@@ -501,6 +655,20 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
       return;
     }
     if (category === "light") {
+
+      const currentSelection = getSelection(player.id);
+      if (currentSelection && (currentSelection.type === SelectionType.DOOR_BUTTON_LIGHT || currentSelection.type === SelectionType.DOOR_BUTTON_DOOR)) {
+
+        if (selections[player.id]) {
+          const oldPos = selections[player.id].pos;
+          const oldDim = world.getDimension(oldPos.dimensionId);
+          oldDim.runCommand(`execute at @e[type=fr:selection] positioned ${oldPos.x} ${oldPos.y} ${oldPos.z} run event entity @e[r=1] destroy`);
+          delete selections[player.id];
+        }
+
+        return;
+      }
+      
       if (selections[player.id] && (selections[player.id].category === "switch" || selections[player.id].category === "generator")) {
         const source = selections[player.id].pos;
         const dx = blockPos.x - source.x;
@@ -520,6 +688,12 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
         }
         if (distance > allowedRadius) {
           player.sendMessage(dynamicToast("§l§cERROR", `§cBlock outside ${allowedRadius} block radius`, "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+          return;
+        }
+        
+
+        if (isLightConnectedToDoorButton(blockPos, blockPos.dimensionId)) {
+          player.sendMessage(dynamicToast("§l§cERROR", "§cThis light is already connected to a door button", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
           return;
         }
     
@@ -568,7 +742,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
     return;
   }
   if (isLightType(block.typeId)) {
-    if (item && item.typeId === "fr:wrench") return;
+    if (item && (item.typeId === "fr:faz-diver_security")) return;
     showTestLightMenu(player, blockPos);
     return;
   }
@@ -667,6 +841,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       const selPos = selections[player.id].pos;
       if (selPos.x === blockPos.x && selPos.y === blockPos.y && selPos.z === blockPos.z && selPos.dimensionId === blockPos.dimensionId) {
         delete selections[player.id];
+        clearSelection(player.id);
       }
     }
   }
@@ -705,15 +880,22 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       const selPos = selections[player.id].pos;
       if (selPos.x === blockPos.x && selPos.y === blockPos.y && selPos.z === blockPos.z && selPos.dimensionId === blockPos.dimensionId) {
         delete selections[player.id];
+        clearSelection(player.id);
       }
     }
   }
 });
 
 system.runInterval(() => {
+  cleanupOrphanedConnections();
+  cleanupOrphanedGenerators();
+}, 600);
+
+system.runInterval(() => {
   const connections = getConnections();
   if (connections.length === 0) return;
   for (const conn of connections) {
+    try {
     const switchBlock = world.getDimension(conn.switch.dimensionId).getBlock({
       x: conn.switch.x,
       y: conn.switch.y,
@@ -724,7 +906,7 @@ system.runInterval(() => {
       y: conn.light.y,
       z: conn.light.z,
     });
-    if (switchBlock && lightBlock) {
+    if (switchBlock && lightBlock && isLightType(lightBlock.typeId)) {
       let isActive = false;
       if (isSwitchType(switchBlock.typeId)) {
         isActive = switchBlock.permutation.getState("fr:switch_type") === true;
@@ -734,13 +916,20 @@ system.runInterval(() => {
           isActive = true;
         }
       }
-      const currentLightState = lightBlock.permutation.getState("fr:lit") === true;
+      let currentLightState = false;
+      try {
+        currentLightState = lightBlock.permutation.getState("fr:lit") === true;
+      } catch {}
       if (isActive && !currentLightState) {
-        const newPerm = lightBlock.permutation.withState("fr:lit", true);
-        lightBlock.setPermutation(newPerm);
+        try {
+          const newPerm = lightBlock.permutation.withState("fr:lit", true);
+          lightBlock.setPermutation(newPerm);
+        } catch {}
       } else if (!isActive && currentLightState) {
-        const newPerm = lightBlock.permutation.withState("fr:lit", false);
-        lightBlock.setPermutation(newPerm);
+        try {
+          const newPerm = lightBlock.permutation.withState("fr:lit", false);
+          lightBlock.setPermutation(newPerm);
+        } catch {}
       }
       const key = `${conn.light.dimensionId}_${conn.light.x}_${conn.light.y}_${conn.light.z}`;
       if (isActive) {
@@ -758,8 +947,28 @@ system.runInterval(() => {
             location: location,
             maxDistance: 0.5
           });
+          const existingPizzeriaLampEntities = dimension.getEntities({
+            type: "fr:pizzeria_lamp_vfx",
+            location: location,
+            maxDistance: 0.5
+          });
+          const existingCeilingLightEntities = dimension.getEntities({
+            type: "fr:ceiling_light_vfx",
+            location: location,
+            maxDistance: 0.5
+          });
+          const existingHallwayLampEntities = dimension.getEntities({
+            type: "fr:hallway_lamp_vfx",
+            location: location,
+            maxDistance: 0.5
+          });
+          const existingPirateCoveLightEntities = dimension.getEntities({
+            type: "fr:pirate_cove_light_entity",
+            location: { x: conn.light.x + 0.5, y: conn.light.y + 0.4, z: conn.light.z + 0.5 },
+            maxDistance: 1.0
+          });
           
-          const hasExistingVfx = existingSpotlightEntities.length > 0 || existingLampEntities.length > 0;
+          const hasExistingVfx = existingSpotlightEntities.length > 0 || existingLampEntities.length > 0 || existingPizzeriaLampEntities.length > 0 || existingCeilingLightEntities.length > 0 || existingHallwayLampEntities.length > 0 || existingPirateCoveLightEntities.length > 0;
           
           if (!hasExistingVfx) {
             if (lightBlock.typeId === "fr:stage_spotlight") {
@@ -767,16 +976,87 @@ system.runInterval(() => {
               const rotationState = lightBlock.permutation.getState("fr:rotation");
               const angle = angles[rotationState];
               dimension.runCommand(`summon fr:stage_spotlight_vfx ${conn.light.x + 0.5} ${conn.light.y} ${conn.light.z + 0.5} ${angle} 0`);
-              lampVfxEntities[key] = { isStageSpotlight: true };
+              lampVfxEntities[key] = { vfxType: "stage_spotlight" };
+            } else if (lightBlock.typeId === "fr:pizzeria_lamp") {
+              const entity = dimension.spawnEntity("fr:pizzeria_lamp_vfx", location);
+              lampVfxEntities[key] = { vfxType: "pizzeria_lamp", entity };
+            } else if (lightBlock.typeId === "fr:ceiling_light") {
+              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction");
+              const isNorthSouth = cardinal === "north" || cardinal === "south";
+              const rotation = isNorthSouth ? 0 : 90;
+              const entity = dimension.spawnEntity("fr:ceiling_light_vfx", location);
+              entity.setRotation({ x: 0, y: rotation });
+              lampVfxEntities[key] = { vfxType: "ceiling_light", entity };
+            } else if (lightBlock.typeId === "fr:office_light") {
+              const entity = dimension.spawnEntity("fr:hallway_lamp_vfx", location);
+              lampVfxEntities[key] = { vfxType: "hallway_lamp", entity };
+            } else if (lightBlock.typeId === "fr:pirate_cove_light") {
+
+              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction") || "south";
+              let offsetX = 0, offsetZ = 0;
+              let yRot = 0;
+
+              switch (cardinal) {
+                case 'north': offsetZ = -0.3; yRot = 180; break;
+                case 'south': offsetZ = 0.3; yRot = 0; break;
+                case 'east': offsetX = 0.3; yRot = 90; break;
+                case 'west': offsetX = -0.3; yRot = -90; break;
+              }
+              const spawnPos = { x: conn.light.x + 0.5 + offsetX, y: conn.light.y + 0.4, z: conn.light.z + 0.5 + offsetZ };
+              const entity = dimension.spawnEntity("fr:pirate_cove_light_entity", spawnPos);
+              if (entity) {
+                entity.setRotation({ x: 0, y: yRot });
+              }
+              lampVfxEntities[key] = { vfxType: "pirate_cove_light", entity };
             } else {
               const entity = dimension.spawnEntity("fr:office_lamp_vfx", location);
-              lampVfxEntities[key] = entity;
+              lampVfxEntities[key] = { vfxType: "office_lamp", entity };
             }
           } else {
+
+            if (existingSpotlightEntities.length > 1) {
+              for (let i = 1; i < existingSpotlightEntities.length; i++) {
+                try { existingSpotlightEntities[i].triggerEvent("destroy"); } catch {}
+              }
+            }
+            if (existingPizzeriaLampEntities.length > 1) {
+              for (let i = 1; i < existingPizzeriaLampEntities.length; i++) {
+                try { existingPizzeriaLampEntities[i].triggerEvent("destroy"); } catch {}
+              }
+            }
+            if (existingCeilingLightEntities.length > 1) {
+              for (let i = 1; i < existingCeilingLightEntities.length; i++) {
+                try { existingCeilingLightEntities[i].triggerEvent("destroy"); } catch {}
+              }
+            }
+            if (existingHallwayLampEntities.length > 1) {
+              for (let i = 1; i < existingHallwayLampEntities.length; i++) {
+                try { existingHallwayLampEntities[i].triggerEvent("destroy"); } catch {}
+              }
+            }
+            if (existingPirateCoveLightEntities.length > 1) {
+              for (let i = 1; i < existingPirateCoveLightEntities.length; i++) {
+                try { existingPirateCoveLightEntities[i].triggerEvent("destroy"); } catch {}
+              }
+            }
+            if (existingLampEntities.length > 1) {
+              for (let i = 1; i < existingLampEntities.length; i++) {
+                try { existingLampEntities[i].triggerEvent("destroy"); } catch {}
+              }
+            }
+            
             if (existingSpotlightEntities.length > 0) {
-              lampVfxEntities[key] = { isStageSpotlight: true };
+              lampVfxEntities[key] = { vfxType: "stage_spotlight" };
+            } else if (existingPizzeriaLampEntities.length > 0) {
+              lampVfxEntities[key] = { vfxType: "pizzeria_lamp", entity: existingPizzeriaLampEntities[0] };
+            } else if (existingCeilingLightEntities.length > 0) {
+              lampVfxEntities[key] = { vfxType: "ceiling_light", entity: existingCeilingLightEntities[0] };
+            } else if (existingHallwayLampEntities.length > 0) {
+              lampVfxEntities[key] = { vfxType: "hallway_lamp", entity: existingHallwayLampEntities[0] };
+            } else if (existingPirateCoveLightEntities.length > 0) {
+              lampVfxEntities[key] = { vfxType: "pirate_cove_light", entity: existingPirateCoveLightEntities[0] };
             } else if (existingLampEntities.length > 0) {
-              lampVfxEntities[key] = existingLampEntities[0];
+              lampVfxEntities[key] = { vfxType: "office_lamp", entity: existingLampEntities[0] };
             }
           }
         }
@@ -784,9 +1064,19 @@ system.runInterval(() => {
         if (lampVfxEntities[key]) {
           const dimension = world.getDimension(conn.light.dimensionId);
           const location = { x: conn.light.x + 0.5, y: conn.light.y + 0.5, z: conn.light.z + 0.5 };
+          const vfxType = lampVfxEntities[key].vfxType || (lampVfxEntities[key].isStageSpotlight ? "stage_spotlight" : "office_lamp");
           
-          if (lampVfxEntities[key].isStageSpotlight) {
+          if (vfxType === "stage_spotlight") {
             dimension.runCommand(`execute at @e[type=fr:stage_spotlight_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "pizzeria_lamp") {
+            dimension.runCommand(`execute at @e[type=fr:pizzeria_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "ceiling_light") {
+            dimension.runCommand(`execute at @e[type=fr:ceiling_light_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "hallway_lamp") {
+            dimension.runCommand(`execute at @e[type=fr:hallway_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "pirate_cove_light") {
+            const pirateLocation = { x: conn.light.x + 0.5, y: conn.light.y + 0.4, z: conn.light.z + 0.5 };
+            dimension.runCommand(`execute at @e[type=fr:pirate_cove_light_entity] positioned ${pirateLocation.x} ${pirateLocation.y} ${pirateLocation.z} run event entity @e[r=1.5] destroy`);
           } else {
             dimension.runCommand(`execute at @e[type=fr:office_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
           }
@@ -794,6 +1084,7 @@ system.runInterval(() => {
         }
       }
     }
+    } catch {}
   }
 }, 20);
 
@@ -808,7 +1099,7 @@ system.runInterval(() => {
     if (typeof slot === "number" && slot >= 0 && slot < inventory.size) {
       item = inventory.getItem(slot);
     }
-    if (item && item.typeId === "fr:wrench") {
+    if (item && (item.typeId === "fr:faz-diver_security")) {
       const connections = getConnections();
       for (const conn of connections) {
         if (
@@ -854,9 +1145,11 @@ system.runInterval(() => {
         y: gen.pos.y,
         z: gen.pos.z,
       });
-      if (block) {
-        const newPerm = block.permutation.withState("fr:energy_level", gen.energy);
-        block.setPermutation(newPerm);
+      if (block && GENERATOR_TYPES.has(block.typeId)) {
+        try {
+          const newPerm = block.permutation.withState("fr:energy_level", gen.energy);
+          block.setPermutation(newPerm);
+        } catch {}
       }
     }
   });
@@ -905,7 +1198,7 @@ function updateLightTestActionBarForPlayer(player) {
   if (typeof slot === "number" && slot >= 0 && slot < inventory.size) {
     item = inventory.getItem(slot);
   }
-  if (!item || item.typeId !== "fr:wrench") return;
+  if (!item || (item.typeId !== "fr:faz-diver_security")) return;
   let message = "";
   const viewDistance = 7.5;
   const blockData = player.getBlockFromViewDirection({ maxDistance: viewDistance });

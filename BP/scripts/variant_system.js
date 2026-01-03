@@ -57,6 +57,37 @@ function getVariantsStateRange(block) {
   return null;
 }
 
+const CHAINED_VARIANT_BLOCKS = new Set();
+
+export function registerChainedVariantBlock(blockId) {
+  CHAINED_VARIANT_BLOCKS.add(blockId);
+}
+
+function applyChainedVariant(block, variantIndex) {
+  const blockId = block.typeId;
+  if (!CHAINED_VARIANT_BLOCKS.has(blockId)) return;
+  
+  const states = block.permutation.getAllStates();
+  if (!states.hasOwnProperty("fr:block_bit")) return;
+  
+  const dim = block.dimension;
+  const loc = block.location;
+  
+  for (let yOffset = -2; yOffset <= 2; yOffset++) {
+    if (yOffset === 0) continue;
+    try {
+      const neighborBlock = dim.getBlock({ x: loc.x, y: loc.y + yOffset, z: loc.z });
+      if (neighborBlock && neighborBlock.typeId === blockId) {
+        const neighborStates = neighborBlock.permutation.getAllStates();
+        if (neighborStates.hasOwnProperty("fr:variants") && neighborStates.hasOwnProperty("fr:block_bit")) {
+          const newPerm = neighborBlock.permutation.withState("fr:variants", variantIndex);
+          neighborBlock.setPermutation(newPerm);
+        }
+      }
+    } catch {}
+  }
+}
+
 async function showVariantMenu(player, block) {
   try {
     const blockId = block.typeId;
@@ -74,7 +105,6 @@ async function showVariantMenu(player, block) {
     const blockName = blockId.split(":")[1] || blockId;
     form.title(`§V§A§R§I§A§N§T${blockName} variants`);
     
-    const numVariants = max - min + 1;
     const buttons = [];
     
     for (let i = min; i <= max; i++) {
@@ -109,6 +139,7 @@ async function showVariantMenu(player, block) {
     try {
       const newPerm = block.permutation.withState("fr:variants", selectedButton.index);
       block.setPermutation(newPerm);
+      applyChainedVariant(block, selectedButton.index);
       // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
       player.sendMessage(`§aVariant changed to: §7${selectedButton.label}`);
       player.playSound("random.orb");
@@ -126,7 +157,7 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
   
   if (!player || !block) return;
   
-  if (!itemStack || itemStack.typeId !== "fr:wrench") return;
+  if (!itemStack || itemStack.typeId !== "fr:faz-diver_employee") return;
   
   const variantRange = getVariantsStateRange(block);
   if (!variantRange) return;
@@ -331,7 +362,7 @@ registerBlockVariants("fr:backstage_shelf_bonnie_head", [
 ]);
 
 registerBlockVariants("fr:wall_wire", [
-  { 
+  { // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
     label: "Pattern 1", 
     icon: "textures/fr_ui/icons/wall_wires_1", 
     color: "gray" 
@@ -356,17 +387,17 @@ registerBlockVariants("fr:wall_wire", [
 registerBlockVariants("fr:trash", [
   { 
     label: "Pattern 1", 
-    icon: "textures/fr_ui/icons/trash_1", 
+    icon: "textures/fr_ui/icons/trash1", 
     color: "gray" 
   },
   { 
     label: "Pattern 2", 
-    icon: "textures/fr_ui/icons/trash_2", 
+    icon: "textures/fr_ui/icons/trash2", 
     color: "gray" 
   },
   { 
     label: "Pattern 3", 
-    icon: "textures/fr_ui/icons/trash_3", 
+    icon: "textures/fr_ui/icons/trash3", 
     color: "gray" 
   }
 ]);
@@ -417,7 +448,7 @@ registerBlockVariants("fr:office_window", [
     icon: "textures/fr_ui/icons/office_wall_window_bottom_right", 
     color: "black" 
   },
-  { 
+  { // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
     label: "Office Wall Window Upper Right", 
     icon: "textures/fr_ui/icons/office_wall_window_upper_right", 
     color: "black" 
@@ -443,4 +474,143 @@ registerBlockVariants("fr:office_window", [
     color: "black" 
   }
 ]);
+
+registerBlockVariants("fr:wall_tear_holes", [
+  { 
+    label: "Wall Tear Hole 1", 
+    icon: "textures/blocks/reworked/cracked_wall/wall_tear_hole_1", 
+    color: "gray" 
+  },
+  { 
+    label: "Wall Tear Hole 2", 
+    icon: "textures/blocks/reworked/cracked_wall/wall_tear_hole_2", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear 1", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_1", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear 2", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_2", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Bottom", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_bottom", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Bottom Left Corner", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_bottom_left_corner", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Bottom Right Corner", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_bottom_right_corner", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Left", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_left", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Left Big", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_left_big", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Right", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_right", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Right Big", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_right_big", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Top", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_top", 
+    color: "gray" 
+  },// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+  { 
+    label: "Brick Tear Top Left Corner", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_top_left_corner", 
+    color: "gray" 
+  },
+  { 
+    label: "Brick Tear Top Right Corner", 
+    icon: "textures/blocks/reworked/cracked_wall/brick_tear_top_right_corner", 
+    color: "gray" 
+  }
+]);
+
+registerBlockVariants("fr:kitchen_counter_drawers", [
+  { 
+    label: "Counter (No Drawers)", 
+    icon: "textures/fr_ui/icons/kitchen_counter_drawers_1", 
+    color: "gray" 
+  },
+  { 
+    label: "Drawer Empty", 
+    icon: "textures/fr_ui/icons/kitchen_counter_drawers_2", 
+    color: "gray" 
+  },
+  { 
+    label: "Drawer With Items 1", 
+    icon: "textures/fr_ui/icons/kitchen_counter_drawers_3", 
+    color: "gray" 
+  },
+  { 
+    label: "Drawer With Items 2", 
+    icon: "textures/fr_ui/icons/kitchen_counter_drawers_4", 
+    color: "gray" 
+  }
+]);
+
+registerBlockVariants("fr:stone_oven", [
+  { 
+    label: "Left Position", 
+    icon: "textures/blocks/reworked/kitchen/stone_oven", 
+    color: "gray" 
+  },
+  { 
+    label: "Center Position", 
+    icon: "textures/blocks/reworked/kitchen/stone_oven", 
+    color: "gray" 
+  }
+]);
+
+registerBlockVariants("fr:fridge", [
+  { 
+    label: "Fridge 1", 
+    icon: "textures/blocks/reworked/kitchen/fridge", 
+    color: "gray" 
+  },
+  { 
+    label: "Fridge 2", 
+    icon: "textures/blocks/reworked/kitchen/fridge", 
+    color: "gray" 
+  }
+]);
+
+registerBlockVariants("fr:shelf_supply_closet", [
+  { 
+    label: "Shelf 1", 
+    icon: "textures/blocks/reworked/kitchen/shelf_supply_closet", 
+    color: "gray" 
+  },
+  { 
+    label: "Shelf 2", 
+    icon: "textures/blocks/reworked/kitchen/shelf_supply_closet", 
+    color: "gray" 
+  }
+]);
+
+registerChainedVariantBlock("fr:stone_oven");
+registerChainedVariantBlock("fr:fridge");
+registerChainedVariantBlock("fr:shelf_supply_closet");
 // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ

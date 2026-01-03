@@ -402,7 +402,6 @@
 				},
 				"queue_command": {
 					"command": [
-						"say (DEBUG) Foxy start attack executed",
 						"effect @p slowness 5 5 true",
 						"effect @p darkness 5 5 true",
 						"ride @p start_riding @s teleport_ride",
@@ -437,7 +436,6 @@
 				},
 				"queue_command": {
 					"command": [
-						"say (DEBUG) Foxy end attack executed",
 						"hud @p reset all",
 						"execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip_final ~ ~0.6 ~",
 						"kill @p[tag=foxy_hit]",
@@ -449,7 +447,6 @@
 			"foxy_reset_scare": {
 				"queue_command": {
 					"command": [
-						"say (DEBUG) Foxy scare cooldown finished",
 						"tag @s remove played_scare"
 					]
 				},

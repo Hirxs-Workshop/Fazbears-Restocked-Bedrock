@@ -1,0 +1,231 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:wall_tear_holes",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:variants": {
+					"values": {
+						"min": 0,
+						"max": 13
+					}
+				}
+			}
+		},
+		"components": {
+			"minecraft:collision_box": false,
+			"minecraft:selection_box": {
+				"origin": [-8, 0, 6],
+				"size": [16, 16, 2]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.wall_tear_holes"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "wall_tear_hole_1",
+					"render_method": "alpha_test_single_sided"
+				}
+			},
+			"fr:single_interactive": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "wall_tear_hole_1",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "wall_tear_hole_2",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_1",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_2",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_bottom",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 5",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_bottom_left_corner",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 6",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_bottom_right_corner",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 7",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_left",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 8",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_left_big",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 9",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_right",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 10",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_right_big",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 11",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_top",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 12",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_top_left_corner",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 13",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "brick_tear_top_right_corner",
+							"render_method": "alpha_test_single_sided"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 180, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, -90, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 0, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 90, 0]
+					}
+				}
+			}
+		]
+	}
+}

@@ -143,6 +143,28 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
         const dim = block.dimension;
         const loc = block.location;
         const air = BlockPermutation.resolve('minecraft:air');
+        
+
+        let baseLoc = loc;
+        if (id === 'fr:gray_locker_upper') {
+            baseLoc = { x: loc.x, y: loc.y - 1, z: loc.z };
+        }
+        
+
+        for (const [pid, data] of lockerHideState) {
+            if (data.baseLoc.x === baseLoc.x && data.baseLoc.y === baseLoc.y && data.baseLoc.z === baseLoc.z) {
+                const hiddenPlayer = world.getAllPlayers().find(p => p.id === pid);
+                if (hiddenPlayer) {
+                    try { hiddenPlayer.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch { }
+                    try { hiddenPlayer.runCommand('hud @s reset'); } catch { }
+                    try { hiddenPlayer.runCommand('effect @s clear'); } catch { }
+                    try { hiddenPlayer.runCommand('title @s title bar:0'); } catch { }
+                    try { uiManager.closeAllForms(hiddenPlayer); } catch { }
+                }
+                lockerHideState.delete(pid);
+            }
+        }
+        
         if (id === 'fr:gray_locker') {
             system.run(() => {
                 try {
@@ -243,6 +265,24 @@ function showLockerLockedMenu(player, base, pid) {
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent("fr:single_interactive", {
+        beforeOnPlayerPlace(event) {
+            const { player } = event;
+            if (!player) return;
+
+            const playerYRotation = player.getRotation().y;
+            const blockTypeId = event.permutationToPlace?.type?.id;
+
+            let permutation = event.permutationToPlace;
+
+            if (blockTypeId === "fr:ceiling_stars" || blockTypeId === "fr:ceiling_wires") {
+                const normalizedYaw = ((playerYRotation % 360) + 360) % 360;
+                const octant = Math.round(normalizedYaw / 45) % 8;
+                const typeState = (octant % 2 === 0) ? "plus" : "cross";
+                try { permutation = permutation.withState("fr:type", typeState); } catch {}
+            }
+
+            event.permutationToPlace = permutation;
+        },
         onPlayerInteract: e => {
             const { player } = e;
         }
@@ -360,6 +400,39 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const newPerm = block.permutation.withState('fr:switch_type', !current);
                 block.setPermutation(newPerm);
             } catch { }
+        }
+    });
+});
+
+system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
+    blockComponentRegistry.registerCustomComponent("fr:poster_position", {
+        beforeOnPlayerPlace: e => {
+            const { player } = e;
+            if (!player) return;
+            try {
+                const hit = player.getBlockFromViewDirection?.({ maxDistance: 6 });
+                if (!hit) return;
+                
+                const fl = hit.faceLocation;
+                if (!fl) return;
+                
+
+                const yPos = fl.y % 1;
+                
+
+
+                let position = 1;
+                if (yPos >= 0.66) {
+                    position = 0;
+                } else if (yPos <= 0.33) {
+                    position = 2;
+                }
+                
+                console.warn(`[Poster] Placing at Y=${yPos.toFixed(2)}, position=${position}`);
+                e.permutationToPlace = e.permutationToPlace.withState('fr:position', position);
+            } catch (err) { 
+                console.warn(`[Poster] Error: ${err}`);
+            }
         }
     });
 });
@@ -985,6 +1058,8 @@ const PLUSH_ENTITY_BY_BLOCK = {
     'fr:chica_hwplush': 'fr:chica_hwplush_entity',
     'fr:bonnie_plushhw': 'fr:bonnie_plushhw_entity',
     'fr:golden_freddy_plush': 'fr:golden_freddy_plush_entity',
+    'fr:endo_01_plush': 'fr:endo_01_plush_entity',
+    'fr:bizabizow_foxy_plush': 'fr:bizabizow_foxy_plush_entity',
 };
 
 function getPlushKey(block) {
@@ -1173,6 +1248,8 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent('fr:chica_hwplush_interact', makePlushComponent('fr:chica_hwplush_entity'));
     blockComponentRegistry.registerCustomComponent('fr:bonnie_plushhw_interact', makePlushComponent('fr:bonnie_plushhw_entity'));
     blockComponentRegistry.registerCustomComponent('fr:golden_freddy_plush_interact', makePlushComponent('fr:golden_freddy_plush_entity'));
+    blockComponentRegistry.registerCustomComponent('fr:endo_01_plush_interact', makePlushComponent('fr:endo_01_plush_entity'));
+    blockComponentRegistry.registerCustomComponent('fr:bizabizow_foxy_plush_interact', makePlushComponent('fr:bizabizow_foxy_plush_entity'));
 });
 
 world.afterEvents.playerBreakBlock.subscribe((e) => {
@@ -1332,17 +1409,17 @@ const MODE_INFO = {
     },
     'fr:faz-diver_security': {
         title: '§l§pMODE: SECURITY',
-        message: '§7Manages the connection of\nsecurity cameras and doors\n(including office lights)',
+        message: '§7Manages the connection of\nsecurity cameras and doors\n\n- Including all pizzeria lights',
         icon: 'textures/fr_ui/faz-diver_security'
     },
     'fr:faz-diver_employee': {
         title: '§l§pMODE: EMPLOYEE',
-        message: '§7Not available!',
+        message: '§7Change the variants of the blocks\nby right clicking with this mode',
         icon: 'textures/fr_ui/faz-diver_employee'
     },
     'fr:faz-diver_repairman': {
         title: '§l§pMODE: REPAIRMAN',
-        message: '§7Not available!',
+        message: '§7Edit the statues by adding poses\nvariations and rotate them',
         icon: 'textures/fr_ui/faz-diver_repairman'
     },
     'fr:faz-diver_manager': {
@@ -1624,3 +1701,252 @@ system.beforeEvents.startup.subscribe(({ itemComponentRegistry }) => {
 });
 
 initStatueEditorSystem();
+
+const openDrawerTimers = new Map();
+const drawerHideState = new Map();
+let drawerTickInterval = null;
+
+function getDrawerFacingVector(block) {
+    try {
+        const f = block.permutation.getState('minecraft:cardinal_direction');
+        if (f === 'north') return { x: 0, z: -1, yaw: 180 };
+        if (f === 'south') return { x: 0, z: 1, yaw: 0 };
+        if (f === 'east') return { x: 1, z: 0, yaw: 270 };
+        if (f === 'west') return { x: -1, z: 0, yaw: 90 };
+    } catch {}
+    return { x: 0, z: 1, yaw: 0 };
+}
+
+function computeDrawerHidePositions(block) {
+    const loc = block.location;
+    const facing = getDrawerFacingVector(block);
+    const insidePos = {
+        x: loc.x + 0.5,
+        y: loc.y + -0.8,
+        z: loc.z + 0.5
+    };
+
+    const exitPos = {
+        x: loc.x + 0.5 - facing.x * 1.5,
+        y: loc.y,
+        z: loc.z + 0.5 - facing.z * 1.5
+    };
+    return { insidePos, exitPos, yaw: (facing.yaw + 180) % 360 };
+}
+
+function showDrawerHideMenu(player, block, pid) {
+    try {
+        const data = drawerHideState.get(pid);
+        if (!data) return;
+
+        const form = new ActionFormData();
+        form.title('§H§I§D§E§N');
+        form.body('');
+        form.button(' ');
+        form.show(player).then((res) => {
+            try {
+                const data = drawerHideState.get(pid);
+                if (!data) return;
+
+                try { player.runCommand('hud @s reset'); } catch {}
+                try { player.runCommand('effect @s invisibility 0'); } catch {}
+                try { player.teleport(data.exitPos, { dimension: block.dimension, keepVelocity: false }); } catch {}
+
+                const currentBlock = block.dimension.getBlock(block.location);
+                if (currentBlock && currentBlock.typeId === "fr:kitchen_counter_drawers") {
+                    const newPerm = currentBlock.permutation.withState("fr:drawer_state", "open");
+                    currentBlock.setPermutation(newPerm);
+                    
+                    const blockKey = `${block.dimension.id}_${block.location.x}_${block.location.y}_${block.location.z}`;
+                    if (openDrawerTimers.has(blockKey)) {
+                        system.clearRun(openDrawerTimers.get(blockKey));
+                    }
+                    const timerId = system.runTimeout(() => {
+                        try {
+                            const blk = block.dimension.getBlock(block.location);
+                            if (blk && blk.typeId === "fr:kitchen_counter_drawers") {
+                                const st = blk.permutation.getState("fr:drawer_state");
+                                if (st === "open") {
+                                    const closedPerm = blk.permutation.withState("fr:drawer_state", "closed");
+                                    blk.setPermutation(closedPerm);
+                                }
+                            }
+                            openDrawerTimers.delete(blockKey);
+                        } catch {}
+                    }, 100);
+                    openDrawerTimers.set(blockKey, timerId);
+                }
+                drawerHideState.delete(pid);
+                if (data) data.uiState = 'exited';
+            } catch {}
+        });
+    } catch {}
+}
+
+function startDrawerTick() {
+    if (drawerTickInterval !== null) return;
+    drawerTickInterval = system.runInterval(() => {
+        if (drawerHideState.size === 0) {
+            if (drawerTickInterval !== null) {
+                system.clearRun(drawerTickInterval);
+                drawerTickInterval = null;
+            }
+            return;
+        }
+        for (const [pid, data] of drawerHideState) {
+            const player = world.getAllPlayers().find(p => p.id === pid);
+            if (!player) { drawerHideState.delete(pid); continue; }
+
+            let dim;
+            try { dim = player.dimension; } catch {}
+            if (!dim) { drawerHideState.delete(pid); continue; }
+
+            const block = dim.getBlock({ x: data.baseLoc.x, y: data.baseLoc.y, z: data.baseLoc.z });
+            if (!block || block.typeId !== 'fr:kitchen_counter_drawers') { 
+                try { player.runCommand('hud @s reset'); } catch {}
+                try { player.runCommand('effect @s invisibility 0'); } catch {}
+                drawerHideState.delete(pid); 
+                continue; 
+            }
+
+            try { player.teleport(data.insidePos, { dimension: dim, keepVelocity: false }); } catch {}
+
+            const sneaking = player.isSneaking;
+            if (sneaking && !data.lastSneak) {
+                try { player.runCommand('hud @s reset'); } catch {}
+                try { player.runCommand('effect @s invisibility 0'); } catch {}
+                try { player.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch {}
+                
+                const newPerm = block.permutation.withState("fr:drawer_state", "open");
+                block.setPermutation(newPerm);
+                data.uiState = 'exited';
+                drawerHideState.delete(pid);
+                
+                const blockKey = `${dim.id}_${block.location.x}_${block.location.y}_${block.location.z}`;
+                const timerId = system.runTimeout(() => {
+                    try {
+                        const currentBlock = dim.getBlock(block.location);
+                        if (currentBlock && currentBlock.typeId === "fr:kitchen_counter_drawers") {
+                            const currentState = currentBlock.permutation.getState("fr:drawer_state");
+                            if (currentState === "open") {
+                                const closedPerm = currentBlock.permutation.withState("fr:drawer_state", "closed");
+                                currentBlock.setPermutation(closedPerm);
+                            }
+                        }
+                        openDrawerTimers.delete(blockKey);
+                    } catch {}
+                }, 100);
+                openDrawerTimers.set(blockKey, timerId);
+                continue;
+            }
+            data.lastSneak = sneaking;
+        }
+    }, 1);
+}
+
+function ensureDrawerTick() {
+    if (drawerHideState.size > 0) startDrawerTick();
+}
+
+world.afterEvents.playerInteractWithBlock.subscribe((event) => {
+    const { player, block, itemStack } = event;
+    
+    if (!block) return;
+    
+    if (block.typeId === "fr:stone_oven" && itemStack && itemStack.typeId === "minecraft:flint_and_steel") {
+        system.run(() => {
+            try {
+                const currentLit = block.permutation.getState("fr:lit") === true;
+                const newLit = !currentLit;
+                const newPerm = block.permutation.withState("fr:lit", newLit);
+                block.setPermutation(newPerm);
+                
+                const dim = block.dimension;
+                const loc = block.location;
+                for (let yOffset = -2; yOffset <= 2; yOffset++) {
+                    if (yOffset === 0) continue;
+                    try {
+                        const neighborBlock = dim.getBlock({ x: loc.x, y: loc.y + yOffset, z: loc.z });
+                        if (neighborBlock && neighborBlock.typeId === "fr:stone_oven") {
+                            const neighborPerm = neighborBlock.permutation.withState("fr:lit", newLit);
+                            neighborBlock.setPermutation(neighborPerm);
+                        }
+                    } catch {}
+                }
+                
+                player.playSound(currentLit ? "extinguish.candle" : "fire.ignite");
+            } catch {}
+        });
+        return;
+    }
+    
+    if (block.typeId !== "fr:kitchen_counter_drawers") return;
+    if (itemStack && itemStack.typeId === "fr:wrench") return;
+    
+    const variant = block.permutation.getState("fr:variants");
+    const drawerState = block.permutation.getState("fr:drawer_state");
+    
+    if (variant === 0) return;
+    
+    const pid = player.id;
+    const blockKey = `${block.dimension.id}_${block.location.x}_${block.location.y}_${block.location.z}`;
+    
+    if ((variant === 2 || variant === 3) && player.isSneaking && drawerState === "closed") {
+        system.run(() => {
+            try {
+                const { insidePos, exitPos, yaw } = computeDrawerHidePositions(block);
+                
+                try { player.teleport(insidePos, { dimension: block.dimension, keepVelocity: false }); } catch {}
+                try { player.setRotation({ x: 0, y: yaw }); } catch {}
+                try { player.runCommand('hud @s hide all'); } catch {}
+                try { player.runCommand('effect @s invisibility 99999 0 true'); } catch {}
+                
+                const newPerm = block.permutation.withState("fr:drawer_state", "a_bit_open");
+                block.setPermutation(newPerm);
+                player.playSound("random.door_open");
+                
+                drawerHideState.set(pid, {
+                    baseLoc: { x: block.location.x, y: block.location.y, z: block.location.z, dim: block.dimension.id },
+                    insidePos,
+                    exitPos,
+                    lastSneak: true,
+                    uiState: 'normal'
+                });
+                ensureDrawerTick();
+                
+                system.run(() => showDrawerHideMenu(player, block, pid));
+            } catch {}
+        });
+        return;
+    }
+    
+    if (drawerState === "closed") {
+        system.run(() => {
+            try {
+                const newPerm = block.permutation.withState("fr:drawer_state", "open");
+                block.setPermutation(newPerm);
+                player.playSound("random.door_open");
+                
+                if (openDrawerTimers.has(blockKey)) {
+                    system.clearRun(openDrawerTimers.get(blockKey));
+                }
+                
+                const timerId = system.runTimeout(() => {
+                    try {
+                        const currentBlock = block.dimension.getBlock(block.location);
+                        if (currentBlock && currentBlock.typeId === "fr:kitchen_counter_drawers") {
+                            const currentState = currentBlock.permutation.getState("fr:drawer_state");
+                            if (currentState === "open") {
+                                const closedPerm = currentBlock.permutation.withState("fr:drawer_state", "closed");
+                                currentBlock.setPermutation(closedPerm);
+                            }
+                        }
+                        openDrawerTimers.delete(blockKey);
+                    } catch {}
+                }, 100);
+                
+                openDrawerTimers.set(blockKey, timerId);
+            } catch {}
+        });
+    }
+});

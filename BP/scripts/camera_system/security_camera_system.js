@@ -9,8 +9,8 @@ class SecurityCameraSystem {
     this.viewers = new Set();
     this.pendingExit = new Set();
     this.viewSessions = new Map();
-    this.PC_EXIT_RADIUS = 8;
-    this.PC_EXIT_RADIUS_SQUARED = 64;
+    this.PC_EXIT_RADIUS = 32;
+    this.PC_EXIT_RADIUS_SQUARED = 1024;
     this.viewYaw = new Map();
     this.autoPan = new Map();
     this.cameraLocks = new Map();
@@ -855,6 +855,11 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
         return;
       }
       try { player.runCommand(`camera @s set ease 0.05`); } catch {}
+      
+      const settings = this.cameraSettings.get(camPosStr) ?? { verticalPitch: 0, rotationRange: 85, autoRotate: true, fov: 70 };
+      const fov = settings.fov ?? 70;
+      try { player.runCommand(`camera @s fov_set ${fov}`); } catch {}
+      
       this.viewers.add(player.id);
       this.lastAppliedYaw.set(pid, qYawInit);
       this.ensureCameraIntervals();
@@ -869,6 +874,12 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
     if (alreadyViewing) {
       try { player.runCommand(`camera @s fade time 0.4 0.4 0.4 color 0 0 0`); } catch {}
       system.runTimeout(() => finish(), 5);
+      return;
+    }
+
+    if (fromFazTab) {
+      try { player.runCommand(`camera @s fade time 0.2 0.2 0.2 color 0 0 0`); } catch {}
+      system.runTimeout(() => finish(), 3);
       return;
     }
 
@@ -1654,13 +1665,13 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
             "textures/fr_ui/warning_ui"
           )
         );
+        this.showPcMainMenu(player, pcBlock, true);
         return;
       }
 
       const form = new ActionFormData()
         .title("§C§A§M§M§G§R")
         .header("§fSelect a camera to edit settings")
-        .label("§fSelect a camera to edit settings")
         .divider();
       camList.forEach((posStr) => {
         let status = "§q[ON]";
@@ -1718,6 +1729,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       const displayPitch = settings.verticalPitch ?? 0;
       const displayRange = settings.rotationRange ?? 85;
       const displayAutoRotate = settings.autoRotate ?? true;
+      const displayFOV = settings.fov ?? 70;
       
       const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
       const currentAngle = angles[currentRotation] ?? 180;
@@ -1732,7 +1744,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       };
       const mountLocation = faceNames[blockFace] ?? "Ceiling";
 
-      let infoLabel = `§7Camera: §f${camPosStr}\n§7Mounted on: §f${mountLocation}\n§7Vertical pitch: §f${displayPitch}°\n§7Rotation range: §f${displayRange}°\n§7Auto-rotation: ${autoRotateStatus}`;
+      let infoLabel = `§7Camera: §f${camPosStr}\n§7Mounted on: §f${mountLocation}\n§7Vertical pitch: §f${displayPitch}°\n§7Rotation range: §f${displayRange}°\n§7FOV: §f${displayFOV}°\n§7Auto-rotation: ${autoRotateStatus}`;
       if (!isOnWall) {
         infoLabel += `\n§7Base rotation: §f${currentAngle}°`;
       }
@@ -1747,6 +1759,7 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
       form.button(settings.autoRotate ? "§cDisable Auto-Rotation" : "§qEnable Auto-Rotation", "textures/fr_ui/gear_icon");
       form.button("§8Adjust Vertical Pitch", "textures/fr_ui/gear_icon");
       form.button("§8Adjust Rotation Range", "textures/fr_ui/gear_icon");
+      form.button("§8Adjust FOV", "textures/fr_ui/gear_icon");
       form.button("§8Remove Camera", "textures/fr_ui/deny_icon");
       form.button("§8Back");
 
@@ -1765,8 +1778,10 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
         } else if (selection === 2) {
           this.adjustCameraRotationRange(player, pcPosStr, camPosStr);
         } else if (selection === 3) {
-          this.confirmRemoveCamera(player, pcPosStr, camPosStr);
+          this.adjustCameraFOV(player, pcPosStr, camPosStr);
         } else if (selection === 4) {
+          this.confirmRemoveCamera(player, pcPosStr, camPosStr);
+        } else if (selection === 5) {
           const pcBlock = this.blockFromLocStr(player.dimension, pcPosStr);
           this.manageCameras(player, pcBlock);
         }
@@ -1911,12 +1926,13 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
   adjustCameraRotationRange(player, pcPosStr, camPosStr) {
     try {
       const settings = this.cameraSettings.get(camPosStr) ?? { verticalPitch: 0, rotationRange: 85, autoRotate: true };
+      const currentRange = settings.rotationRange ?? 85;
 
       const form = new ModalFormData()
         .title("§#§C§A")
         .header("Rotation range")
         .divider()
-        .label("Defines the range at which the camera will rotate sideways; the more degrees the camera has, the more it will rotate sideways")
+        .label(`Defines the range at which the camera will rotate sideways. Current: ${currentRange}°`)
         .slider("Max Rotation Range (10-180°)", 10, 180)
         .divider()
         .label("If you want to keep the default value, activate this and the above will not be taken into account")
@@ -1961,13 +1977,70 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
     } catch {}
   }
 
+  adjustCameraFOV(player, pcPosStr, camPosStr) {
+    try {
+      const settings = this.cameraSettings.get(camPosStr) ?? { verticalPitch: 0, rotationRange: 85, autoRotate: true, fov: 70 };
+      const currentFOV = settings.fov ?? 70;
+
+      const form = new ModalFormData()
+        .title("§#§C§A")
+        .header("Field of View")
+        .divider()
+        .label(`Defines the field of view (zoom) of the camera. Current: ${currentFOV}°`)
+        .slider("FOV (30-110°)", 30, 110)
+        .divider()
+        .label("If you want to keep the default value, activate this and the above will not be taken into account")
+        .toggle("Reset to default (70°)");
+
+      form.show(player).then((res) => {
+        if (res.canceled) {
+          this.editCamera(player, pcPosStr, camPosStr);
+          return;
+        }
+
+        let newFOV = res.formValues[3];
+        const resetToDefault = res.formValues[6];
+
+        if (resetToDefault) {
+          newFOV = 70;
+        }
+
+        if (newFOV === undefined || newFOV === null || isNaN(newFOV)) {
+          player.sendMessage("§cInvalid FOV value");
+          this.editCamera(player, pcPosStr, camPosStr);
+          return;
+        }
+
+        settings.fov = newFOV;
+        this.cameraSettings.set(camPosStr, settings);
+        this.saveCameraSettings();
+
+        player.sendMessage(
+          dynamicToast(
+            "§l§aFOV SET",
+            `§7New FOV: §f${Math.round(newFOV)}°`,
+            "textures/fr_ui/approve_icon",
+            "textures/fr_ui/approve_ui"
+          )
+        );
+
+        system.runTimeout(() => {
+          this.editCamera(player, pcPosStr, camPosStr);
+        }, 20);
+      }).catch(() => {});
+    } catch {}
+  }
+
   confirmRemoveCamera(player, pcPosStr, camPosStr) {
     try {
       const form = new ActionFormData()
-        .title("Confirm Removal")
-        .body(`§7Are you sure you want to unlink this camera?\n§f${camPosStr}`)
+        .title("§C§A§M§M§G§R")
+        .header("§cConfirm Removal")
+        .divider()
+        .label(`§7Are you sure you want to unlink this camera?\n§f${camPosStr}`)
+        .divider()
         .button("§cYes, Remove", "textures/ui/trash_default")
-        .button("§7Cancel", "textures/fr_ui/deny_icon");
+        .button("§8Cancel", "textures/fr_ui/deny_icon");
 
       form.show(player).then((res) => {
         if (res.canceled || res.selection === 1) {
@@ -1998,6 +2071,20 @@ form.label(`dock:right_§lUser:\n§r${player?.nameTag ?? player?.name ?? "Player
 
           system.runTimeout(() => {
             const pcBlock = this.blockFromLocStr(player.dimension, pcPosStr);
+            
+            if (camList.length === 0) {
+              this.resetPlayerCamera(player);
+              player.sendMessage(
+                dynamicToast(
+                  "§l§cNO CAMERAS",
+                  "§7This PC has no cameras linked",
+                  "textures/fr_ui/warning_icon",
+                  "textures/fr_ui/warning_ui"
+                )
+              );
+              return;
+            }
+            
             this.manageCameras(player, pcBlock);
           }, 20);
         }

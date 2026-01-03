@@ -89,9 +89,16 @@ export function turnOffLight(connection, LIGHT_TYPES) {
   if (lampVfxEntities[key]) {
     const dimension = world.getDimension(connection.light.dimensionId);
     const location = { x: connection.light.x + 0.5, y: connection.light.y + 0.5, z: connection.light.z + 0.5 };
+    const vfxType = lampVfxEntities[key].vfxType || (lampVfxEntities[key].isStageSpotlight ? "stage_spotlight" : "office_lamp");
     
-    if (lampVfxEntities[key].isStageSpotlight) {
+    if (vfxType === "stage_spotlight") {
       dimension.runCommand(`execute at @e[type=fr:stage_spotlight_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+    } else if (vfxType === "pizzeria_lamp") {
+      dimension.runCommand(`execute at @e[type=fr:pizzeria_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+    } else if (vfxType === "ceiling_light") {
+      dimension.runCommand(`execute at @e[type=fr:ceiling_light_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+    } else if (vfxType === "hallway_lamp") {
+      dimension.runCommand(`execute at @e[type=fr:hallway_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
     } else {
       dimension.runCommand(`execute at @e[type=fr:office_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
     }

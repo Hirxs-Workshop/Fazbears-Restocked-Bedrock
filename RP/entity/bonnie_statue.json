@@ -35,7 +35,9 @@
 				"pose_18": "animation.bonnie_floor_sit",
 				"pose_19": "animation.bonnie_floor_sit_open",
 				"pose_20": "animation.bonnie_lay",
-				"pose_21": "animation.bonnie_dismebembered"
+				"pose_21": "animation.bonnie_dismebembered",
+				"pose_22": "animation.bonnie_walk",
+				"pose_23": "animation.bonnie_the_rabbit_idle1"
 			},
 			"scripts": {
 				"animate": [
@@ -104,6 +106,12 @@
 					},
 					{
 						"pose_21": "q.property('fr:pose') == 21"
+					},
+					{
+						"pose_22": "q.property('fr:pose') == 22"
+					},
+					{
+						"pose_23": "q.property('fr:pose') == 23"
 					}
 				]
 			},

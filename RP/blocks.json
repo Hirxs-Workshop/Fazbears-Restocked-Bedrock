@@ -114,5 +114,11 @@
 	},
     	"fr:red_n_blue_pizzeria_floor": {
 		"sound": "deepslate_bricks"
+	},
+	"fr:wall_tear_holes": {
+		"sound": "stone"
+	},
+	"fr:ceiling_light": {
+		"sound": "glass"
 	}
 }

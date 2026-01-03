@@ -21,7 +21,7 @@
 					"default": 0,
 					"range": [
 						0,
-						21
+						23
 					]
 				},
 				"fr:variant": {
@@ -54,8 +54,47 @@
 			"minecraft:interact": {
 				"interactions": [
 					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{
+										"test": "is_family",
+										"subject": "other",
+										"value": "player"
+									},
+									{
+										"test": "has_equipment",
+										"domain": "hand",
+										"subject": "other",
+										"value": "fr:faz-diver_repairman"
+									}
+								]
+							}
+						},
 						"use_item": false,
 						"interact_text": "action.interact.animatronic_menu"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{
+										"test": "is_family",
+										"subject": "other",
+										"value": "player"
+									},
+									{
+										"test": "has_equipment",
+										"domain": "hand",
+										"subject": "other",
+										"value": "fr:wrench"
+									}
+								]
+							},
+							"event": "moving"
+						},
+						"use_item": false,
+						"interact_text": "action.interact.moving"
 					}
 				]
 			},
@@ -273,6 +312,16 @@
 			"fr:set_pose_21": {
 				"set_property": {
 					"fr:pose": 21
+				}
+			},
+			"fr:set_pose_22": {
+				"set_property": {
+					"fr:pose": 22
+				}
+			},
+			"fr:set_pose_23": {
+				"set_property": {
+					"fr:pose": 23
 				}
 			},
 			"fr:set_variant_0": {

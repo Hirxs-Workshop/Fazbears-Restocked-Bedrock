@@ -1,0 +1,101 @@
+{
+  "selected_item_details_factory": {
+    "ignored": true
+  },
+
+  "highlight_slot_panel": {
+    "controls": [
+      {
+        "gr_hl": {
+          "type": "image",
+          "texture": "textures/ui/highlight_slot",
+          "controls": [
+            {
+              "wb": {
+                "type": "image",
+                "texture": "textures/ui/focus_border_white",
+                "size": ["100% + 2px", "100% + 2px"]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "employee_badge@fr_tooltip.employee_badge": {
+          "layer": 6
+        }
+      },
+      {
+        "pnl": {
+          "type": "panel",
+          "bindings": [
+            {
+              "binding_name": "#hover_text",
+              "binding_type": "collection",
+              "binding_collection_name": "$item_collection_name"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not (#hover_text = ''))",
+              "target_property_name": "#visible"
+            }
+          ],
+          "allow_clipping": false,
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [10, 10],
+          "controls": [
+            {
+              "tooltip_bg@fr_tooltip.item_name_bg": {
+                "size": ["100%sm + 10px", "100%sm + 10px"]
+              }
+            },
+            {
+              "item_name_label": {
+                "type": "label",
+                "text": "#hover_text",
+                "bindings": [
+                  {
+                    "binding_name": "#hover_text",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ],
+                "layer": 1002,
+                "allow_clipping": false
+              }
+            }
+          ],
+          "size": ["100%cm", "100%cm"],
+          "layer": 1003
+        }
+      },
+      {
+        "employee_tooltip@fr_tooltip.employee_tooltip_panel": {
+          "layer": 1004
+        }
+      }
+    ],
+    "size": ["100% - 2px", "100% - 2px"]
+  },
+
+  "container_item/item_selected_image": {
+    "ignored": true
+  },
+
+  "container_item": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_front",
+        "value": [
+          {
+            "employee_highlight@fr_tooltip.employee_item_highlight": {
+              "layer": 6
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

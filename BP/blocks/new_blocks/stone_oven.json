@@ -143,8 +143,8 @@
 						"*": {
 							"texture": "stone_oven",
 							"render_method": "alpha_test",
-							"ambient_occlusion": false,
-							"face_dimming": false
+							"ambient_occlusion": true,
+							"face_dimming": true
 						}
 					}
 				}
@@ -157,8 +157,8 @@
 						"*": {
 							"texture": "stone_oven_lit",
 							"render_method": "alpha_test",
-							"ambient_occlusion": false,
-							"face_dimming": false
+							"ambient_occlusion": true,
+							"face_dimming": true
 						}
 					}
 				}

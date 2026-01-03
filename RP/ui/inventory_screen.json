@@ -1,0 +1,19 @@
+{
+  "namespace": "crafting",
+
+  "inventory_container_item": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_front",
+        "value": [
+          {
+            "employee_highlight@fr_tooltip.employee_item_highlight": {
+              "layer": 6
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

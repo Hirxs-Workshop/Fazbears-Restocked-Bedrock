@@ -293,6 +293,82 @@
 				}
 			}
 		},
+		"animation.sparky_slab_sit": {
+			"loop": true,
+			"bones": {
+				"feddy": {
+					"position": [0, -19.5, -6]
+				},
+				"upperpart": {
+					"rotation": [-17.5, 0, 0]
+				},
+				"feddyHed": {
+					"rotation": [2.5, 0, 0]
+				},
+				"head": {
+					"rotation": [12.39638, -1.61888, 7.32417]
+				},
+				"eyelid": {
+					"position": [0, -0.3, 0]
+				},
+				"eyelid2": {
+					"position": [0, -0.3, 0]
+				},
+				"armL": {
+					"rotation": [22.5, 0, -65]
+				},
+				"lower": {
+					"rotation": [-75.97028, -51.62952, 53.94496]
+				},
+				"fingers": {
+					"rotation": [0, 0, -15]
+				},
+				"armR": {
+					"rotation": [7.5, 0, 67.5]
+				},
+				"lower2": {
+					"rotation": [-12.5, 40, 0]
+				},
+				"hand2": {
+					"rotation": [4.99527, 0.21782, -12.4905]
+				},
+				"Bone": {
+					"scale": 0
+				},
+				"fingers3": {
+					"rotation": [0, 0, -55]
+				},
+				"thumb4": {
+					"rotation": [20, 0, 0]
+				},
+				"Tail": {
+					"rotation": [70.34615, 35.57262, 64.99594]
+				},
+				"legL": {
+					"rotation": [-90, 7.5, 0],
+					"position": [0, -1, 0]
+				},
+				"lower3": {
+					"rotation": [90, 0, 0]
+				},
+				"foot": {
+					"rotation": [15, 0, 0]
+				},
+				"legR": {
+					"rotation": [-90, -7.5, 0],
+					"position": [0, -1, 0]
+				},
+				"lower4": {
+					"rotation": [90, 0, 0]
+				},
+				"foot2": {
+					"rotation": [27.5, 0, 0]
+				},
+				"bone2": {
+					"rotation": [37.5, 0, 0]
+				}
+			}
+		},
 		"animation.sparky_lay": {
 			"loop": true,
 			"bones": {

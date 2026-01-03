@@ -1,0 +1,23 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:ceiling_light_vfx",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "fr_light_vfx"
+			},
+			"textures": {
+				"default": "textures/vfx/white_spotlight_effect"
+			},
+			"geometry": {
+				"default": "geometry.fr_ceiling_light_vfx"
+			},
+			"render_controllers": [
+				"controller.render.office_lamp_vfx"
+			],
+			"scripts": {
+			}
+		}
+	}
+}

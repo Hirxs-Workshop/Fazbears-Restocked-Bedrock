@@ -3,9 +3,9 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.Crying_Kid_Poster",
-				"texture_width": 56,
-				"texture_height": 56,
+				"identifier": "geometry.crying_kid_poster",
+				"texture_width": 64,
+				"texture_height": 64,
 				"visible_bounds_width": 2,
 				"visible_bounds_height": 2.5,
 				"visible_bounds_offset": [0, 0.75, 0]
@@ -16,10 +16,10 @@
 					"pivot": [0, 0, 0],
 					"cubes": [
 						{
-							"origin": [-7, 1, 7.9],
-							"size": [14, 18, 0],
+							"origin": [-8, 0, 7.9],
+							"size": [16, 21, 0],
 							"uv": {
-								"north": {"uv": [42, 37], "uv_size": [14, 18]}
+								"north": {"uv": [34, 22], "uv_size": [16, 21]}
 							}
 						}
 					]
@@ -32,12 +32,12 @@
 							"origin": [-1, 0, -1],
 							"size": [2, 2, 2],
 							"uv": {
-								"north": {"uv": [50, 2], "uv_size": [2, 2]},
-								"east": {"uv": [48, 2], "uv_size": [2, 2]},
-								"south": {"uv": [52, 2], "uv_size": [2, 2]},
-								"west": {"uv": [54, 2], "uv_size": [2, 2]},
-								"up": {"uv": [52, 2], "uv_size": [-2, -2]},
-								"down": {"uv": [54, 2], "uv_size": [-2, -2]}
+								"north": {"uv": [55, 2], "uv_size": [2, 2]},
+								"east": {"uv": [53, 2], "uv_size": [2, 2]},
+								"south": {"uv": [57, 2], "uv_size": [2, 2]},
+								"west": {"uv": [59, 2], "uv_size": [2, 2]},
+								"up": {"uv": [57, 2], "uv_size": [-2, -2]},
+								"down": {"uv": [59, 2], "uv_size": [-2, -2]}
 							}
 						}
 					]

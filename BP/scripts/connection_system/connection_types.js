@@ -4,7 +4,11 @@ import * as FRAPI from "../fr_api.js";
 export const LIGHT_TYPES = new Set([
   "fr:office_lamp",
   "fr:supply_room_lightbulb",
-  "fr:stage_spotlight"
+  "fr:stage_spotlight",
+  "fr:pizzeria_lamp",
+  "fr:ceiling_light",
+  "fr:office_light",
+  "fr:pirate_cove_light"
 ]);
 
 export const SWITCH_TYPES = new Set([
@@ -21,7 +25,11 @@ export const GENERATOR_TYPES = new Set([
 export const LIGHT_ALIASES = {
   "fr:office_lamp": "Office lamp",
   "fr:supply_room_lightbulb": "Supply room lightbulb",
-  "fr:stage_spotlight": "Stage spotlight"
+  "fr:stage_spotlight": "Stage spotlight",
+  "fr:pizzeria_lamp": "Pizzeria lamp",
+  "fr:ceiling_light": "Ceiling light",
+  "fr:office_light": "Office light",
+  "fr:pirate_cove_light": "Pirate cove light"
 };
 
 export const SWITCH_ALIASES = {
@@ -35,7 +43,11 @@ export const GENERATOR_ALIASES = {
 export const LIGHT_ICONS = {
   "fr:office_lamp": "textures/fr_ui/light_test_icon",
   "fr:supply_room_lightbulb": "textures/fr_ui/light_test_icon",
-  "fr:stage_spotlight": "textures/fr_ui/light_test_icon"
+  "fr:stage_spotlight": "textures/fr_ui/light_test_icon",
+  "fr:pizzeria_lamp": "textures/fr_ui/light_test_icon",
+  "fr:ceiling_light": "textures/fr_ui/light_test_icon",
+  "fr:office_light": "textures/fr_ui/light_test_icon",
+  "fr:pirate_cove_light": "textures/fr_ui/light_test_icon"
 };
 
 export const SWITCH_ICONS = {

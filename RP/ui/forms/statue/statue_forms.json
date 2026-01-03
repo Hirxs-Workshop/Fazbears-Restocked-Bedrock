@@ -174,6 +174,7 @@
       "100%",
       "100%"
     ],
+    "focus_enabled": true,
     "$pressed_button_name": "button.form_button_click",
     "default_control": "default",
     "hover_control": "hover",
@@ -270,6 +271,11 @@
     "button_mappings": [
       {
         "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
         "to_button_id": "$pressed_button_name",
         "mapping_type": "pressed"
       }
@@ -292,6 +298,7 @@
       "100%",
       "100%"
     ],
+    "focus_enabled": true,
     "$pressed_button_name": "button.form_button_click",
     "default_control": "default",
     "hover_control": "hover",
@@ -390,6 +397,11 @@
         "from_button_id": "button.menu_select",
         "to_button_id": "$pressed_button_name",
         "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
       }
     ],
     "bindings": [
@@ -410,6 +422,7 @@
       "100%",
       "100%"
     ],
+    "focus_enabled": true,
     "$pressed_button_name": "button.form_button_click",
     "default_control": "default",
     "hover_control": "hover",
@@ -506,6 +519,11 @@
     "button_mappings": [
       {
         "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
         "to_button_id": "$pressed_button_name",
         "mapping_type": "pressed"
       }
@@ -1099,6 +1117,30 @@
               }
             },
             {
+              "selected_indicator": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#text - '§z') = #text))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
               "content@fr_statue_screen.statue_variant_visuals": {}
             }
           ]
@@ -1178,7 +1220,7 @@
       }
     ]
   },
-  "statue_variant_item_3": {
+  "statue_variant_item_0": {
     "type": "stack_panel",
     "size": [
       "33%",
@@ -1186,8 +1228,8 @@
     ],
     "collection_name": "form_buttons",
     "factory": {
-      "name": "var3",
-      "control_name": "fr_statue_screen.statue_variant_item_3_inner"
+      "name": "var0",
+      "control_name": "fr_statue_screen.statue_variant_item_0_inner"
     },
     "bindings": [
       {
@@ -1196,7 +1238,7 @@
       }
     ]
   },
-  "statue_variant_item_3_inner": {
+  "statue_variant_item_0_inner": {
     "type": "panel",
     "size": [
       "100%",
@@ -1205,6 +1247,39 @@
     "controls": [
       {
         "content@fr_statue_screen.statue_variant_item_content": {}
+      },
+      {
+        "no_found": {
+          "type": "label",
+          "text": "No variants found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            60,
+            0
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 210,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#text = ' ')",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
       }
     ],
     "bindings": [
@@ -1213,13 +1288,19 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 3)",
+        "source_property_name": "(#collection_index = 8)",
         "target_property_name": "#visible"
       }
     ]
   },
-  "statue_variant_item_4": {
+  "statue_variant_item_1": {
     "type": "stack_panel",
     "size": [
       "33%",
@@ -1227,8 +1308,8 @@
     ],
     "collection_name": "form_buttons",
     "factory": {
-      "name": "var4",
-      "control_name": "fr_statue_screen.statue_variant_item_4_inner"
+      "name": "var1",
+      "control_name": "fr_statue_screen.statue_variant_item_1_inner"
     },
     "bindings": [
       {
@@ -1237,7 +1318,7 @@
       }
     ]
   },
-  "statue_variant_item_4_inner": {
+  "statue_variant_item_1_inner": {
     "type": "panel",
     "size": [
       "100%",
@@ -1254,13 +1335,19 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 4)",
+        "source_property_name": "(#collection_index = 9)",
         "target_property_name": "#visible"
       }
     ]
   },
-  "statue_variant_item_5": {
+  "statue_variant_item_2": {
     "type": "stack_panel",
     "size": [
       "33%",
@@ -1268,8 +1355,8 @@
     ],
     "collection_name": "form_buttons",
     "factory": {
-      "name": "var5",
-      "control_name": "fr_statue_screen.statue_variant_item_5_inner"
+      "name": "var2",
+      "control_name": "fr_statue_screen.statue_variant_item_2_inner"
     },
     "bindings": [
       {
@@ -1278,7 +1365,7 @@
       }
     ]
   },
-  "statue_variant_item_5_inner": {
+  "statue_variant_item_2_inner": {
     "type": "panel",
     "size": [
       "100%",
@@ -1295,8 +1382,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 5)",
+        "source_property_name": "((#collection_index = 10) and (not (#btn_label = ' ')))",
         "target_property_name": "#visible"
       }
     ]
@@ -1389,7 +1482,6 @@
             },
             {
               "btn@common.button": {
-                "$pressed_button_name": "button.form_button_click",
                 "size": [
                   "100%",
                   "100%"
@@ -1399,12 +1491,41 @@
                   {
                     "binding_type": "collection_details",
                     "binding_collection_name": "form_buttons"
+                  },
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#btn_label"
+                  }
+                ],
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.form_button_click",
+                    "mapping_type": "pressed",
+                    "bindings": [
+                      {
+                        "binding_type": "collection_details",
+                        "binding_collection_name": "form_buttons"
+                      }
+                    ]
                   }
                 ]
               }
             }
+          ],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_property_name": "(not (#btn_label = ' '))",
+              "target_property_name": "#visible"
+            }
           ]
         }
+      },
+      {
+        "no_found@fr_statue_screen.no_found_inner": {}
       }
     ],
     "bindings": [
@@ -1420,7 +1541,338 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(not (((#btn_label = 'V') or (#btn_label = 'P')) or (#btn_label = 'X')))",
+        "source_property_name": "(((#collection_index >= 7) and (#collection_index <= 12)) and ((not (#btn_label = ' ')) or (#collection_index = 7)) and (not (#btn_label = '§v_none')) and (not (#btn_label = '__HIDDEN__')) and (not (#btn_label = '§v_hide')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "no_found_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "label": {
+          "type": "label",
+          "text": "No poses found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            "100%",
+            0
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 20
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "view",
+        "source_property_name": "(#visible)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "no_found_poses_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "label": {
+          "type": "label",
+          "text": "No poses found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            33
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 210
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 8) and (#text = ' '))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "no_found_variants_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "label": {
+          "type": "label",
+          "text": "No variants found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            0
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 210
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 8) and (#text = ' '))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_sidebar_item_inner": {
+    "type": "panel",
+    "size": [
+      38,
+      36
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 2px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background",
+          "$hover_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "$pressed_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "selection_indicator": {
+          "type": "image",
+          "size": [
+            "100% - 2px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+          "layer": 12,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#text - '§z') = #text))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            24,
+            24
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -2
+          ],
+          "layer": 11,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture_file_system",
+              "binding_name_override": "#texture_file_system"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 0.6,
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -4
+          ],
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "statue_category_btn_idx_3": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_btn_idx_4": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 4)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_btn_idx_5": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 5)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_btn_idx_6": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 6)",
         "target_property_name": "#visible"
       }
     ]
@@ -1571,6 +2023,30 @@
               }
             },
             {
+              "selected_indicator": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#text - '§z') = #text))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
               "content@fr_statue_screen.statue_item_visuals": {}
             }
           ]
@@ -1685,8 +2161,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 3)",
+        "source_property_name": "((#collection_index = 7) and (not (#btn_label = ' ')))",
         "target_property_name": "#visible"
       }
     ]
@@ -1718,6 +2200,9 @@
     "controls": [
       {
         "content@fr_statue_screen.statue_pose_item_content": {}
+      },
+      {
+        "no_found@fr_statue_screen.no_found_poses_inner": {}
       }
     ],
     "bindings": [
@@ -1726,8 +2211,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 4)",
+        "source_property_name": "(#collection_index = 8)",
         "target_property_name": "#visible"
       }
     ]
@@ -1768,7 +2259,7 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 5)",
+        "source_property_name": "(#collection_index = 9)",
         "target_property_name": "#visible"
       }
     ]
@@ -1809,7 +2300,7 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 6)",
+        "source_property_name": "(#collection_index = 10)",
         "target_property_name": "#visible"
       }
     ]
@@ -1850,7 +2341,7 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 7)",
+        "source_property_name": "(#collection_index = 11)",
         "target_property_name": "#visible"
       }
     ]
@@ -1891,7 +2382,7 @@
       },
       {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 8)",
+        "source_property_name": "(#collection_index = 12)",
         "target_property_name": "#visible"
       }
     ]
@@ -1961,8 +2452,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 9)",
+        "source_property_name": "((#collection_index = 13) and (not (#nav_btn_text = '§v_hide')))",
         "target_property_name": "#visible"
       }
     ]
@@ -2008,9 +2505,9 @@
           "type": "label",
           "text": "#text",
           "color": [
-            0.0,
-            0.0,
-            0.0,
+            0.592,
+            0.855,
+            0.063,
             1.0
           ],
           "layer": 10,
@@ -2031,8 +2528,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 10)",
+        "source_property_name": "((#collection_index = 14) and (not (#nav_btn_text = '§v_hide')))",
         "target_property_name": "#visible"
       }
     ]
@@ -2102,8 +2605,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 11)",
+        "source_property_name": "((#collection_index = 15) and (not (#nav_btn_text = '§v_hide')))",
         "target_property_name": "#visible"
       }
     ]
@@ -2173,8 +2682,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 6)",
+        "source_property_name": "((#collection_index = 11) and (not (#nav_btn_text = '_HIDE_')))",
         "target_property_name": "#visible"
       }
     ]
@@ -2220,9 +2735,9 @@
           "type": "label",
           "text": "#text",
           "color": [
-            0.0,
-            0.0,
-            0.0,
+            0.592,
+            0.855,
+            0.063,
             1.0
           ],
           "layer": 10,
@@ -2243,8 +2758,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#text"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 7)",
+        "source_property_name": "((#collection_index = 12) and (not (#text = '_HIDE_')))",
         "target_property_name": "#visible"
       }
     ]
@@ -2314,8 +2835,14 @@
         "binding_collection_name": "form_buttons"
       },
       {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
         "binding_type": "view",
-        "source_property_name": "(#collection_index = 8)",
+        "source_property_name": "((#collection_index = 13) and (not (#nav_btn_text = '_HIDE_')))",
         "target_property_name": "#visible"
       }
     ]
@@ -2327,7 +2854,7 @@
     "$flag_sec_poses": "§s§e§c§:§2",
     "$flag_sec_statue": "§s§e§c§:§3",
     "size": [
-      220,
+      260,
       190
     ],
     "anchor_from": "right_middle",
@@ -2610,6 +3137,65 @@
                           "binding_type": "view",
                           "source_property_name": "(not ((#title_text - $flag_sec_poses) = #title_text))",
                           "target_property_name": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "close_btn": {
+                      "type": "button",
+                      "size": [
+                        18,
+                        18
+                      ],
+                      "anchor_from": "right_middle",
+                      "anchor_to": "right_middle",
+                      "offset": [
+                        -6,
+                        0
+                      ],
+                      "layer": 10,
+                      "$pressed_button_name": "button.menu_exit",
+                      "default_control": "default",
+                      "hover_control": "hover",
+                      "pressed_control": "pressed",
+                      "button_mappings": [
+                        {
+                          "from_button_id": "button.menu_select",
+                          "to_button_id": "button.menu_exit",
+                          "mapping_type": "pressed"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "default": {
+                            "type": "image",
+                            "size": [
+                              12,
+                              12
+                            ],
+                            "texture": "textures/fr_ui/terminal_close"
+                          }
+                        },
+                        {
+                          "hover": {
+                            "type": "image",
+                            "size": [
+                              12,
+                              12
+                            ],
+                            "texture": "textures/fr_ui/terminal_close_hover"
+                          }
+                        },
+                        {
+                          "pressed": {
+                            "type": "image",
+                            "size": [
+                              12,
+                              12
+                            ],
+                            "texture": "textures/fr_ui/terminal_close_hover"
+                          }
                         }
                       ]
                     }
@@ -3024,65 +3610,189 @@
                 "layer": 105,
                 "controls": [
                   {
-                    "variants_wrap": {
+                    "variants_main_wrap": {
                       "type": "stack_panel",
-                      "orientation": "vertical",
+                      "orientation": "horizontal",
                       "size": [
                         "100%",
                         "100%"
                       ],
                       "controls": [
                         {
-                          "var_row": {
+                          "sidebar": {
                             "type": "stack_panel",
-                            "orientation": "horizontal",
                             "size": [
-                              "100%",
-                              "84%"
+                              42,
+                              "100%"
                             ],
                             "controls": [
                               {
-                                "var3@fr_statue_screen.statue_variant_item_3": {}
+                                "c3": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat3",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_3"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
                               },
                               {
-                                "var4@fr_statue_screen.statue_variant_item_4": {}
+                                "c4": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat4",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_4"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
                               },
                               {
-                                "var5@fr_statue_screen.statue_variant_item_5": {}
+                                "c5": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat5",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_5"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "c6": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat6",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_6"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
                               }
                             ]
                           }
                         },
                         {
-                          "nav_row": {
-                            "type": "stack_panel",
-                            "orientation": "horizontal",
+                          "grid_area": {
+                            "type": "panel",
                             "size": [
-                              "100%",
-                              "16%"
+                              "fill",
+                              "100%"
                             ],
                             "controls": [
                               {
-                                "nav_prev@fr_statue_screen.statue_variant_nav_prev": {
-                                  "size": [
-                                    "33%",
-                                    "100%"
-                                  ]
+                                "nf_factory": {
+                                  "type": "stack_panel",
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "nf",
+                                    "control_name": "fr_statue_screen.no_found_variants_inner"
+                                  }
                                 }
                               },
                               {
-                                "nav_page@fr_statue_screen.statue_variant_nav_page": {
+                                "variants_wrap": {
+                                  "type": "stack_panel",
+                                  "orientation": "vertical",
                                   "size": [
-                                    "34%",
+                                    "100%",
                                     "100%"
-                                  ]
-                                }
-                              },
-                              {
-                                "nav_next@fr_statue_screen.statue_variant_nav_next": {
-                                  "size": [
-                                    "33%",
-                                    "100%"
+                                  ],
+                                  "controls": [
+                                    {
+                                      "var_row": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "84%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "var0@fr_statue_screen.statue_variant_item_0": {}
+                                          },
+                                          {
+                                            "var1@fr_statue_screen.statue_variant_item_1": {}
+                                          },
+                                          {
+                                            "var2@fr_statue_screen.statue_variant_item_2": {}
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "nav_row": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "16%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "nav_prev@fr_statue_screen.statue_variant_nav_prev": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "nav_page@fr_statue_screen.statue_variant_nav_page": {
+                                              "size": [
+                                                "34%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "nav_next@fr_statue_screen.statue_variant_nav_next": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
                                   ]
                                 }
                               }
@@ -3124,86 +3834,181 @@
                 "layer": 105,
                 "controls": [
                   {
-                    "poses_wrap": {
+                    "poses_main_wrap": {
                       "type": "stack_panel",
-                      "orientation": "vertical",
+                      "orientation": "horizontal",
                       "size": [
                         "100%",
                         "100%"
                       ],
                       "controls": [
                         {
-                          "row1": {
+                          "sidebar": {
                             "type": "stack_panel",
-                            "orientation": "horizontal",
                             "size": [
-                              "100%",
-                              "42%"
+                              42,
+                              "100%"
                             ],
+                            "collection_name": "form_buttons",
                             "controls": [
                               {
-                                "item3@fr_statue_screen.statue_pose_item_3": {}
+                                "c3": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat3",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_3"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
                               },
                               {
-                                "item4@fr_statue_screen.statue_pose_item_4": {}
+                                "c4": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat4",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_4"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
                               },
                               {
-                                "item5@fr_statue_screen.statue_pose_item_5": {}
+                                "c5": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat5",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_5"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
                               }
                             ]
                           }
                         },
                         {
-                          "row2": {
-                            "type": "stack_panel",
-                            "orientation": "horizontal",
+                          "grid_area": {
+                            "type": "panel",
                             "size": [
-                              "100%",
-                              "42%"
+                              "fill",
+                              "100%"
                             ],
                             "controls": [
                               {
-                                "item6@fr_statue_screen.statue_pose_item_6": {}
-                              },
-                              {
-                                "item7@fr_statue_screen.statue_pose_item_7": {}
-                              },
-                              {
-                                "item8@fr_statue_screen.statue_pose_item_8": {}
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "nav_row": {
-                            "type": "stack_panel",
-                            "orientation": "horizontal",
-                            "size": [
-                              "100%",
-                              "16%"
-                            ],
-                            "controls": [
-                              {
-                                "nav_prev@fr_statue_screen.statue_nav_prev": {
+                                "poses_wrap": {
+                                  "type": "stack_panel",
+                                  "orientation": "vertical",
                                   "size": [
-                                    "33%",
+                                    "100%",
                                     "100%"
-                                  ]
-                                }
-                              },
-                              {
-                                "page_indicator@fr_statue_screen.statue_page_indicator": {
-                                  "size": [
-                                    "34%",
-                                    "100%"
-                                  ]
-                                }
-                              },
-                              {
-                                "nav_next@fr_statue_screen.statue_nav_next": {
-                                  "size": [
-                                    "33%",
-                                    "100%"
+                                  ],
+                                  "controls": [
+                                    {
+                                      "row1": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "42%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "item3@fr_statue_screen.statue_pose_item_3": {}
+                                          },
+                                          {
+                                            "item4@fr_statue_screen.statue_pose_item_4": {}
+                                          },
+                                          {
+                                            "item5@fr_statue_screen.statue_pose_item_5": {}
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "row2": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "42%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "item6@fr_statue_screen.statue_pose_item_6": {}
+                                          },
+                                          {
+                                            "item7@fr_statue_screen.statue_pose_item_7": {}
+                                          },
+                                          {
+                                            "item8@fr_statue_screen.statue_pose_item_8": {}
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "nav_row": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "16%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "nav_prev@fr_statue_screen.statue_nav_prev": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "page_indicator@fr_statue_screen.statue_page_indicator": {
+                                              "size": [
+                                                "34%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "nav_next@fr_statue_screen.statue_nav_next": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
                                   ]
                                 }
                               }

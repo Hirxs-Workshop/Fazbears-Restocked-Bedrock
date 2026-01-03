@@ -1,0 +1,109 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.kris_dev_plush",
+				"texture_width": 80,
+				"texture_height": 80,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 3.5,
+				"visible_bounds_offset": [0, 1.25, 0]
+			},
+			"bones": [
+				{
+					"name": "plushie",
+					"pivot": [0, 0, 0]
+				},
+				{
+					"name": "head",
+					"parent": "plushie",
+					"pivot": [0, 15, 1],
+					"cubes": [
+						{"origin": [-4, 12, -3], "size": [8, 8, 8], "inflate": 0.25, "uv": [0, 16]},
+						{"origin": [-4, 12, -3], "size": [8, 8, 8], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "body",
+					"parent": "plushie",
+					"pivot": [0, 7.5, 1],
+					"cubes": [
+						{"origin": [-4, 4, -1], "size": [8, 8, 4], "uv": [0, 32]},
+						{"origin": [-4, 4, -1], "size": [8, 8, 4], "inflate": 0.25, "uv": [32, 0]}
+					]
+				},
+				{
+					"name": "backpack",
+					"parent": "body",
+					"pivot": [0, 7.05, 2.75],
+					"cubes": [
+						{"origin": [-1.5, 12, 5.5], "size": [3, 2, 0], "uv": [30, 51]},
+						{"origin": [-4, 8, 3.5], "size": [8, 4, 3], "uv": [32, 22]},
+						{"origin": [-4, 3, -1.5], "size": [2, 9, 5], "uv": [30, 53]},
+						{"origin": [-4.5, 6, -1.75], "size": [3, 4, 0], "uv": [56, 49]},
+						{"origin": [2, 3, -1.5], "size": [2, 9, 5], "uv": [16, 44]},
+						{"origin": [1.5, 6, -1.75], "size": [3, 4, 0], "uv": [44, 59]},
+						{"origin": [-4, 3, 3.5], "size": [8, 5, 5], "uv": [32, 12]},
+						{"origin": [-4, -1, 6.5], "size": [8, 4, 2], "uv": [44, 53]},
+						{"origin": [4, 3, 3.5], "size": [1, 4, 3], "uv": [12, 58]},
+						{"origin": [-5, 3, 3.5], "size": [1, 4, 3], "uv": [20, 58]}
+					]
+				},
+				{
+					"name": "arm_right",
+					"parent": "plushie",
+					"pivot": [-5.13055, 10.76687, 1.08064],
+					"rotation": [-110, 62.5, 0],
+					"cubes": [
+						{"origin": [-6.63055, 4.76687, -0.41936], "size": [3, 8, 3], "uv": [0, 56]},
+						{"origin": [-6.63055, 4.76687, -0.41936], "size": [3, 8, 3], "inflate": 0.25, "uv": [56, 0]}
+					]
+				},
+				{
+					"name": "sword",
+					"parent": "arm_right",
+					"pivot": [-5, 6.5, -5],
+					"rotation": [90, 0, -90],
+					"cubes": [
+						{"origin": [-6.5, 14, -5], "size": [3, 2, 0], "uv": [32, 29]},
+						{"origin": [-6.5, 4, -5.5], "size": [3, 10, 1], "uv": [58, 11]},
+						{"origin": [-8.5, 3, -5], "size": [7, 2, 0], "uv": [56, 47]},
+						{"origin": [-7.5, 3, -6], "size": [5, 1, 2], "uv": [56, 44]},
+						{"origin": [-6, -2, -6], "size": [2, 5, 2], "uv": [30, 44]}
+					]
+				},
+				{
+					"name": "arm_left",
+					"parent": "plushie",
+					"pivot": [5.86945, 9.76687, 1.08064],
+					"rotation": [-12.5, 0, -10],
+					"cubes": [
+						{"origin": [4.36945, 3.76687, -0.41936], "size": [3, 8, 3], "uv": [56, 22]},
+						{"origin": [4.36945, 3.76687, -0.41936], "size": [3, 8, 3], "inflate": 0.25, "uv": [56, 33]}
+					]
+				},
+				{
+					"name": "leg_right",
+					"parent": "plushie",
+					"pivot": [-2, 2, 2],
+					"rotation": [-90, 12.5, 0],
+					"cubes": [
+						{"origin": [-4, -6, 0], "size": [4, 8, 4], "uv": [40, 29]},
+						{"origin": [-4, -6, 0], "size": [4, 8, 4], "inflate": 0.25, "uv": [0, 44]}
+					]
+				},
+				{
+					"name": "leg_left",
+					"parent": "plushie",
+					"pivot": [2, 2, 2],
+					"rotation": [-90, -12.5, 0],
+					"cubes": [
+						{"origin": [0, -6, 0], "size": [4, 8, 4], "uv": [24, 32]},
+						{"origin": [0, -6, 0], "size": [4, 8, 4], "inflate": 0.25, "uv": [40, 41]}
+					]
+				}
+			]
+		}
+	]
+}

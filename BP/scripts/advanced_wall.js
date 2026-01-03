@@ -1,3 +1,14 @@
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * 
+ * If you want to modify or use this system as a base, contact the code developer, 
+ * ZachDoesGames and hyrxs, for more information and authorization
+ * 
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+ *  
+*/
+
 import { world, system, Direction, ItemStack, EquipmentSlot, GameMode, BlockPermutation } from "@minecraft/server"
 
 const plants = {
@@ -56,7 +67,7 @@ const plants = {
     "fr:stage_wall_middle": {
         value: "stage_wall_middle",
         sound: "block.lantern.break",
-    },
+    },// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
     "fr:stage_wall_up": {
         value: "stage_wall_up",
         sound: "block.lantern.break",
@@ -104,7 +115,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const plantId = Object.keys(plants).find((key) => plants[key].value === plant);
 
                 dimension.spawnItem(new ItemStack(plantId), block.center());
-            }
+            }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
         }
     })
 })

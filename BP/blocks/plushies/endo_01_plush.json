@@ -1,0 +1,146 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:endo_01_plush",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:placed": [1, 0],
+				"fr:is_placed_on": ["full", "box", "medium_box", "chair"]
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"origin": [-3, 0, -2],
+				"size": [6, 11, 6]
+			},
+			"minecraft:selection_box": {
+				"origin": [-3, 0, -2],
+				"size": [6, 11, 6]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.fr_endo_plush"
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "endo_plush",
+					"render_method": "alpha_test"
+				}
+			},
+			"fr:endo_01_plush_interact": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 180, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, -90, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 0, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 90, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:placed') == 0",
+				"components": {
+					"minecraft:geometry": { "identifier": "geometry.inv_cube" }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'box' && q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 180, 0], "translation": [0, -0.4, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'box' && q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 0, 0], "translation": [0, -0.4, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'box' && q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 90, 0], "translation": [0, -0.4, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'box' && q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, -90, 0], "translation": [0, -0.4, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'medium_box' && q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 180, 0], "translation": [0, -0.2, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'medium_box' && q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 0, 0], "translation": [0, -0.2, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'medium_box' && q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 90, 0], "translation": [0, -0.2, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'medium_box' && q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, -90, 0], "translation": [0, -0.2, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'chair' && q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 180, 0], "translation": [0, -0.4, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'chair' && q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 0, 0], "translation": [0, -0.4, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'chair' && q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 90, 0], "translation": [0, -0.4, 0] }
+				}
+			},
+			{
+				"condition": "q.block_state('fr:is_placed_on') == 'chair' && q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, -90, 0], "translation": [0, -0.4, 0] }
+				}
+			}
+		]
+	}
+}

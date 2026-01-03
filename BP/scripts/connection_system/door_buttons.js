@@ -2,9 +2,40 @@ import { EquipmentSlot, system, world, BlockPermutation } from "@minecraft/serve
 import { ModalFormData, ActionFormData } from "@minecraft/server-ui";
 import FaceSelectionPlains from "./face_selection_plains";
 import { dynamicToast } from "./utils.js";
+import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType } from "./selection_manager.js";
+import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY } from "./connection_types.js";
+import * as FRAPI from "../fr_api.js";
 
 const ANIMATION_DELAY_TICKS = 2;
 const hallwayLampVfxEntities = {};
+
+
+const LIGHT_VFX_MAP = {
+  "fr:office_light": "fr:hallway_lamp_vfx",
+  "fr:office_lamp": "fr:office_lamp_vfx",
+  "fr:pizzeria_lamp": "fr:pizzeria_lamp_vfx",
+  "fr:ceiling_light": "fr:ceiling_light_vfx",
+  "fr:stage_spotlight": "fr:stage_spotlight_vfx",
+  "fr:supply_room_lightbulb": "fr:hallway_lamp_vfx",
+  "fr:pirate_cove_light": "fr:pirate_cove_light_entity"
+};
+
+
+function getVfxEntityForLight(lightTypeId) {
+
+  if (LIGHT_VFX_MAP[lightTypeId]) {
+    return LIGHT_VFX_MAP[lightTypeId];
+  }
+  
+
+  const externalConfig = FRAPI.getConnectionType(lightTypeId);
+  if (externalConfig && externalConfig.vfxEntity) {
+    return externalConfig.vfxEntity;
+  }
+  
+
+  return "fr:hallway_lamp_vfx";
+}
 
 let __memConnections = [];
 let __memWoodenDoorClaims = [];
@@ -36,6 +67,39 @@ const setConnections = (connections) => {
     __memConnections = connections;
   }
 };
+
+
+export function isLightConnectedToDoorButton(lightPos, dimensionId) {
+  const connections = getConnections();
+  return connections.some(conn => {
+    const lightData = conn.lightBlock || conn.officeLightBlock;
+    return lightData &&
+      lightData.x === lightPos.x &&
+      lightData.y === lightPos.y &&
+      lightData.z === lightPos.z &&
+      lightData.dimensionId === dimensionId;
+  });
+}
+
+
+function isLightConnectedToSwitch(lightPos, dimensionId) {
+  try {
+    const json = world.getDynamicProperty(CONNECTIONS_KEY);
+    const switchConnections = json ? JSON.parse(json) : [];
+    return switchConnections.some(conn =>
+      conn.light &&
+      conn.light.x === lightPos.x &&
+      conn.light.y === lightPos.y &&
+      conn.light.z === lightPos.z &&
+      conn.light.dimensionId === dimensionId
+    );
+  } catch {
+    return false;
+  }
+}
+
+
+export { getConnections as getDoorButtonConnections };
 const addConnection = (connection) => {
   const connections = getConnections();
   connections.push(connection);
@@ -44,18 +108,21 @@ const addConnection = (connection) => {
 };
 const removeConnection = (connection) => {
   let connections = getConnections();
-  const index = connections.findIndex(conn =>
-    conn.doorBlock.x === connection.doorBlock.x &&
-    conn.doorBlock.y === connection.doorBlock.y &&
-    conn.doorBlock.z === connection.doorBlock.z &&
-    conn.doorBlock.dimensionId === connection.doorBlock.dimensionId &&
-    conn.officeLightBlock &&
-    connection.officeLightBlock &&
-    conn.officeLightBlock.x === connection.officeLightBlock.x &&
-    conn.officeLightBlock.y === connection.officeLightBlock.y &&
-    conn.officeLightBlock.z === connection.officeLightBlock.z &&
-    conn.officeLightBlock.dimensionId === connection.officeLightBlock.dimensionId
-  );
+
+  const connLightData = connection.lightBlock || connection.officeLightBlock;
+  
+  const index = connections.findIndex(conn => {
+    const lightData = conn.lightBlock || conn.officeLightBlock;
+    return conn.doorBlock.x === connection.doorBlock.x &&
+      conn.doorBlock.y === connection.doorBlock.y &&
+      conn.doorBlock.z === connection.doorBlock.z &&
+      conn.doorBlock.dimensionId === connection.doorBlock.dimensionId &&
+      lightData && connLightData &&
+      lightData.x === connLightData.x &&
+      lightData.y === connLightData.y &&
+      lightData.z === connLightData.z &&
+      lightData.dimensionId === connLightData.dimensionId;
+  });
   if (index !== -1) {
     connections.splice(index, 1);
     setConnections(connections);
@@ -63,17 +130,36 @@ const removeConnection = (connection) => {
   }
   return false;
 };
+const getConnectionByLightBlock = (block, dimension) => {
+  if (!dimension?.id) {
+    return undefined;
+  }
+  const connections = getConnections();
+  return connections.find(conn =>
+    conn.lightBlock &&
+    conn.lightBlock.x === block.location.x &&
+    conn.lightBlock.y === block.location.y &&
+    conn.lightBlock.z === block.location.z &&
+    conn.lightBlock.dimensionId === dimension.id
+  );
+};
+
 const getConnectionByOfficeLightBlock = (block, dimension) => {
   if (!dimension?.id) {
     return undefined;
   }
   const connections = getConnections();
   return connections.find(conn =>
-    conn.officeLightBlock &&
+    (conn.lightBlock &&
+    conn.lightBlock.x === block.location.x &&
+    conn.lightBlock.y === block.location.y &&
+    conn.lightBlock.z === block.location.z &&
+    conn.lightBlock.dimensionId === dimension.id) ||
+    (conn.officeLightBlock &&
     conn.officeLightBlock.x === block.location.x &&
     conn.officeLightBlock.y === block.location.y &&
     conn.officeLightBlock.z === block.location.z &&
-    conn.officeLightBlock.dimensionId === dimension.id
+    conn.officeLightBlock.dimensionId === dimension.id)
   );
 };
 
@@ -132,7 +218,7 @@ const getConnectionByWoodenDoorBlock = (block, dimension) => {
   return result;
 };
 
-function connectDoorToOfficeLight(doorBlock, officeLightBlock, doorDimension, player) {
+function connectDoorToLight(doorBlock, lightBlock, doorDimension, player) {
   const connections = getConnections();
   const doorConnections = connections.filter(conn =>
     conn.doorBlock.x === doorBlock.location.x &&
@@ -144,6 +230,56 @@ function connectDoorToOfficeLight(doorBlock, officeLightBlock, doorDimension, pl
     player.sendMessage(dynamicToast("§l§cERROR", "§cMaximum connections (5) reached", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
+  
+
+  const lightPos = { x: lightBlock.location.x, y: lightBlock.location.y, z: lightBlock.location.z };
+  if (isLightConnectedToSwitch(lightPos, doorDimension.id)) {
+    player.sendMessage(dynamicToast("§l§cERROR", "§cThis light is already connected to a switch", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+    return;
+  }
+  
+
+  const existingConnection = connections.find(conn =>
+    conn.doorBlock.x === doorBlock.location.x &&
+    conn.doorBlock.y === doorBlock.location.y &&
+    conn.doorBlock.z === doorBlock.location.z &&
+    conn.doorBlock.dimensionId === doorDimension.id &&
+    ((conn.lightBlock &&
+    conn.lightBlock.x === lightBlock.location.x &&
+    conn.lightBlock.y === lightBlock.location.y &&
+    conn.lightBlock.z === lightBlock.location.z &&
+    conn.lightBlock.dimensionId === doorDimension.id) ||
+    (conn.officeLightBlock &&
+    conn.officeLightBlock.x === lightBlock.location.x &&
+    conn.officeLightBlock.y === lightBlock.location.y &&
+    conn.officeLightBlock.z === lightBlock.location.z &&
+    conn.officeLightBlock.dimensionId === doorDimension.id))
+  );
+  
+  if (existingConnection) {
+    player.sendMessage(dynamicToast("§l§cERROR", "§cThis connection already exists", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+    return;
+  }
+  
+
+  const lightAlreadyConnected = connections.find(conn =>
+    (conn.lightBlock &&
+    conn.lightBlock.x === lightBlock.location.x &&
+    conn.lightBlock.y === lightBlock.location.y &&
+    conn.lightBlock.z === lightBlock.location.z &&
+    conn.lightBlock.dimensionId === doorDimension.id) ||
+    (conn.officeLightBlock &&
+    conn.officeLightBlock.x === lightBlock.location.x &&
+    conn.officeLightBlock.y === lightBlock.location.y &&
+    conn.officeLightBlock.z === lightBlock.location.z &&
+    conn.officeLightBlock.dimensionId === doorDimension.id)
+  );
+  
+  if (lightAlreadyConnected) {
+    player.sendMessage(dynamicToast("§l§cERROR", "§cThis light is already connected to another button", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+    return;
+  }
+  
   const connection = {
     doorBlock: {
       dimensionId: doorDimension.id,
@@ -151,19 +287,25 @@ function connectDoorToOfficeLight(doorBlock, officeLightBlock, doorDimension, pl
       y: doorBlock.location.y,
       z: doorBlock.location.z
     },
-    officeLightBlock: {
+    lightBlock: {
       dimensionId: doorDimension.id,
-      x: officeLightBlock.location.x,
-      y: officeLightBlock.location.y,
-      z: officeLightBlock.location.z
+      x: lightBlock.location.x,
+      y: lightBlock.location.y,
+      z: lightBlock.location.z,
+      typeId: lightBlock.typeId
     }
   };
   if (!addConnection(connection)) {
     player.sendMessage(dynamicToast("§l§cERROR", "§cCould not add the connection", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
-  player.sendMessage(dynamicToast("§l§qSUCCESS", "§qOffice light linked successfully", "textures/fr_ui/approve_icon", "textures/fr_ui/approve_ui"));
-  doorDimension.playSound("fr:connect_office_light", officeLightBlock.center());
+  player.sendMessage(dynamicToast("§l§qSUCCESS", "§qLight linked successfully", "textures/fr_ui/approve_icon", "textures/fr_ui/approve_ui"));
+  doorDimension.playSound("fr:connect_office_light", lightBlock.center());
+}
+
+
+function connectDoorToOfficeLight(doorBlock, officeLightBlock, doorDimension, player) {
+  connectDoorToLight(doorBlock, officeLightBlock, doorDimension, player);
 }
 
 function syncLightState(block, dimension, player) {
@@ -181,36 +323,90 @@ function syncLightState(block, dimension, player) {
     conn.doorBlock.dimensionId === doorBlockPos.dimensionId
   );
   connections.forEach(connection => {
-    const officeLightBlock = dimension.getBlock({
-      x: connection.officeLightBlock.x,
-      y: connection.officeLightBlock.y,
-      z: connection.officeLightBlock.z,
+
+    const lightData = connection.lightBlock || connection.officeLightBlock;
+    if (!lightData) return;
+    
+    const lightBlock = dimension.getBlock({
+      x: lightData.x,
+      y: lightData.y,
+      z: lightData.z,
     });
-    if (officeLightBlock && officeLightBlock.typeId !== "minecraft:air") {
-      const newPerm = officeLightBlock.permutation.withState("fr:lit", doorState);
-      officeLightBlock.setPermutation(newPerm);
+    if (lightBlock && lightBlock.typeId !== "minecraft:air") {
+      try {
+        const newPerm = lightBlock.permutation.withState("fr:lit", doorState);
+        lightBlock.setPermutation(newPerm);
+      } catch {}
       
-      const key = `${connection.officeLightBlock.dimensionId}_${connection.officeLightBlock.x}_${connection.officeLightBlock.y}_${connection.officeLightBlock.z}`;
+      const key = `${lightData.dimensionId}_${lightData.x}_${lightData.y}_${lightData.z}`;
+      const lightTypeId = lightData.typeId || lightBlock.typeId;
+      const location = { 
+        x: lightData.x + 0.5, 
+        y: lightData.y, 
+        z: lightData.z + 0.5 
+      };
+      
       if (doorState) {
+
         if (!hallwayLampVfxEntities[key]) {
-          const location = { 
-            x: connection.officeLightBlock.x + 0.5, 
-            y: connection.officeLightBlock.y + 0, 
-            z: connection.officeLightBlock.z + 0.5 
-          };
           try {
-            const entity = dimension.spawnEntity("fr:hallway_lamp_vfx", location);
-            hallwayLampVfxEntities[key] = entity;
-          } catch {}
+
+            if (lightTypeId === "fr:stage_spotlight") {
+              const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
+              const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
+              const angle = angles[rotationState];
+              dimension.runCommand(`summon fr:stage_spotlight_vfx ${location.x} ${location.y} ${location.z} ${angle} 0`);
+              hallwayLampVfxEntities[key] = { vfxType: "stage_spotlight" };
+            } else if (lightTypeId === "fr:pizzeria_lamp") {
+              const entity = dimension.spawnEntity("fr:pizzeria_lamp_vfx", location);
+              hallwayLampVfxEntities[key] = { vfxType: "pizzeria_lamp", entity };
+            } else if (lightTypeId === "fr:ceiling_light") {
+              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction") || "north";
+              const isNorthSouth = cardinal === "north" || cardinal === "south";
+              const rotation = isNorthSouth ? 0 : 90;
+              const entity = dimension.spawnEntity("fr:ceiling_light_vfx", location);
+              entity.setRotation({ x: 0, y: rotation });
+              hallwayLampVfxEntities[key] = { vfxType: "ceiling_light", entity };
+            } else if (lightTypeId === "fr:office_light") {
+              const entity = dimension.spawnEntity("fr:hallway_lamp_vfx", location);
+              hallwayLampVfxEntities[key] = { vfxType: "hallway_lamp", entity };
+            } else if (lightTypeId === "fr:office_lamp" || lightTypeId === "fr:supply_room_lightbulb") {
+              const entity = dimension.spawnEntity("fr:office_lamp_vfx", location);
+              hallwayLampVfxEntities[key] = { vfxType: "office_lamp", entity };
+            } else {
+
+              const vfxEntityType = getVfxEntityForLight(lightTypeId);
+              const entity = dimension.spawnEntity(vfxEntityType, location);
+              hallwayLampVfxEntities[key] = { vfxType: vfxEntityType, entity };
+            }
+          } catch (e) {}
         }
       } else {
-        const location = { 
-          x: connection.officeLightBlock.x + 0.5, 
-          y: connection.officeLightBlock.y + 0.5, 
-          z: connection.officeLightBlock.z + 0.5 
+
+        const locationCenter = { 
+          x: lightData.x + 0.5, 
+          y: lightData.y + 0.5, 
+          z: lightData.z + 0.5 
         };
         try {
-          dimension.runCommand(`execute at @e[type=fr:hallway_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+          const storedVfx = hallwayLampVfxEntities[key];
+          const vfxType = storedVfx?.vfxType;
+          
+          if (vfxType === "stage_spotlight") {
+            dimension.runCommand(`execute at @e[type=fr:stage_spotlight_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "pizzeria_lamp") {
+            dimension.runCommand(`execute at @e[type=fr:pizzeria_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "ceiling_light") {
+            dimension.runCommand(`execute at @e[type=fr:ceiling_light_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "hallway_lamp") {
+            dimension.runCommand(`execute at @e[type=fr:hallway_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "office_lamp") {
+            dimension.runCommand(`execute at @e[type=fr:office_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
+          } else {
+
+            const vfxEntityType = getVfxEntityForLight(lightTypeId);
+            dimension.runCommand(`execute at @e[type=${vfxEntityType}] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
+          }
         } catch {}
         if (hallwayLampVfxEntities[key]) {
           delete hallwayLampVfxEntities[key];
@@ -545,6 +741,12 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
         z: block.location.z,
         dimensionId: block.dimension.id,
       });
+
+      setSelection(player.id, SelectionType.DOOR_BUTTON_LIGHT, {
+        pos: { x: block.location.x, y: block.location.y, z: block.location.z, dimensionId: block.dimension.id }
+      });
+
+      player.sendMessage(dynamicToast("§l§9INFO", "§9The Door Buttons block has been selected (Light)", "textures/fr_ui/door_buttons_office", "textures/fr_ui/selection_ui"));
       return;
     }
     if (selectedZone === "door") {
@@ -556,6 +758,12 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
         z: block.location.z,
         dimensionId: block.dimension.id,
       });
+
+      setSelection(player.id, SelectionType.DOOR_BUTTON_DOOR, {
+        pos: { x: block.location.x, y: block.location.y, z: block.location.z, dimensionId: block.dimension.id }
+      });
+
+      player.sendMessage(dynamicToast("§l§9INFO", "§9The Door Buttons block has been selected (Door)", "textures/fr_ui/door_buttons_office", "textures/fr_ui/selection_ui"));
       return;
     }
     return;
@@ -627,14 +835,21 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
   const blockDimension = block.dimension;
   if (!player) return;
   
-  if (itemStack && itemStack.typeId === "fr:faz-diver_security" && block.typeId === "fr:office_light") {
-    if (pendingConnections.has(player.name)) {
+
+  if (itemStack && itemStack.typeId === "fr:faz-diver_security" && isLightType(block.typeId)) {
+
+    const currentSelection = getSelection(player.id);
+    const hasDoorButtonLightSelection = currentSelection && currentSelection.type === SelectionType.DOOR_BUTTON_LIGHT;
+    
+    if (hasDoorButtonLightSelection && pendingConnections.has(player.name)) {
       const pending = pendingConnections.get(player.name);
-      connectDoorToOfficeLight(pending.doorBlock, block, pending.doorDimension, player);
+      connectDoorToLight(pending.doorBlock, block, pending.doorDimension, player);
       pendingConnections.delete(player.name);
       selectedDoorButton.delete(player.name);
-    } else {
-      const connection = getConnectionByOfficeLightBlock(block, blockDimension);
+      clearSelection(player.id);
+    } else if (!hasDoorButtonLightSelection) {
+
+      const connection = getConnectionByLightBlock(block, blockDimension);
       if (connection) {
         showDisconnectModal(player, connection);
       }
@@ -652,6 +867,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
       connectDoorToWoodenDoor(pending.doorBlock, upperBlock, pending.doorDimension, player);
       pendingWoodenDoorConnections.delete(player.name);
       selectedDoorButton.delete(player.name);
+      clearSelection(player.id);
     } else {
       const connection = getConnectionByWoodenDoorBlock(upperBlock, blockDimension);
       if (connection) {
@@ -688,16 +904,38 @@ function removeEntireOfficeDoor(upperBlock, dimension) {
 world.afterEvents.playerBreakBlock.subscribe(event => {
   const { block, player, brokenBlockPermutation } = event;
   const dimension = block.dimension;
+  const brokenBlockType = brokenBlockPermutation.type.id;
   
-  if (block.typeId === "fr:office_light") {
-    const connection = getConnectionByOfficeLightBlock(block, dimension);
-    if (connection) {
-      removeConnection(connection);
-      if (player) player.sendMessage("Connection removed: office_light block destroyed.");
+
+
+  if (isLightType(brokenBlockType)) {
+
+    let connections = getConnections();
+    const connectionsToRemove = connections.filter(conn => {
+      const lightData = conn.lightBlock || conn.officeLightBlock;
+      return lightData &&
+        lightData.x === block.location.x &&
+        lightData.y === block.location.y &&
+        lightData.z === block.location.z &&
+        lightData.dimensionId === dimension.id;
+    });
+    
+    if (connectionsToRemove.length > 0) {
+
+      connections = connections.filter(conn => {
+        const lightData = conn.lightBlock || conn.officeLightBlock;
+        return !(lightData &&
+          lightData.x === block.location.x &&
+          lightData.y === block.location.y &&
+          lightData.z === block.location.z &&
+          lightData.dimensionId === dimension.id);
+      });
+      setConnections(connections);
+      if (player) player.sendMessage(`${connectionsToRemove.length} connection(s) removed: light block destroyed.`);
     }
   }
   
-  if (brokenBlockPermutation.type.id === "fr:office_door") {
+  if (brokenBlockType === "fr:office_door") {
     let wasUpper = false;
     try {
       wasUpper = brokenBlockPermutation.getState("fr:upper") === true;
@@ -768,6 +1006,104 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
           removeEntireOfficeDoor(upperBlock, dimension);
         }, 1);
       }
+    }
+  }
+  
+
+  if (brokenBlockType === "fr:door_buttons") {
+    const doorBlockPos = {
+      x: block.location.x,
+      y: block.location.y,
+      z: block.location.z,
+      dimensionId: dimension.id
+    };
+    
+
+    let connections = getConnections();
+    const lightConnectionsToRemove = connections.filter(conn =>
+      conn.doorBlock.x === doorBlockPos.x &&
+      conn.doorBlock.y === doorBlockPos.y &&
+      conn.doorBlock.z === doorBlockPos.z &&
+      conn.doorBlock.dimensionId === doorBlockPos.dimensionId
+    );
+    
+    if (lightConnectionsToRemove.length > 0) {
+
+      lightConnectionsToRemove.forEach(conn => {
+        try {
+
+          const lightData = conn.lightBlock || conn.officeLightBlock;
+          if (!lightData) return;
+          
+          const lightBlock = dimension.getBlock({
+            x: lightData.x,
+            y: lightData.y,
+            z: lightData.z
+          });
+          if (lightBlock && isLightType(lightBlock.typeId)) {
+            try {
+              const newPerm = lightBlock.permutation.withState("fr:lit", false);
+              lightBlock.setPermutation(newPerm);
+            } catch {}
+          }
+
+          const key = `${lightData.dimensionId}_${lightData.x}_${lightData.y}_${lightData.z}`;
+          const location = { 
+            x: lightData.x + 0.5, 
+            y: lightData.y + 0.5, 
+            z: lightData.z + 0.5 
+          };
+
+          const storedVfx = hallwayLampVfxEntities[key];
+          const vfxType = storedVfx?.vfxType || getVfxEntityForLight(lightData.typeId || (lightBlock ? lightBlock.typeId : "fr:office_light"));
+          try {
+            dimension.runCommand(`execute at @e[type=${vfxType}] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+          } catch {}
+          if (hallwayLampVfxEntities[key]) {
+            delete hallwayLampVfxEntities[key];
+          }
+        } catch {}
+      });
+      
+      connections = connections.filter(conn =>
+        !(conn.doorBlock.x === doorBlockPos.x &&
+          conn.doorBlock.y === doorBlockPos.y &&
+          conn.doorBlock.z === doorBlockPos.z &&
+          conn.doorBlock.dimensionId === doorBlockPos.dimensionId)
+      );
+      setConnections(connections);
+    }
+    
+
+    let woodenDoorConnections = getWoodenDoorConnections();
+    const doorConnectionsToRemove = woodenDoorConnections.filter(conn =>
+      conn.doorBlock.x === doorBlockPos.x &&
+      conn.doorBlock.y === doorBlockPos.y &&
+      conn.doorBlock.z === doorBlockPos.z &&
+      conn.doorBlock.dimensionId === doorBlockPos.dimensionId
+    );
+    
+    if (doorConnectionsToRemove.length > 0) {
+      woodenDoorConnections = woodenDoorConnections.filter(conn =>
+        !(conn.doorBlock.x === doorBlockPos.x &&
+          conn.doorBlock.y === doorBlockPos.y &&
+          conn.doorBlock.z === doorBlockPos.z &&
+          conn.doorBlock.dimensionId === doorBlockPos.dimensionId)
+      );
+      setWoodenDoorConnections(woodenDoorConnections);
+    }
+    
+    const totalRemoved = lightConnectionsToRemove.length + doorConnectionsToRemove.length;
+    if (totalRemoved > 0 && player) {
+      player.sendMessage(`§c${totalRemoved} connection(s) removed: door_buttons block destroyed.`);
+    }
+    
+
+    if (player) {
+      pendingConnections.delete(player.name);
+      pendingWoodenDoorConnections.delete(player.name);
+      selectedDoorButton.delete(player.name);
+      clearSelection(player.id);
     }
   }
 });

@@ -30,7 +30,7 @@
 				]
 			},
 			"geometry": {
-				"default": "geometry.fr_foxy_the_pirate"
+				"default": "geometry.Foxy_the_Pirate_alt"
 			},
 			"render_controllers": [
 				"controller.render.fr_render_vars"

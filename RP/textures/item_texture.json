@@ -135,6 +135,11 @@
             "textures": [
                 "textures/items/wrench"
             ]
+        },
+        "wall_tear_holes": {
+            "textures": [
+                "textures/items/wall_tear_hole"
+            ]
         }
     }
 }

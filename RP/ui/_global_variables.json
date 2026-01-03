@@ -9,5 +9,11 @@
   "$flag_statue_sec_variants": "§s§e§c§:§1",
   "$flag_statue_sec_poses": "§s§e§c§:§2",
   "$flag_statue_sec_statue": "§s§e§c§:§3",
-  "$flag_minimap": "§M§I§N§I§M§A§P"
+  "$flag_minimap": "§M§I§N§I§M§A§P",
+  "$flag_employee_compatible": "§©§-",
+  "$flag_security": "§S§E§C§U§R§I§T§Y",
+  "$flag_manager": "§M§A§N§A§G§E§R",
+  "$flag_executive": "§E§X§E§C§U§T§I§V§E",
+  "$flag_employee": "§E§M§P§L§O§Y§E§E",
+  "$flag_off": "§O§F§F"
 }

@@ -97,10 +97,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 0, 6],
-					"size": [16, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
@@ -121,10 +118,7 @@
 						"top_frame": true
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 13, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
@@ -145,10 +139,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 0, 6],
 					"size": [3, 16, 2]
@@ -169,10 +160,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [5, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [5, 0, 6],
 					"size": [3, 16, 2]
@@ -193,10 +181,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [5, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [5, 0, 6],
 					"size": [3, 16, 2]
@@ -217,10 +202,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 0, 6],
-					"size": [3, 16, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 0, 6],
 					"size": [3, 16, 2]
@@ -241,10 +223,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 13, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
@@ -265,10 +244,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 13, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
@@ -289,10 +265,7 @@
 						"top_frame": true
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 13, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
@@ -376,10 +349,7 @@
 						"top_frame": true
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 13, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
@@ -400,10 +370,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 13, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]
@@ -424,10 +391,7 @@
 						"top_frame": false
 					}
 				},
-				"minecraft:collision_box": {
-					"origin": [-8, 13, 6],
-					"size": [16, 3, 2]
-				},
+				"minecraft:collision_box": false,
 				"minecraft:selection_box": {
 					"origin": [-8, 13, 6],
 					"size": [16, 3, 2]

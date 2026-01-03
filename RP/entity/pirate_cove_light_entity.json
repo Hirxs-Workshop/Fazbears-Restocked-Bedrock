@@ -11,7 +11,7 @@
 				"default": "textures/vfx/pirate_cove_light"
 			},
 			"animations": {
-				"default_pose": "animation.pirate_cove_light.new",
+				"default_pose": "animation.office_lamp_vfx.camera",
 				"no_pose": "animation.office_lamp_vfx.camera",
 				"solemn_pose": "animation.office_lamp_vfx.camera",
 				"athena_pose": "animation.office_lamp_vfx.camera",
@@ -29,7 +29,7 @@
 				"controller.wiggling": "controller.animation.armor_stand.wiggle"
 			},
 			"geometry": {
-				"default": "geometry.pirate_cove_light_entity"
+				"default": "geometry.pirate_cove_lights_vfx_fix"
 			},
 			"render_controllers": [
 				"controller.render.office_lamp_vfx"

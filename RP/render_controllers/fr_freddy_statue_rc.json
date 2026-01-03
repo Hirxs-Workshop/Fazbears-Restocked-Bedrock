@@ -1,0 +1,42 @@
+{
+    "format_version": "1.8.0",
+    "render_controllers": {
+        "controller.render.fr_freddy_statue_rc": {
+            "geometry": "Array.geo[q.property('fr:variant')]",
+            "materials": [
+                {
+                    "*": "Material.default"
+                }
+            ],
+            "textures": [
+                "Array.variants[q.property('fr:variant')]"
+            ],
+            "arrays": {
+                "textures": {
+                    "Array.variants": [
+                        "Texture.default",
+                        "Texture.variant_1",
+                        "Texture.variant_2",
+                        "Texture.variant_3",
+                        "Texture.variant_4",
+                        "Texture.variant_5",
+                        "Texture.variant_6",
+                        "Texture.variant_7"
+                    ]
+                },
+                "geometries": {
+                    "Array.geo": [
+                        "Geometry.default",
+                        "Geometry.variant_1",
+                        "Geometry.variant_2",
+                        "Geometry.variant_3",
+                        "Geometry.variant_4",
+                        "Geometry.variant_5",
+                        "Geometry.variant_6",
+                        "Geometry.variant_7"
+                    ]
+                }
+            }
+        }
+    }
+}

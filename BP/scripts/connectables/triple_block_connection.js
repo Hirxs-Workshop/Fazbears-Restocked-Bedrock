@@ -49,7 +49,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 block.above().setType("minecraft:air")
                 block.above(1).setType("minecraft:air")
                 block.above(2).setType("minecraft:air")
-            }// 
+            }
             if (brokenBlockPermutation.getState("fr:block_bit") == 'middle' && block.below().permutation.getState("fr:block_bit") == 'bottom' && block.above().permutation.getState("fr:block_bit") == 'upper') {
                 block.below().setType("minecraft:air")
                 block.above().setType("minecraft:air")

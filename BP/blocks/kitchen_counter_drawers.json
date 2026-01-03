@@ -1,0 +1,169 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:kitchen_counter_drawers",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": [
+						"minecraft:cardinal_direction"
+					]
+				}
+			},
+			"states": {
+				"fr:variants": {
+					"values": {
+						"min": 0,
+						"max": 3
+					}
+				},
+				"fr:drawer_state": ["closed", "open", "a_bit_open"]
+			}
+		},
+		"components": {
+			"minecraft:collision_box": {
+				"origin": [-8, 0, -8],
+				"size": [16, 16, 16]
+			},
+			"minecraft:selection_box": {
+				"origin": [-8, 0, -8],
+				"size": [16, 16, 16]
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.kitchen_counter_drawers",
+				"bone_visibility": {
+					"open": false,
+					"closed": true,
+					"a_bit_open": false
+				}
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "kitchencounter",
+					"render_method": "alpha_test"
+				}
+			},
+			"fr:single_interactive": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "kitchencounter",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "kitchencounter_drawer",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "kitchencounter_drawer1",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "kitchencounter_drawer3",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:drawer_state') == 'closed'",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.kitchen_counter_drawers",
+						"bone_visibility": {
+							"open": false,
+							"closed": true,
+							"a_bit_open": false
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:drawer_state') == 'open'",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.kitchen_counter_drawers",
+						"bone_visibility": {
+							"open": true,
+							"closed": false,
+							"a_bit_open": false
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:drawer_state') == 'a_bit_open'",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.kitchen_counter_drawers",
+						"bone_visibility": {
+							"open": false,
+							"closed": false,
+							"a_bit_open": true
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 180, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, -90, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 0, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 90, 0]
+					}
+				}
+			}
+		]
+	}
+}

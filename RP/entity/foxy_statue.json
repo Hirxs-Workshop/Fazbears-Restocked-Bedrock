@@ -1,48 +1,105 @@
 {
-	"format_version": "1.10.0",
+	"format_version": "1.21.0",
 	"minecraft:client_entity": {
 		"description": {
 			"identifier": "fr:foxy_statue",
-			"min_engine_version": "1.8.0",
 			"materials": {
 				"default": "spider"
 			},
 			"textures": {
-				"default": "textures/entity/reworked/fnaf1/foxy_the_pirate"
+				"default": "textures/entity/reworked/fnaf1/foxy_the_pirate",
+				"variant_1": "textures/entity/reworked/fnaf1/foxy_the_pirate_fixed",
+				"variant_2": "textures/entity/reworked/fnaf1/foxy_the_pirate_glow_eyes",
+				"variant_3": "textures/entity/reworked/fnaf1/foxy_the_pirate_fixed_glow_eyes",
+				"variant_4": "textures/entity/reworked/fnaf1/foxy_the_gingerbread_fox"
 			},
 			"animations": {
-				"default_pose": "animation.foxy_stand",
-				"no_pose": "animation.foxy_mugshot",
-				"solemn_pose": "animation.foxy_hw2_render",
-				"athena_pose": "animation.foxy_peek",
-				"brandish_pose": "animation.foxy_exit_cove",
-				"honor_pose": "animation.foxy_jumpscare",
-				"entertain_pose": "animation.foxy_ar_render1",
-				"salute_pose": "animation.foxy_ar_render_2",
-				"riposte_pose": "animation.foxy_look_up",
-				"zombie_pose": "animation.foxy_crouch_look_up",
-				"cancan_a_pose": "animation.foxy_crouch_look_side",
-				"cancan_b_pose": "animation.foxy_floor_sit",
-				"hero_pose": "animation.foxy_dismantled",
-				"wiggle": "animation.foxy_dismantled",
-				"controller.pose": "controller.animation.armor_stand.pose",
-				"controller.wiggling": "controller.animation.armor_stand.wiggle"
+				"pose_0": "animation.foxy_stand",
+				"pose_1": "animation.foxy_mugshot",
+				"pose_2": "animation.foxy_hw2_render",
+				"pose_3": "animation.foxy_peek",
+				"pose_4": "animation.foxy_exit_cove",
+				"pose_5": "animation.foxy_jumpscare",
+				"pose_6": "animation.foxy_ar_render1",
+				"pose_7": "animation.foxy_ar_render_2",
+				"pose_8": "animation.foxy_look_up",
+				"pose_9": "animation.foxy_crouch_look_up",
+				"pose_10": "animation.foxy_crouch_look_side",
+				"pose_11": "animation.foxy_floor_sit",
+				"pose_12": "animation.foxy_dismantled",
+				"pose_13": "animation.fr_foxy_walk",
+				"pose_14": "animation.fr_foxy_idle",
+				"pose_15": "animation.foxy_showtime",
+				"pose_16": "animation.foxy_sit",
+				"pose_17": "animation.foxy_lay",
+				"pose_18": "animation.fr_foxy_running"
 			},
 			"scripts": {
-				"initialize": [
-					"variable.armor_stand.pose_index = 0;",
-					"variable.armor_stand.hurt_time = 0;"
-				],
 				"animate": [
-					"controller.pose",
-					"controller.wiggling"
+					{
+						"pose_0": "q.property('fr:pose') == 0"
+					},
+					{
+						"pose_1": "q.property('fr:pose') == 1"
+					},
+					{
+						"pose_2": "q.property('fr:pose') == 2"
+					},
+					{
+						"pose_3": "q.property('fr:pose') == 3"
+					},
+					{
+						"pose_4": "q.property('fr:pose') == 4"
+					},
+					{
+						"pose_5": "q.property('fr:pose') == 5"
+					},
+					{
+						"pose_6": "q.property('fr:pose') == 6"
+					},
+					{
+						"pose_7": "q.property('fr:pose') == 7"
+					},
+					{
+						"pose_8": "q.property('fr:pose') == 8"
+					},
+					{
+						"pose_9": "q.property('fr:pose') == 9"
+					},
+					{
+						"pose_10": "q.property('fr:pose') == 10"
+					},
+					{
+						"pose_11": "q.property('fr:pose') == 11"
+					},
+					{
+						"pose_12": "q.property('fr:pose') == 12"
+					},
+					{
+						"pose_13": "q.property('fr:pose') == 13"
+					},
+					{
+						"pose_14": "q.property('fr:pose') == 14"
+					},
+					{
+						"pose_15": "q.property('fr:pose') == 15"
+					},
+					{
+						"pose_16": "q.property('fr:pose') == 16"
+					},
+					{
+						"pose_17": "q.property('fr:pose') == 17"
+					},
+					{
+						"pose_18": "q.property('fr:pose') == 18"
+					}
 				]
 			},
 			"geometry": {
 				"default": "geometry.Foxy_the_Pirate_alt"
 			},
 			"render_controllers": [
-				"controller.render.armor_stand"
+				"controller.render.fr_foxy_statue_rc"
 			],
 			"enable_attachables": true,
 			"spawn_egg": {

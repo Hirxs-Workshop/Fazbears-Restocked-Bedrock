@@ -13,7 +13,7 @@
 
 import { world, system } from '@minecraft/server';
 import { securityCameraSystem } from './camera_system/security_camera_system.js';
-import { dynamicToast, showCameraLoading } from './utils.js';
+import { dynamicToast } from './utils.js';
 
 function getPcDataFromItem(itemStack) {
     try {
@@ -159,12 +159,8 @@ system.beforeEvents.startup.subscribe(({ itemComponentRegistry }) => {
                     return;
                 }
                 
-                showCameraLoading(player);
-                
-                system.runTimeout(() => {
-                    securityCameraSystem.viewYaw.set(player.id, 0);
-                    securityCameraSystem.applyView(player, dimension, firstCamera, pcPosStr, true);
-                }, 0);
+                securityCameraSystem.viewYaw.set(player.id, 0);
+                securityCameraSystem.applyView(player, dimension, firstCamera, pcPosStr, true);
             } catch {}
         }
     });

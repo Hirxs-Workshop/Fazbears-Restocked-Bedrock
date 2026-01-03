@@ -1,9 +1,8 @@
 {
-	"format_version": "1.13.0",
+	"format_version": "1.21.0",
 	"minecraft:entity": {
 		"description": {
 			"identifier": "fr:foxy_statue",
-			"runtime_identifier": "minecraft:armor_stand",
 			"is_spawnable": true,
 			"is_summonable": true,
 			"is_experimental": false,
@@ -13,50 +12,74 @@
 				]
 			},
 			"animations": {
-				"bridge_execute_commands": "controller.animation.bridge_bonnie.execute_commands"
+				"bridge_execute_commands": "controller.animation.bridge_foxy.execute_commands"
+			},
+			"properties": {
+				"fr:pose": {
+					"client_sync": true,
+					"type": "int",
+					"default": 0,
+					"range": [0, 18]
+				},
+				"fr:variant": {
+					"client_sync": true,
+					"type": "int",
+					"default": 0,
+					"range": [0, 4]
+				}
 			}
 		},
 		"components": {
 			"minecraft:type_family": {
-				"family": [
-					"armor_stand",
-					"inanimate",
-					"mob"
-				]
+				"family": ["armor_stand", "inanimate", "mob"]
 			},
 			"minecraft:collision_box": {
 				"width": 0.5,
 				"height": 1.975
 			},
 			"minecraft:health": {
-				"value": 6,
-				"max": 6
+				"value": 1,
+				"max": 1
 			},
 			"minecraft:interact": {
 				"interactions": [
 					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{"test": "is_family", "subject": "other", "value": "player"},
+									{"test": "has_equipment", "domain": "hand", "subject": "other", "value": "fr:faz-diver_repairman"}
+								]
+							}
+						},
 						"use_item": false,
 						"interact_text": "action.interact.animatronic_menu"
+					},
+					{
+						"on_interact": {
+							"filters": {
+								"all_of": [
+									{"test": "is_family", "subject": "other", "value": "player"},
+									{"test": "has_equipment", "domain": "hand", "subject": "other", "value": "fr:wrench"}
+								]
+							},
+							"event": "moving"
+						},
+						"use_item": false,
+						"interact_text": "action.interact.moving"
 					}
 				]
 			},
 			"minecraft:hurt_on_condition": {
 				"damage_conditions": [
 					{
-						"filters": {
-							"test": "in_lava",
-							"subject": "self",
-							"operator": "==",
-							"value": true
-						},
+						"filters": {"test": "in_lava", "subject": "self", "operator": "==", "value": true},
 						"cause": "lava",
 						"damage_per_tick": 4
 					}
 				]
 			},
-			"minecraft:knockback_resistance": {
-				"value": 1
-			},
+			"minecraft:knockback_resistance": {"value": 1},
 			"minecraft:nameable": {},
 			"minecraft:persistent": {},
 			"minecraft:physics": {},
@@ -67,85 +90,42 @@
 			"minecraft:conditional_bandwidth_optimization": {}
 		},
 		"component_groups": {
-			"bridge:execute_command_id_1": {
-				"minecraft:skin_id": {
-					"value": 1
-				}
-			},
-			"bridge:execute_no_command": {
-				"minecraft:skin_id": {
-					"value": 0
-				}
-			},
-			"bridge:execute_command_id_2": {
-				"minecraft:skin_id": {
-					"value": 2
-				}
-			},
-			"bridge:execute_command_id_3": {
-				"minecraft:skin_id": {
-					"value": 3
-				}
-			}
+			"bridge:execute_command_id_1": {"minecraft:skin_id": {"value": 1}},
+			"bridge:execute_no_command": {"minecraft:skin_id": {"value": 0}},
+			"bridge:execute_command_id_2": {"minecraft:skin_id": {"value": 2}},
+			"bridge:execute_command_id_3": {"minecraft:skin_id": {"value": 3}}
 		},
 		"events": {
-			"minecraft:entity_spawned": {
-				"add": {
-					"component_groups": [
-						"bridge:execute_command_id_1"
-					]
-				}
-			},
-			"moving": {
-				"add": {
-					"component_groups": [
-						"bridge:execute_command_id_3"
-					]
-				}
-			},
-			"rotate": {
-				"add": {
-					"component_groups": [
-						"bridge:execute_command_id_2"
-					]
-				}
-			},
-			"bridge:remove_command_id_1": {
-				"add": {
-					"component_groups": [
-						"bridge:execute_no_command"
-					]
-				},
-				"remove": {
-					"component_groups": [
-						"bridge:execute_command_id_1"
-					]
-				}
-			},
-			"bridge:remove_command_id_2": {
-				"add": {
-					"component_groups": [
-						"bridge:execute_no_command"
-					]
-				},
-				"remove": {
-					"component_groups": [
-						"bridge:execute_command_id_2"
-					]
-				}
-			},
-			"bridge:remove_command_id_3": {
-				"add": {
-					"component_groups": [
-						"bridge:execute_no_command"
-					]
-				},
-				"remove": {
-					"component_groups": [
-						"bridge:execute_command_id_3"
-					]
-				}
-			}
+			"minecraft:entity_spawned": {"add": {"component_groups": ["bridge:execute_command_id_1"]}},
+			"moving": {"add": {"component_groups": ["bridge:execute_command_id_3"]}},
+			"rotate": {"add": {"component_groups": ["bridge:execute_command_id_2"]}},
+			"bridge:remove_command_id_1": {"add": {"component_groups": ["bridge:execute_no_command"]}, "remove": {"component_groups": ["bridge:execute_command_id_1"]}},
+			"bridge:remove_command_id_2": {"add": {"component_groups": ["bridge:execute_no_command"]}, "remove": {"component_groups": ["bridge:execute_command_id_2"]}},
+			"bridge:remove_command_id_3": {"add": {"component_groups": ["bridge:execute_no_command"]}, "remove": {"component_groups": ["bridge:execute_command_id_3"]}},
+			"fr:set_pose_0": {"set_property": {"fr:pose": 0}},
+			"fr:set_pose_1": {"set_property": {"fr:pose": 1}},
+			"fr:set_pose_2": {"set_property": {"fr:pose": 2}},
+			"fr:set_pose_3": {"set_property": {"fr:pose": 3}},
+			"fr:set_pose_4": {"set_property": {"fr:pose": 4}},
+			"fr:set_pose_5": {"set_property": {"fr:pose": 5}},
+			"fr:set_pose_6": {"set_property": {"fr:pose": 6}},
+			"fr:set_pose_7": {"set_property": {"fr:pose": 7}},
+			"fr:set_pose_8": {"set_property": {"fr:pose": 8}},
+			"fr:set_pose_9": {"set_property": {"fr:pose": 9}},
+			"fr:set_pose_10": {"set_property": {"fr:pose": 10}},
+			"fr:set_pose_11": {"set_property": {"fr:pose": 11}},
+			"fr:set_pose_12": {"set_property": {"fr:pose": 12}},
+			"fr:set_pose_13": {"set_property": {"fr:pose": 13}},
+			"fr:set_pose_14": {"set_property": {"fr:pose": 14}},
+			"fr:set_pose_15": {"set_property": {"fr:pose": 15}},
+			"fr:set_pose_16": {"set_property": {"fr:pose": 16}},
+			"fr:set_pose_17": {"set_property": {"fr:pose": 17}},
+			"fr:set_pose_18": {"set_property": {"fr:pose": 18}},
+			"fr:set_variant_0": {"set_property": {"fr:variant": 0}},
+			"fr:set_variant_1": {"set_property": {"fr:variant": 1}},
+			"fr:set_variant_2": {"set_property": {"fr:variant": 2}},
+			"fr:set_variant_3": {"set_property": {"fr:variant": 3}},
+			"fr:set_variant_4": {"set_property": {"fr:variant": 4}}
 		}
 	}
 }

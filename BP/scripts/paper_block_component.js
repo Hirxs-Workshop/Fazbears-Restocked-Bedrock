@@ -28,7 +28,7 @@ const HallwayDrawingsComponent = {
             const loc = block.location;
             const dimension = block.dimension;
             const cardinalDirection = permutationToPlace.getState('minecraft:cardinal_direction');
-            
+            // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
             let adjacentX = loc.x;
             let adjacentZ = loc.z;
             
@@ -119,7 +119,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
         HallwayDrawingsComponent
     );
 });
-
+// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
 world.beforeEvents.playerBreakBlock.subscribe((event) => {
     const { block } = event;
     if (!block || block.typeId !== 'fr:hallway_drawings') return;

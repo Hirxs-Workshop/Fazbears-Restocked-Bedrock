@@ -385,7 +385,6 @@
 				},
 				"queue_command": {
 					"command": [
-						"say (DEBUG) chica start attack executed",
 						"effect @p slowness 5 5 true",
 						"effect @p darkness 5 5 true",
 						"ride @p start_riding @s teleport_ride",
@@ -415,7 +414,6 @@
 				},
 				"queue_command": {
 					"command": [
-						"say (DEBUG) chica end attack executed - should be variant 2 now",
 						"hud @p reset all",
 						"execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip_final ~ ~0.6 ~",
 						"kill @p[tag=chica_hit]",
@@ -427,7 +425,6 @@
 			"chica_reset_scare": {
 				"queue_command": {
 					"command": [
-						"say (DEBUG) chica scare cooldown finished",
 						"tag @s remove played_scare"
 					]
 				},
@@ -444,7 +441,6 @@
 				},
 				"queue_command": {
 					"command": [
-						"say (DEBUG) chica blood cleaned, back to variant 0",
 						"execute at @p positioned ~ ~ ~ run particle minecraft:splash ~ ~1 ~ 0.5 0.5 0.5 0.1 10"
 					]
 				}

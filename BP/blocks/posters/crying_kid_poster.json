@@ -1,87 +1,32 @@
 {
-	"format_version": "1.21.30",
+	"format_version": "1.21.0",
 	"minecraft:block": {
 		"description": {
 			"identifier": "fr:crying_kid_poster",
-			"menu_category": {
-				"category": "construction"
-			},
-			"traits": {
-				"minecraft:placement_direction": {
-					"enabled_states": [
-						"minecraft:cardinal_direction"
-					]
-				}
-			}
+			"menu_category": { "category": "construction" },
+			"states": { "fr:position": [0, 1, 2] },
+			"traits": { "minecraft:placement_direction": { "enabled_states": ["minecraft:cardinal_direction"] } }
 		},
 		"components": {
-			"minecraft:collision_box": {
-				"origin": [-8, 0, 6],
-				"size": [16, 16, 2]
-			},
-			"minecraft:selection_box": {
-				"origin": [-8, 0, 6],
-				"size": [16, 16, 2]
-			},
-			"minecraft:geometry": {
-				"identifier": "geometry.crying_kid_poster"
-			},
-			"minecraft:material_instances": {
-				"*": {
-					"texture": "east_hall_posters",
-					"render_method": "alpha_test"
-				}
-			}
+			"minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] },
+			"minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] },
+			"minecraft:geometry": { "identifier": "geometry.crying_kid_poster" },
+			"minecraft:material_instances": { "*": { "texture": "east_hall_posters", "render_method": "alpha_test" } },
+			"minecraft:custom_components": ["fr:poster_position"]
 		},
 		"permutations": [
-			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
-				"components": {
-					"minecraft:transformation": {
-						"rotation": [
-							0,
-							180,
-							0
-						]
-					}
-				}
-			},
-			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
-				"components": {
-					"minecraft:transformation": {
-						"rotation": [
-							0,
-							-90,
-							0
-						]
-					}
-				}
-			},
-			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
-				"components": {
-					"minecraft:transformation": {
-						"rotation": [
-							0,
-							0,
-							0
-						]
-					}
-				}
-			},
-			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
-				"components": {
-					"minecraft:transformation": {
-						"rotation": [
-							0,
-							90,
-							0
-						]
-					}
-				}
-			}
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:position') == 0", "components": { "minecraft:transformation": { "rotation": [0, 180, 0], "translation": [0, 0.5, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:position') == 1", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, 180, 0], "translation": [0, 0, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'north' && q.block_state('fr:position') == 2", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, 180, 0], "translation": [0, -0.5, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('fr:position') == 0", "components": { "minecraft:transformation": { "rotation": [0, 0, 0], "translation": [0, 0.5, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('fr:position') == 1", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, 0, 0], "translation": [0, 0, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'south' && q.block_state('fr:position') == 2", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, 0, 0], "translation": [0, -0.5, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('fr:position') == 0", "components": { "minecraft:transformation": { "rotation": [0, 90, 0], "translation": [0, 0.5, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('fr:position') == 1", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, 90, 0], "translation": [0, 0, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'east' && q.block_state('fr:position') == 2", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, 90, 0], "translation": [0, -0.5, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('fr:position') == 0", "components": { "minecraft:transformation": { "rotation": [0, -90, 0], "translation": [0, 0.5, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('fr:position') == 1", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, -90, 0], "translation": [0, 0, 0] } } },
+			{ "condition": "q.block_state('minecraft:cardinal_direction') == 'west' && q.block_state('fr:position') == 2", "components": { "minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] }, "minecraft:transformation": { "rotation": [0, -90, 0], "translation": [0, -0.5, 0] } } }
 		]
 	}
 }

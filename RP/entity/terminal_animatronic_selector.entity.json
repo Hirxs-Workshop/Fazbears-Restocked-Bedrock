@@ -1,0 +1,24 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:terminal_animatronic_selector",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "fr_light_vfx"
+			},
+			"textures": {
+				"default": "textures/vfx/terminal_animatronic_selector"
+			},
+			"geometry": {
+				"default": "geometry.terminal_animatronic_selector"
+			},
+			"render_controllers": [
+				"controller.render.terminal_selector"
+			],
+			"scripts": {
+				"animate": []
+			}
+		}
+	}
+}

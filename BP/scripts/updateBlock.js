@@ -11,7 +11,7 @@
 
 
 
-import { world, system, BlockPermutation, Direction } from "@minecraft/server";
+import { world, system, BlockPermutation, Direction, EquipmentSlot } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
 
 class DoorManager {
@@ -36,7 +36,7 @@ class DoorManager {
 
     world.afterEvents.worldLoad.subscribe(() => {
       if (!world.getDynamicProperty("fr:backstage_door_block_db")) {
-        world.setDynamicProperty("fr:backstage_door_block_db", JSON.stringify({ processedBlocks: [], doorBases: [], baseDimensions: [], stickyOpenBases: [] }));
+        world.setDynamicProperty("fr:backstage_door_block_db", JSON.stringify({ doorBases: [], baseDimensions: [], stickyOpenBases: [], doorOpenDirections: [], doorBlockTypes: [] }));
       }
       
       this.loadDoorDatabase();
@@ -51,11 +51,25 @@ class DoorManager {
     this.doorEntities = new Map();
     this.doorOpenDirections = new Map();
     this.doorBlockTypes = new Map();
+    this.doorOpenSide = new Map();
+    this._saveScheduled = false;
 
     system.afterEvents.scriptEventReceive.subscribe((data) => {
       const { id, sourceEntity, message } = data;
       if (id === 'fr:main') {
         sourceEntity?.sendMessage?.(this.dynamicToastEvent(message));
+        return;
+      }
+      if (id === 'fr:reset_door_db') {
+        this.processedBlocks.clear();
+        this.doorBases.clear();
+        this.baseDimensions.clear();
+        this.stickyOpenBases.clear();
+        this.doorOpenDirections.clear();
+        this.doorBlockTypes.clear();
+        this.doorEntities.clear();
+        world.setDynamicProperty("fr:backstage_door_block_db", JSON.stringify({ doorBases: [], baseDimensions: [], stickyOpenBases: [], doorOpenDirections: [], doorBlockTypes: [] }));
+        sourceEntity?.sendMessage?.("§aDoor database reset successfully!");
         return;
       }
       if (id === 'fr:backstage_door_block_open_nearby' || id === 'fr:backstage_door_block_close_nearby' || id === 'fr:backstage_door_block_toggle_nearby') {
@@ -340,43 +354,105 @@ class DoorManager {
   loadDoorDatabase() {
     const json = world.getDynamicProperty("fr:backstage_door_block_db");
     if (json) {
-      const data = JSON.parse(json);
-      this.processedBlocks.clear();
-      this.doorBases.clear();
-      this.doorOpenDirections.clear();
-      this.baseDimensions.clear?.();
-      this.stickyOpenBases?.clear?.();
-      for (const [k, v] of data.processedBlocks) {
-        this.processedBlocks.set(k, v);
-      }
-      for (const [k, v] of data.doorBases) {
-        this.doorBases.set(k, v);
-      }
-      if (Array.isArray(data.baseDimensions)) {
-        for (const [bk, dim] of data.baseDimensions) this.baseDimensions.set(bk, dim);
-      }
-      if (Array.isArray(data.stickyOpenBases)) {
-        for (const baseKey of data.stickyOpenBases) this.stickyOpenBases.add(baseKey);
-      }
-      if (Array.isArray(data.doorOpenDirections)) {
-        for (const [baseKey, fromFront] of data.doorOpenDirections) this.doorOpenDirections.set(baseKey, fromFront);
-      }
-      if (Array.isArray(data.doorBlockTypes)) {
-        for (const [baseKey, blockType] of data.doorBlockTypes) this.doorBlockTypes.set(baseKey, blockType);
+      try {
+        const data = JSON.parse(json);
+        this.processedBlocks.clear();
+        this.doorBases.clear();
+        this.doorOpenDirections.clear();
+        this.doorOpenSide.clear();
+        this.baseDimensions.clear?.();
+        this.stickyOpenBases?.clear?.();
+        for (const [k, v] of (data.doorBases || [])) {
+          this.doorBases.set(k, v);
+          this.processedBlocks.set(k, true);
+        }
+        if (Array.isArray(data.baseDimensions)) {
+          for (const [bk, dim] of data.baseDimensions) this.baseDimensions.set(bk, dim);
+        }
+        if (Array.isArray(data.stickyOpenBases)) {
+          for (const baseKey of data.stickyOpenBases) this.stickyOpenBases.add(baseKey);
+        }
+        if (Array.isArray(data.doorOpenDirections)) {
+          for (const [baseKey, fromFront] of data.doorOpenDirections) this.doorOpenDirections.set(baseKey, fromFront);
+        }
+        if (Array.isArray(data.doorBlockTypes)) {
+          for (const [baseKey, blockType] of data.doorBlockTypes) this.doorBlockTypes.set(baseKey, blockType);
+        }
+        if (Array.isArray(data.doorOpenSide)) {
+          for (const [baseKey, side] of data.doorOpenSide) this.doorOpenSide.set(baseKey, side);
+        }
+      } catch (e) {
+        world.setDynamicProperty("fr:backstage_door_block_db", JSON.stringify({ doorBases: [], baseDimensions: [], stickyOpenBases: [], doorOpenDirections: [], doorBlockTypes: [], doorOpenSide: [] }));
       }
     }
   }
 
   saveDoorDatabase() {
+    this.cleanupOrphanedEntries();
     const data = {
-      processedBlocks: Array.from(this.processedBlocks.entries()),
       doorBases: Array.from(this.doorBases.entries()),
       baseDimensions: Array.from(this.baseDimensions.entries()),
       stickyOpenBases: Array.from(this.stickyOpenBases.values()),
       doorOpenDirections: Array.from(this.doorOpenDirections.entries()),
-      doorBlockTypes: Array.from(this.doorBlockTypes.entries())
+      doorBlockTypes: Array.from(this.doorBlockTypes.entries()),
+      doorOpenSide: Array.from(this.doorOpenSide.entries())
     };
-    world.setDynamicProperty("fr:backstage_door_block_db", JSON.stringify(data));
+    const jsonStr = JSON.stringify(data);
+    if (jsonStr.length > 30000) {
+      this.pruneOldEntries();
+      const prunedData = {
+        doorBases: Array.from(this.doorBases.entries()),
+        baseDimensions: Array.from(this.baseDimensions.entries()),
+        stickyOpenBases: Array.from(this.stickyOpenBases.values()),
+        doorOpenDirections: Array.from(this.doorOpenDirections.entries()),
+        doorBlockTypes: Array.from(this.doorBlockTypes.entries()),
+        doorOpenSide: Array.from(this.doorOpenSide.entries())
+      };
+      const prunedJson = JSON.stringify(prunedData);
+      if (prunedJson.length <= 32767) {
+        world.setDynamicProperty("fr:backstage_door_block_db", prunedJson);
+      }
+      return;
+    }
+    world.setDynamicProperty("fr:backstage_door_block_db", jsonStr);
+  }
+
+  cleanupOrphanedEntries() {
+    const validBases = new Set();
+    for (const baseKey of this.doorBases.values()) {
+      validBases.add(baseKey);
+    }
+    for (const baseKey of [...this.baseDimensions.keys()]) {
+      if (!validBases.has(baseKey)) {
+        this.baseDimensions.delete(baseKey);
+        this.doorOpenDirections.delete(baseKey);
+        this.doorBlockTypes.delete(baseKey);
+        this.doorOpenSide.delete(baseKey);
+        this.stickyOpenBases.delete(baseKey);
+      }
+    }
+  }
+
+  pruneOldEntries() {
+    const maxEntries = 200;
+    if (this.doorBases.size > maxEntries) {
+      const entries = Array.from(this.doorBases.entries());
+      const toRemove = entries.slice(0, entries.length - maxEntries);
+      for (const [key, baseKey] of toRemove) {
+        this.doorBases.delete(key);
+        this.processedBlocks.delete(key);
+      }
+    }
+    const validBases = new Set(this.doorBases.values());
+    for (const baseKey of [...this.baseDimensions.keys()]) {
+      if (!validBases.has(baseKey)) {
+        this.baseDimensions.delete(baseKey);
+        this.doorOpenDirections.delete(baseKey);
+        this.doorBlockTypes.delete(baseKey);
+        this.doorOpenSide.delete(baseKey);
+        this.stickyOpenBases.delete(baseKey);
+      }
+    }
   }
 
   getBlockKey(x, y, z) {
@@ -612,6 +688,36 @@ class DoorManager {
     return false;
   }
 
+  isOpenAreaBlocked(dimension, baseX, baseY, baseZ, doorDirection) {
+    const openedOffsets = this.getOpenedOffsets(doorDirection, true);
+    for (let i = 0; i < openedOffsets.length; i++) {
+      const [dx, dz] = openedOffsets[i];
+      const dy = Math.floor(i / 2);
+      if (dx === 0 && dz === 0) continue;
+      const pos = { x: baseX + dx, y: baseY + dy, z: baseZ + dz };
+      const b = dimension.getBlock(pos);
+      if (b && b.typeId !== "minecraft:air" && !this.isDoorBlock(b.typeId)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  isOpenAreaBlockedForSide(dimension, baseX, baseY, baseZ, doorDirection, fromFront) {
+    const openedOffsets = this.getOpenedOffsets(doorDirection, fromFront);
+    for (let i = 0; i < openedOffsets.length; i++) {
+      const [dx, dz] = openedOffsets[i];
+      const dy = Math.floor(i / 2);
+      if (dx === 0 && dz === 0) continue;
+      const pos = { x: baseX + dx, y: baseY + dy, z: baseZ + dz };
+      const b = dimension.getBlock(pos);
+      if (b && b.typeId !== "minecraft:air" && !this.isDoorBlock(b.typeId)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   handleSpamClicks(dimension, baseX, baseY, baseZ, doorDirection, player) {
     const doorKey = this.getBlockKey(baseX, baseY, baseZ);
     if (!this.spamClicks.has(doorKey)) {
@@ -777,28 +883,27 @@ class DoorManager {
     const [baseX, baseY, baseZ] = baseKey.split(",").map(Number);
     this.baseDimensions.set(baseKey, dimension.id);
 
-    let fromFront;
+    const equippable = player.getComponent("minecraft:equippable");
+    const heldItem = equippable?.getEquipment(EquipmentSlot.Mainhand);
     
-    if (isOpen) {
-      fromFront = this.doorOpenDirections.get(baseKey);
-      if (fromFront === undefined) fromFront = true;
-    } else {
-      const playerPos = player.location;
-      switch (doorDirection) {
-        case "north":
-          fromFront = playerPos.z > (baseZ + 0.5);
-          break;
-        case "south":
-          fromFront = playerPos.z < (baseZ + 0.5);
-          break;
-        case "west":
-          fromFront = playerPos.x < (baseX + 0.5);
-          break;
-        case "east":
-          fromFront = playerPos.x > (baseX + 0.5);
-          break;
-        default:
-          fromFront = true;
+    if (heldItem && heldItem.typeId === "fr:faz-diver_employee" && !isOpen) {
+      const currentSide = this.doorOpenSide.get(baseKey) ?? false;
+      const newSide = !currentSide;
+      this.doorOpenSide.set(baseKey, newSide);
+      this.saveDoorDatabase();
+      
+      player.playSound("random.click");
+      const sideText = newSide ? "§aFront" : "§cBack";
+      player.sendMessage(`§7Door open direction: ${sideText}`);
+      return;
+    }
+
+    const fromFront = this.doorOpenSide.get(baseKey) ?? false;
+    
+    if (!isOpen) {
+      if (this.isOpenAreaBlockedForSide(dimension, baseX, baseY, baseZ, doorDirection, fromFront)) {
+        player.playSound("mob.zombie.wood");
+        return;
       }
     }
 
@@ -863,8 +968,10 @@ class DoorManager {
         updateSegment(newPos, { dy }, i);
       }
     }
-    if (newOpenState) player.playSound("open.wooden_door");
-    else player.playSound("close.wooden_door");
+    
+    const doorCenter = { x: baseX + 0.5, y: baseY + 1, z: baseZ + 0.5 };
+    const soundId = newOpenState ? "open.wooden_door" : "close.wooden_door";
+    this.playSoundForNearbyPlayers(dimension, doorCenter, soundId, 16);
     
 
 
@@ -954,8 +1061,20 @@ class DoorManager {
         }
       }
       this.doorOpenDirections.delete(baseKey);
+      this.baseDimensions.delete(baseKey);
+      this.doorBlockTypes.delete(baseKey);
+      this.stickyOpenBases.delete(baseKey);
+      this.scheduleSave();
     }
-    this.saveDoorDatabase();
+  }
+
+  scheduleSave() {
+    if (this._saveScheduled) return;
+    this._saveScheduled = true;
+    system.runTimeout(() => {
+      this._saveScheduled = false;
+      this.saveDoorDatabase();
+    }, 20);
   }
 }
 
