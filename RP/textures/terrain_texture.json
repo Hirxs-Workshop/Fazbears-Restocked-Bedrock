@@ -1364,6 +1364,11 @@
                 "textures/blocks/reworked/dev/sgt_dev_plush"
             ]
         },
+        "the_fantasticbob_dev_plush":{
+            "texture":[
+                "textures/blocks/reworked/dev/New_Fantastic_BOB_Dev_Plush_Reworked_Texture"
+            ]
+        },
         "mansam_plush": {
             "textures": [
                 "textures/blocks/reworked/dev/mansam_plush"
