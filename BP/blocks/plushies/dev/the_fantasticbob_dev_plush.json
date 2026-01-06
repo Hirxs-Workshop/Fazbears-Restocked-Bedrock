@@ -1,5 +1,5 @@
 {
-	"format_version": "1.20.80",
+	"format_version": "1.21.0",
 	"minecraft:block": {
 		"description": {
 			"identifier": "fr:the_fantasticbob_dev_plush",
@@ -10,9 +10,12 @@
 				"minecraft:placement_direction": {
 					"enabled_states": [
 						"minecraft:cardinal_direction"
-					],
-					"y_rotation_offset": 180
+					]
 				}
+			},
+			"states":{
+				"fr:placed": [1, 0],
+				"fr:is_placed_on": ["full", "box", "medium_box", "chair"]
 			}
 		},
 		"components": {
@@ -25,11 +28,11 @@
 				"size":[11, 16, 9]
 			},
 			"minecraft:geometry":{
-				"texture":"geometry.the_fantasticbob_dev_plush"
+				"identifier":"geometry.the_fantasticbob_dev_plush"
 			},
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "fr_the_fantasticbob_dev_plush",
+					"texture": "the_fantasticbob_dev_plush",
 					"render_method": "alpha_test"
 				}
 			}
@@ -58,8 +61,8 @@
 				"components":{
 					"minecraft:transformation":{"rotation":[0, 90, 0]}
 				}
-			}
-			{
+			},
+		    {
 				"condition": "q.block_state('fr:placed') == 0",
 				"components":{
 					"minecraft:geometry": { "identifier": "geometry.inv_cube" }
