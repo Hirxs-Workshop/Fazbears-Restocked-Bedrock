@@ -26,7 +26,7 @@ import 'connectables/table_connection'
 import 'connectables/door_frame_connection'
 import 'connection_system/main_system'
 
-// import 'block_data_view'
+import 'block_data_view'
 import 'camera_system/security_camera_system'
 import 'variant_system'
 import 'backstage_shelf_head_system'
