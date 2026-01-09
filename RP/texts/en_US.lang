@@ -508,6 +508,10 @@ tile.fr:kris_dev_plush.name=Kris Dev Plush
 tile.fr:mansam_plush.name=Mansam Plush
 tile.fr:polar_dev_plush.name=Polar Dev Plush
 tile.fr:sgt_dev_plush.name=Sgt Dev Plush
+tile.fr:the_fantasticbob_dev_plush.name=The FantasticBOB Dev plush
+tile.fr:werty_dev_plush.name=Werty Dev Plush
+tile.fr:warden45e_dev_plush.name=Warden45e Dev Plush
+tile.fr:tinfly_dev_plush.name=TINFLY Dev Plush
 
 ## Carpets (FNaF Movie)
 tile.fr:carpet_blue.name=Carpet Blue
@@ -528,4 +532,3 @@ tile.fr:pizzeria_bricks_bottom_purple_top.name=Pizzeria Bricks Bottom Purple Top
 
 ## Fnaf1 Wall Top Tiles Thin (missing)
 tile.fr:fnaf1_wall_top_tiles_thin.name=Fnaf1 Wall Top Tiles Thin
-tile.fr:the_fantasticbob_dev_plush.name=The FantasticBOB Dev plush
