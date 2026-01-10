@@ -12,9 +12,6 @@
 						"minecraft:cardinal_direction"
 					]
 				}
-			},
-			"states": {
-				"fr:drawer_state": ["closed", "open"]
 			}
 		},
 		"components": {
@@ -27,12 +24,7 @@
 				"size": [16, 16, 16]
 			},
 			"minecraft:geometry": {
-				"identifier": "geometry.kitchencounter_upper_drawers",
-				"bone_visibility": {
-					"open": false,
-					"closed": false,
-					"kitchencounter_upper_drawers_corner": true
-				}
+				"identifier": "geometry.kitchencounter_upper_drawers_corner"
 			},
 			"minecraft:material_instances": {
 				"*": {

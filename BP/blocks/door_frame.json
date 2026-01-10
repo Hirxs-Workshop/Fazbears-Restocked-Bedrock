@@ -25,7 +25,6 @@
             "tag:minecraft:is_pickaxe_item_destructible": {},
             "tag:minecraft:door": {},
             "minecraft:light_dampening": 0,
-            "minecraft:unit_cube": false,
             "minecraft:geometry": {
                 "identifier": "geometry.fr_door_frame_alt",
 			"bone_visibility": {
