@@ -4,9 +4,9 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
-	"kitchencounter_upper_drawer": {
+	"kitchencounter_upper_drawers": {
 		"textures": [
-			"textures/blocks/reworked/kitchen/kitchencounter_upper_drawer"
+			"textures/blocks/reworked/kitchen/kitchencounter_upper_drawers"
 		]
 	},
 	"kitchencounter": {
