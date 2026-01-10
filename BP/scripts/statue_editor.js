@@ -11,10 +11,10 @@
 
 import { world, system, EquipmentSlot, ItemStack } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
-import { 
-  getWaypointsForStatue, 
-  getOrCreateStatueId, 
-  startBlockSelectorMode, 
+import {
+  getWaypointsForStatue,
+  getOrCreateStatueId,
+  startBlockSelectorMode,
   cancelBlockSelectorMode,
   isInBlockSelectorMode,
   clearAllWaypointsForStatue,
@@ -152,7 +152,7 @@ const POSES_FREDDY = [
   { name: "sit_hatch.anim", icon: "textures/fr_ui/poses/freddy/freddy_statue_pose_sit_hatch" },
   { name: "lay.anim", icon: "textures/fr_ui/poses/freddy/freddy_statue_pose_lay" },
   { name: "showtime.anim", icon: "textures/fr_ui/poses/freddy/freddy_statue_pose_showtime" }
-];// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+];
 
 
 const VARIANTS_BONNIE = [
@@ -198,7 +198,6 @@ const VARIANTS_FREDDY = [
   { name: "bear5.theme", icon: "textures/fr_ui/variants/freddy/freddy_bear5", type: "special" },
   { name: "venom.theme", icon: "textures/fr_ui/variants/freddy/freddy_venom", type: "special" }
 ];
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
 const POSES_PER_PAGE = 6;
 
 const VARIANTS_PER_PAGE = 3;
@@ -341,7 +340,7 @@ export function walkEntityTo(entity, targetLocation, onArrival, onNoPath = null,
       dimension: dimension,
 
       currentX: entity.location.x,
-      currentY: entity.location.y,// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      currentY: entity.location.y,
       currentZ: entity.location.z
     });
 
@@ -514,7 +513,6 @@ function findPathBFS(dimension, start, end) {
     partialPath.isPartial = true;
     return partialPath;
   }
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
   console.warn(`[Pathfinding] A* search exhausted after ${iterations} iterations, no valid path`);
   return [];
 }
@@ -656,7 +654,7 @@ function processWalkingEntities() {
   }
 
   for (const id of toRemove) {
-    walkingEntities.delete(id);// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    walkingEntities.delete(id);
   }
 }
 
@@ -788,7 +786,7 @@ function transformToAnimatronic(statue) {
     const animatronic = dimension.spawnEntity("fr:fnaf1_bonnie_entity", spawnLocation);
 
     if (waypointStatueId > 0) {
-      animatronic.setDynamicProperty("fr:statue_id", waypointStatueId);// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      animatronic.setDynamicProperty("fr:statue_id", waypointStatueId);
     }
 
     const variantIndex = statueData.variantIndex;
@@ -893,25 +891,25 @@ function transformToStatue(animatronic) {
             else valid = true;
           }
 
-          if (!valid) {}
+          if (!valid) { }
 
           try {
             statue.teleport(statue.location, { rotation: { x: 0, y: finalRotation } });
-          } catch (e) {}
+          } catch (e) { }
 
           if (finalPose > 0) {
             try {
               statue.triggerEvent(`fr:set_pose_${finalPose}`);
-            } catch (e) {}
+            } catch (e) { }
           }
 
           if (finalVariant > 0) {
             try {
               statue.triggerEvent(`fr:set_variant_${finalVariant}`);
-            } catch (e) {}
+            } catch (e) { }
           }
 
-        } catch (e) {}
+        } catch (e) { }
       });
     });
 
@@ -1009,7 +1007,7 @@ function startWalkingToPlaftorm(animatronic) {
   const dist = getHorizontalDistance(animatronic.location, platformLocation);
   if (dist <= ARRIVAL_DISTANCE) {
     transformToStatue(animatronic);
-    return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    return;
   }
 
   walkEntityTo(animatronic, platformLocation, (entity) => {
@@ -1125,7 +1123,7 @@ export function hasWaypointsForStatue(entity) {
 
 export function getNightModeMenuOptions(entity) {
   const hasWaypoints = hasWaypointsForStatue(entity);
-  
+
   return {
     testRoute: hasWaypoints,
     makeRoute: true,
@@ -1139,16 +1137,16 @@ export async function showNightModeActivationMenu(player, entity) {
   const entityId = entity.id;
   const state = entityStates.get(entityId) || { rotation: 0, poseIndex: 0, variantIndex: 0, nightMode: false };
   const statueId = entity.getDynamicProperty("fr:statue_id") || getOrCreateStatueId(entity);
-  
+
   const form = new MessageFormData()
     .title("§l§6NIGHT MODE")
     .body(`§7Do you want to activate Night Mode for this animatronic?\n\n§7When activated, the animatronic will:\n§a• Follow configured routes at night\n§a• Return to platform during day\n\n§7Current Status: ${state.nightMode ? "§aEnabled" : "§cDisabled"}`)
     .button1("§aActivate")
     .button2("§7Cancel");
-  
+
   try {
     const response = await form.show(player);
-    
+
     if (response.canceled) {
       system.run(() => showEntityEditor(player, entity, "statue"));
       return;
@@ -1176,7 +1174,7 @@ export async function showNightModeMenu(player, entity) {
 
   let entityName = entity.nameTag || entity.typeId.replace("fr:", "").replace(/_/g, " ");
   entityName = entityName.charAt(0).toUpperCase() + entityName.slice(1);
-  
+
   const form = new ActionFormData()
     .title("§l§6NIGHT MODE")
     .body(`§7Entity: §a${entityName}\n§7Statue ID: §e${statueId}\n§7Waypoints: §f${waypointCount}\n§7Status: ${state.nightMode ? "§aEnabled" : "§cDisabled"}`);
@@ -1206,17 +1204,17 @@ export async function showNightModeMenu(player, entity) {
 
   form.button("§7Back");
   buttonActions.push("back");
-  
+
   try {
     const response = await form.show(player);
-    
+
     if (response.canceled) {
       system.run(() => showEntityEditor(player, entity, "statue"));
       return;
     }
-    
+
     const action = buttonActions[response.selection];
-    
+
     switch (action) {
       case "testRoute":
 
@@ -1231,7 +1229,7 @@ export async function showNightModeMenu(player, entity) {
           system.run(() => showNightModeMenu(player, entity));
         }
         break;
-        
+
       case "makeRoute":
 
         const success = startBlockSelectorMode(player, statueId, entityName);
@@ -1242,17 +1240,17 @@ export async function showNightModeMenu(player, entity) {
           system.run(() => showNightModeMenu(player, entity));
         }
         break;
-        
+
       case "editWaypoints":
 
         system.run(() => showWaypointListMenu(player, entity));
         break;
-        
+
       case "clearRoute":
 
         system.run(() => showClearRouteConfirmation(player, entity));
         break;
-        
+
       case "toggleNightMode":
 
         if (state.nightMode) {
@@ -1264,11 +1262,11 @@ export async function showNightModeMenu(player, entity) {
         }
         system.run(() => showNightModeMenu(player, entity));
         break;
-        
+
       case "back":
         system.run(() => showEntityEditor(player, entity, "statue"));
         break;
-    }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    }
   } catch (e) {
     console.warn("[NightMode] Error showing night mode menu:", e);
   }
@@ -1282,34 +1280,34 @@ async function showWaypointListMenu(player, entity) {
     system.run(() => showNightModeMenu(player, entity));
     return;
   }
-  
+
   const waypoints = getWaypointsForStatue(statueId);
-  
+
   if (waypoints.length === 0) {
     player.sendMessage("§c[Night Mode] §7No waypoints to edit!");
     system.run(() => showNightModeMenu(player, entity));
     return;
   }
-  
+
   const form = new ActionFormData()
     .title("§l§bEDIT WAYPOINTS")
     .body(`§7Select a waypoint to edit:\n§7Total: §f${waypoints.length} waypoints`);
-  
+
   for (const wp of waypoints) {
     const posStr = `(${Math.floor(wp.location.x)}, ${Math.floor(wp.location.y)}, ${Math.floor(wp.location.z)})`;
     form.button(`§eWP #${wp.order} §7${posStr}`);
   }
-  
+
   form.button("§7Back");
-  
+
   try {
     const response = await form.show(player);
-    
+
     if (response.canceled) {
       system.run(() => showNightModeMenu(player, entity));
       return;
     }
-    
+
     if (response.selection === waypoints.length) {
 
       system.run(() => showNightModeMenu(player, entity));
@@ -1354,9 +1352,9 @@ async function showWaypointConfigurationForm(player, entity, waypoint) {
   const minDurationSeconds = Math.floor(MIN_WAIT_TIME / 20);
   const maxDurationSeconds = Math.floor(MAX_WAIT_TIME / 20);
   const clampedDuration = Math.max(minDurationSeconds, Math.min(maxDurationSeconds, currentDurationSeconds));
-  
+
   const posStr = `(${Math.floor(waypoint.location.x)}, ${Math.floor(waypoint.location.y)}, ${Math.floor(waypoint.location.z)})`;
-  
+
   const form = new ModalFormData()
     .title(`§l§eWaypoint #${waypoint.order}`)
     .dropdown("§7Pose", poseOptions, waypoint.pose || 0)
@@ -1364,15 +1362,15 @@ async function showWaypointConfigurationForm(player, entity, waypoint) {
     .slider("§7Duration (seconds)", minDurationSeconds, maxDurationSeconds, 10, clampedDuration)
     .slider("§7Rotation (degrees)", 0, 360, 15, waypoint.rotation || 0)
     .toggle("§cDelete Waypoint", false);
-  
+
   try {
     const response = await form.show(player);
-    
+
     if (response.canceled) {
       system.run(() => showWaypointListMenu(player, entity));
       return;
     }
-    
+
     const [poseIndex, abilityIndex, durationSeconds, rotation, shouldDelete] = response.formValues;
 
     if (shouldDelete) {
@@ -1408,14 +1406,14 @@ async function showWaypointConfigurationForm(player, entity, waypoint) {
 
     setWaypointData(waypoint.location, waypoint.dimensionId, updatedConfig);
     refreshWaypointCache(statueId);
-    
+
     const poseName = poses[poseIndex]?.name.replace(".anim", "") || `pose_${poseIndex}`;
     const abilityName = abilityOptions[abilityIndex];
     player.sendMessage(`§a[Night Mode] §7Waypoint #${waypoint.order} updated:`);
     player.sendMessage(`§7  Pose: §f${poseName}`);
     player.sendMessage(`§7  Ability: §f${abilityName}`);
     player.sendMessage(`§7  Duration: §f${durationSeconds}s`);
-    
+
     system.run(() => showWaypointListMenu(player, entity));
   } catch (e) {
     console.warn("[NightMode] Error showing waypoint config form:", e);
@@ -1434,16 +1432,16 @@ function validateDuration(durationTicks) {
 async function showDeleteWaypointConfirmation(player, entity, waypoint) {
   const statueId = entity.getDynamicProperty("fr:statue_id");
   const posStr = `(${Math.floor(waypoint.location.x)}, ${Math.floor(waypoint.location.y)}, ${Math.floor(waypoint.location.z)})`;
-  
+
   const form = new MessageFormData()
     .title("§l§cDELETE WAYPOINT")
     .body(`§7Are you sure you want to delete waypoint #${waypoint.order}?\n\n§7Position: §f${posStr}\n\n§cThis action cannot be undone!`)
     .button1("§cYes, Delete")
     .button2("§7Cancel");
-  
+
   try {
     const response = await form.show(player);
-    
+
     if (response.canceled || response.selection === 0) {
 
       system.run(() => showWaypointConfigurationForm(player, entity, waypoint));
@@ -1453,7 +1451,7 @@ async function showDeleteWaypointConfirmation(player, entity, waypoint) {
     removeWaypointData(waypoint.location, waypoint.dimensionId);
 
     reindexWaypoints(statueId);
-    
+
     player.sendMessage(`§c[Night Mode] §7Deleted waypoint #${waypoint.order}`);
     system.run(() => showWaypointListMenu(player, entity));
   } catch (e) {
@@ -1467,7 +1465,7 @@ function reindexWaypoints(statueId) {
   const waypoints = getWaypointsForStatue(statueId);
 
   waypoints.sort((a, b) => a.order - b.order);
-  
+
   for (let i = 0; i < waypoints.length; i++) {
     const wp = waypoints[i];
     if (wp.order !== i) {
@@ -1477,7 +1475,7 @@ function reindexWaypoints(statueId) {
       setWaypointData(wp.location, wp.dimensionId, config);
     }
   }
-  
+
   refreshWaypointCache(statueId);
 }
 
@@ -1485,16 +1483,16 @@ function reindexWaypoints(statueId) {
 async function showClearRouteConfirmation(player, entity) {
   const statueId = entity.getDynamicProperty("fr:statue_id");
   const waypointCount = getWaypointsForStatue(statueId).length;
-  
+
   const form = new MessageFormData()
     .title("§l§cCLEAR ROUTE")
     .body(`§7Are you sure you want to clear all §c${waypointCount}§7 waypoints?\n\n§cThis action cannot be undone!`)
     .button1("§cYes, Clear All")
     .button2("§7Cancel");
-  
+
   try {
     const response = await form.show(player);
-    
+
     if (response.canceled || response.selection === 0) {
 
       system.run(() => showNightModeMenu(player, entity));
@@ -1503,7 +1501,7 @@ async function showClearRouteConfirmation(player, entity) {
 
     clearAllWaypointsForStatue(statueId);
     player.sendMessage(`§c[Night Mode] §7Cleared ${waypointCount} waypoints`);
-    system.run(() => showNightModeMenu(player, entity));// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    system.run(() => showNightModeMenu(player, entity));
   } catch (e) {
     console.warn("[NightMode] Error showing clear confirmation:", e);
   }
@@ -1726,17 +1724,17 @@ function updateEditorCamera(player, entity) {
     const entityLoc = entity.location;
     const entityRot = entity.getRotation();
     const yawRad = (entityRot.y * Math.PI) / 180;
-    
+
     const cameraDistance = 4;
     const cameraHeight = 3.0;
     const cameraX = entityLoc.x - Math.sin(yawRad) * cameraDistance;
     const cameraY = entityLoc.y + cameraHeight;
     const cameraZ = entityLoc.z + Math.cos(yawRad) * cameraDistance;
-    
+
     const lookOffset = -1.5;
     const lookX = entityLoc.x - Math.cos(yawRad) * lookOffset;
     const lookZ = entityLoc.z - Math.sin(yawRad) * lookOffset;
-    
+
     player.runCommand(`camera @s set minecraft:free ease 0.3 linear pos ${cameraX.toFixed(2)} ${cameraY.toFixed(2)} ${cameraZ.toFixed(2)} facing ${lookX.toFixed(2)} ${(entityLoc.y + 1).toFixed(2)} ${lookZ.toFixed(2)}`);
   } catch (e) {
     console.warn("[StatueEditor] Camera update error:", e);
@@ -1768,7 +1766,6 @@ export function initStatueEditorSystem() {
         if (typeof slot === 'number') heldItem = container.getItem(slot);
       }
     }
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
     if (player.isSneaking && isEntityInRouteTest(target.id)) {
       cancelRouteTestForEntity(target.id);
       return;
@@ -1822,9 +1819,7 @@ export function initStatueEditorSystem() {
   }, 100);
 
   system.run(() => {
-    world.sendMessage("§a[StatueEditor] System Loaded!");
   });
-  console.log("[StatueEditor] System initialized with night mode + platform linking + walking support");
 }
 
 function getPoseCategory(poseName) {
@@ -1874,11 +1869,11 @@ export function showEntityEditor(player, entity, section = "statue") {
     } catch { }
 
     entityStates.set(entityId, { rotation: actualRotation, poseIndex: currentPose, variantIndex: currentVariant, nightMode: false });
-    
+
     playerEditingEntity.set(player.id, entity);
     updateEditorCamera(player, entity);
   }
-  
+
   playerEditingEntity.set(player.id, entity);
 
   const state = entityStates.get(entityId);
@@ -1927,7 +1922,7 @@ export function showEntityEditor(player, entity, section = "statue") {
         playerVariantPage.set(player.id, 0);
       }
     }
-    
+
     const currentCategory = playerVariantCategory.get(player.id) || "normal";
     const filteredVariants = getVariantsByCategory(variants, currentCategory);
 
@@ -1979,8 +1974,8 @@ export function showEntityEditor(player, entity, section = "statue") {
         const targetPage = idxInFiltered >= 0 ? Math.floor(idxInFiltered / POSES_PER_PAGE) : 0;
         playerPosePage.set(player.id, targetPage);
       }
-    }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
-    
+    }
+
     const currentCategory = playerPoseCategory.get(player.id) || "base";
     const filteredPoses = getPosesByCategory(allPoses, currentCategory);
 
@@ -2161,7 +2156,7 @@ export function showEntityEditor(player, entity, section = "statue") {
     } else if (section === "poses" && sel >= 3) {
       const currentCategory = playerPoseCategory.get(player.id) || "base";
       const allPoses = getEntityPoses(entity);
-      const filteredPoses = getPosesByCategory(allPoses, currentCategory);// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      const filteredPoses = getPosesByCategory(allPoses, currentCategory);
 
       const currentPage = playerPosePage.get(player.id) || 0;
       const totalPages = Math.ceil(filteredPoses.length / POSES_PER_PAGE);

@@ -30,9 +30,28 @@
 					"inanimate"
 				]
 			},
+			"minecraft:is_dyeable": {
+				"interact_text": "action.interact.dye"
+			},
+			"minecraft:color": {
+				"value": 0
+			},
 			"minecraft:collision_box": {
 				"height": 0,
 				"width": 0
+			},
+			"minecraft:custom_hit_test": {
+				"hitboxes": [
+					{
+						"width": 0.7,
+						"height": 0.7,
+						"pivot": [
+							0,
+							-0.05,
+							0.6
+						]
+					}
+				]
 			},
 			"minecraft:health": {
 				"value": 1,

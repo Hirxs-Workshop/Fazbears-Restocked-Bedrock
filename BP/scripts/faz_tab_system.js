@@ -5,163 +5,125 @@
  * If you want to modify or use this system as a base, contact the code developer, 
  * Hyrxs (discord: hyrxs), for more information and authorization
  * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
-*/
-
-
+ * DO NOT COPY OR STEAL, ty :>
+ */
 
 import { world, system } from '@minecraft/server';
 import { securityCameraSystem } from './camera_system/security_camera_system.js';
-import { dynamicToast } from './utils.js';
+import { toast, showFazTabOpen, distance3D, safeGet } from './utils.js';
 
-function getPcDataFromItem(itemStack) {
-    try {
-        const lore = itemStack.getLore();
-        if (!lore || lore.length === 0) return null;
-        
-        for (const line of lore) {
-            if (line.startsWith('§7PC:§r ')) {
-                const data = line.substring(8);
-                const [pcPosStr, dimId] = data.split('|');
-                if (pcPosStr && dimId) {
-                    return { pcPosStr, dimId };
-                }
-            }
-        }
-    } catch {}
-    return null;
-}
+const DEFAULT_MAX_RANGE = 32;
+const DEFAULT_MIN_RANGE = 3;
+const PC_TYPES = new Set(['fr:old_pc', 'fr:black_old_pc']);
 
-function setPcDataToItem(itemStack, pcPosStr, dimId, pcLocation) {
+const getRange = (key, def) => world.getDynamicProperty(key) ?? def;
+const setRange = (key, val) => world.setDynamicProperty(key, val);
+
+export const getFazTabMaxRange = () => getRange("fr:faz_tab_max_range", DEFAULT_MAX_RANGE);
+export const getFazTabMinRange = () => getRange("fr:faz_tab_min_range", DEFAULT_MIN_RANGE);
+export const setFazTabMaxRange = (v) => setRange("fr:faz_tab_max_range", v);
+export const setFazTabMinRange = (v) => setRange("fr:faz_tab_min_range", v);
+
+const getPcDataFromItem = (item) => {
+    const lore = safeGet(() => item.getLore(), []);
+    const line = lore.find(l => l.startsWith('§7PC:§r '));
+    if (!line) return null;
+    const [pcPosStr, dimId] = line.substring(8).split('|');
+    return pcPosStr && dimId ? { pcPosStr, dimId } : null;
+};
+
+const setPcDataToItem = (item, pcPosStr, dimId, loc) => {
     try {
-        const lore = [
+        item.setLore([
             `§7PC:§r ${pcPosStr}|${dimId}`,
-            `§7Location:§r ${pcLocation.x}, ${pcLocation.y}, ${pcLocation.z}`,
+            `§7Location:§r ${loc.x}, ${loc.y}, ${loc.z}`,
             `§7Dimension:§r ${dimId}`,
             `§a✓ Linked`
-        ];
-        itemStack.setLore(lore);
+        ]);
         return true;
-    } catch {
-        return false;
-    }
-}
+    } catch { return false; }
+};
+
+const sendError = (player, msg) => player.sendMessage(toast.error(msg));
 
 system.beforeEvents.startup.subscribe(({ itemComponentRegistry }) => {
     itemComponentRegistry.registerCustomComponent('fr:faz_tab_component', {
-        onUseOn: (event) => {
-            const { source: player, block, itemStack } = event;
-            if (!player || !block || !itemStack) return;
-            
-            if (block.typeId !== 'fr:old_pc' && block.typeId !== 'fr:black_old_pc') return;
-            
-            if (!player.isSneaking) return;
-            
+        onUseOn: ({ source: player, block, itemStack }) => {
+            if (!player || !block || !itemStack || !player.isSneaking) return;
+            if (!PC_TYPES.has(block.typeId)) return;
+
             try {
                 const pcPosStr = securityCameraSystem.locStr(securityCameraSystem.posOf(block));
-                const dimId = block.dimension.id;
-                const pcLocation = block.location;
-                
                 const camList = securityCameraSystem.connections.get(pcPosStr);
-                if (!camList || camList.length === 0) {
-                    player.sendMessage(dynamicToast(
-                        "§l§cERROR",
-                        "§cThis PC has no cameras linked",
-                        "textures/fr_ui/deny_icon",
-                        "textures/fr_ui/deny_ui"
-                    ));
-                    return;
+
+                if (!camList?.length) {
+                    return sendError(player, "This PC has no cameras linked");
                 }
-                
-                const slot = player.selectedSlotIndex;
+
                 const eq = player.getComponent('minecraft:equippable');
                 const currentItem = eq?.getEquipment('Mainhand');
-                
                 if (!currentItem || currentItem.typeId !== 'fr:faz-tab') return;
-                
+
                 const newItem = currentItem.clone();
-                if (setPcDataToItem(newItem, pcPosStr, dimId, pcLocation)) {
+                if (setPcDataToItem(newItem, pcPosStr, block.dimension.id, block.location)) {
                     eq.setEquipment('Mainhand', newItem);
-                    
-                    player.sendMessage(dynamicToast(
-                        "§l§qSUCCESS",
-                        `§qFaz-Tab linked to PC\n§7Position: ${pcLocation.x}, ${pcLocation.y}, ${pcLocation.z}`,
-                        "textures/fr_ui/approve_icon",
-                        "textures/fr_ui/approve_ui"
-                    ));
-                    
+                    const loc = block.location;
+                    player.sendMessage(toast.success(`Faz-Tab linked to PC\n§7Position: ${loc.x}, ${loc.y}, ${loc.z}`));
                     player.playSound('random.click', { pitch: 1.5, volume: 1.0 });
                 }
-            } catch {}
+            } catch { }
         },
-        
-        onUse: (event) => {
-            const { source: player, itemStack } = event;
-            if (!player || !itemStack) return;
-            
-            if (player.isSneaking) return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
-            
+
+        onUse: ({ source: player, itemStack }) => {
+            if (!player || !itemStack || player.isSneaking) return;
+
             try {
                 const pcData = getPcDataFromItem(itemStack);
                 if (!pcData) {
-                    player.sendMessage(dynamicToast(
-                        "§l§cERROR",
-                        "§cFaz-Tab not linked to any PC\n§7Sneak + right-click on a PC to link",
-                        "textures/fr_ui/deny_icon",
-                        "textures/fr_ui/deny_ui"
-                    ));
-                    return;
+                    return sendError(player, "Faz-Tab not linked to any PC\n§7Sneak + right-click on a PC to link");
                 }
-                
+
                 const { pcPosStr, dimId } = pcData;
-                const dimension = world.getDimension(dimId);
-                if (!dimension) {
-                    player.sendMessage(dynamicToast(
-                        "§l§cERROR",
-                        "§cLinked dimension not found",
-                        "textures/fr_ui/deny_icon",
-                        "textures/fr_ui/deny_ui"
-                    ));
-                    return;
-                }
-                
+                const dimension = safeGet(() => world.getDimension(dimId));
+                if (!dimension) return sendError(player, "Linked dimension not found");
+
                 const pcBlock = securityCameraSystem.blockFromLocStr(dimension, pcPosStr);
-                if (!pcBlock || (pcBlock.typeId !== 'fr:old_pc' && pcBlock.typeId !== 'fr:black_old_pc')) {
-                    player.sendMessage(dynamicToast(
-                        "§l§cERROR",
-                        "§cLinked PC not found or was destroyed",
-                        "textures/fr_ui/deny_icon",
-                        "textures/fr_ui/deny_ui"
-                    ));
-                    return;
+                if (!pcBlock || !PC_TYPES.has(pcBlock.typeId)) {
+                    return sendError(player, "Linked PC not found or was destroyed");
                 }
-                
+
+                const maxRange = getFazTabMaxRange();
+                const minRange = getFazTabMinRange();
+                const pcDist = distance3D(player.location, pcBlock.location);
+
+                if (pcDist > maxRange) return sendError(player, `PC Out of Range\n§7Max Range: ${maxRange} blocks`);
+                if (pcDist < minRange) return sendError(player, `Too close to PC\n§7Min Range: ${minRange} blocks`);
+
                 const camList = securityCameraSystem.connections.get(pcPosStr);
-                if (!camList || camList.length === 0) {
-                    player.sendMessage(dynamicToast(
-                        "§l§cERROR",
-                        "§cThis PC has no cameras linked",
-                        "textures/fr_ui/deny_icon",
-                        "textures/fr_ui/deny_ui"
-                    ));
-                    return;
-                }
-                
+                if (!camList?.length) return sendError(player, "This PC has no cameras linked");
+
                 const firstCamera = camList[0];
-                if (!firstCamera) {
-                    player.sendMessage(dynamicToast(
-                        "§l§cERROR",
-                        "§cNo valid camera found",
-                        "textures/fr_ui/deny_icon",
-                        "textures/fr_ui/deny_ui"
-                    ));
-                    return;
+                if (!firstCamera) return sendError(player, "No valid camera found");
+
+                const camBlock = securityCameraSystem.blockFromLocStr(dimension, firstCamera);
+                if (!camBlock || camBlock.typeId !== "fr:security_cameras") {
+                    return sendError(player, "Camera not loaded or destroyed\n§7Move closer to the camera area");
                 }
-                
-                securityCameraSystem.viewYaw.set(player.id, 0);
-                securityCameraSystem.applyView(player, dimension, firstCamera, pcPosStr, true);
-            } catch {}
+
+                const camRotation = camBlock.permutation.getState("fr:rotation");
+                if (camRotation === undefined || camRotation === null) {
+                    return sendError(player, "Camera chunk not fully loaded\n§7Move closer to the camera");
+                }
+
+                const camDist = distance3D(player.location, camBlock.location);
+                if (camDist > maxRange) return sendError(player, `Camera Out of Range\n§7Max Range: ${maxRange} blocks`);
+
+                showFazTabOpen(player);
+                system.runTimeout(() => {
+                    securityCameraSystem.viewYaw.set(player.id, 0);
+                    securityCameraSystem.applyView(player, dimension, firstCamera, pcPosStr, true);
+                }, 5);
+            } catch { }
         }
     });
 });

@@ -17,9 +17,7 @@ export const SWITCH_TYPES = new Set([
 
 export const GENERATOR_TYPES = new Set([
   "fr:generator",
-  "fr:pizzeria_generator",
-  "fr:office_generator",
-  "fr:yes"
+  "fr:sotm_generator"
 ]);
 
 export const LIGHT_ALIASES = {
@@ -60,6 +58,7 @@ export const GENERATOR_ICONS = {
 
 export const CONNECTIONS_KEY = "electric_system_connections";
 export const GENERATORS_KEY = "electric_system_generators";
+export const DOOR_BUTTON_GENERATOR_LINKS_KEY = "door_button_generator_links";
 export const MAX_ENERGY = 500;
 export const DEFAULT_CONSUMPTION_RATE = 0.2;
 export const CONSUMPTION_MULTIPLIER = 0.1;
@@ -91,10 +90,10 @@ export function getBlockAlias(blockId) {
   if (LIGHT_ALIASES[blockId]) return LIGHT_ALIASES[blockId];
   if (SWITCH_ALIASES[blockId]) return SWITCH_ALIASES[blockId];
   if (GENERATOR_ALIASES[blockId]) return GENERATOR_ALIASES[blockId];
-  
+
   const externalConfig = FRAPI.getConnectionType(blockId);
   if (externalConfig) return externalConfig.alias;
-  
+
   return blockId;
 }
 
@@ -102,10 +101,10 @@ export function getBlockIcon(blockId) {
   if (LIGHT_ICONS[blockId]) return LIGHT_ICONS[blockId];
   if (SWITCH_ICONS[blockId]) return SWITCH_ICONS[blockId];
   if (GENERATOR_ICONS[blockId]) return GENERATOR_ICONS[blockId];
-  
+
   const externalConfig = FRAPI.getConnectionType(blockId);
   if (externalConfig) return externalConfig.icon;
-  
+
   return "textures/fr_ui/default_icon";
 }
 
@@ -124,4 +123,27 @@ export function isSwitchType(blockId) {
 export function isCameraType(blockId) {
   const externalConfig = FRAPI.getConnectionType(blockId);
   return externalConfig && externalConfig.type === "camera";
+}
+
+export const LIGHT_VFX_MAP = {
+  "fr:office_light": "fr:hallway_lamp_vfx",
+  "fr:office_lamp": "fr:office_lamp_vfx",
+  "fr:pizzeria_lamp": "fr:pizzeria_lamp_vfx",
+  "fr:ceiling_light": "fr:ceiling_light_vfx",
+  "fr:stage_spotlight": "fr:stage_spotlight_vfx",
+  "fr:supply_room_lightbulb": "fr:office_lamp_vfx",
+  "fr:pirate_cove_light": "fr:pirate_cove_light_entity"
+};
+
+export function getVfxEntityForLight(lightTypeId) {
+  if (LIGHT_VFX_MAP[lightTypeId]) {
+    return LIGHT_VFX_MAP[lightTypeId];
+  }
+
+  const externalConfig = FRAPI.getConnectionType(lightTypeId);
+  if (externalConfig && externalConfig.vfxEntity) {
+    return externalConfig.vfxEntity;
+  }
+
+  return "fr:hallway_lamp_vfx";
 }

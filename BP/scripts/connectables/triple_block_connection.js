@@ -25,7 +25,6 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 }
             }
         },
-        //ㅤ ㅤ ㅤ 
         onPlace({ block }) {
             const blockBit = block.permutation.getState("fr:block_bit");
 

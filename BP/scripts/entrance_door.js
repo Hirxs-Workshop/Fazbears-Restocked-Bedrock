@@ -49,7 +49,7 @@ class BigRedDoorManager {
     system.beforeEvents.startup.subscribe((eventData) => {
       eventData.blockComponentRegistry.registerCustomComponent("fr:en_on_player_destroy", {
         onPlayerDestroy: (e) => this.handleOnPlayerDestroy(e)
-      }); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      });
     });
 
     
@@ -170,7 +170,7 @@ class BigRedDoorManager {
         offsets.push([0, 1]);  
         break;
       case "east":
-      default: // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      default:
         for (let y = 0; y < 3; y++) {
           offsets.push([1, 1]);   
           offsets.push([1, -1]);  
@@ -312,8 +312,7 @@ class BigRedDoorManager {
     const playerY = Math.floor(pos.y);
     const playerZ = Math.floor(pos.z);
     for (let i = 0; i < offsets.length; i++) {
-      const [dx, dz] = offsets[i]; // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
-      
+      const [dx, dz] = offsets[i];
       let dy;
       if (offsets.length === 12) {
         
@@ -342,7 +341,7 @@ class BigRedDoorManager {
     }
     const count = offsets.length;
     const centerX = sumX / count;
-    const centerZ = sumZ / count;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+    const centerZ = sumZ / count;
 
     const playerX = player.location.x;
     const playerZ = player.location.z;
@@ -541,7 +540,7 @@ class BigRedDoorManager {
             break;
         }
       }
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+
       const perm = BlockPermutation.resolve("fr:entrance_door_block", {
         "fr:open_bit": segOpenBit,
         "minecraft:cardinal_direction": doorDirection,
@@ -703,7 +702,6 @@ class BigRedDoorManager {
       }
     }
     if (!doorIntact) {
-       // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
       let targetEntity = null;
       const entityId = this.doorEntities.get(baseKey);
       
@@ -824,7 +822,7 @@ class BigRedDoorManager {
           }
         };
         applyDestroyed(closed);
-        applyDestroyed(opened); // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        applyDestroyed(opened);
       } catch (_) {}
       
       

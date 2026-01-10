@@ -36,7 +36,6 @@ const DoorFrameSystem = {
             below: dim.getBlock({ x: x + offsets.below[0], y: y + offsets.below[1], z: z + offsets.below[2] })
         };
     },
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
     updateDoorFrameConnections(block) {
         if (!this.isDoorFrame(block)) return;
         const direction = block.permutation.getState('minecraft:cardinal_direction');
@@ -81,7 +80,7 @@ system.beforeEvents.startup.subscribe((eventData) => {
         }
     });
 });
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+
 world.afterEvents.playerBreakBlock.subscribe(({ block, brokenBlockPermutation }) => {
     if (!block || brokenBlockPermutation.type.id !== 'fr:door_frame') return;
     

@@ -207,6 +207,10 @@
     "$flag_start_screen": "§S§T§A§R§T",
     "$flag_statue": "§S§T§A§T§U§E",
     "$flag_minimap": "§M§I§N§I§M§A§P",
+    "$flag_wall_sign": "§W§A§L§L§S§I§G§N",
+    "$flag_wall_sign_small": "§W§D§&§D",
+    "$flag_white_wall_sign": "§W§H§I§T§E§S§I§G§N§2",
+    "$flag_white_wall_sign_small": "§W§H§I§T§E§S§I§G§N§4",
     "size": [
       "100%",
       "100%"
@@ -239,7 +243,7 @@
             },
             {
               "binding_name": "#null",
-              "source_property_name": "(((#title_text - $flag_cammgr) = #title_text) and ((#title_text - $flag_cammodal) = #title_text) and ((#title_text - $flag_newspaper) = #title_text) and ((#title_text - $flag_newspaper_outro) = #title_text) and ((#title_text - $flag_start_screen) = #title_text) and ((#title_text - $flag_statue) = #title_text) and ((#title_text - $flag_minimap) = #title_text))",
+              "source_property_name": "(((#title_text - $flag_cammgr) = #title_text) and ((#title_text - $flag_cammodal) = #title_text) and ((#title_text - $flag_newspaper) = #title_text) and ((#title_text - $flag_newspaper_outro) = #title_text) and ((#title_text - $flag_start_screen) = #title_text) and ((#title_text - $flag_statue) = #title_text) and ((#title_text - $flag_minimap) = #title_text) and ((#title_text - $flag_wall_sign) = #title_text) and ((#title_text - $flag_wall_sign_small) = #title_text) and ((#title_text - $flag_white_wall_sign) = #title_text) and ((#title_text - $flag_white_wall_sign_small) = #title_text))",
               "binding_type": "view",
               "target_property_name": "#visible"
             }
@@ -275,6 +279,18 @@
       },
       {
         "block_settings_ui@fr_block_settings_screen.block_settings_ui": {}
+      },
+      {
+        "wall_sign_ui@fr_wall_sign_screen.wall_sign_ui": {}
+      },
+      {
+        "wall_sign_small_ui@fr_wall_sign_screen.wall_sign_small_ui": {}
+      },
+      {
+        "white_wall_sign_ui@fr_wall_sign_screen.white_wall_sign_ui": {}
+      },
+      {
+        "white_wall_sign_small_ui@fr_wall_sign_screen.white_wall_sign_small_ui": {}
       },
       {
         "hidden_ui": {
@@ -426,6 +442,172 @@
             {
               "binding_name": "#null",
               "source_property_name": "(not ((#title_text - $flag_hidden_lock) = #title_text))",
+              "binding_type": "view",
+              "target_property_name": "#enabled"
+            }
+          ]
+        }
+      },
+      {
+        "experimental_warning_ui": {
+          "type": "panel",
+          "$flag_expwarn": "§e§x§p§w§a§r§n",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg_overlay": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/warning_black",
+                "alpha": 0.95,
+                "layer": 140
+              }
+            },
+            {
+              "warning_panel": {
+                "type": "panel",
+                "size": [
+                  380,
+                  220
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "layer": 150,
+                "controls": [
+                  {
+                    "panel_bg": {
+                      "type": "image",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "texture": "textures/fr_ui/editor_modal",
+                      "layer": 1
+                    }
+                  },
+                  {
+                    "close_button_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": [
+                        16,
+                        16
+                      ],
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [
+                        -8,
+                        8
+                      ],
+                      "layer": 152,
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "expwarn_close",
+                        "control_name": "server_form.experimental_warning_close_button"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "warning_title": {
+                      "type": "label",
+                      "text": "WARNING!",
+                      "font_type": "MinecraftTen",
+                      "font_scale_factor": 1.8,
+                      "color": [
+                        0.592,
+                        0.855,
+                        0.063
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        18
+                      ],
+                      "layer": 10
+                    }
+                  },
+                  {
+                    "warning_text": {
+                      "type": "label",
+                      "text": "For the add-on to function correctly,\nyou must enable the experimental\n\"Upcoming Creators Features\" feature;\notherwise, you will experience\nlimitations such as:\n\n- Inability to place doors\n- Missing blocks\n- Some scripts or blocks not working",
+                      "font_type": "MinecraftTen",
+                      "font_scale_factor": 0.95,
+                      "color": [
+                        0.592,
+                        0.855,
+                        0.063
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        52
+                      ],
+                      "text_alignment": "left",
+                      "layer": 10
+                    }
+                  },
+                  {
+                    "continue_button_stack": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": [
+                        160,
+                        32
+                      ],
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "bottom_middle",
+                      "offset": [
+                        0,
+                        -18
+                      ],
+                      "layer": 151,
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "expwarn_continue",
+                        "control_name": "server_form.experimental_warning_button"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "global",
+              "binding_condition": "none",
+              "binding_name": "#title_text",
+              "binding_name_override": "#title_text"
+            },
+            {
+              "binding_name": "#null",
+              "source_property_name": "(not ((#title_text - $flag_expwarn) = #title_text))",
+              "binding_type": "view",
+              "target_property_name": "#visible"
+            },
+            {
+              "binding_name": "#null",
+              "source_property_name": "(not ((#title_text - $flag_expwarn) = #title_text))",
               "binding_type": "view",
               "target_property_name": "#enabled"
             }
@@ -584,6 +766,7 @@
     "$flag_hidden": "§H§I§D§E§N",
     "$flag_hidden_lock": "§L§O§C§K",
     "$flag_bset": "§5B§S§E§T",
+    "$flag_expwarn": "§e§x§p§w§a§r§n",
     "size": [
       "100%",
       "100%"
@@ -602,13 +785,13 @@
             },
             {
               "binding_name": "#null",
-              "source_property_name": "(((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text))",
+              "source_property_name": "((((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text)) and ((#title_text - $flag_expwarn) = #title_text))",
               "binding_type": "view",
               "target_property_name": "#visible"
             },
             {
               "binding_name": "#null",
-              "source_property_name": "(((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text))",
+              "source_property_name": "((((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text)) and ((#title_text - $flag_expwarn) = #title_text))",
               "binding_type": "view",
               "target_property_name": "#enabled"
             }
@@ -894,12 +1077,136 @@
               }
             },
             {
+              "camlist_sidebar_closed": {
+                "type": "panel",
+                "size": [18, 80],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [-8, 0],
+                "layer": 50,
+                "controls": [
+                  {
+                    "camlist_toggle_on@common.radio_toggle": {
+                      "size": [85, 130],
+                      "sound_name": "ui_select",
+                      "sound_volume": 1.0,
+                      "sound_pitch": 1.0,
+                      "$toggle_view_binding_name": "camlist_toggle_on",
+                      "$toggle_name": "camlist_toggle",
+                      "$toggle_group_forced_index": 1,
+                      "$toggle_group_default_selected": 0,
+                      "$unchecked_control": "server_form.sidebar_closed_icon",
+                      "$checked_control": "server_form.sidebar_closed_icon",
+                      "$unchecked_hover_control": "server_form.sidebar_closed_icon_hover",
+                      "$checked_hover_control": "server_form.sidebar_closed_icon_hover"
+                    }
+                  }
+                ],
+                "bindings": [
+                  { "binding_type": "view", "source_control_name": "camlist_toggle_on", "source_property_name": "(not #toggle_state)", "target_property_name": "#visible" },
+                  { "binding_type": "view", "source_control_name": "camlist_toggle_on", "source_property_name": "(not #toggle_state)", "target_property_name": "#enabled" }
+                ]
+              }
+            },
+            {
+              "camlist_sidebar_open_toggle": {
+                "type": "panel",
+                "size": [18, 80],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [-148, 0],
+                "layer": 50,
+                "controls": [
+                  {
+                    "camlist_toggle_off@common.radio_toggle": {
+                      "size": [85, 130],
+                      "sound_name": "ui_select",
+                      "sound_volume": 1.0,
+                      "sound_pitch": 1.0,
+                      "$toggle_view_binding_name": "camlist_toggle_off",
+                      "$toggle_name": "camlist_toggle",
+                      "$toggle_group_forced_index": 0,
+                      "$toggle_group_default_selected": 0,
+                      "$unchecked_control": "server_form.sidebar_open_icon",
+                      "$checked_control": "server_form.sidebar_open_icon",
+                      "$unchecked_hover_control": "server_form.sidebar_open_icon_hover",
+                      "$checked_hover_control": "server_form.sidebar_open_icon_hover"
+                    }
+                  }
+                ],
+                "bindings": [
+                  { "binding_type": "view", "source_control_name": "camlist_toggle_on", "source_property_name": "#toggle_state", "target_property_name": "#visible" },
+                  { "binding_type": "view", "source_control_name": "camlist_toggle_on", "source_property_name": "#toggle_state", "target_property_name": "#enabled" }
+                ]
+              }
+            },
+            {
+              "camlist_panel": {
+                "type": "panel",
+                "size": [140, 130],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [-8, 0],
+                "layer": 49,
+                "visible": false,
+                "controls": [
+                  {
+                    "bg": {
+                      "type": "image",
+                      "size": ["100%", "100%"],
+                      "texture": "textures/fr_ui/side_buttons",
+                      "alpha": 0.9,
+                      "layer": 1
+                    }
+                  },
+                  {
+                    "header_label": {
+                      "type": "label",
+                      "text": "Cameras",
+                      "color": [1, 1, 1],
+                      "font_scale_factor": 0.9,
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [0, 4],
+                      "layer": 3
+                    }
+                  },
+                  {
+                    "camlist_scroll@common.scrolling_panel": {
+                      "size": ["100% - 8px", "100% - 24px"],
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "bottom_middle",
+                      "offset": [0, -4],
+                      "layer": 2,
+                      "$show_background": false,
+                      "$scrolling_content": "server_form.camlist_content",
+                      "$scroll_size": [3, "100%"],
+                      "$scrolling_pane_size": ["100%", "100%"],
+                      "$scroll_view_port_size": ["100%", "100%"],
+                      "$scroll_bar_right_padding_size": [0, 0],
+                      "$scroll_bar_left_padding_size": [0, 0]
+                    }
+                  }
+                ],
+                "bindings": [
+                  { "binding_type": "view", "source_control_name": "camlist_toggle_on", "source_property_name": "#toggle_state", "target_property_name": "#visible" },
+                  { "binding_type": "view", "source_control_name": "camlist_toggle_on", "source_property_name": "#toggle_state", "target_property_name": "#enabled" }
+                ]
+              }
+            },
+            {
               "flashlight_button_panel": {
                 "type": "stack_panel",
-                "size": [26, 26],
+                "size": [
+                  26,
+                  26
+                ],
                 "anchor_from": "bottom_right",
                 "anchor_to": "bottom_right",
-                "offset": [-11, -45],
+                "offset": [
+                  -11,
+                  -45
+                ],
                 "factory": {
                   "name": "flashlight_factory",
                   "control_name": "server_form.flashlight_button_template"
@@ -1274,6 +1581,8 @@
     "$flag_hidden_lock": "§L§O§C§K",
     "$flag_variant": "§V§A§R§I§A§N§T",
     "$flag_bset": "§5B§S§E§T",
+    "$flag_wall_sign_edit": "§W§A§L§L§S§I§G§N§E§D§I§T",
+    "$flag_white_wall_sign_edit": "§W§H§I§T§E§S§I§G§N§E§D§I§T",
     "size": [
       "100%",
       "100%"
@@ -1292,18 +1601,24 @@
             },
             {
               "binding_name": "#null",
-              "source_property_name": "((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text))",
+              "source_property_name": "((((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text)) and ((#title_text - $flag_wall_sign_edit) = #title_text)) and ((#title_text - $flag_white_wall_sign_edit) = #title_text)",
               "binding_type": "view",
               "target_property_name": "#visible"
             },
             {
               "binding_name": "#null",
-              "source_property_name": "((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text))",
+              "source_property_name": "((((((((#title_text - $flag_camerasUi) = #title_text) and ((#title_text - $flag_oldpc) = #title_text)) and ((#title_text - $flag_oldpc_locked) = #title_text)) and ((#title_text - $flag_hidden) = #title_text)) and ((#title_text - $flag_hidden_lock) = #title_text)) and ((#title_text - $flag_bset) = #title_text)) and ((#title_text - $flag_wall_sign_edit) = #title_text)) and ((#title_text - $flag_white_wall_sign_edit) = #title_text)",
               "binding_type": "view",
               "target_property_name": "#enabled"
             }
           ]
         }
+      },
+      {
+        "wall_sign_edit_ui@fr_wall_sign_screen.wall_sign_edit_ui": {}
+      },
+      {
+        "white_wall_sign_edit_ui@fr_wall_sign_screen.white_wall_sign_edit_ui": {}
       },
       {
         "cameras_ui_custom": {
@@ -1816,6 +2131,56 @@
               }
             }
           ]
+        }
+      }
+    ]
+  },
+  "sidebar_closed_icon": {
+    "type": "image",
+    "size": [85, 130],
+    "texture": "textures/fr_ui/vertical_close",
+    "alpha": 0.7
+  },
+  "sidebar_closed_icon_hover": {
+    "type": "panel",
+    "size": [85, 130],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/fr_ui/vertical_close",
+          "alpha": 1.0
+        }
+      },
+      {
+        "tooltip@server_form.button_hover_control": {
+          "$hover_text": "Open camera list"
+        }
+      }
+    ]
+  },
+  "sidebar_open_icon": {
+    "type": "image",
+    "size": [85, 130],
+    "texture": "textures/fr_ui/vertical_close",
+    "alpha": 0.7
+  },
+  "sidebar_open_icon_hover": {
+    "type": "panel",
+    "size": [85, 130],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": ["100%", "100%"],
+          "texture": "textures/fr_ui/vertical_close",
+          "alpha": 1.0
+        }
+      },
+      {
+        "tooltip@server_form.button_hover_control": {
+          "$hover_text": "Close camera list"
         }
       }
     ]
@@ -3196,6 +3561,7 @@
     "type": "label",
     "text": "#text",
     "layer": 25,
+    "shadow": false,
     "anchor_from": "top_left",
     "anchor_to": "top_left",
     "size": [
@@ -5175,17 +5541,18 @@
       }
     ]
   },
-  "camera_modal_input@settings_common.text_edit_box": {
-    "$text_box_name": "custom_text_box",
-    "$text_edit_box_label_control": "settings_common.option_text_label",
-    "$text_box_enabled_binding_name": "#custom_text_box_enabled",
-    "$text_box_enabled_binding_type": "collection",
-    "$place_holder_text": "#custom_text",
-    "$text_background_default": "common.text_edit_box_background_default",
-    "$text_background_hover": "common.text_edit_box_background_hover",
+  "camera_modal_input@settings_common.option_text_edit": {
+    "$option_label": "#custom_text",
+    "$option_place_holder_text": "#custom_placeholder_text",
+    "$text_edit_box_placeholder_content_binding_name": "$option_place_holder_text",
+    "$text_edit_box_placeholder_content_binding_type": "collection",
     "$text_edit_box_grid_collection_name": "custom_form",
-    "$text_box_text_binding_type": "collection",
-    "$text_edit_box_content_binding_name": "#custom_text_box_text",
+    "$max_text_edit_length": 100,
+    "$text_edit_box_content_binding_type": "collection",
+    "$text_edit_box_content_binding_name": "#custom_input_text",
+    "$option_binding_name": "#custom_input_text",
+    "$text_box_enabled_binding_name": "#custom_input_enabled",
+    "$text_box_name": "custom_input",
     "$label_bindings": [
       {
         "binding_name": "#custom_text",
@@ -5484,6 +5851,97 @@
       }
     ]
   },
+  "camlist_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": ["100%", "100%c"],
+    "controls": [
+      {
+        "camlist_factory": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": ["100%", "100%c"],
+          "collection_name": "form_buttons",
+          "factory": {
+            "name": "camlist_items",
+            "control_name": "server_form.camlist_item_template"
+          },
+          "bindings": [
+            { "binding_name": "#form_button_length", "binding_name_override": "#collection_length" }
+          ]
+        }
+      }
+    ]
+  },
+  "camlist_item_template": {
+    "type": "panel",
+    "size": ["100%", 20],
+    "controls": [
+      {
+        "btn@common.button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": ["100%", 18],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "bindings": [
+            { "binding_type": "collection_details", "binding_collection_name": "form_buttons" }
+          ],
+          "controls": [
+            {
+              "default": {
+                "type": "image",
+                "size": ["100%", "100%"],
+                "texture": "textures/fr_ui/side_buttons",
+                "alpha": 0.8
+              }
+            },
+            {
+              "hover": {
+                "type": "image",
+                "size": ["100%", "100%"],
+                "texture": "textures/fr_ui/side_buttons_light",
+                "alpha": 1.0
+              }
+            },
+            {
+              "pressed": {
+                "type": "image",
+                "size": ["100%", "100%"],
+                "texture": "textures/fr_ui/side_buttons_light",
+                "alpha": 1.0
+              }
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#cleaned_text",
+          "font_scale_factor": 0.9,
+          "color": [1, 1, 1],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "offset": [4, 0],
+          "layer": 5,
+          "bindings": [
+            { "binding_type": "collection", "binding_collection_name": "form_buttons", "binding_name": "#form_button_text" },
+            { "binding_type": "view", "source_property_name": "(#form_button_text - 'cam:')", "target_property_name": "#cleaned_text" }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      { "binding_type": "collection_details", "binding_collection_name": "form_buttons" },
+      { "binding_name": "#form_button_text", "binding_type": "collection", "binding_collection_name": "form_buttons" },
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(not ((#form_button_text - 'cam:') = #form_button_text))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
   "help_content": {
     "type": "stack_panel",
     "orientation": "vertical",
@@ -5661,6 +6119,128 @@
         "binding_type": "view",
         "source_property_name": "(not ((#form_button_text - 'tx:loading_') = #form_button_text))",
         "target_property_name": "#visible"
+      }
+    ]
+  },
+  "experimental_warning_button": {
+    "type": "panel",
+    "size": [
+      "100%",
+      32
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not ((#btn_text - 'bt:g_') = #btn_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "$default_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background",
+          "$hover_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "$pressed_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "$locked_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "$border_visible": false,
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "$button_text": "",
+          "focus_enabled": true,
+          "default_focus_precedence": 1,
+          "focus_magnet_enabled": true,
+          "bindings": [
+            {
+              "binding_name": "#null",
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "btn_label": {
+          "type": "label",
+          "text": "#text",
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 1.0,
+          "color": [
+            0.592,
+            0.855,
+            0.063
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#btn_raw"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#btn_raw - 'bt:g_')",
+              "target_property_name": "#text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "experimental_warning_close_button": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not ((#btn_text - 'bt:x_') = #btn_text))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "close_btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "$default_button_texture": "textures/fr_ui/terminal_close",
+          "$hover_button_texture": "textures/fr_ui/terminal_close_hover",
+          "$pressed_button_texture": "textures/fr_ui/terminal_close_hover",
+          "$locked_button_texture": "textures/fr_ui/terminal_close",
+          "$border_visible": false,
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "$button_text": "",
+          "focus_enabled": true,
+          "focus_magnet_enabled": true,
+          "bindings": [
+            {
+              "binding_name": "#null",
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
       }
     ]
   }

@@ -1,6 +1,21 @@
 {
   "materials": {
     "version": "1.0.0",
+    	"fr_color_test:entity_static": {
+      "+defines": [ "USE_UV_ANIM", "ALPHA_TEST", "BLEND" ],
+      "+states": [         "Blending",
+      
+      "DisableDepthWrite" ],
+      "blendSrc": "One",
+      "blendDst": "One",
+      "msaaSupport": "Both",
+      "+samplerStates": [
+        {
+          "samplerIndex": 0,
+          "textureWrap": "Repeat"
+        }
+      ]
+    },
     "custom_animated:entity_emissive_alpha": {
       "+defines": [
         "BLEND",
@@ -11,8 +26,8 @@
         "Blending"
       ]
     },
-    "fr_light_vfx:entity_static": {
-      "+defines": [ "USE_UV_ANIM", "ALPHA_TEST", "BLEND" ],
+    "fr_light_vfx:entity_change_color": {
+      "+defines": [ "USE_UV_ANIM", "ALPHA_TEST", "BLEND", "USE_COLOR_BLEND", "COLOR_BASED", "USE_COLOR_MASK"  ],
       "+states": [         "Blending",
       
       "DisableDepthWrite" ],

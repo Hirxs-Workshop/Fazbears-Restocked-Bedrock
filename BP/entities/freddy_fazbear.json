@@ -10,7 +10,18 @@
 				"freddy:attack_time": {
 					"type": "float",
 					"default": 0.0,
-					"range": [0.0, 10.0]
+					"range": [
+						0.0,
+						10.0
+					]
+				},
+				"freddy:kill_counter": {
+					"type": "int",
+					"default": 0,
+					"range": [
+						0,
+						20
+					]
 				}
 			},
 			"animations": {
@@ -42,6 +53,12 @@
 										"subject": "self",
 										"value": "ignore_player_now",
 										"operator": "not"
+									},
+									{
+										"test": "has_tag",
+										"subject": "other",
+										"value": "freddy_hit",
+										"operator": "not"
 									}
 								]
 							},
@@ -51,12 +68,10 @@
 				},
 				"minecraft:navigation.walk": {
 					"can_path_over_water": false,
-					"avoid_water": false,
-					"avoid_damage_blocks": false
+					"avoid_water": true,
+					"avoid_damage_blocks": true
 				},
-				"minecraft:movement.basic": {
-					"max_turn": 0
-				},
+				"minecraft:movement.basic": {},
 				"minecraft:movement": {
 					"value": 0.2
 				},
@@ -70,17 +85,46 @@
 				},
 				"minecraft:behavior.look_at_target": {
 					"priority": 3
+				},
+				"minecraft:behavior.random_stroll": {
+					"priority": 7,
+					"speed_multiplier": 1.0
+				},
+				"minecraft:behavior.random_look_around": {
+					"priority": 10
+				},
+				"minecraft:entity_sensor": {
+					"sensor_range": 16.0,
+					"relative_range": false,
+					"minimum_count": 1,
+					"event_filters": {
+						"all_of": [
+							{
+								"test": "is_family",
+								"subject": "other",
+								"value": "player"
+							},
+							{
+								"test": "has_tag",
+								"subject": "other",
+								"value": "freddy_hit"
+							}
+						]
+					},
+					"event": "freddy_detected_attacked_player"
+				},
+				"minecraft:timer": {
+					"time": [
+						2.0,
+						4.0
+					],
+					"looping": true,
+					"time_down_event": {
+						"event": "freddy_check_for_player"
+					}
 				}
 			},
 			"freddy_chasing": {
-				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.9], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
 				"minecraft:movement": {
 					"value": 0.152
 				},
@@ -109,6 +153,12 @@
 										"subject": "self",
 										"value": "ignore_player_now",
 										"operator": "not"
+									},
+									{
+										"test": "has_tag",
+										"subject": "other",
+										"value": "freddy_hit",
+										"operator": "not"
 									}
 								]
 							},
@@ -122,17 +172,51 @@
 				"minecraft:behavior.melee_attack": {
 					"priority": 2,
 					"speed_multiplier": 1.5,
-					"reach_multiplier": 2.0
+					"reach_multiplier": 2.0,
+					"on_attack": {
+						"event": "freddy_try_attack",
+						"target": "self"
+					}
 				},
 				"minecraft:behavior.random_stroll": {
-					"priority": 8,
-					"speed_multiplier": 0.8
+					"priority": 7,
+					"speed_multiplier": 1.0
 				},
 				"minecraft:behavior.look_at_target": {
 					"priority": 9
 				},
 				"minecraft:behavior.random_look_around": {
 					"priority": 10
+				},
+				"minecraft:entity_sensor": {
+					"sensor_range": 16.0,
+					"relative_range": false,
+					"minimum_count": 1,
+					"event_filters": {
+						"all_of": [
+							{
+								"test": "is_family",
+								"subject": "other",
+								"value": "player"
+							},
+							{
+								"test": "has_tag",
+								"subject": "other",
+								"value": "freddy_hit"
+							}
+						]
+					},
+					"event": "freddy_detected_attacked_player"
+				},
+				"minecraft:timer": {
+					"time": [
+						0.5,
+						1.0
+					],
+					"looping": true,
+					"time_down_event": {
+						"event": "freddy_check_for_player"
+					}
 				}
 			},
 			"freddy_attacking": {
@@ -140,13 +224,21 @@
 					"value": 1
 				},
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"pull_in_entities": true,
+					"prevent_rider_dismount": true,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.6,
+								1.6
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.0
 				},
@@ -166,28 +258,6 @@
 						"event": "freddy_hit_particles",
 						"target": "self"
 					}
-				}
-			},
-			"freddy_attack_timer": {
-								
-				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
-				"minecraft:movement": {
-					"value": 0.0
-				},
-				"minecraft:navigation.walk": {
-					"can_path_over_water": false,
-					"avoid_water": false,
-					"avoid_damage_blocks": false
-				},
-				"minecraft:movement.basic": {
-					"max_turn": 0
 				},
 				"minecraft:timer": {
 					"time": 3.8,
@@ -225,11 +295,21 @@
 				},
 				"minecraft:movement.basic": {},
 				"minecraft:behavior.random_stroll": {
-					"priority": 8,
-					"speed_multiplier": 0.8
+					"priority": 7,
+					"speed_multiplier": 1.0
 				},
 				"minecraft:behavior.random_look_around": {
 					"priority": 10
+				},
+				"minecraft:timer": {
+					"time": [
+						1.0,
+						2.0
+					],
+					"looping": true,
+					"time_down_event": {
+						"event": "freddy_check_can_attack_again"
+					}
 				}
 			},
 			"freddy_post_attack": {
@@ -263,11 +343,16 @@
 						}
 					]
 				}
-			}
+			},
+			"freddy_seat_player": {}
 		},
 		"components": {
 			"minecraft:type_family": {
-				"family": ["freddy", "animatronic", "hostile"]
+				"family": [
+					"freddy",
+					"animatronic",
+					"hostile"
+				]
 			},
 			"minecraft:collision_box": {
 				"width": 0.8,
@@ -296,8 +381,8 @@
 				"max": 100
 			},
 			"minecraft:behavior.random_stroll": {
-				"priority": 8,
-				"speed_multiplier": 0.8
+				"priority": 7,
+				"speed_multiplier": 1.0
 			},
 			"minecraft:behavior.look_at_player": {
 				"priority": 9,
@@ -306,13 +391,6 @@
 			},
 			"minecraft:behavior.random_look_around": {
 				"priority": 10
-			},
-			"minecraft:timer": {
-				"time": [1.0, 2.0],
-				"looping": true,
-				"time_down_event": {
-					"event": "freddy_check_for_player"
-				}
 			},
 			"minecraft:physics": {},
 			"minecraft:pushable": {
@@ -327,23 +405,35 @@
 		"events": {
 			"minecraft:entity_spawned": {
 				"add": {
-					"component_groups": ["freddy_hostile", "freddy_normal"]
+					"component_groups": [
+						"freddy_hostile",
+						"freddy_normal"
+					]
 				}
 			},
 			"freddy_start_chase": {
 				"add": {
-					"component_groups": ["freddy_chasing"]
+					"component_groups": [
+						"freddy_chasing"
+					]
 				},
 				"remove": {
-					"component_groups": ["freddy_hostile"]
+					"component_groups": [
+						"freddy_hostile"
+					]
 				}
 			},
 			"freddy_stop_chase": {
 				"add": {
-					"component_groups": ["freddy_hostile"]
+					"component_groups": [
+						"freddy_hostile"
+					]
 				},
 				"remove": {
-					"component_groups": ["freddy_chasing", "freddy_scare_cooldown"]
+					"component_groups": [
+						"freddy_chasing",
+						"freddy_scare_cooldown"
+					]
 				},
 				"queue_command": {
 					"command": [
@@ -375,25 +465,61 @@
 			},
 			"freddy_start_attack": {
 				"add": {
-					"component_groups": ["freddy_attacking", "freddy_attack_timer"]
+					"component_groups": [
+						"freddy_attacking"
+					]
 				},
 				"remove": {
-					"component_groups": ["freddy_chasing", "freddy_hostile"]
+					"component_groups": [
+						"freddy_chasing",
+						"freddy_hostile"
+					]
 				},
 				"set_property": {
 					"freddy:attack_time": "1.0"
 				},
 				"queue_command": {
 					"command": [
+						"tag @p add freddy_hit",
 						"effect @p slowness 5 5 true",
 						"effect @p darkness 5 5 true",
 						"ride @p start_riding @s teleport_ride",
 						"camerashake add @p 0.05 3.4 rotational",
 						"hud @p hide all",
-						"execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip ~ ~0.6 ~",
-						"execute at @p positioned ~ ~ ~ run tag @p add freddy_hit"
+						"execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip ~ ~0.6 ~"
 					]
 				}
+			},
+			"freddy_try_attack": {
+				"sequence": [
+					{
+						"filters": {
+							"test": "has_tag",
+							"subject": "target",
+							"value": "freddy_hit",
+							"operator": "not"
+						},
+						"trigger": "freddy_start_attack"
+					},
+					{
+						"filters": {
+							"test": "has_tag",
+							"subject": "target",
+							"value": "freddy_hit"
+						},
+						"add": {
+							"component_groups": [
+								"freddy_ignoring_player"
+							]
+						},
+						"remove": {
+							"component_groups": [
+								"freddy_chasing",
+								"freddy_hostile"
+							]
+						}
+					}
+				]
 			},
 			"freddy_sitting_player": {
 				"queue_command": {
@@ -402,24 +528,80 @@
 					]
 				}
 			},
-			"freddy_end_attack": {
+			"freddy_do_seat_player": {
 				"remove": {
-					"component_groups": ["freddy_attacking", "freddy_attack_timer", "freddy_normal"]
+					"component_groups": [
+						"freddy_seat_player"
+					]
 				},
-				"add": {
-					"component_groups": ["freddy_chasing", "freddy_post_attack"]
+				"queue_command": {
+					"command": [
+						"ride @p start_riding @s teleport_ride"
+					]
+				}
+			},
+			"freddy_keep_player_seated": {
+				"queue_command": {
+					"command": [
+						"ride @p[tag=freddy_hit,r=3] start_riding @s teleport_ride"
+					]
+				}
+			},
+			"freddy_attack_tick": {
+				"set_property": {
+					"freddy:kill_counter": "q.property('freddy:kill_counter') + 1"
 				},
+				"sequence": [
+					{
+						"filters": {
+							"test": "int_property",
+							"subject": "self",
+							"domain": "freddy:kill_counter",
+							"operator": ">=",
+							"value": 19
+						},
+						"trigger": "freddy_end_attack"
+					},
+					{
+						"filters": {
+							"test": "int_property",
+							"subject": "self",
+							"domain": "freddy:kill_counter",
+							"operator": "<",
+							"value": 19
+						},
+						"queue_command": {
+							"command": [
+								"ride @p[tag=freddy_hit,r=3] start_riding @s teleport_ride"
+							]
+						}
+					}
+				]
+			},
+			"freddy_end_attack": {
 				"set_property": {
 					"freddy:attack_time": "0.0"
 				},
 				"queue_command": {
 					"command": [
+						"execute at @s run kill @a[r=5,tag=freddy_hit]",
+						"execute at @s run particle fr:attack_blood_drip_final ~ ~0.6 ~",
+						"execute at @s run tag @a[r=5] remove freddy_hit",
+						"hud @a[r=5] reset all",
 						"effect @s slowness 7 10 true",
-						"hud @p reset all",
-						"execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip_final ~ ~0.6 ~",
-						"kill @p[tag=freddy_hit]",
-						"execute at @p positioned ~ ~ ~ run tag @p remove freddy_hit",
 						"tag @s remove played_scare"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"freddy_attacking",
+						"freddy_normal"
+					]
+				},
+				"add": {
+					"component_groups": [
+						"freddy_hostile",
+						"freddy_post_attack"
 					]
 				}
 			},
@@ -430,15 +612,21 @@
 					]
 				},
 				"remove": {
-					"component_groups": ["freddy_scare_cooldown"]
+					"component_groups": [
+						"freddy_scare_cooldown"
+					]
 				}
 			},
 			"freddy_clean_blood": {
 				"remove": {
-					"component_groups": ["freddy_post_attack"]
+					"component_groups": [
+						"freddy_post_attack"
+					]
 				},
 				"add": {
-					"component_groups": ["freddy_normal"]
+					"component_groups": [
+						"freddy_normal"
+					]
 				},
 				"queue_command": {
 					"command": [
@@ -451,15 +639,27 @@
 					{
 						"filters": {
 							"all_of": [
-								{ "test": "has_target" },
-								{ "test": "has_tag", "subject": "self", "value": "played_scare", "operator": "not" }
+								{
+									"test": "has_target"
+								},
+								{
+									"test": "has_tag",
+									"subject": "self",
+									"value": "played_scare",
+									"operator": "not"
+								}
 							]
 						},
 						"add": {
-							"component_groups": ["freddy_chasing", "freddy_scare_cooldown"]
+							"component_groups": [
+								"freddy_chasing",
+								"freddy_scare_cooldown"
+							]
 						},
 						"remove": {
-							"component_groups": ["freddy_hostile"]
+							"component_groups": [
+								"freddy_hostile"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -470,14 +670,27 @@
 					},
 					{
 						"filters": {
-							"test": "has_target",
-							"operator": "not"
+							"all_of": [
+								{
+									"test": "has_target",
+									"operator": "not"
+								},
+								{
+									"test": "has_tag",
+									"subject": "self",
+									"value": "played_scare"
+								}
+							]
 						},
 						"add": {
-							"component_groups": ["freddy_hostile"]
+							"component_groups": [
+								"freddy_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["freddy_chasing"]
+							"component_groups": [
+								"freddy_chasing"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -489,10 +702,45 @@
 			},
 			"freddy_ignore_player": {
 				"add": {
-					"component_groups": ["freddy_ignoring_player"]
+					"component_groups": [
+						"freddy_ignoring_player"
+					]
 				},
 				"remove": {
-					"component_groups": ["freddy_hostile", "freddy_chasing"]
+					"component_groups": [
+						"freddy_hostile",
+						"freddy_chasing"
+					]
+				}
+			},
+			"freddy_detected_attacked_player": {
+				"filters": {
+					"test": "has_component",
+					"subject": "self",
+					"value": "minecraft:behavior.nearest_attackable_target"
+				},
+				"add": {
+					"component_groups": [
+						"freddy_ignoring_player"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"freddy_hostile",
+						"freddy_chasing"
+					]
+				}
+			},
+			"freddy_check_can_attack_again": {
+				"add": {
+					"component_groups": [
+						"freddy_hostile"
+					]
+				},
+				"remove": {
+					"component_groups": [
+						"freddy_ignoring_player"
+					]
 				}
 			},
 			"freddy_stop_ignore_player": {
@@ -502,10 +750,14 @@
 							"test": "has_target"
 						},
 						"add": {
-							"component_groups": ["freddy_chasing"]
+							"component_groups": [
+								"freddy_chasing"
+							]
 						},
 						"remove": {
-							"component_groups": ["freddy_ignoring_player"]
+							"component_groups": [
+								"freddy_ignoring_player"
+							]
 						}
 					},
 					{
@@ -514,10 +766,14 @@
 							"operator": "not"
 						},
 						"add": {
-							"component_groups": ["freddy_hostile"]
+							"component_groups": [
+								"freddy_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["freddy_ignoring_player"]
+							"component_groups": [
+								"freddy_ignoring_player"
+							]
 						}
 					}
 				]

@@ -55,6 +55,24 @@
             "sounds/fnaf1/flashlight"
          ]
       },
+      "camera_select" : {
+        "category": "hostile",
+         "sounds" : [
+            "sounds/fnaf1/camera_select"
+         ]
+      },
+      "tape_eject" : {
+        "category": "hostile",
+         "sounds" : [
+            "sounds/fnaf1/tape_eject"
+         ]
+      },
+      "monitor_close" : {
+        "category": "hostile",
+         "sounds" : [
+            "sounds/fnaf1/monitor_close"
+         ]
+      },
       "fnaf1_foxy_jumpscare" : {
         "category": "hostile",
          "sounds" : [

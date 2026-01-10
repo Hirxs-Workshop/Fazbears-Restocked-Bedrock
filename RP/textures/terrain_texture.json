@@ -4,244 +4,269 @@
     "num_mip_levels": 4,
     "padding": 8,
     "texture_data": {
-	"kitchencounter_upper_drawers": {
-		"textures": [
-			"textures/blocks/reworked/kitchen/kitchencounter_upper_drawers"
-		]
-	},
-	"kitchencounter": {
-		"textures": [
-			"textures/blocks/reworked/kitchen/kitchencounter"
-		]
-	},
-	"kitchencounter_drawer": {
-		"textures": [
-			"textures/blocks/reworked/kitchen/kitchencounter_drawer"
-		]
-	},
-	"kitchencounter_drawer1": {
-		"textures": [
-			"textures/blocks/reworked/kitchen/kitchencounter_drawer1"
-		]
-	},
-	"kitchencounter_drawer3": {
-		"textures": [
-			"textures/blocks/reworked/kitchen/kitchencounter_drawer3"
-		]
-	},
-	"wall_tear_hole_1": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/wall_tear_hole_1"
-		]
-	},
-	"wall_tear_hole_2": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/wall_tear_hole_2"
-		]
-	},
-	"brick_tear_1": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_1"
-		]
-	},
-	"brick_tear_2": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_2"
-		]
-	},
-	"brick_tear_bottom": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_bottom"
-		]
-	},
-	"brick_tear_bottom_left_corner": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_bottom_left_corner"
-		]
-	},
-	"brick_tear_bottom_right_corner": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_bottom_right_corner"
-		]
-	},
-	"brick_tear_left": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_left"
-		]
-	},
-	"brick_tear_left_big": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_left_big"
-		]
-	},
-	"brick_tear_right": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_right"
-		]
-	},
-	"brick_tear_right_big": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_right_big"
-		]
-	},
-	"brick_tear_top": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_top"
-		]
-	},
-	"brick_tear_top_left_corner": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_top_left_corner"
-		]
-	},
-	"brick_tear_top_right_corner": {
-		"textures": [
-			"textures/blocks/reworked/cracked_wall/brick_tear_top_right_corner"
-		]
-	},
-	"office_window": {
-		"textures": [
-			"textures/blocks/reworked/office_window"
-		]
-	},
-	"wall_clock_black": {
-		"textures": [
-			"textures/blocks/reworked/wall_clock_black"
-		]
-	},
-	"wall_clock_green": {
-		"textures": [
-			"textures/blocks/reworked/wall_clock_green"
-		]
-	},
-	"trash": {
-		"textures": [
-			"textures/blocks/reworked/trash"
-		]
-	},
-	"wide_backstage_table": {
-		"textures": [
-			"textures/blocks/reworked/wide_backstage_table"
-		]
-	},
-	"wide_party_table": {
-		"textures": [
-			"textures/blocks/reworked/wide_party_table"
-		]
-	},
-	"restroom_stall_unlocked": {
-		"textures": [
-			"textures/blocks/reworked/restroom_stall_unlocked"
-		]
-	},
-    "fr_block": {
-		"textures": [
-			"textures/blocks/reworked/fr_block"
-		]
-	},
-	"restroom_stall_locked": {
-		"textures": [
-			"textures/blocks/reworked/restroom_stall_locked"
-		]
-	},
-	"fridge": {
-		"textures": [
-			"textures/blocks/reworked/fridge"
-		]
-	},
-	"stone_oven": {
-		"textures": [
-			"textures/blocks/reworked/stone_oven"
-		]
-	},
-	"stone_oven_lit": {
-		"textures": [
-			"textures/blocks/reworked/stone_oven_lit"
-		]
-	},
-	"sink": {
-		"textures": [
-			"textures/blocks/reworked/sink"
-		]
-	},
-	"toilet": {
-		"textures": [
-			"textures/blocks/reworked/toilet"
-		]
-	},
-	"vending_machine": {
-		"textures": [
-			"textures/blocks/reworked/vending_machine"
-		]
-	},
-	"rules_for_safety": {
-		"textures": [
-			"textures/blocks/reworked/rules_for_safety"
-		]
-	},
-	"condiment_bottles": {
-		"textures": [
-			"textures/blocks/reworked/condiment_bottles"
-		]
-	},
-	"newspaper_1": {
-		"textures": [
-			"textures/blocks/reworked/newspaper_1"
-		]
-	},
-	"newspaper_2": {
-		"textures": [
-			"textures/blocks/reworked/newspaper_2"
-		]
-	},
-	"newspaper_3": {
-		"textures": [
-			"textures/blocks/reworked/newspaper_3"
-		]
-	},
-	"deep_fryer_machine": {
-		"textures": [
-			"textures/blocks/reworked/deep_fryer_machine"
-		]
-	},
-	"fnaf1_advanced_wall": {
-           	   "textures": [
-		       "textures/blocks/reworked/fnaf1/walls/fnaf1_advanced_wall"
-		]
-	},
-	"office_phone": {
-           	   "textures": [
-		       "textures/blocks/reworked/office_phone"
-		]
-	},
-	"retro_phone_black": {
-           	   "textures": [
-		       "textures/blocks/reworked/retro_phone_black"
-		]
-	},
-	"generator_brown": {
-           	   "textures": [
-		       "textures/blocks/reworked/generator_brown"
-		]
-	},
-	"generator_black": {
-           	   "textures": [
-		       "textures/blocks/reworked/generator_black"
-		]
-	},
-	"animatronic_work_table": {
-           	   "textures": [
-		       "textures/blocks/reworked/animatronic_work_table"
-		]
-	},
-	"shelf_supply_closet": {
-           	   "textures": [
-		       "textures/blocks/reworked/shelf_supply_closet"
-		]
-	},
-        "arcade_stool": {
+        "kitchencounter": {
             "textures": [
-                "textures/blocks/reworked/arcade_stool"
+                "textures/blocks/reworked/kitchen/kitchencounter"
+            ]
+        },
+        "kitchencounter_drawer": {
+            "textures": [
+                "textures/blocks/reworked/kitchen/kitchencounter_drawer"
+            ]
+        },
+        "kitchencounter_drawer1": {
+            "textures": [
+                "textures/blocks/reworked/kitchen/kitchencounter_drawer1"
+            ]
+        },
+        "kitchencounter_drawer3": {
+            "textures": [
+                "textures/blocks/reworked/kitchen/kitchencounter_drawer3"
+            ]
+        },
+        "wall_tear_hole_1": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/wall_tear_hole_1"
+            ]
+        },
+        "wall_tear_hole_2": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/wall_tear_hole_2"
+            ]
+        },
+        "brick_tear_1": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_1"
+            ]
+        },
+        "brick_tear_2": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_2"
+            ]
+        },
+        "brick_tear_bottom": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_bottom"
+            ]
+        },
+        "brick_tear_bottom_left_corner": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_bottom_left_corner"
+            ]
+        },
+        "brick_tear_bottom_right_corner": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_bottom_right_corner"
+            ]
+        },
+        "brick_tear_left": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_left"
+            ]
+        },
+        "brick_tear_left_big": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_left_big"
+            ]
+        },
+        "brick_tear_right": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_right"
+            ]
+        },
+        "brick_tear_right_big": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_right_big"
+            ]
+        },
+        "brick_tear_top": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_top"
+            ]
+        },
+        "brick_tear_top_left_corner": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_top_left_corner"
+            ]
+        },
+        "brick_tear_top_right_corner": {
+            "textures": [
+                "textures/blocks/reworked/cracked_wall/brick_tear_top_right_corner"
+            ]
+        },
+        "office_window": {
+            "textures": [
+                "textures/blocks/reworked/office_window"
+            ]
+        },
+        "wall_clock_black": {
+            "textures": [
+                "textures/blocks/reworked/wall_clock_black"
+            ]
+        },
+        "wall_clock_green": {
+            "textures": [
+                "textures/blocks/reworked/wall_clock_green"
+            ]
+        },
+        "trash": {
+            "textures": [
+                "textures/blocks/reworked/trash"
+            ]
+        },
+        "wide_backstage_table": {
+            "textures": [
+                "textures/blocks/reworked/wide_backstage_table"
+            ]
+        },
+        "wide_party_table": {
+            "textures": [
+                "textures/blocks/reworked/wide_party_table"
+            ]
+        },
+        "restroom_stall_unlocked": {
+            "textures": [
+                "textures/blocks/reworked/restroom_stall_unlocked"
+            ]
+        },
+        "fr_block": {
+            "textures": [
+                "textures/blocks/reworked/fr_block"
+            ]
+        },
+        "restroom_stall_locked": {
+            "textures": [
+                "textures/blocks/reworked/restroom_stall_locked"
+            ]
+        },
+        "fridge": {
+            "textures": [
+                "textures/blocks/reworked/fridge"
+            ]
+        },
+        "stone_oven": {
+            "textures": [
+                "textures/blocks/reworked/stone_oven"
+            ]
+        },
+        "stone_oven_lit": {
+            "textures": [
+                "textures/blocks/reworked/stone_oven_lit"
+            ]
+        },
+        "sink": {
+            "textures": [
+                "textures/blocks/reworked/sink"
+            ]
+        },
+        "toilet": {
+            "textures": [
+                "textures/blocks/reworked/toilet"
+            ]
+        },
+        "vending_machine": {
+            "textures": [
+                "textures/blocks/reworked/vending_machine"
+            ]
+        },
+        "rules_for_safety": {
+            "textures": [
+                "textures/blocks/reworked/rules_for_safety"
+            ]
+        },
+        "condiment_bottles": {
+            "textures": [
+                "textures/blocks/reworked/condiment_bottles"
+            ]
+        },
+        "newspaper_1": {
+            "textures": [
+                "textures/blocks/reworked/newspaper_1"
+            ]
+        },
+        "newspaper_2": {
+            "textures": [
+                "textures/blocks/reworked/newspaper_2"
+            ]
+        },
+        "newspaper_3": {
+            "textures": [
+                "textures/blocks/reworked/newspaper_3"
+            ]
+        },
+        "deep_fryer_machine": {
+            "textures": [
+                "textures/blocks/reworked/deep_fryer_machine"
+            ]
+        },
+        "fnaf1_advanced_wall": {
+            "textures": [
+                "textures/blocks/reworked/fnaf1/walls/fnaf1_advanced_wall"
+            ]
+        },
+        "office_phone": {
+            "textures": [
+                "textures/blocks/reworked/office_phone"
+            ]
+        },
+        "retro_phone_black": {
+            "textures": [
+                "textures/blocks/reworked/retro_phone_black"
+            ]
+        },
+        "generator_brown": {
+            "textures": [
+                "textures/blocks/reworked/generator_brown"
+            ]
+        },
+        "generator_black": {
+            "textures": [
+                "textures/blocks/reworked/generator_black"
+            ]
+        },
+        "animatronic_work_table": {
+            "textures": [
+                "textures/blocks/reworked/animatronic_work_table"
+            ]
+        },
+        "shelf_supply_closet": {
+            "textures": [
+                "textures/blocks/reworked/shelf_supply_closet"
+            ]
+        },
+        "arcade_freddy": {
+            "textures": [
+                "textures/blocks/reworked/arcade_freddy"
+            ]
+        },
+        "arcade_stool_blue": {
+            "textures": [
+                "textures/blocks/reworked/arcade_stool_blue"
+            ]
+        },
+        "arcade_stool_green": {
+            "textures": [
+                "textures/blocks/reworked/arcade_stool_green"
+            ]
+        },
+        "arcade_stool_orange": {
+            "textures": [
+                "textures/blocks/reworked/arcade_stool_orange"
+            ]
+        },
+        "arcade_stool_purple": {
+            "textures": [
+                "textures/blocks/reworked/arcade_stool_purple"
+            ]
+        },
+        "arcade_stool_red": {
+            "textures": [
+                "textures/blocks/reworked/arcade_stool_red"
+            ]
+        },
+        "arcade_stool_yellow": {
+            "textures": [
+                "textures/blocks/reworked/arcade_stool_yellow"
             ]
         },
         "backstage_door": {
@@ -577,11 +602,6 @@
         "office_old_pc": {
             "textures": [
                 "textures/blocks/reworked/office_old_pc"
-            ]
-        },
-        "office_phone": {
-            "textures": [
-                "textures/blocks/reworked/office_phone"
             ]
         },
         "office_poster": {
@@ -1367,26 +1387,6 @@
         "sgt_dev_plush": {
             "textures": [
                 "textures/blocks/reworked/dev/sgt_dev_plush"
-            ]
-        },
-        "the_fantasticbob_dev_plush":{
-            "texture":[
-                "textures/blocks/reworked/dev/New_Fantastic_BOB_Dev_Plush_Reworked_Texture"
-            ]
-        },
-        "werty_dev_plush":{
-            "texture":[
-                "textures/blocks/reworked/dev/New_Werty_Dev_Plush_Reworked_Texture"
-            ]
-        },
-        "warden45e_dev_plush": {
-            "texture": [
-                "textures/blocks/reworked/dev/New_Warden45e_Dev_Plush_Reworked_Texture"
-            ]
-        },
-        "infly_dev_plush": {
-                        "textures": [
-                "textures/blocks/reworked/dev/New_TINFLY_Dev_Plush_Reworked_Texture"
             ]
         },
         "mansam_plush": {
@@ -2512,6 +2512,56 @@
         "pizzeria_light_off": {
             "textures": [
                 "textures/blocks/reworked/pizzeria_light_off"
+            ]
+        },
+        "black_wall_sign": {
+            "textures": [
+                "textures/blocks/reworked/black_wall_sign"
+            ]
+        },
+        "white_wall_sign": {
+            "textures": [
+                "textures/blocks/reworked/white_wall_sign"
+            ]
+        },
+        "black_wall_sign_small": {
+            "textures": [
+                "textures/blocks/reworked/black_wall_sign_small"
+            ]
+        },
+        "white_wall_sign_small": {
+            "textures": [
+                "textures/blocks/reworked/white_wall_sign_small"
+            ]
+        },
+        "fr_generator": {
+            "textures": [
+                "textures/blocks/reworked/fr_generator"
+            ]
+        },
+        "fantastic_bob_dev_plush": {
+            "textures": [
+                "textures/blocks/reworked/dev/fantastic_bob_dev_plush"
+            ]
+        },
+        "werty_dev_plush":{
+            "texture":[
+                "textures/blocks/reworked/dev/werty_dev_plush"
+            ]
+        },
+        "warden_dev_plush": {
+            "texture": [
+                "textures/blocks/reworked/dev/warden_dev_plush"
+            ]
+        },
+        "tinfly_dev_plush": {
+                        "textures": [
+                "textures/blocks/reworked/dev/tinfly_dev_plush"
+            ]
+        },
+        "kitchencounter_upper_drawers": {
+            "textures": [
+                "textures/blocks/reworked/kitchen/kitchencounter_upper_drawers"
             ]
         }
     }

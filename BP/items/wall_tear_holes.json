@@ -14,10 +14,13 @@
 					"default": "wall_tear_holes"
 				}
 			},
-            "minecraft:block_placer": {
+			"minecraft:display_name": {
+				"value": "item.fr:wall_tear_holes.name"
+			},
+			"minecraft:block_placer": {
 				"block": "fr:wall_tear_holes",
 				"replace_block_item": true
-            }
+			}
 		}
 	}
 }

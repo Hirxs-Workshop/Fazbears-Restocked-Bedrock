@@ -1,0 +1,112 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:arcade_stool",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_direction": {
+					"enabled_states": ["minecraft:cardinal_direction"]
+				}
+			},
+			"states": {
+				"fr:variants": [0, 1, 2, 3, 4, 5]
+			}
+		},
+		"components": {
+			"tag:fr:its_chair": {},
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0.5
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 0.5
+			},
+			"minecraft:geometry": "geometry.arcade_stool",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "arcade_stool_blue",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"origin": [-4, 0, -4],
+				"size": [8, 10, 8]
+			},
+			"minecraft:selection_box": {
+				"origin": [-4, 0, -4],
+				"size": [8, 10, 8]
+			},
+			"fr:arcade_stool_sit": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "arcade_stool_purple",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "arcade_stool_green",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "arcade_stool_orange",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "arcade_stool_blue",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "arcade_stool_red",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 5",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "arcade_stool_yellow",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			}
+		]
+	}
+}

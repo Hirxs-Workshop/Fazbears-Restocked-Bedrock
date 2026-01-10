@@ -26,7 +26,6 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 }
             }
         },
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
         onPlace({ block }) {
             const blockBit = block.permutation.getState("fr:block_bit");
             
@@ -50,7 +49,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
         onPlayerBreak({ block, brokenBlockPermutation }) {
             if (brokenBlockPermutation.getState("fr:block_bit") == 'bottom' && block.above().permutation.getState("fr:block_bit") == 'upper') {
                 block.above().setType("minecraft:air")
-            }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+            }
             if (brokenBlockPermutation.getState("fr:block_bit") == 'upper' && block.below().permutation.getState("fr:block_bit") == 'bottom') {
                 block.below().setType("minecraft:air")
             }

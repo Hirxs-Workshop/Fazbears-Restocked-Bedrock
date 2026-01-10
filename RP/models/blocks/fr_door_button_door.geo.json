@@ -1,0 +1,136 @@
+{
+	"format_version": "1.21.20",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.fr_door_button_door",
+				"texture_width": 16,
+				"texture_height": 16,
+				"visible_bounds_width": 3,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "bb_main",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-4, 2, -6.5],
+							"size": [8, 10, 2],
+							"pivot": [0, 1.75, -6.25],
+							"rotation": [-90, 0, 0],
+							"uv": {
+								"north": {"uv": [0, 0.5], "uv_size": [4, 5]},
+								"east": {"uv": [8, 0.5], "uv_size": [1, 5]},
+								"south": {"uv": [4, 0.5], "uv_size": [4, 5]},
+								"west": {"uv": [9, 0.5], "uv_size": [1, 5]},
+								"up": {"uv": [6, 10], "uv_size": [4, 1]},
+								"down": {"uv": [10, 7], "uv_size": [4, -1]}
+							}
+						}
+					]
+				},
+				{
+					"name": "door_off",
+					"pivot": [0, 0, -1],
+					"cubes": [
+						{
+							"origin": [-3, 5, -7.5],
+							"size": [6, 6, 1],
+							"pivot": [0, 1.75, -6.25],
+							"rotation": [-90, 0, 0],
+							"uv": {
+								"north": {"uv": [0, 10], "uv_size": [3, 3]},
+								"east": {"uv": [10, 7], "uv_size": [0.5, 3]},
+								"south": {"uv": [10, 0], "uv_size": [3, 3]},
+								"west": {"uv": [10, 10], "uv_size": [0.5, 3]},
+								"up": {"uv": [10.5, 7], "uv_size": [3, 0.5]},
+								"down": {"uv": [10.5, 8], "uv_size": [3, -0.5]}
+							}
+						}
+					]
+				},
+				{
+					"name": "door_on",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-3, 5, -6.5],
+							"size": [6, 6, 1],
+							"pivot": [0, 1.75, -6.25],
+							"rotation": [-90, 0, 0],
+							"uv": {
+								"north": {"uv": [0, 10], "uv_size": [3, 3]},
+								"east": {"uv": [10, 7], "uv_size": [0.5, 3]},
+								"south": {"uv": [10, 0], "uv_size": [3, 3]},
+								"west": {"uv": [10, 10], "uv_size": [0.5, 3]},
+								"up": {"uv": [10.5, 7], "uv_size": [3, 0.5]},
+								"down": {"uv": [10.5, 8], "uv_size": [3, -0.5]}
+							}
+						}
+					]
+				}
+			],
+			"item_display_transforms": {
+				"thirdperson_righthand": {
+					"rotation": [-117.74, 1.34, 179.83],
+					"translation": [0, 4.25, 2.75],
+					"scale": [0.7, 0.7, 0.7],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0]
+				},
+				"thirdperson_lefthand": {
+					"rotation": [-117.74, 1.34, 179.83],
+					"translation": [0, 4.25, 2.75],
+					"scale": [0.7, 0.7, 0.7],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0]
+				},
+				"firstperson_righthand": {
+					"rotation": [-96.36, 8.67, 98.68],
+					"translation": [-5.25, 6, 5],
+					"scale": [0.4, 0.4, 0.4],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0]
+				},
+				"firstperson_lefthand": {
+					"rotation": [-96.36, 8.67, 98.68],
+					"translation": [-5.25, 6, 5],
+					"scale": [0.4, 0.4, 0.4],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0]
+				},
+				"ground": {
+					"rotation": [-90, 0, 0],
+					"translation": [0, 3, 0],
+					"scale": [0.25, 0.25, 0.25],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0]
+				},
+				"gui": {
+					"rotation": [-66.75, 0, -145.5],
+					"translation": [3.75, -0.75, 0],
+					"scale": [0.9, 0.9, 0.9],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0],
+					"fit_to_frame": false
+				},
+				"head": {
+					"rotation": [-180, 0.25, -180],
+					"translation": [0, 14.25, -0.5],
+					"scale": [1, 1, 1],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0]
+				},
+				"fixed": {
+					"rotation": [-90, 0, 0],
+					"translation": [0, 3, -7],
+					"scale": [1, 1, 1],
+					"rotation_pivot": [0, 0, 0],
+					"scale_pivot": [0, 0, 0]
+				}
+			}
+		}
+	]
+}

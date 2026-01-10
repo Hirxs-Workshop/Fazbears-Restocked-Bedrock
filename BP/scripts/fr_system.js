@@ -26,7 +26,6 @@ import 'connectables/table_connection'
 import 'connectables/door_frame_connection'
 import 'connection_system/main_system'
 
-import 'block_data_view'
 import 'camera_system/security_camera_system'
 import 'variant_system'
 import 'backstage_shelf_head_system'
@@ -34,106 +33,117 @@ import 'custom_commands'
 import 'updateBlock'
 import 'faz_tab_system'
 import 'advanced_wall'
+import 'text_particle_system'
 
-import { adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, ACTIONBAR_VARIANT_STYLE, customActionbar, variantActionbar } from './utils.js'
+import {
+    adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, customActionbar,
+    getPreciseRotation, yawFromFacing, FACING_YAW, safeRun, safeGet,
+    resetPlayerState, getHeldItem, isCreativeMode, toast
+} from './utils.js'
 import { securityCameraSystem } from './camera_system/security_camera_system.js'
 import { initStatueEditorSystem } from './statue_editor.js'
 
-const BlockPreciseRotationComponent = {
-    beforeOnPlayerPlace(event) {
-        const { player } = event;
-        if (!player) return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+const experimentalWarningShown = new Set();
 
-        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
-        if (blockFace !== "up") return;
+function checkExperimentalFeatures(player) {
+    if (experimentalWarningShown.has(player.id)) return;
 
-        const playerYRotation = player.getRotation().y;
-        const rotation = getPreciseRotation(playerYRotation);
+    try {
+        const testBlock = BlockPermutation.resolve("fr:restroom_stall");
 
-        event.permutationToPlace = event.permutationToPlace.withState("fr:rotation", rotation);
-    },
-};
-const BlockShellRotationComponent = {
+        const hasCustomState = testBlock.getState("fr:block_bit");
+
+        if (hasCustomState === undefined) {
+            throw new Error("Experimental features not enabled");
+        }
+        return;
+    } catch {
+        experimentalWarningShown.add(player.id);
+        system.runTimeout(() => {
+            showExperimentalWarning(player);
+        }, 20);
+    }
+}
+
+function showExperimentalWarning(player) {
+    const form = new ActionFormData()
+        .title("§e§x§p§w§a§r§n")
+        .body("")
+        .button("bt:g_CONTINUE")
+        .button("bt:x_X");
+
+    form.show(player).then((res) => {
+    }).catch((err) => {
+        system.runTimeout(() => {
+            showExperimentalWarning(player);
+        }, 60);
+    });
+}
+
+world.afterEvents.playerSpawn.subscribe((event) => {
+    const { player, initialSpawn } = event;
+    if (initialSpawn) {
+        system.runTimeout(() => {
+            checkExperimentalFeatures(player);
+        }, 100);
+    }
+});
+
+const makeRotationComponent = (faceCheck, stateKey) => ({
     beforeOnPlayerPlace(event) {
         const { player } = event;
         if (!player) return;
-
         const blockFace = event.permutationToPlace.getState("minecraft:block_face");
-        if (blockFace !== "up") return;
-
-        const playerYRotation = player.getRotation().y;
-        const rotation = getPreciseRotation(playerYRotation);
-
-        event.permutationToPlace = event.permutationToPlace.withState("fr:advanced_rot", rotation);
+        if (blockFace !== faceCheck) return;
+        const rotation = getPreciseRotation(player.getRotation().y);
+        event.permutationToPlace = event.permutationToPlace.withState(stateKey, rotation);
     },
-};
-
-const BlockDownPreciseRotationComponent = {
-    beforeOnPlayerPlace(event) {
-        const { player } = event;
-        if (!player) return;
-
-        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
-        if (blockFace !== "down") return;
-
-        const playerYRotation = player.getRotation().y;
-        const rotation = getPreciseRotation(playerYRotation);
-
-        event.permutationToPlace = event.permutationToPlace.withState("fr:rotation", rotation);
-    },
-};
-
-const BlockUpPreciseRotationComponent = {
-    beforeOnPlayerPlace(event) {
-        const { player } = event;
-        if (!player) return;
-
-        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
-        if (blockFace !== "up") return;
-
-        const playerYRotation = player.getRotation().y;
-        const rotation = getPreciseRotation(playerYRotation);
-
-        event.permutationToPlace = event.permutationToPlace.withState("fr:advanced_rot", rotation);
-    },
-};
+});
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
         "fr:precise_rotation",
-        BlockPreciseRotationComponent
+        makeRotationComponent("up", "fr:rotation")
     );
 });
-
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
         "fr:down_precise_rotation",
-        BlockDownPreciseRotationComponent
+        makeRotationComponent("down", "fr:rotation")
     );
 });
+
+const AdvancedRotationComponent = {
+    beforeOnPlayerPlace(event) {
+        const { player } = event;
+        if (!player) return;
+        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
+        if (blockFace !== "up") return;
+        const rotation = getPreciseRotation(player.getRotation().y);
+        try {
+            event.permutationToPlace = event.permutationToPlace.withState("fr:advanced_rot", rotation);
+        } catch { }
+    },
+};
+
+const AdvancedRotationDownComponent = {
+    beforeOnPlayerPlace(event) {
+        const { player } = event;
+        if (!player) return;
+        const blockFace = event.permutationToPlace.getState("minecraft:block_face");
+        if (blockFace !== "down") return;
+        const rotation = getPreciseRotation(player.getRotation().y);
+        try {
+            event.permutationToPlace = event.permutationToPlace.withState("fr:advanced_rot", rotation);
+        } catch { }
+    },
+};
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent(
-        "fr:advanced_rotation_down",
-        BlockUpPreciseRotationComponent
-    );
+    blockComponentRegistry.registerCustomComponent("fr:advanced_rotation", AdvancedRotationComponent);
+    blockComponentRegistry.registerCustomComponent("fr:advanced_rotation_down", AdvancedRotationDownComponent);
 });
-
-system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent(
-        "fr:advanced_rotation",
-        BlockShellRotationComponent
-    );
-});
-
-
-function getPreciseRotation(playerYRotation) {
-    if (playerYRotation < 0) playerYRotation += 360;
-    const rotation = Math.round(playerYRotation / 22.5);
-
-    return rotation !== 16 ? rotation : 0;
-}
 
 world.afterEvents.playerBreakBlock.subscribe((e) => {
     try {
@@ -143,13 +153,13 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
         const dim = block.dimension;
         const loc = block.location;
         const air = BlockPermutation.resolve('minecraft:air');
-        
+
 
         let baseLoc = loc;
         if (id === 'fr:gray_locker_upper') {
             baseLoc = { x: loc.x, y: loc.y - 1, z: loc.z };
         }
-        
+
 
         for (const [pid, data] of lockerHideState) {
             if (data.baseLoc.x === baseLoc.x && data.baseLoc.y === baseLoc.y && data.baseLoc.z === baseLoc.z) {
@@ -164,7 +174,7 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
                 lockerHideState.delete(pid);
             }
         }
-        
+
         if (id === 'fr:gray_locker') {
             system.run(() => {
                 try {
@@ -263,6 +273,25 @@ function showLockerLockedMenu(player, base, pid) {
 }
 
 
+const DYE_TO_COLOR = {
+    "minecraft:white_dye": 0,
+    "minecraft:orange_dye": 1,
+    "minecraft:magenta_dye": 2,
+    "minecraft:light_blue_dye": 3,
+    "minecraft:yellow_dye": 4,
+    "minecraft:lime_dye": 5,
+    "minecraft:pink_dye": 6,
+    "minecraft:gray_dye": 7,
+    "minecraft:light_gray_dye": 8,
+    "minecraft:cyan_dye": 9,
+    "minecraft:purple_dye": 10,
+    "minecraft:blue_dye": 11,
+    "minecraft:brown_dye": 12,
+    "minecraft:green_dye": 13,
+    "minecraft:red_dye": 14,
+    "minecraft:black_dye": 15
+};
+
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent("fr:single_interactive", {
         beforeOnPlayerPlace(event) {
@@ -278,13 +307,42 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const normalizedYaw = ((playerYRotation % 360) + 360) % 360;
                 const octant = Math.round(normalizedYaw / 45) % 8;
                 const typeState = (octant % 2 === 0) ? "plus" : "cross";
-                try { permutation = permutation.withState("fr:type", typeState); } catch {}
+                try { permutation = permutation.withState("fr:type", typeState); } catch { }
             }
 
             event.permutationToPlace = permutation;
         },
         onPlayerInteract: e => {
-            const { player } = e;
+            const { player, block } = e;
+            if (!player || !block) return;
+
+            if (block.typeId === "fr:stage_spotlight") {
+                try {
+                    const equip = player.getComponent("minecraft:equippable");
+                    const heldItem = equip?.getEquipment(EquipmentSlot.Mainhand);
+                    if (heldItem && DYE_TO_COLOR[heldItem.typeId] !== undefined) {
+                        const colorValue = DYE_TO_COLOR[heldItem.typeId];
+                        const newPerm = block.permutation.withState("fr:color", colorValue);
+                        block.setPermutation(newPerm);
+                        player.playSound("dye.use");
+
+                        const isLit = block.permutation.getState("fr:lit");
+                        if (isLit) {
+                            const loc = block.location;
+                            const dim = block.dimension;
+                            const vfxEntities = dim.getEntities({
+                                type: "fr:stage_spotlight_vfx",
+                                location: { x: loc.x + 0.5, y: loc.y, z: loc.z + 0.5 },
+                                maxDistance: 1.0
+                            });
+                            for (const vfx of vfxEntities) {
+                                const colorComp = vfx.getComponent("minecraft:color");
+                                if (colorComp) colorComp.value = colorValue;
+                            }
+                        }
+                    }
+                } catch { }
+            }
         }
     });
 });
@@ -412,13 +470,13 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
             try {
                 const hit = player.getBlockFromViewDirection?.({ maxDistance: 6 });
                 if (!hit) return;
-                
+
                 const fl = hit.faceLocation;
                 if (!fl) return;
-                
+
 
                 const yPos = fl.y % 1;
-                
+
 
 
                 let position = 1;
@@ -427,10 +485,10 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 } else if (yPos <= 0.33) {
                     position = 2;
                 }
-                
+
                 console.warn(`[Poster] Placing at Y=${yPos.toFixed(2)}, position=${position}`);
                 e.permutationToPlace = e.permutationToPlace.withState('fr:position', position);
-            } catch (err) { 
+            } catch (err) {
                 console.warn(`[Poster] Error: ${err}`);
             }
         }
@@ -512,7 +570,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                     const bl = base.location; const hl = hit.block.location;
                     if (bl.x !== hl.x || bl.y !== hl.y || bl.z !== hl.z) return;
                 } catch { return; }
-                const fl = hit.faceLocation; if (!fl) return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+                const fl = hit.faceLocation; if (!fl) return;
                 if (!(hit.face === Direction.Up) || !(((fl.y ?? 0) <= 0.11) || ((fl.y ?? 0) >= 0.89))) return;
                 let facing = 'north';
                 try { facing = block.permutation.getState('minecraft:cardinal_direction') ?? facing; } catch { }
@@ -610,6 +668,37 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
             if (!e.block) return;
             let block = e.block.above();
             if (!block) return;
+        }
+    });
+
+    blockComponentRegistry.registerCustomComponent('fr:arcade_stool_sit', {
+        onPlayerInteract: function (e) {
+            let { x, y, z } = e.block.location;
+            if (e.player.isSneaking) return;
+            const cx = x + 0.5;
+            const cy = y + 0.3;
+            const cz = z + 0.5;
+            let seatId = 'fr:south_sit';
+            try {
+                const face = e.block.permutation.getState('minecraft:cardinal_direction');
+                if (face === 'north') seatId = 'fr:north_sit';
+                else if (face === 'east') seatId = 'fr:west_sit';
+                else if (face === 'south') seatId = 'fr:south_sit';
+                else if (face === 'west') seatId = 'fr:east_sit';
+            } catch { }
+            e.dimension.runCommand(`summon ${seatId} ${cx} ${cy} ${cz}`);
+            e.dimension.runCommand(`execute positioned ${cx} ${cy} ${cz} as @e[type=${seatId},r=0.8] run tp @s ${cx} ${cy} ${cz}`);
+            e.player.runCommand(`execute at @e[type=player] positioned ${cx} ${cy} ${cz} run ride @s start_riding @e[type=${seatId},r=0.8] teleport_rider`);
+        },
+        onPlayerDestroy: function (e) {
+            if (!e.player) return;
+            let playerLoc = e.player.location;
+            playerLoc.x -= 0.5;
+            playerLoc.z -= 0.5;
+            if (playerLoc.x != e.block.location.x) return;
+            if (playerLoc.y != e.block.location.y) return;
+            if (playerLoc.z != e.block.location.z) return;
+            e.player.runCommand("ride @s stop_riding");
         }
     });
 });
@@ -818,7 +907,7 @@ function isLockerOpen(block) {
     }
 }
 
-const lockerHideState = new Map();// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+const lockerHideState = new Map();
 
 function getFacingVector(block) {
     try {
@@ -1295,7 +1384,7 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
 
             const key = `${dimension.id}|${loc.x},${loc.y},${loc.z}`;
             plushCooldowns.delete(key);
-            return;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+            return;
         }
 
         const blockAbove = dimension.getBlock({ x: block.location.x, y: block.location.y + 1, z: block.location.z });
@@ -1614,7 +1703,6 @@ system.runInterval(() => {
 
             const eq = player.getComponent('minecraft:equippable');
             if (!eq) continue;
-            // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
             const currentChest = eq.getEquipment(EquipmentSlot.Chest);
             const hasFazDiverBackpack = currentChest &&
                 (currentChest.typeId === 'fr:faz_diver_with_item' ||
@@ -1698,6 +1786,7 @@ const WrenchInteractionComponent = {
 
 system.beforeEvents.startup.subscribe(({ itemComponentRegistry }) => {
     itemComponentRegistry.registerCustomComponent('fr:wrench_interaction', WrenchInteractionComponent);
+    itemComponentRegistry.registerCustomComponent('fr:faz_diver_mode_switch', {});
 });
 
 initStatueEditorSystem();
@@ -1713,7 +1802,7 @@ function getDrawerFacingVector(block) {
         if (f === 'south') return { x: 0, z: 1, yaw: 0 };
         if (f === 'east') return { x: 1, z: 0, yaw: 270 };
         if (f === 'west') return { x: -1, z: 0, yaw: 90 };
-    } catch {}
+    } catch { }
     return { x: 0, z: 1, yaw: 0 };
 }
 
@@ -1748,15 +1837,15 @@ function showDrawerHideMenu(player, block, pid) {
                 const data = drawerHideState.get(pid);
                 if (!data) return;
 
-                try { player.runCommand('hud @s reset'); } catch {}
-                try { player.runCommand('effect @s invisibility 0'); } catch {}
-                try { player.teleport(data.exitPos, { dimension: block.dimension, keepVelocity: false }); } catch {}
+                try { player.runCommand('hud @s reset'); } catch { }
+                try { player.runCommand('effect @s invisibility 0'); } catch { }
+                try { player.teleport(data.exitPos, { dimension: block.dimension, keepVelocity: false }); } catch { }
 
                 const currentBlock = block.dimension.getBlock(block.location);
                 if (currentBlock && currentBlock.typeId === "fr:kitchen_counter_drawers") {
                     const newPerm = currentBlock.permutation.withState("fr:drawer_state", "open");
                     currentBlock.setPermutation(newPerm);
-                    
+
                     const blockKey = `${block.dimension.id}_${block.location.x}_${block.location.y}_${block.location.z}`;
                     if (openDrawerTimers.has(blockKey)) {
                         system.clearRun(openDrawerTimers.get(blockKey));
@@ -1772,15 +1861,15 @@ function showDrawerHideMenu(player, block, pid) {
                                 }
                             }
                             openDrawerTimers.delete(blockKey);
-                        } catch {}
+                        } catch { }
                     }, 100);
                     openDrawerTimers.set(blockKey, timerId);
                 }
                 drawerHideState.delete(pid);
                 if (data) data.uiState = 'exited';
-            } catch {}
+            } catch { }
         });
-    } catch {}
+    } catch { }
 }
 
 function startDrawerTick() {
@@ -1798,30 +1887,30 @@ function startDrawerTick() {
             if (!player) { drawerHideState.delete(pid); continue; }
 
             let dim;
-            try { dim = player.dimension; } catch {}
+            try { dim = player.dimension; } catch { }
             if (!dim) { drawerHideState.delete(pid); continue; }
 
             const block = dim.getBlock({ x: data.baseLoc.x, y: data.baseLoc.y, z: data.baseLoc.z });
-            if (!block || block.typeId !== 'fr:kitchen_counter_drawers') { 
-                try { player.runCommand('hud @s reset'); } catch {}
-                try { player.runCommand('effect @s invisibility 0'); } catch {}
-                drawerHideState.delete(pid); 
-                continue; 
+            if (!block || block.typeId !== 'fr:kitchen_counter_drawers') {
+                try { player.runCommand('hud @s reset'); } catch { }
+                try { player.runCommand('effect @s invisibility 0'); } catch { }
+                drawerHideState.delete(pid);
+                continue;
             }
 
-            try { player.teleport(data.insidePos, { dimension: dim, keepVelocity: false }); } catch {}
+            try { player.teleport(data.insidePos, { dimension: dim, keepVelocity: false }); } catch { }
 
             const sneaking = player.isSneaking;
             if (sneaking && !data.lastSneak) {
-                try { player.runCommand('hud @s reset'); } catch {}
-                try { player.runCommand('effect @s invisibility 0'); } catch {}
-                try { player.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch {}
-                
+                try { player.runCommand('hud @s reset'); } catch { }
+                try { player.runCommand('effect @s invisibility 0'); } catch { }
+                try { player.teleport(data.exitPos, { dimension: dim, keepVelocity: false }); } catch { }
+
                 const newPerm = block.permutation.withState("fr:drawer_state", "open");
                 block.setPermutation(newPerm);
                 data.uiState = 'exited';
                 drawerHideState.delete(pid);
-                
+
                 const blockKey = `${dim.id}_${block.location.x}_${block.location.y}_${block.location.z}`;
                 const timerId = system.runTimeout(() => {
                     try {
@@ -1834,7 +1923,7 @@ function startDrawerTick() {
                             }
                         }
                         openDrawerTimers.delete(blockKey);
-                    } catch {}
+                    } catch { }
                 }, 100);
                 openDrawerTimers.set(blockKey, timerId);
                 continue;
@@ -1850,9 +1939,9 @@ function ensureDrawerTick() {
 
 world.afterEvents.playerInteractWithBlock.subscribe((event) => {
     const { player, block, itemStack } = event;
-    
+
     if (!block) return;
-    
+
     if (block.typeId === "fr:stone_oven" && itemStack && itemStack.typeId === "minecraft:flint_and_steel") {
         system.run(() => {
             try {
@@ -1860,7 +1949,7 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
                 const newLit = !currentLit;
                 const newPerm = block.permutation.withState("fr:lit", newLit);
                 block.setPermutation(newPerm);
-                
+
                 const dim = block.dimension;
                 const loc = block.location;
                 for (let yOffset = -2; yOffset <= 2; yOffset++) {
@@ -1871,40 +1960,40 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
                             const neighborPerm = neighborBlock.permutation.withState("fr:lit", newLit);
                             neighborBlock.setPermutation(neighborPerm);
                         }
-                    } catch {}
+                    } catch { }
                 }
-                
+
                 player.playSound(currentLit ? "extinguish.candle" : "fire.ignite");
-            } catch {}
+            } catch { }
         });
         return;
     }
-    
+
     if (block.typeId !== "fr:kitchen_counter_drawers") return;
     if (itemStack && itemStack.typeId === "fr:wrench") return;
-    
+
     const variant = block.permutation.getState("fr:variants");
     const drawerState = block.permutation.getState("fr:drawer_state");
-    
+
     if (variant === 0) return;
-    
+
     const pid = player.id;
     const blockKey = `${block.dimension.id}_${block.location.x}_${block.location.y}_${block.location.z}`;
-    
+
     if ((variant === 2 || variant === 3) && player.isSneaking && drawerState === "closed") {
         system.run(() => {
             try {
                 const { insidePos, exitPos, yaw } = computeDrawerHidePositions(block);
-                
-                try { player.teleport(insidePos, { dimension: block.dimension, keepVelocity: false }); } catch {}
-                try { player.setRotation({ x: 0, y: yaw }); } catch {}
-                try { player.runCommand('hud @s hide all'); } catch {}
-                try { player.runCommand('effect @s invisibility 99999 0 true'); } catch {}
-                
+
+                try { player.teleport(insidePos, { dimension: block.dimension, keepVelocity: false }); } catch { }
+                try { player.setRotation({ x: 0, y: yaw }); } catch { }
+                try { player.runCommand('hud @s hide all'); } catch { }
+                try { player.runCommand('effect @s invisibility 99999 0 true'); } catch { }
+
                 const newPerm = block.permutation.withState("fr:drawer_state", "a_bit_open");
                 block.setPermutation(newPerm);
                 player.playSound("random.door_open");
-                
+
                 drawerHideState.set(pid, {
                     baseLoc: { x: block.location.x, y: block.location.y, z: block.location.z, dim: block.dimension.id },
                     insidePos,
@@ -1913,24 +2002,24 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
                     uiState: 'normal'
                 });
                 ensureDrawerTick();
-                
+
                 system.run(() => showDrawerHideMenu(player, block, pid));
-            } catch {}
+            } catch { }
         });
         return;
     }
-    
+
     if (drawerState === "closed") {
         system.run(() => {
             try {
                 const newPerm = block.permutation.withState("fr:drawer_state", "open");
                 block.setPermutation(newPerm);
                 player.playSound("random.door_open");
-                
+
                 if (openDrawerTimers.has(blockKey)) {
                     system.clearRun(openDrawerTimers.get(blockKey));
                 }
-                
+
                 const timerId = system.runTimeout(() => {
                     try {
                         const currentBlock = block.dimension.getBlock(block.location);
@@ -1942,11 +2031,11 @@ world.afterEvents.playerInteractWithBlock.subscribe((event) => {
                             }
                         }
                         openDrawerTimers.delete(blockKey);
-                    } catch {}
+                    } catch { }
                 }, 100);
-                
+
                 openDrawerTimers.set(blockKey, timerId);
-            } catch {}
+            } catch { }
         });
     }
 });

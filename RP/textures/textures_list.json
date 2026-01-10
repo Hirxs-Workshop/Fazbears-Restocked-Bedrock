@@ -1,5 +1,11 @@
 [
-    "textures/blocks/reworked/arcade_stool",
+    "textures/blocks/reworked/arcade_freddy",
+    "textures/blocks/reworked/arcade_stool_blue",
+    "textures/blocks/reworked/arcade_stool_green",
+    "textures/blocks/reworked/arcade_stool_orange",
+    "textures/blocks/reworked/arcade_stool_purple",
+    "textures/blocks/reworked/arcade_stool_red",
+    "textures/blocks/reworked/arcade_stool_yellow",
     "textures/blocks/reworked/backstage_door",
     "textures/blocks/reworked/backstage_table_1",
     "textures/blocks/reworked/backstage_table_2",

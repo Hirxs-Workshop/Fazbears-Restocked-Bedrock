@@ -17,8 +17,16 @@
 		"components": {
 			"minecraft:collision_box": false,
 			"minecraft:selection_box": {
-				"origin": [-3, 0, -3],
-				"size": [6, 1, 6]
+				"origin": [
+					-3,
+					0,
+					-3
+				],
+				"size": [
+					6,
+					1,
+					6
+				]
 			},
 			"minecraft:geometry": {
 				"identifier": "geometry.cigarrete"

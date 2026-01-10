@@ -1,0 +1,2815 @@
+{
+  "namespace": "fr_wall_sign_screen",
+  "wall_sign_ui": {
+    "type": "panel",
+    "$flag_wall_sign": "§W§A§L§L§S§I§G§N§2",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 100,
+    "controls": [
+      {
+        "dark_bg": {
+          "type": "image",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "texture": "textures/ui/Black",
+          "alpha": 0.7,
+          "layer": 0
+        }
+      },
+      {
+        "sign_container": {
+          "type": "panel",
+          "size": [
+            200,
+            120
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -10
+          ],
+          "layer": 10,
+          "controls": [
+            {
+              "sign_background": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/black_wall_sign",
+                "layer": 1
+              }
+            },
+            {
+              "title_label": {
+                "type": "label",
+                "text": "Wall Sign",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "font_scale_factor": 1.0,
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  8
+                ],
+                "layer": 5
+              }
+            },
+            {
+              "lines_panel": {
+                "type": "panel",
+                "size": [
+                  "90%",
+                  50
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  5
+                ],
+                "layer": 5,
+                "controls": [
+                  {
+                    "line0_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        5
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line0",
+                        "control_name": "fr_wall_sign_screen.wall_sign_line_0"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line1_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        25
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line1",
+                        "control_name": "fr_wall_sign_screen.wall_sign_line_1"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "buttons_panel": {
+          "type": "panel",
+          "size": [
+            200,
+            26
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            50
+          ],
+          "layer": 15,
+          "controls": [
+            {
+              "edit_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "offset": [
+                  5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "edit_btn",
+                  "control_name": "fr_wall_sign_screen.wall_sign_edit_btn_2line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            },
+            {
+              "close_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [
+                  -5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "close_btn",
+                  "control_name": "fr_wall_sign_screen.wall_sign_close_btn_2line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_wall_sign) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_wall_sign) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#enabled"
+      }
+    ]
+  },
+  "wall_sign_small_ui": {
+    "type": "panel",
+    "$flag_wall_sign_small": "§W§D§&§D",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 100,
+    "controls": [
+      {
+        "dark_bg": {
+          "type": "image",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "texture": "textures/ui/Black",
+          "alpha": 0.7,
+          "layer": 0
+        }
+      },
+      {
+        "sign_container": {
+          "type": "panel",
+          "size": [
+            200,
+            160
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -10
+          ],
+          "layer": 10,
+          "controls": [
+            {
+              "sign_background": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/black_wall_sign_small",
+                "layer": 1
+              }
+            },
+            {
+              "title_label": {
+                "type": "label",
+                "text": "Wall Sign",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "font_scale_factor": 1.0,
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  8
+                ],
+                "layer": 5
+              }
+            },
+            {
+              "lines_panel": {
+                "type": "panel",
+                "size": [
+                  "90%",
+                  100
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  5
+                ],
+                "layer": 5,
+                "controls": [
+                  {
+                    "line0_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        5
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line0",
+                        "control_name": "fr_wall_sign_screen.wall_sign_line_0"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line1_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        25
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line1",
+                        "control_name": "fr_wall_sign_screen.wall_sign_line_1"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line2_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        45
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line2",
+                        "control_name": "fr_wall_sign_screen.wall_sign_line_2"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line3_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        65
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line3",
+                        "control_name": "fr_wall_sign_screen.wall_sign_line_3"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "buttons_panel": {
+          "type": "panel",
+          "size": [
+            200,
+            26
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            70
+          ],
+          "layer": 15,
+          "controls": [
+            {
+              "edit_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "offset": [
+                  5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "edit_btn",
+                  "control_name": "fr_wall_sign_screen.wall_sign_edit_btn_4line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            },
+            {
+              "close_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [
+                  -5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "close_btn",
+                  "control_name": "fr_wall_sign_screen.wall_sign_close_btn_4line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_wall_sign_small) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_wall_sign_small) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#enabled"
+      }
+    ]
+  },
+  "white_wall_sign_ui": {
+    "type": "panel",
+    "$flag_white_wall_sign": "§W§H§I§T§E§S§I§G§N§2",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 100,
+    "controls": [
+      {
+        "dark_bg": {
+          "type": "image",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "texture": "textures/ui/Black",
+          "alpha": 0.7,
+          "layer": 0
+        }
+      },
+      {
+        "sign_container": {
+          "type": "panel",
+          "size": [
+            200,
+            120
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -10
+          ],
+          "layer": 10,
+          "controls": [
+            {
+              "sign_background": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/white_wall_sign",
+                "layer": 1
+              }
+            },
+            {
+              "title_label": {
+                "type": "label",
+                "text": "Wall Sign",
+                "color": [
+                  0.2,
+                  0.2,
+                  0.2
+                ],
+                "font_scale_factor": 1.0,
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  8
+                ],
+                "layer": 5
+              }
+            },
+            {
+              "lines_panel": {
+                "type": "panel",
+                "size": [
+                  "90%",
+                  50
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  5
+                ],
+                "layer": 5,
+                "controls": [
+                  {
+                    "line0_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        5
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line0",
+                        "control_name": "fr_wall_sign_screen.white_wall_sign_line_0"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line1_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        25
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line1",
+                        "control_name": "fr_wall_sign_screen.white_wall_sign_line_1"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "buttons_panel": {
+          "type": "panel",
+          "size": [
+            200,
+            26
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            50
+          ],
+          "layer": 15,
+          "controls": [
+            {
+              "edit_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "offset": [
+                  5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "edit_btn",
+                  "control_name": "fr_wall_sign_screen.white_wall_sign_edit_btn_2line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            },
+            {
+              "close_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [
+                  -5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "close_btn",
+                  "control_name": "fr_wall_sign_screen.white_wall_sign_close_btn_2line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_white_wall_sign) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_white_wall_sign) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#enabled"
+      }
+    ]
+  },
+  "white_wall_sign_small_ui": {
+    "type": "panel",
+    "$flag_white_wall_sign_small": "§W§H§I§T§E§S§I§G§N§4",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 100,
+    "controls": [
+      {
+        "dark_bg": {
+          "type": "image",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "texture": "textures/ui/Black",
+          "alpha": 0.7,
+          "layer": 0
+        }
+      },
+      {
+        "sign_container": {
+          "type": "panel",
+          "size": [
+            200,
+            160
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -10
+          ],
+          "layer": 10,
+          "controls": [
+            {
+              "sign_background": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/white_wall_sign_small",
+                "layer": 1
+              }
+            },
+            {
+              "title_label": {
+                "type": "label",
+                "text": "Wall Sign",
+                "color": [
+                  0.2,
+                  0.2,
+                  0.2
+                ],
+                "font_scale_factor": 1.0,
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  8
+                ],
+                "layer": 5
+              }
+            },
+            {
+              "lines_panel": {
+                "type": "panel",
+                "size": [
+                  "90%",
+                  100
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  5
+                ],
+                "layer": 5,
+                "controls": [
+                  {
+                    "line0_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        5
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line0",
+                        "control_name": "fr_wall_sign_screen.white_wall_sign_line_0"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line1_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        25
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line1",
+                        "control_name": "fr_wall_sign_screen.white_wall_sign_line_1"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line2_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        45
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line2",
+                        "control_name": "fr_wall_sign_screen.white_wall_sign_line_2"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "line3_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        18
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        65
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "line3",
+                        "control_name": "fr_wall_sign_screen.white_wall_sign_line_3"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "buttons_panel": {
+          "type": "panel",
+          "size": [
+            200,
+            26
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            70
+          ],
+          "layer": 15,
+          "controls": [
+            {
+              "edit_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "offset": [
+                  5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "edit_btn",
+                  "control_name": "fr_wall_sign_screen.white_wall_sign_edit_btn_4line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            },
+            {
+              "close_factory": {
+                "type": "stack_panel",
+                "size": [
+                  90,
+                  "100%"
+                ],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [
+                  -5,
+                  0
+                ],
+                "collection_name": "form_buttons",
+                "factory": {
+                  "name": "close_btn",
+                  "control_name": "fr_wall_sign_screen.white_wall_sign_close_btn_4line"
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#form_button_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_white_wall_sign_small) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_white_wall_sign_small) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#enabled"
+      }
+    ]
+  },
+  "wall_sign_line_0": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      1,
+      1,
+      1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln1:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 0)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_line_1": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      1,
+      1,
+      1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln2:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 1)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_line_2": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      1,
+      1,
+      1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln3:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 2)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_line_3": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      1,
+      1,
+      1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln4:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_line_0": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      0.1,
+      0.1,
+      0.1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln1:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 0)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_line_1": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      0.1,
+      0.1,
+      0.1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln2:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 1)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_line_2": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      0.1,
+      0.1,
+      0.1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln3:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 2)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_line_3": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      0.1,
+      0.1,
+      0.1
+    ],
+    "font_scale_factor": 1.5,
+    "text_alignment": "center",
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#raw_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#raw_text - 'ln4:§.')",
+        "target_property_name": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_edit_btn_2line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 2)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_close_btn_2line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_edit_btn_4line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 4)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "white_wall_sign_close_btn_4line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 5)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_edit_btn_2line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 2)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_close_btn_2line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_edit_btn_4line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 4)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_close_btn_4line": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "layer": 0
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#form_button_text",
+                "color": [
+                  1,
+                  1,
+                  0.5
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 5)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "wall_sign_edit_ui": {
+    "type": "panel",
+    "$flag_wall_sign_edit": "§W§A§L§L§S§I§G§N§E§D§I§T",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 100,
+    "controls": [
+      {
+        "dark_bg": {
+          "type": "image",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "texture": "textures/ui/Black",
+          "alpha": 0.85,
+          "layer": 0
+        }
+      },
+      {
+        "modal_container": {
+          "type": "panel",
+          "size": [
+            280,
+            220
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 10,
+          "controls": [
+            {
+              "modal_background": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal",
+                "layer": 1
+              }
+            },
+            {
+              "title_label": {
+                "type": "label",
+                "text": "Edit Wall Sign",
+                "color": [
+                  0.592,
+                  0.855,
+                  0.063
+                ],
+                "font_type": "MinecraftTen",
+                "font_scale_factor": 1.2,
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  12
+                ],
+                "layer": 5
+              }
+            },
+            {
+              "form_content": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "size": [
+                  "90%",
+                  "70%"
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  10
+                ],
+                "layer": 5,
+                "collection_name": "custom_form",
+                "factory": {
+                  "name": "modal_items",
+                  "control_ids": {
+                    "label": "@server_form.custom_label",
+                    "toggle": "@server_form.custom_toggle",
+                    "slider": "@server_form.custom_slider",
+                    "step_slider": "@server_form.custom_step_slider",
+                    "dropdown": "@server_form.custom_dropdown",
+                    "text_edit_box": "@server_form.custom_text_edit_box"
+                  }
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#custom_form_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            },
+            {
+              "submit_button@common_buttons.light_text_button": {
+                "$pressed_button_name": "button.submit_custom_form",
+                "$default_button_texture": "textures/fr_ui/old_pc_button_gray",
+                "$hover_button_texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "$pressed_button_texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "size": [
+                  120,
+                  28
+                ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -12
+                ],
+                "layer": 10,
+                "$button_text": "Save",
+                "$button_text_color": [
+                  1,
+                  1,
+                  1
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_wall_sign_edit) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_wall_sign_edit) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#enabled"
+      }
+    ]
+  },
+  "white_wall_sign_edit_ui": {
+    "type": "panel",
+    "$flag_white_wall_sign_edit": "§W§H§I§T§E§S§I§G§N§E§D§I§T",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "layer": 100,
+    "controls": [
+      {
+        "dark_bg": {
+          "type": "image",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "texture": "textures/ui/Black",
+          "alpha": 0.7,
+          "layer": 0
+        }
+      },
+      {
+        "modal_container": {
+          "type": "panel",
+          "size": [
+            280,
+            220
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 10,
+          "controls": [
+            {
+              "modal_background": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/white_wall_sign",
+                "layer": 1
+              }
+            },
+            {
+              "title_label": {
+                "type": "label",
+                "text": "Edit Wall Sign",
+                "color": [
+                  0.15,
+                  0.15,
+                  0.15
+                ],
+                "font_type": "MinecraftTen",
+                "font_scale_factor": 1.2,
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  12
+                ],
+                "layer": 5
+              }
+            },
+            {
+              "form_content": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "size": [
+                  "90%",
+                  "70%"
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  10
+                ],
+                "layer": 5,
+                "collection_name": "custom_form",
+                "factory": {
+                  "name": "modal_items",
+                  "control_ids": {
+                    "label": "@server_form.custom_label",
+                    "toggle": "@server_form.custom_toggle",
+                    "slider": "@server_form.custom_slider",
+                    "step_slider": "@server_form.custom_step_slider",
+                    "dropdown": "@server_form.custom_dropdown",
+                    "text_edit_box": "@server_form.custom_text_edit_box"
+                  }
+                },
+                "bindings": [
+                  {
+                    "binding_name": "#custom_form_length",
+                    "binding_name_override": "#collection_length"
+                  }
+                ]
+              }
+            },
+            {
+              "submit_button@common_buttons.light_text_button": {
+                "$pressed_button_name": "button.submit_custom_form",
+                "$default_button_texture": "textures/fr_ui/old_pc_button_gray",
+                "$hover_button_texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "$pressed_button_texture": "textures/fr_ui/old_pc_button_gray_hover",
+                "size": [
+                  120,
+                  28
+                ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -12
+                ],
+                "layer": 10,
+                "$button_text": "Save",
+                "$button_text_color": [
+                  0.15,
+                  0.15,
+                  0.15
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_white_wall_sign_edit) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_white_wall_sign_edit) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#enabled"
+      }
+    ]
+  }
+}

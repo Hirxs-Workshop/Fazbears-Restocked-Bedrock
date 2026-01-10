@@ -38,7 +38,7 @@ const updateStanchionBasesForLine = (center) => {
     if (!(nb && CONNECTABLE_TYPES.includes(nb.typeId))) break;
     start = nb;
   }
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+
   const line = [];
   let cur = start;
   while (cur && CONNECTABLE_TYPES.includes(cur.typeId)) {
@@ -70,7 +70,7 @@ const updateStanchionBasesForLine = (center) => {
       
       if (si % 2 === 0) {
         hasBase = true;
-      } else if (isLast && stanchionCount % 2 === 0) {// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+      } else if (isLast && stanchionCount % 2 === 0) {
         hasBase = true;
       } else {
         hasBase = false;
@@ -126,7 +126,7 @@ system.beforeEvents.startup.subscribe((eventData) => {
       const { block } = e;
       updateForBlock(block);
       updateNeighborsIfConnectable(block);
-    },// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    },
   });
 });
 

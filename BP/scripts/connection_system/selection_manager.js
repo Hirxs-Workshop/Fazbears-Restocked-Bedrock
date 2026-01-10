@@ -25,7 +25,7 @@ export function registerCleanupHandler(type, handler) {
 
 export function setSelection(playerId, type, data, onClearPrevious = null) {
   const previous = playerSelections.get(playerId);
-  
+
 
   if (previous && previous.type !== type) {
 
@@ -33,14 +33,14 @@ export function setSelection(playerId, type, data, onClearPrevious = null) {
     if (cleanupHandler) {
       try {
         cleanupHandler(playerId, previous.data);
-      } catch (e) {}
+      } catch (e) { }
     }
-    
+
 
     if (onClearPrevious) {
       onClearPrevious(previous);
     }
-    
+
 
     if (previous.type === SelectionType.SWITCH || previous.type === SelectionType.GENERATOR) {
       try {
@@ -48,10 +48,10 @@ export function setSelection(playerId, type, data, onClearPrevious = null) {
           const oldDim = world.getDimension(previous.data.pos.dimensionId);
           oldDim.runCommand(`execute at @e[type=fr:selection] positioned ${previous.data.pos.x} ${previous.data.pos.y} ${previous.data.pos.z} run event entity @e[r=1] destroy`);
         }
-      } catch {}
+      } catch { }
     }
   }
-  
+
   playerSelections.set(playerId, { type, data, timestamp: Date.now() });
 }
 
@@ -62,6 +62,26 @@ export function getSelection(playerId) {
 
 
 export function clearSelection(playerId) {
+  const previous = playerSelections.get(playerId);
+  if (previous) {
+    // Execute cleanup handler for the selection being cleared
+    const cleanupHandler = externalCleanupHandlers.get(previous.type);
+    if (cleanupHandler) {
+      try {
+        cleanupHandler(playerId, previous.data);
+      } catch (e) { }
+    }
+
+    // Destroy selection entity if it was a switch or generator
+    if (previous.type === SelectionType.SWITCH || previous.type === SelectionType.GENERATOR) {
+      try {
+        if (previous.data && previous.data.pos) {
+          const oldDim = world.getDimension(previous.data.pos.dimensionId);
+          oldDim.runCommand(`execute at @e[type=fr:selection] positioned ${previous.data.pos.x} ${previous.data.pos.y} ${previous.data.pos.z} run event entity @e[r=1] destroy`);
+        }
+      } catch { }
+    }
+  }
   playerSelections.delete(playerId);
 }
 
@@ -69,7 +89,7 @@ export function clearSelection(playerId) {
 export function hasSelectionOfType(playerId, types) {
   const selection = playerSelections.get(playerId);
   if (!selection) return false;
-  
+
   if (Array.isArray(types)) {
     return types.includes(selection.type);
   }

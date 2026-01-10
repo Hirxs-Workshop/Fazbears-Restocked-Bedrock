@@ -1,4 +1,13 @@
-import { world, system, Player } from "@minecraft/server";
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * This code is the property of Fazbear's Restocked.
+ * Unauthorized copying, modification, distribution, or use of this code,
+ * via any medium, is strictly prohibited without explicit permission.
+ * All rights reserved.
+ */
+
+import { world, system } from "@minecraft/server";
 
 let tickCounter = 0;
 let lastTickCount = 0;

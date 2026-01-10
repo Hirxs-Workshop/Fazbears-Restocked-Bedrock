@@ -4,6 +4,12 @@
 		1,
 		0
 	],
+	"fr:arcade_freddy": {
+		"sound": "wood"
+	},
+	"fr:arcade_stool": {
+		"sound": "wood"
+	},
 	"fr:shelf_supply_closet": {
 		"sound": "iron"
 	},

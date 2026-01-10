@@ -24,7 +24,7 @@
 			},
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "warden45e_dev_plush",
+					"texture": "warden_dev_plush",
 					"render_method": "alpha_test"
 				}
 			},

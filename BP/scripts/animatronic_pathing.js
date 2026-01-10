@@ -52,7 +52,6 @@ const ABILITY_TYPES = {
 };
 
 const waypointRegistry = new Map();
-// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
 const activePathing = new Map();
 const blockSelectorMode = new Map();
 const nightTimeConfig = new Map();
@@ -175,7 +174,7 @@ export function getOrCreateStatueId(entity) {
 
     if (!statueId) {
         let counter = world.getDynamicProperty("fr:statue_id_counter") || 1;
-        statueId = counter;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        statueId = counter;
         entity.setDynamicProperty("fr:statue_id", statueId);
         world.setDynamicProperty("fr:statue_id_counter", counter + 1);
     }
@@ -282,7 +281,7 @@ export function startBlockSelectorMode(player, statueId, entityName) {
             const inventory = player.getComponent("minecraft:inventory");
             if (inventory && inventory.container) {
                 const waypointItem = new ItemStack("fr:faz-diver_repairman", 1);
-                waypointItem.setLore([// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+                waypointItem.setLore([
                     `§7Waypoint Creator`,
                     `§aStatue ID: §f${statueId}`,
                     `§aEntity: §f${entityName}`,
@@ -390,7 +389,7 @@ export function createWaypoint(location, dimensionId, statueId, options = {}) {
         rotation: options.rotation ?? 0,
         waitTime: options.waitTime ?? 0,
         linkedStatueId: statueId,
-        abilities: options.abilities ?? []// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        abilities: options.abilities ?? []
     };
     
     setWaypointData(location, dimensionId, waypointConfig);
@@ -527,7 +526,7 @@ const DETECTION_CONFIG = {
     BASE_RANGE: 20,
     SNEAK_RANGE: 8,
     SNEAK_CHANCE_REDUCTION: 0.7,
-    CHECK_INTERVAL_TICKS: 20,// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    CHECK_INTERVAL_TICKS: 20,
     CHASE_UPDATE_TICKS: 5,
     CHASE_TIMEOUT_MS: 30000,
     CHASE_ARRIVAL_DISTANCE: 2.0
@@ -729,7 +728,7 @@ export function detectNearbyPlayer(entity, dimension) {
         return closestPlayer;
     } catch (e) {
         console.warn(`[Detection] Error detecting player: ${e}`);
-        return null;// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        return null;
     }
 }
 
@@ -928,7 +927,7 @@ export function stopPathingForEntity(entityId) {
 export function stopPathingForStatue(statueId) {
     const sessionsToStop = [];
     for (const [sessionId, pathData] of activePathing) {
-        if (pathData.statueId === statueId) {// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        if (pathData.statueId === statueId) {
             sessionsToStop.push(sessionId);
         }
     }
@@ -1076,7 +1075,7 @@ function cleanupOrphanedSessions() {
             continue;
         }
 
-        if (pathData.currentEntityId) {// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        if (pathData.currentEntityId) {
             const entity = findEntityById(pathData.currentEntityId, pathData.entityType, pathData.dimensionId);
             if (!entity) {
                 sessionsToRemove.push(sessionId);
@@ -1346,7 +1345,7 @@ function recordSimulationResult(sessionId, waypointIndex, success, reason = "", 
             location: waypointLocation
         });
     } else {
-        simData.failures.push({// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        simData.failures.push({
             waypoint: waypointIndex,
             reason: reason,
             time: timeElapsed,
@@ -1729,7 +1728,7 @@ function adjustSelectorDistance(player, direction) {
         x: Math.floor(playerPos.x + viewDir.x * newDist),
         y: Math.floor(playerPos.y + viewDir.y * newDist),
         z: Math.floor(playerPos.z + viewDir.z * newDist)
-    };// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    };
     
     state.currentPosition = newPos;
 
@@ -2096,7 +2095,7 @@ export async function showNightTimeConfigMenu(player, entity) {
         .button("§eNight 6")
         .button("§eNight 7")
         .button("§cClear All")
-        .button("§7Back");// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        .button("§7Back");
     
     try {
         const response = await form.show(player);
@@ -2386,7 +2385,7 @@ function processWaypointVisualization() {
                 if (p.id === state.playerId) {
                     player = p;
                     break;
-                }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+                }
             }
 
             for (let i = 0; i < waypoints.length; i++) {
@@ -2711,7 +2710,7 @@ export function getRouteTestSession(entityId) {
     for (const session of routeTestSessions.values()) {
         if (session.entityId === entityId) {
             return session;
-        }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        }
     }
     return null;
 }
@@ -2986,7 +2985,7 @@ export {
     MAX_SELECTOR_DISTANCE,
     MAX_WAYPOINTS_PER_STATUE,
     MAX_NIGHTS,
-    NIGHT_START,// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    NIGHT_START,
     NIGHT_END,
     MIN_WAIT_TIME,
     MAX_WAIT_TIME,

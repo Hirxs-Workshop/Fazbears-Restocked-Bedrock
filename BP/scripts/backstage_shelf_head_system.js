@@ -57,7 +57,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                             eq.setEquipment(EquipmentSlot.Mainhand, heldItem);
                         } else {
                             eq.setEquipment(EquipmentSlot.Mainhand, undefined);
-                        } // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+                        }
                     }
                 } catch {}
 
@@ -106,7 +106,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                         container.addItem(itemStack);
                     }
                 } catch {}
- // ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+
                 try {
                     player.playSound('dig.stone', { volume: 1.0 });
                 } catch {}

@@ -14,6 +14,7 @@
     "ui/forms/statue/statue_forms.json",
     "ui/forms/oldpc/oldpc_forms.json",
     "ui/forms/variants/variants_forms.json",
-    "ui/forms/pathing/block_selector_form.json"
+    "ui/forms/pathing/block_selector_form.json",
+    "ui/forms/wall_sign/wall_sign_forms.json"
   ]
 }

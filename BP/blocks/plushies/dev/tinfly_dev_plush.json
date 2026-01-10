@@ -30,7 +30,7 @@
 			"minecraft:geometry": "geometry.tinfly_dev_plush",
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "infly_dev_plush",
+					"texture": "tinfly_dev_plush",
 					"render_method": "alpha_test"
 				}
 			}

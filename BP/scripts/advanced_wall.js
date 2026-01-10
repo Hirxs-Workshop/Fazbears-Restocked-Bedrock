@@ -67,7 +67,7 @@ const plants = {
     "fr:stage_wall_middle": {
         value: "stage_wall_middle",
         sound: "block.lantern.break",
-    },// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+    },
     "fr:stage_wall_up": {
         value: "stage_wall_up",
         sound: "block.lantern.break",
@@ -115,7 +115,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const plantId = Object.keys(plants).find((key) => plants[key].value === plant);
 
                 dimension.spawnItem(new ItemStack(plantId), block.center());
-            }// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+            }
         }
     })
 })

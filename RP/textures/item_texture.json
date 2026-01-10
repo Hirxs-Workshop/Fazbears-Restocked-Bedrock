@@ -106,9 +106,9 @@
                 "textures/items/freddy_fazbear"
             ]
         },
-        "office_door": {
+        "fr_office_door_icon": {
             "textures": [
-                "textures/items/office_door"
+                "textures/items/fr_office_door_icon"
             ]
         },
         "purple_party_door": {

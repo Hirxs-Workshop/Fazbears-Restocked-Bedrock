@@ -96,7 +96,7 @@ function modifyDeskFunction(block, start, end, settingType) {
                 let height = selectedBlock.below().isAir ? 2 : 1;
                 selectedBlock.setPermutation(BlockPermutation.resolve(block.typeId, { 'fbd:d_state': 'none', 'fbd:is_closed': true, 'fbd:height': height, 'minecraft:cardinal_direction': finalDirection }));
             }
-        };// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        };
     }
 }
 function modifyDesk(block, start, end) {
@@ -229,7 +229,7 @@ world.afterEvents.playerPlaceBlock.subscribe((e) => {
         block.dimension.playSound('fbd.saw', block.location)
         let blockTrait = traitList.find(trait => block.typeId.includes(trait)) + '_' || '';
         let bareName = block.typeId.replace('fbd:', '').replace(blockTrait, '');
-        let decomposed = decomposedMaterial[bareName];// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+        let decomposed = decomposedMaterial[bareName];
         for (let key in decomposed) {
             if (decomposed.hasOwnProperty(key)) {
                 if (key.startsWith('$')) {
@@ -362,4 +362,4 @@ function removeOneChest(block) {
         if (currentItemStack.amount > 1) { currentItemStack.amount = currentItemStack.amount - 1 } else { item.remove() };
         return;
     });
-}// ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
+}

@@ -7,6 +7,86 @@
             "groups": [
                {
                   "group_identifier": {
+                     "icon": "fr:freddy_plush",
+                     "name": "fr:itemGroup.name.plushies"
+                  },
+                  "items": [
+                     "fr:freddy_plush",
+                     "fr:freddy_plushhw",
+                     "fr:golden_freddy_plush",
+                     "fr:bonnie_plush",
+                     "fr:bonnie_plushhw",
+                     "fr:chica_plush",
+                     "fr:chica_hwplush",
+                     "fr:acurate_chica_plush",
+                     "fr:foxy_plush",
+                     "fr:foxy_hwplush",
+                     "fr:foxy_plush_headless",
+                     "fr:bizabizow_foxy_plush",
+                     "fr:endo_01_plush"
+                  ]
+               },
+               {
+                  "group_identifier": {
+                     "icon": "fr:hyrxs_dev_plush",
+                     "name": "fr:itemGroup.name.dev_plushies"
+                  },
+                  "items": [
+                     "fr:hyrxs_dev_plush",
+                     "fr:drixs_dev_plush",
+                     "fr:egor_dev_plush",
+                     "fr:electro_dev_plush",
+                     "fr:forb_dev_plush",
+                     "fr:fox_dev_plush",
+                     "fr:gui_dev_plush",
+                     "fr:kris_dev_plush",
+                     "fr:mansam_plush",
+                     "fr:polar_dev_plush",
+                     "fr:sgt_dev_plush"
+                  ]
+               },
+               {
+                  "group_identifier": {
+                     "icon": "fr:red_pizzeria_floor",
+                     "name": "fr:itemGroup.name.floors_and_carpets"
+                  },
+                  "items": [
+                     "fr:red_pizzeria_floor",
+                     "fr:red_pizzeria_floor_cracked_stage_1",
+                     "fr:red_pizzeria_floor_cracked_stage_2",
+                     "fr:red_pizzeria_floor_cracked_stage_3",
+                     "fr:red_pizzeria_floor_cracked_stage_4",
+                     "fr:blue_pizzeria_floor",
+                     "fr:blue_pizzeria_floor_cracked_stage_1",
+                     "fr:blue_pizzeria_floor_cracked_stage_2",
+                     "fr:blue_pizzeria_floor_cracked_stage_3",
+                     "fr:blue_pizzeria_floor_cracked_stage_4",
+                     "fr:white_pizzeria_floor",
+                     "fr:red_n_blue_pizzeria_floor",
+                     "fr:blue_green_pizzeria_floor",
+                     "fr:purple_black_pizzeria_floor",
+                     "fr:red_green_pizzeria_floor",
+                     "fr:white_purple_pizzeria_floor",
+                     "fr:white_red_pizzeria_floor",
+                     "fr:yellow_black_pizzeria_floor",
+                     "fr:yellow_purple_pizzeria_floor",
+                     "fr:yellow_red_1_pizzeria_floor",
+                     "fr:yellow_red_2_pizzeria_floor",
+                     "fr:yellow_red_3_pizzeria_floor",
+                     "fr:yellow_red_4_pizzeria_floor",
+                     "fr:shit_stain_yellow_n_moldy_blue_pizzeria_floor",
+                     "fr:carpet_blue",
+                     "fr:carpet_dark_blue",
+                     "fr:carpet_dark_blue_with_confetti",
+                     "fr:carpet_deep_wine",
+                     "fr:carpet_with_confetti",
+                     "fr:stage_floor",
+                     "fr:classic_stage_floor",
+                     "fr:black_stage_floor"
+                  ]
+               },
+               {
+                  "group_identifier": {
                      "icon": "fr:bricks_red",
                      "name": "fr:itemGroup.name.colored_bricks"
                   },

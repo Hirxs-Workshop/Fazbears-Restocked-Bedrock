@@ -2215,7 +2215,7 @@
                         {
                           "menu_icon": {
                             "type": "image",
-                            "texture": "textures/fr_ui/help_button",
+                            "texture": "textures/fr_ui/fr_desktop_icon",
                             "size": [
                               14,
                               14

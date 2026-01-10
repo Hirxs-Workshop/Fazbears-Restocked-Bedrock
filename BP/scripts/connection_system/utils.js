@@ -10,6 +10,7 @@
 */
 
 import { system, world, BlockPermutation } from "@minecraft/server";
+import { getVfxEntityForLight } from "./connection_types.js";
 
 export function adjustTextLength(text = '', totalLength = 100) {
   return (text.slice(0, totalLength)).padEnd(totalLength, '\t');
@@ -43,14 +44,14 @@ export function cleanupLampVfxEntitiesOnReload() {
         const dimension = world.getDimension(dimName);
         dimension.runCommand(`event entity @e[type=fr:office_lamp_vfx] destroy`);
         dimension.runCommand(`event entity @e[type=fr:stage_spotlight_vfx] destroy`);
-      } catch {}
+      } catch { }
     });
     const elapsedTime = Date.now();
     world.getPlayers().forEach(player => {
       player.sendMessage(dynamicToast(
-        "§l§qSUCCESS", 
-        `§qScripts reloaded...\n§7Time: ${elapsedTime}ms`, 
-        "textures/fr_ui/approve_icon", 
+        "§l§qSUCCESS",
+        `§qScripts reloaded...\n§7Time: ${elapsedTime}ms`,
+        "textures/fr_ui/approve_icon",
         "textures/fr_ui/approve_ui"
       ));
     });
@@ -85,23 +86,27 @@ export function turnOffLight(connection, LIGHT_TYPES) {
     const newPerm = lightBlock.permutation.withState("fr:lit", false);
     lightBlock.setPermutation(newPerm);
   }
+
+  const dimension = world.getDimension(connection.light.dimensionId);
+  const location = { x: connection.light.x + 0.5, y: connection.light.y + 0.5, z: connection.light.z + 0.5 };
+
+  let vfxType = null;
   const key = `${connection.light.dimensionId}_${connection.light.x}_${connection.light.y}_${connection.light.z}`;
+
   if (lampVfxEntities[key]) {
-    const dimension = world.getDimension(connection.light.dimensionId);
-    const location = { x: connection.light.x + 0.5, y: connection.light.y + 0.5, z: connection.light.z + 0.5 };
-    const vfxType = lampVfxEntities[key].vfxType || (lampVfxEntities[key].isStageSpotlight ? "stage_spotlight" : "office_lamp");
-    
-    if (vfxType === "stage_spotlight") {
-      dimension.runCommand(`execute at @e[type=fr:stage_spotlight_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
-    } else if (vfxType === "pizzeria_lamp") {
-      dimension.runCommand(`execute at @e[type=fr:pizzeria_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
-    } else if (vfxType === "ceiling_light") {
-      dimension.runCommand(`execute at @e[type=fr:ceiling_light_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
-    } else if (vfxType === "hallway_lamp") {
-      dimension.runCommand(`execute at @e[type=fr:hallway_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
-    } else {
-      dimension.runCommand(`execute at @e[type=fr:office_lamp_vfx] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
-    }
+    vfxType = lampVfxEntities[key].vfxType || (lampVfxEntities[key].isStageSpotlight ? "fr:stage_spotlight_vfx" : "fr:office_lamp_vfx");
     delete lampVfxEntities[key];
+  } else if (lightBlock) {
+    vfxType = getVfxEntityForLight(lightBlock.typeId);
+  }
+
+  if (vfxType) {
+    if (vfxType === "fr:pirate_cove_light_entity") {
+      const pirateLocation = { x: connection.light.x + 0.5, y: connection.light.y + 0.4, z: connection.light.z + 0.5 };
+      dimension.runCommand(`execute at @e[type=${vfxType}] positioned ${pirateLocation.x} ${pirateLocation.y} ${pirateLocation.z} run event entity @e[r=1.5] destroy`);
+    } else {
+      dimension.runCommand(`execute at @e[type=${vfxType}] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
+    }
   }
 }
+

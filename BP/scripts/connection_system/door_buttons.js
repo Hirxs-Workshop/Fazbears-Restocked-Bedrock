@@ -1,41 +1,35 @@
 import { EquipmentSlot, system, world, BlockPermutation } from "@minecraft/server";
+/**
+ * FAZBEAR'S RESTOCKED - BEDROCK
+ * ©2025
+ * This code is the property of Fazbear's Restocked.
+ * Unauthorized copying, modification, distribution, or use of this code,
+ * via any medium, is strictly prohibited without explicit permission.
+ * All rights reserved.
+ */
+
 import { ModalFormData, ActionFormData } from "@minecraft/server-ui";
 import FaceSelectionPlains from "./face_selection_plains";
 import { dynamicToast } from "./utils.js";
 import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType } from "./selection_manager.js";
-import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY } from "./connection_types.js";
+import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY, DOOR_BUTTON_GENERATOR_LINKS_KEY, GENERATORS_KEY, getVfxEntityForLight } from "./connection_types.js";
+import { getGeneratorLimit, getSwitchConnections } from "./main_system.js";
 import * as FRAPI from "../fr_api.js";
 
 const ANIMATION_DELAY_TICKS = 2;
 const hallwayLampVfxEntities = {};
 
+const DEFAULT_DOOR_BUTTON_LIMIT = 5;
 
-const LIGHT_VFX_MAP = {
-  "fr:office_light": "fr:hallway_lamp_vfx",
-  "fr:office_lamp": "fr:office_lamp_vfx",
-  "fr:pizzeria_lamp": "fr:pizzeria_lamp_vfx",
-  "fr:ceiling_light": "fr:ceiling_light_vfx",
-  "fr:stage_spotlight": "fr:stage_spotlight_vfx",
-  "fr:supply_room_lightbulb": "fr:hallway_lamp_vfx",
-  "fr:pirate_cove_light": "fr:pirate_cove_light_entity"
-};
-
-
-function getVfxEntityForLight(lightTypeId) {
-
-  if (LIGHT_VFX_MAP[lightTypeId]) {
-    return LIGHT_VFX_MAP[lightTypeId];
-  }
-  
-
-  const externalConfig = FRAPI.getConnectionType(lightTypeId);
-  if (externalConfig && externalConfig.vfxEntity) {
-    return externalConfig.vfxEntity;
-  }
-  
-
-  return "fr:hallway_lamp_vfx";
+function getDoorButtonLimit() {
+  return world.getDynamicProperty("fr:door_button_limit") ?? DEFAULT_DOOR_BUTTON_LIMIT;
 }
+
+export function setDoorButtonLimit(value) {
+  world.setDynamicProperty("fr:door_button_limit", value);
+}
+
+
 
 let __memConnections = [];
 let __memWoodenDoorClaims = [];
@@ -48,21 +42,53 @@ system.beforeEvents.startup.subscribe(() => {
     if (!world.getDynamicProperty("woodenDoorClaims")) {
       world.setDynamicProperty("woodenDoorClaims", JSON.stringify([]));
     }
-  } catch {}
+  } catch { }
   selectedDoorButton.clear();
 });
 
 const getConnections = () => {
   try {
+    const chunkCount = world.getDynamicProperty("connections_count");
+    if (chunkCount !== undefined && chunkCount > 0) {
+      let fullJson = "";
+      for (let i = 0; i < chunkCount; i++) {
+        const chunk = world.getDynamicProperty(`connections_${i}`);
+        if (chunk) fullJson += chunk;
+      }
+      return JSON.parse(fullJson);
+    }
     const data = world.getDynamicProperty("connections");
     return data ? JSON.parse(data) : [];
   } catch {
     return __memConnections;
   }
 };
+
 const setConnections = (connections) => {
   try {
-    world.setDynamicProperty("connections", JSON.stringify(connections));
+    const fullJson = JSON.stringify(connections);
+    const CHUNK_SIZE = 30000;
+
+    const chunks = [];
+    for (let i = 0; i < fullJson.length; i += CHUNK_SIZE) {
+      chunks.push(fullJson.substring(i, i + CHUNK_SIZE));
+    }
+
+    const oldChunkCount = world.getDynamicProperty("connections_count") || 0;
+
+    for (let i = 0; i < chunks.length; i++) {
+      world.setDynamicProperty(`connections_${i}`, chunks[i]);
+    }
+
+    world.setDynamicProperty("connections_count", chunks.length);
+
+    for (let i = chunks.length; i < oldChunkCount; i++) {
+      world.setDynamicProperty(`connections_${i}`, undefined);
+    }
+
+    if (world.getDynamicProperty("connections") !== undefined) {
+      world.setDynamicProperty("connections", undefined);
+    }
   } catch {
     __memConnections = connections;
   }
@@ -98,6 +124,157 @@ function isLightConnectedToSwitch(lightPos, dimensionId) {
   }
 }
 
+let __memDoorButtonGeneratorLinks = [];
+
+export function getDoorButtonGeneratorLinks() {
+  try {
+    const data = world.getDynamicProperty(DOOR_BUTTON_GENERATOR_LINKS_KEY);
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return __memDoorButtonGeneratorLinks;
+  }
+}
+
+export function setDoorButtonGeneratorLinks(links) {
+  try {
+    world.setDynamicProperty(DOOR_BUTTON_GENERATOR_LINKS_KEY, JSON.stringify(links));
+  } catch {
+    __memDoorButtonGeneratorLinks = links;
+  }
+}
+
+export function addDoorButtonGeneratorLink(link) {
+  const links = getDoorButtonGeneratorLinks();
+
+  const existingLink = links.find(l =>
+    l.doorButtonPos.x === link.doorButtonPos.x &&
+    l.doorButtonPos.y === link.doorButtonPos.y &&
+    l.doorButtonPos.z === link.doorButtonPos.z &&
+    l.doorButtonPos.dimensionId === link.doorButtonPos.dimensionId
+  );
+
+  if (existingLink) {
+    return false;
+  }
+
+  const newLink = {
+    ...link,
+    linkedAt: link.linkedAt || Date.now()
+  };
+
+  links.push(newLink);
+  setDoorButtonGeneratorLinks(links);
+  return true;
+}
+
+export function removeDoorButtonGeneratorLink(doorButtonPos) {
+  const links = getDoorButtonGeneratorLinks();
+  const index = links.findIndex(l =>
+    l.doorButtonPos.x === doorButtonPos.x &&
+    l.doorButtonPos.y === doorButtonPos.y &&
+    l.doorButtonPos.z === doorButtonPos.z &&
+    l.doorButtonPos.dimensionId === doorButtonPos.dimensionId
+  );
+
+  if (index === -1) {
+    return false;
+  }
+
+  links.splice(index, 1);
+  setDoorButtonGeneratorLinks(links);
+  return true;
+}
+
+export function getDoorButtonGeneratorLink(doorButtonPos) {
+  const links = getDoorButtonGeneratorLinks();
+  return links.find(l =>
+    l.doorButtonPos.x === doorButtonPos.x &&
+    l.doorButtonPos.y === doorButtonPos.y &&
+    l.doorButtonPos.z === doorButtonPos.z &&
+    l.doorButtonPos.dimensionId === doorButtonPos.dimensionId
+  ) || null;
+}
+
+export function getGeneratorLinkedDoorButtons(generatorPos) {
+  const links = getDoorButtonGeneratorLinks();
+  return links.filter(l =>
+    l.generatorPos.x === generatorPos.x &&
+    l.generatorPos.y === generatorPos.y &&
+    l.generatorPos.z === generatorPos.z &&
+    l.generatorPos.dimensionId === generatorPos.dimensionId
+  );
+}
+
+function getGeneratorAt(pos) {
+  try {
+    const json = world.getDynamicProperty(GENERATORS_KEY);
+    const generators = json ? JSON.parse(json) : [];
+    return generators.find(gen =>
+      gen.pos.x === pos.x &&
+      gen.pos.y === pos.y &&
+      gen.pos.z === pos.z &&
+      gen.pos.dimensionId === pos.dimensionId
+    ) || null;
+  } catch {
+    return null;
+  }
+}
+
+export function canDoorButtonOperate(doorButtonPos) {
+  const link = getDoorButtonGeneratorLink(doorButtonPos);
+
+  if (!link) {
+    return {
+      canOperate: true,
+      reason: "unlimited"
+    };
+  }
+
+  const generatorData = getGeneratorAt(link.generatorPos);
+
+  if (!generatorData) {
+    return {
+      canOperate: true,
+      reason: "unlimited"
+    };
+  }
+
+  if (!generatorData.active) {
+    return {
+      canOperate: false,
+      reason: "generator_off",
+      generatorEnergy: generatorData.energy
+    };
+  }
+
+  if (generatorData.energy <= 0) {
+    return {
+      canOperate: false,
+      reason: "no_energy",
+      generatorEnergy: 0
+    };
+  }
+
+  return {
+    canOperate: true,
+    reason: "ok",
+    generatorEnergy: generatorData.energy
+  };
+}
+
+export function getDoorButtonEnergyMode(doorButtonPos) {
+  const link = getDoorButtonGeneratorLink(doorButtonPos);
+
+  if (link) {
+    const generatorData = getGeneratorAt(link.generatorPos);
+    if (generatorData) {
+      return "dependent";
+    }
+  }
+
+  return "unlimited";
+}
+
 
 export { getConnections as getDoorButtonConnections };
 const addConnection = (connection) => {
@@ -110,7 +287,7 @@ const removeConnection = (connection) => {
   let connections = getConnections();
 
   const connLightData = connection.lightBlock || connection.officeLightBlock;
-  
+
   const index = connections.findIndex(conn => {
     const lightData = conn.lightBlock || conn.officeLightBlock;
     return conn.doorBlock.x === connection.doorBlock.x &&
@@ -151,19 +328,19 @@ const getConnectionByOfficeLightBlock = (block, dimension) => {
   const connections = getConnections();
   return connections.find(conn =>
     (conn.lightBlock &&
-    conn.lightBlock.x === block.location.x &&
-    conn.lightBlock.y === block.location.y &&
-    conn.lightBlock.z === block.location.z &&
-    conn.lightBlock.dimensionId === dimension.id) ||
+      conn.lightBlock.x === block.location.x &&
+      conn.lightBlock.y === block.location.y &&
+      conn.lightBlock.z === block.location.z &&
+      conn.lightBlock.dimensionId === dimension.id) ||
     (conn.officeLightBlock &&
-    conn.officeLightBlock.x === block.location.x &&
-    conn.officeLightBlock.y === block.location.y &&
-    conn.officeLightBlock.z === block.location.z &&
-    conn.officeLightBlock.dimensionId === dimension.id)
+      conn.officeLightBlock.x === block.location.x &&
+      conn.officeLightBlock.y === block.location.y &&
+      conn.officeLightBlock.z === block.location.z &&
+      conn.officeLightBlock.dimensionId === dimension.id)
   );
 };
 
-const getWoodenDoorConnections = () => {
+export const getWoodenDoorConnections = () => {
   try {
     const data = world.getDynamicProperty("woodenDoorClaims");
     return data ? JSON.parse(data) : [];
@@ -171,6 +348,52 @@ const getWoodenDoorConnections = () => {
     return __memWoodenDoorClaims;
   }
 };
+
+export function closeConnectedDoors(doorButtonPos, dimension) {
+  const connections = getWoodenDoorConnections().filter(conn =>
+    conn.doorBlock.x === doorButtonPos.x &&
+    conn.doorBlock.y === doorButtonPos.y &&
+    conn.doorBlock.z === doorButtonPos.z &&
+    conn.doorBlock.dimensionId === doorButtonPos.dimensionId
+  );
+
+  for (const connection of connections) {
+    const doorDim = dimension;
+    const officeDoorBlock = doorDim.getBlock({
+      x: connection.woodenDoorBlock.x,
+      y: connection.woodenDoorBlock.y,
+      z: connection.woodenDoorBlock.z,
+    });
+
+    if (officeDoorBlock && officeDoorBlock.typeId === "fr:office_door") {
+      applyOfficeDoorState(officeDoorBlock, false);
+      doorDim.playSound("fr:toggle_door", officeDoorBlock.center());
+    }
+  }
+}
+
+export function openConnectedDoors(doorButtonPos, dimension) {
+  const connections = getWoodenDoorConnections().filter(conn =>
+    conn.doorBlock.x === doorButtonPos.x &&
+    conn.doorBlock.y === doorButtonPos.y &&
+    conn.doorBlock.z === doorButtonPos.z &&
+    conn.doorBlock.dimensionId === doorButtonPos.dimensionId
+  );
+
+  for (const connection of connections) {
+    const doorDim = dimension;
+    const officeDoorBlock = doorDim.getBlock({
+      x: connection.woodenDoorBlock.x,
+      y: connection.woodenDoorBlock.y,
+      z: connection.woodenDoorBlock.z,
+    });
+
+    if (officeDoorBlock && officeDoorBlock.typeId === "fr:office_door") {
+      applyOfficeDoorState(officeDoorBlock, true);
+      doorDim.playSound("fr:toggle_door", officeDoorBlock.center());
+    }
+  }
+}
 const setWoodenDoorConnections = (connections) => {
   try {
     world.setDynamicProperty("woodenDoorClaims", JSON.stringify(connections));
@@ -226,18 +449,20 @@ function connectDoorToLight(doorBlock, lightBlock, doorDimension, player) {
     conn.doorBlock.z === doorBlock.location.z &&
     conn.doorBlock.dimensionId === doorDimension.id
   );
-  if (doorConnections.length >= 5) {
-    player.sendMessage(dynamicToast("§l§cERROR", "§cMaximum connections (5) reached", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+  const limit = getDoorButtonLimit();
+  if (doorConnections.length >= limit) {
+    player.sendMessage(dynamicToast("§l§cERROR", `§cMaximum connections (${limit}) reached`, "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
-  
+
+
 
   const lightPos = { x: lightBlock.location.x, y: lightBlock.location.y, z: lightBlock.location.z };
   if (isLightConnectedToSwitch(lightPos, doorDimension.id)) {
     player.sendMessage(dynamicToast("§l§cERROR", "§cThis light is already connected to a switch", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
-  
+
 
   const existingConnection = connections.find(conn =>
     conn.doorBlock.x === doorBlock.location.x &&
@@ -245,41 +470,41 @@ function connectDoorToLight(doorBlock, lightBlock, doorDimension, player) {
     conn.doorBlock.z === doorBlock.location.z &&
     conn.doorBlock.dimensionId === doorDimension.id &&
     ((conn.lightBlock &&
-    conn.lightBlock.x === lightBlock.location.x &&
-    conn.lightBlock.y === lightBlock.location.y &&
-    conn.lightBlock.z === lightBlock.location.z &&
-    conn.lightBlock.dimensionId === doorDimension.id) ||
-    (conn.officeLightBlock &&
-    conn.officeLightBlock.x === lightBlock.location.x &&
-    conn.officeLightBlock.y === lightBlock.location.y &&
-    conn.officeLightBlock.z === lightBlock.location.z &&
-    conn.officeLightBlock.dimensionId === doorDimension.id))
+      conn.lightBlock.x === lightBlock.location.x &&
+      conn.lightBlock.y === lightBlock.location.y &&
+      conn.lightBlock.z === lightBlock.location.z &&
+      conn.lightBlock.dimensionId === doorDimension.id) ||
+      (conn.officeLightBlock &&
+        conn.officeLightBlock.x === lightBlock.location.x &&
+        conn.officeLightBlock.y === lightBlock.location.y &&
+        conn.officeLightBlock.z === lightBlock.location.z &&
+        conn.officeLightBlock.dimensionId === doorDimension.id))
   );
-  
+
   if (existingConnection) {
     player.sendMessage(dynamicToast("§l§cERROR", "§cThis connection already exists", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
-  
+
 
   const lightAlreadyConnected = connections.find(conn =>
     (conn.lightBlock &&
-    conn.lightBlock.x === lightBlock.location.x &&
-    conn.lightBlock.y === lightBlock.location.y &&
-    conn.lightBlock.z === lightBlock.location.z &&
-    conn.lightBlock.dimensionId === doorDimension.id) ||
+      conn.lightBlock.x === lightBlock.location.x &&
+      conn.lightBlock.y === lightBlock.location.y &&
+      conn.lightBlock.z === lightBlock.location.z &&
+      conn.lightBlock.dimensionId === doorDimension.id) ||
     (conn.officeLightBlock &&
-    conn.officeLightBlock.x === lightBlock.location.x &&
-    conn.officeLightBlock.y === lightBlock.location.y &&
-    conn.officeLightBlock.z === lightBlock.location.z &&
-    conn.officeLightBlock.dimensionId === doorDimension.id)
+      conn.officeLightBlock.x === lightBlock.location.x &&
+      conn.officeLightBlock.y === lightBlock.location.y &&
+      conn.officeLightBlock.z === lightBlock.location.z &&
+      conn.officeLightBlock.dimensionId === doorDimension.id)
   );
-  
+
   if (lightAlreadyConnected) {
     player.sendMessage(dynamicToast("§l§cERROR", "§cThis light is already connected to another button", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
-  
+
   const connection = {
     doorBlock: {
       dimensionId: doorDimension.id,
@@ -315,7 +540,13 @@ function syncLightState(block, dimension, player) {
     z: block.location.z,
     dimensionId: dimension.id,
   };
-  const doorState = block.permutation.getState("fr:bottom") === true;
+
+  const operationStatus = canDoorButtonOperate(doorBlockPos);
+
+  const rawDoorState = block.permutation.getState("fr:bottom") === true;
+
+  const doorState = operationStatus.canOperate ? rawDoorState : false;
+
   const connections = getConnections().filter(conn =>
     conn.doorBlock.x === doorBlockPos.x &&
     conn.doorBlock.y === doorBlockPos.y &&
@@ -326,7 +557,7 @@ function syncLightState(block, dimension, player) {
 
     const lightData = connection.lightBlock || connection.officeLightBlock;
     if (!lightData) return;
-    
+
     const lightBlock = dimension.getBlock({
       x: lightData.x,
       y: lightData.y,
@@ -336,16 +567,16 @@ function syncLightState(block, dimension, player) {
       try {
         const newPerm = lightBlock.permutation.withState("fr:lit", doorState);
         lightBlock.setPermutation(newPerm);
-      } catch {}
-      
+      } catch { }
+
       const key = `${lightData.dimensionId}_${lightData.x}_${lightData.y}_${lightData.z}`;
       const lightTypeId = lightData.typeId || lightBlock.typeId;
-      const location = { 
-        x: lightData.x + 0.5, 
-        y: lightData.y, 
-        z: lightData.z + 0.5 
+      const location = {
+        x: lightData.x + 0.5,
+        y: lightData.y,
+        z: lightData.z + 0.5
       };
-      
+
       if (doorState) {
 
         if (!hallwayLampVfxEntities[key]) {
@@ -356,6 +587,16 @@ function syncLightState(block, dimension, player) {
               const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
               const angle = angles[rotationState];
               dimension.runCommand(`summon fr:stage_spotlight_vfx ${location.x} ${location.y} ${location.z} ${angle} 0`);
+              const blockColor = lightBlock.permutation.getState("fr:color") ?? 4;
+              const spawnedEntities = dimension.getEntities({
+                type: "fr:stage_spotlight_vfx",
+                location: location,
+                maxDistance: 0.5
+              });
+              for (const entity of spawnedEntities) {
+                const colorComponent = entity.getComponent("minecraft:color");
+                if (colorComponent) colorComponent.value = blockColor;
+              }
               hallwayLampVfxEntities[key] = { vfxType: "stage_spotlight" };
             } else if (lightTypeId === "fr:pizzeria_lamp") {
               const entity = dimension.spawnEntity("fr:pizzeria_lamp_vfx", location);
@@ -379,19 +620,19 @@ function syncLightState(block, dimension, player) {
               const entity = dimension.spawnEntity(vfxEntityType, location);
               hallwayLampVfxEntities[key] = { vfxType: vfxEntityType, entity };
             }
-          } catch (e) {}
+          } catch (e) { }
         }
       } else {
 
-        const locationCenter = { 
-          x: lightData.x + 0.5, 
-          y: lightData.y + 0.5, 
-          z: lightData.z + 0.5 
+        const locationCenter = {
+          x: lightData.x + 0.5,
+          y: lightData.y + 0.5,
+          z: lightData.z + 0.5
         };
         try {
           const storedVfx = hallwayLampVfxEntities[key];
           const vfxType = storedVfx?.vfxType;
-          
+
           if (vfxType === "stage_spotlight") {
             dimension.runCommand(`execute at @e[type=fr:stage_spotlight_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
           } else if (vfxType === "pizzeria_lamp") {
@@ -407,7 +648,7 @@ function syncLightState(block, dimension, player) {
             const vfxEntityType = getVfxEntityForLight(lightTypeId);
             dimension.runCommand(`execute at @e[type=${vfxEntityType}] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
           }
-        } catch {}
+        } catch { }
         if (hallwayLampVfxEntities[key]) {
           delete hallwayLampVfxEntities[key];
         }
@@ -424,10 +665,12 @@ function connectDoorToWoodenDoor(doorBlock, woodenDoorBlock, doorDimension, play
     conn.doorBlock.z === doorBlock.location.z &&
     conn.doorBlock.dimensionId === doorDimension.id
   );
-  if (doorConnections.length >= 5) {
-    player.sendMessage(dynamicToast("§l§cERROR", "§cMaximum connections (5) reached", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+  const limit = getDoorButtonLimit();
+  if (doorConnections.length >= limit) {
+    player.sendMessage(dynamicToast("§l§cERROR", `§cMaximum connections (${limit}) reached`, "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
+
   const connection = {
     doorBlock: {
       dimensionId: doorDimension.id,
@@ -458,7 +701,7 @@ function findOfficeDoorUpperBlock(clickedBlock) {
   let isUpper = false;
   try {
     isUpper = clickedBlock.permutation.getState("fr:upper") === true;
-  } catch (_) {}
+  } catch (_) { }
   if (isUpper) return clickedBlock;
   let y = clickedBlock.location.y + 1;
   while (true) {
@@ -466,24 +709,24 @@ function findOfficeDoorUpperBlock(clickedBlock) {
     if (!b || b.typeId !== "fr:office_door") break;
     try {
       if (b.permutation.getState("fr:upper") === true) return b;
-    } catch (_) {}
+    } catch (_) { }
     y++;
   }
   return null;
 }
 
-function applyOfficeDoorState(officeDoorBlock, open) {
+export function applyOfficeDoorState(officeDoorBlock, open) {
   if (!officeDoorBlock) return;
   const dim = officeDoorBlock.dimension;
   const x = officeDoorBlock.location.x;
   const z = officeDoorBlock.location.z;
-  
+
   let cardinalDirection = "south";
   try {
     cardinalDirection = officeDoorBlock.permutation.getState("minecraft:cardinal_direction") || "south";
   } catch (e) {
   }
-  
+
   const updateUpperBlock = (delayTicks = 0) => {
     system.runTimeout(() => {
       try {
@@ -510,7 +753,7 @@ function applyOfficeDoorState(officeDoorBlock, open) {
             p = p.withState("fr:upper", true);
             block.setPermutation(p);
           }
-        } catch {}
+        } catch { }
       }
     }, delayTicks);
   };
@@ -526,7 +769,7 @@ function applyOfficeDoorState(officeDoorBlock, open) {
       try {
         isMiddle = b.permutation.getState("fr:middle") === true;
         isBottom = b.permutation.getState("fr:bottom") === true;
-      } catch (e) {}
+      } catch (e) { }
       if (!isMiddle && !isBottom) break;
       segmentsToRemove.push(y);
       y--;
@@ -542,7 +785,7 @@ function applyOfficeDoorState(officeDoorBlock, open) {
     });
     const totalDelay = segmentsToRemove.length * ANIMATION_DELAY_TICKS;
     updateUpperBlock(totalDelay);
-    
+
     system.runTimeout(() => {
       dim.playSound("office_door", { x: x + 0.5, y: officeDoorBlock.location.y, z: z + 0.5 });
     }, totalDelay);
@@ -595,12 +838,12 @@ function applyOfficeDoorState(officeDoorBlock, open) {
                 .withState("fr:bottom", segment.isBottom)
                 .withState("minecraft:cardinal_direction", cardinalDirection);
               target.setPermutation(p);
-            } catch {}
+            } catch { }
           }
         }
       }, index * ANIMATION_DELAY_TICKS);
     });
-    
+
     const totalClosingDelay = segmentsToPlace.length * ANIMATION_DELAY_TICKS;
     system.runTimeout(() => {
       dim.playSound("office_door", { x: x + 0.5, y: officeDoorBlock.location.y, z: z + 0.5 });
@@ -708,17 +951,62 @@ function showDisconnectModal(player, connection) {
   })
 }
 
+function showDoorButtonDisconnectMenu(player, link, block, dimension) {
+  const generatorPos = link.generatorPos;
+  const form = new ActionFormData()
+    .title("Disconnect from Generator")
+    .body(
+      `This door button is connected to a generator.\n\n` +
+      `Generator Location:\n` +
+      `X: ${generatorPos.x}, Y: ${generatorPos.y}, Z: ${generatorPos.z}\n\n` +
+      `Do you want to disconnect it?`
+    )
+    .button("Disconnect")
+    .button("Cancel");
+
+  form.show(player).then(response => {
+    if (response.canceled) return;
+
+    if (response.selection === 0) {
+      const doorButtonPos = {
+        x: link.doorButtonPos.x,
+        y: link.doorButtonPos.y,
+        z: link.doorButtonPos.z,
+        dimensionId: link.doorButtonPos.dimensionId
+      };
+
+      const success = removeDoorButtonGeneratorLink(doorButtonPos);
+      if (success) {
+        player.sendMessage(dynamicToast("§l§qSUCCESS", "§qDoor button disconnected from generator", "textures/fr_ui/approve_icon", "textures/fr_ui/approve_ui"));
+        dimension.playSound("fr:disconnect", block.center());
+      } else {
+        player.sendMessage(dynamicToast("§l§cERROR", "§cFailed to disconnect", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+      }
+    } else {
+      player.sendMessage(dynamicToast("§l§7INFO", "§7Operation cancelled", "textures/fr_ui/selection_icon", "textures/fr_ui/default_ui"));
+    }
+  });
+}
+
 function handleDoorButtonsInteract({ block, face, faceLocation, dimension, player }) {
   if (!player) return;
 
-  const relativeFaceLocation = {
-    x: faceLocation.x - block.location.x,
-    y: faceLocation.y - block.location.y,
-    z: faceLocation.z - block.location.z,
-  };
+  let selectedZone = null;
 
-  const buttonSelections = getButtonSelections(block.location.y);
-  const selectedZone = buttonSelections.getSelected({ face, faceLocation: relativeFaceLocation });
+  if (block.typeId === "fr:door_button_door") {
+    selectedZone = "door";
+  } else if (block.typeId === "fr:door_button_light") {
+    selectedZone = "light";
+  } else {
+    const relativeFaceLocation = {
+      x: faceLocation.x - block.location.x,
+      y: faceLocation.y - block.location.y,
+      z: faceLocation.z - block.location.z,
+    };
+
+    const buttonSelections = getButtonSelections(block.location.y);
+    selectedZone = buttonSelections.getSelected({ face, faceLocation: relativeFaceLocation });
+  }
 
   const equippable = player.getComponent("minecraft:equippable");
   if (!equippable) {
@@ -732,6 +1020,103 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
   }
 
   if (mainhand.hasItem() && mainhand.typeId === "fr:faz-diver_security") {
+    if (player.isSneaking) {
+      const doorButtonPos = {
+        x: block.location.x,
+        y: block.location.y,
+        z: block.location.z,
+        dimensionId: block.dimension.id
+      };
+      const existingLink = getDoorButtonGeneratorLink(doorButtonPos);
+      if (existingLink) {
+        showDoorButtonDisconnectMenu(player, existingLink, block, dimension);
+        return;
+      }
+    }
+
+    const currentSelection = getSelection(player.id);
+
+    if (currentSelection && currentSelection.type === SelectionType.GENERATOR) {
+      if (player.hasTag("debug_energy")) {
+        player.sendMessage(`§7[DEBUG] Door button interact with security tool.`);
+        player.sendMessage(`§7[DEBUG] Selection found: GENERATOR at (${currentSelection.data.pos.x}, ${currentSelection.data.pos.y}, ${currentSelection.data.pos.z})`);
+      }
+      const generatorPos = currentSelection.data.pos;
+      const doorButtonPos = {
+        x: block.location.x,
+        y: block.location.y,
+        z: block.location.z,
+        dimensionId: block.dimension.id
+      };
+
+      const existingLink = getDoorButtonGeneratorLink(doorButtonPos);
+      if (existingLink &&
+        existingLink.generatorPos.x === generatorPos.x &&
+        existingLink.generatorPos.y === generatorPos.y &&
+        existingLink.generatorPos.z === generatorPos.z &&
+        existingLink.generatorPos.dimensionId === generatorPos.dimensionId) {
+        clearSelection(player.id);
+        player.sendMessage(dynamicToast("§l§6INFO", "§6Already connected - selection cancelled", "textures/fr_ui/unlinked_icon", "textures/fr_ui/unlinked_ui"));
+        return;
+      }
+
+      if (existingLink) {
+        player.sendMessage(dynamicToast("§l§cERROR", "§cThis door button is already connected to another generator", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+        return;
+      }
+
+      const dx = doorButtonPos.x - generatorPos.x;
+      const dy = doorButtonPos.y - generatorPos.y;
+      const dz = doorButtonPos.z - generatorPos.z;
+      const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
+
+      const generatorData = getGeneratorAt(generatorPos);
+      const allowedRadius = generatorData ? (generatorData.radius || 8) : 8;
+
+      if (distance > allowedRadius) {
+        if (player.hasTag("debug_energy")) {
+          player.sendMessage(`§7[DEBUG] Out of radius: dist=${distance.toFixed(1)}, allowed=${allowedRadius}`);
+        }
+        player.sendMessage(dynamicToast("§l§cERROR", `§cBlock outside ${allowedRadius} block radius`, "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+        return;
+      }
+
+      const limit = getGeneratorLimit();
+      const connections = getSwitchConnections();
+      let currentCount = connections.filter(conn =>
+        conn.switch.x === generatorPos.x &&
+        conn.switch.y === generatorPos.y &&
+        conn.switch.z === generatorPos.z &&
+        conn.switch.dimensionId === generatorPos.dimensionId
+      ).length;
+      currentCount += getGeneratorLinkedDoorButtons(generatorPos).length;
+
+      if (player.hasTag("debug_energy")) {
+        player.sendMessage(`§7[DEBUG] Generator connection check: count=${currentCount}, limit=${limit}`);
+      }
+
+      if (currentCount >= limit) {
+        player.sendMessage(dynamicToast("§l§cLIMIT REACHED", `§cMaximum connections reached for this Generator (${currentCount}/${limit})`, "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+        return;
+      }
+
+      const link = {
+        doorButtonPos: doorButtonPos,
+        generatorPos: generatorPos
+      };
+
+      const success = addDoorButtonGeneratorLink(link);
+      if (success) {
+        player.sendMessage(dynamicToast("§l§qSUCCESS", "§qDoor button connected to generator", "textures/fr_ui/approve_icon", "textures/fr_ui/approve_ui"));
+        dimension.playSound("fr:connect_office_light", block.center());
+
+        clearSelection(player.id);
+      } else {
+        player.sendMessage(dynamicToast("§l§cERROR", "§cCould not create connection", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+      }
+      return;
+    }
+
     if (selectedZone === "light") {
       pendingWoodenDoorConnections.delete(player.name);
       pendingConnections.set(player.name, { doorBlock: block, doorDimension: block.dimension });
@@ -770,23 +1155,31 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
   }
 
   if (selectedZone === "door") {
+    const doorButtonPos = {
+      x: block.location.x,
+      y: block.location.y,
+      z: block.location.z,
+      dimensionId: dimension.id,
+    };
+    const operationStatus = canDoorButtonOperate(doorButtonPos);
+
+    if (!operationStatus.canOperate) {
+      player.sendMessage(dynamicToast("§l§cNO ENERGY", "§cThe generator has no power", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+      dimension.playSound("note.bass", block.center());
+      return;
+    }
+
     const currentState = block.permutation.getState("fr:upper");
     const newState = !currentState;
     block.setPermutation(block.permutation.withState("fr:upper", newState));
     dimension.playSound("door_button", block.center());
     dimension.playSound("fr:toggle_door", block.center());
 
-    const doorBlockPos = {
-      x: block.location.x,
-      y: block.location.y,
-      z: block.location.z,
-      dimensionId: dimension.id,
-    };
     const connections = getWoodenDoorConnections().filter(conn =>
-      conn.doorBlock.x === doorBlockPos.x &&
-      conn.doorBlock.y === doorBlockPos.y &&
-      conn.doorBlock.z === doorBlockPos.z &&
-      conn.doorBlock.dimensionId === doorBlockPos.dimensionId
+      conn.doorBlock.x === doorButtonPos.x &&
+      conn.doorBlock.y === doorButtonPos.y &&
+      conn.doorBlock.z === doorButtonPos.z &&
+      conn.doorBlock.dimensionId === doorButtonPos.dimensionId
     );
     const desiredOpen = newState;
     for (const connection of connections) {
@@ -803,6 +1196,20 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
     }
     return;
   } else if (selectedZone === "light") {
+    const doorButtonPos = {
+      x: block.location.x,
+      y: block.location.y,
+      z: block.location.z,
+      dimensionId: dimension.id,
+    };
+    const operationStatus = canDoorButtonOperate(doorButtonPos);
+
+    if (!operationStatus.canOperate) {
+      player.sendMessage(dynamicToast("§l§cNO ENERGY", "§cThe generator has no power", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
+      dimension.playSound("note.bass", block.center());
+      return;
+    }
+
     const currentState = block.permutation.getState("fr:bottom");
     const newState = !currentState;
     block.setPermutation(block.permutation.withState("fr:bottom", newState));
@@ -810,7 +1217,7 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
     dimension.playSound("fr:toggle_light", block.center());
     syncLightState(block, dimension, player);
   }
-  if (block && block.typeId === "fr:door_buttons") {
+  if (block && (block.typeId === "fr:door_buttons" || block.typeId === "fr:door_button_door" || block.typeId === "fr:door_button_light")) {
     const doorBlockPos = {
       x: block.location.x,
       y: block.location.y,
@@ -834,13 +1241,13 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
   const { player, block, itemStack } = event;
   const blockDimension = block.dimension;
   if (!player) return;
-  
+
 
   if (itemStack && itemStack.typeId === "fr:faz-diver_security" && isLightType(block.typeId)) {
 
     const currentSelection = getSelection(player.id);
     const hasDoorButtonLightSelection = currentSelection && currentSelection.type === SelectionType.DOOR_BUTTON_LIGHT;
-    
+
     if (hasDoorButtonLightSelection && pendingConnections.has(player.name)) {
       const pending = pendingConnections.get(player.name);
       connectDoorToLight(pending.doorBlock, block, pending.doorDimension, player);
@@ -856,7 +1263,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
     }
     return;
   }
-  
+
   if (itemStack && itemStack.typeId === "fr:faz-diver_security" && block.typeId === "fr:office_door") {
     const upperBlock = findOfficeDoorUpperBlock(block);
     if (!upperBlock) {
@@ -876,7 +1283,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
     }
     return;
   }
-  
+
 });
 
 function removeEntireOfficeDoor(upperBlock, dimension) {
@@ -892,7 +1299,7 @@ function removeEntireOfficeDoor(upperBlock, dimension) {
     try {
       isMiddle = b.permutation.getState("fr:middle") === true;
       isBottom = b.permutation.getState("fr:bottom") === true;
-    } catch (e) {}
+    } catch (e) { }
     if (!isMiddle && !isBottom) break;
     b.setType("minecraft:air");
     removedCount++;
@@ -905,7 +1312,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
   const { block, player, brokenBlockPermutation } = event;
   const dimension = block.dimension;
   const brokenBlockType = brokenBlockPermutation.type.id;
-  
+
 
 
   if (isLightType(brokenBlockType)) {
@@ -919,7 +1326,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
         lightData.z === block.location.z &&
         lightData.dimensionId === dimension.id;
     });
-    
+
     if (connectionsToRemove.length > 0) {
 
       connections = connections.filter(conn => {
@@ -934,13 +1341,13 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       if (player) player.sendMessage(`${connectionsToRemove.length} connection(s) removed: light block destroyed.`);
     }
   }
-  
+
   if (brokenBlockType === "fr:office_door") {
     let wasUpper = false;
     try {
       wasUpper = brokenBlockPermutation.getState("fr:upper") === true;
-    } catch (e) {}
-    
+    } catch (e) { }
+
     if (wasUpper) {
       const fakeBlock = {
         location: block.location,
@@ -964,7 +1371,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
           try {
             isMiddle = b.permutation.getState("fr:middle") === true;
             isBottom = b.permutation.getState("fr:bottom") === true;
-          } catch (e) {}
+          } catch (e) { }
           if (!isMiddle && !isBottom) break;
           b.setType("minecraft:air");
           y--;
@@ -983,7 +1390,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
             upperBlock = b;
             break;
           }
-        } catch (e) {}
+        } catch (e) { }
         y++;
       }
       if (upperBlock) {
@@ -1008,7 +1415,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       }
     }
   }
-  
+
 
   if (brokenBlockType === "fr:door_buttons") {
     const doorBlockPos = {
@@ -1017,7 +1424,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       z: block.location.z,
       dimensionId: dimension.id
     };
-    
+
 
     let connections = getConnections();
     const lightConnectionsToRemove = connections.filter(conn =>
@@ -1026,7 +1433,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       conn.doorBlock.z === doorBlockPos.z &&
       conn.doorBlock.dimensionId === doorBlockPos.dimensionId
     );
-    
+
     if (lightConnectionsToRemove.length > 0) {
 
       lightConnectionsToRemove.forEach(conn => {
@@ -1034,7 +1441,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
 
           const lightData = conn.lightBlock || conn.officeLightBlock;
           if (!lightData) return;
-          
+
           const lightBlock = dimension.getBlock({
             x: lightData.x,
             y: lightData.y,
@@ -1044,27 +1451,27 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
             try {
               const newPerm = lightBlock.permutation.withState("fr:lit", false);
               lightBlock.setPermutation(newPerm);
-            } catch {}
+            } catch { }
           }
 
           const key = `${lightData.dimensionId}_${lightData.x}_${lightData.y}_${lightData.z}`;
-          const location = { 
-            x: lightData.x + 0.5, 
-            y: lightData.y + 0.5, 
-            z: lightData.z + 0.5 
+          const location = {
+            x: lightData.x + 0.5,
+            y: lightData.y + 0.5,
+            z: lightData.z + 0.5
           };
 
           const storedVfx = hallwayLampVfxEntities[key];
           const vfxType = storedVfx?.vfxType || getVfxEntityForLight(lightData.typeId || (lightBlock ? lightBlock.typeId : "fr:office_light"));
           try {
             dimension.runCommand(`execute at @e[type=${vfxType}] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
-          } catch {}
+          } catch { }
           if (hallwayLampVfxEntities[key]) {
             delete hallwayLampVfxEntities[key];
           }
-        } catch {}
+        } catch { }
       });
-      
+
       connections = connections.filter(conn =>
         !(conn.doorBlock.x === doorBlockPos.x &&
           conn.doorBlock.y === doorBlockPos.y &&
@@ -1073,7 +1480,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       );
       setConnections(connections);
     }
-    
+
 
     let woodenDoorConnections = getWoodenDoorConnections();
     const doorConnectionsToRemove = woodenDoorConnections.filter(conn =>
@@ -1082,7 +1489,7 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       conn.doorBlock.z === doorBlockPos.z &&
       conn.doorBlock.dimensionId === doorBlockPos.dimensionId
     );
-    
+
     if (doorConnectionsToRemove.length > 0) {
       woodenDoorConnections = woodenDoorConnections.filter(conn =>
         !(conn.doorBlock.x === doorBlockPos.x &&
@@ -1092,12 +1499,16 @@ world.afterEvents.playerBreakBlock.subscribe(event => {
       );
       setWoodenDoorConnections(woodenDoorConnections);
     }
-    
+
     const totalRemoved = lightConnectionsToRemove.length + doorConnectionsToRemove.length;
     if (totalRemoved > 0 && player) {
       player.sendMessage(`§c${totalRemoved} connection(s) removed: door_buttons block destroyed.`);
     }
-    
+
+    const generatorLinkRemoved = removeDoorButtonGeneratorLink(doorBlockPos);
+    if (generatorLinkRemoved && player) {
+      player.sendMessage(`§7Generator connection removed: door_buttons block destroyed.`);
+    }
 
     if (player) {
       pendingConnections.delete(player.name);
@@ -1124,7 +1535,7 @@ function updateLightTestActionBarForPlayer(player) {
       return;
     }
     let doorBlockPos = selectedDoorButton.get(player.name) || { x: 0, y: 0, z: 0, dimensionId: dimension.id };
-    
+
     const lightConnections = getConnections().filter(conn =>
       conn.doorBlock.x === doorBlockPos.x &&
       conn.doorBlock.y === doorBlockPos.y &&
@@ -1206,8 +1617,9 @@ function updateLightTestActionBarForPlayer(player) {
         ).length;
         const title = "§l§fDoor Buttons§r";
         const coords = `(${doorBlockPos.x}, ${doorBlockPos.y}, ${doorBlockPos.z})`;
-        const selection = "";
-        message = `${title}\n §7Door Links: ${doorConnections}/5\n §7Light Links: ${lightConnections}/5`;
+        const limit = getDoorButtonLimit();
+        message = `${title}\n §7Door Links: ${doorConnections}/${limit}\n §7Light Links: ${lightConnections}/${limit}`;
+
         if (pendingConnections.has(player.name) || pendingWoodenDoorConnections.has(player.name)) {
           const selection = pendingConnections.has(player.name) ? "Light" : "Door";
           message += `\n §7Selection: ${selection}`;
@@ -1226,7 +1638,7 @@ function updateLightTestActionBarForPlayer(player) {
   system.run(() => {
     try {
       player.onScreenDisplay.setActionBar({ rawtext: [{ text: message }] });
-    } catch {}
+    } catch { }
   });
 }
 

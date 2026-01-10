@@ -43,13 +43,19 @@
 					"side": "q.block_state('minecraft:block_face') != 'down'"
 				}
 			},
-"minecraft:placement_filter": {
-    "conditions": [
-        {
-            "allowed_faces": ["down", "north", "south", "east", "west"]
-        }
-    ]
-},
+			"minecraft:placement_filter": {
+				"conditions": [
+					{
+						"allowed_faces": [
+							"down",
+							"north",
+							"south",
+							"east",
+							"west"
+						]
+					}
+				]
+			},
 			"minecraft:material_instances": {
 				"*": {
 					"texture": "camera",
@@ -57,12 +63,28 @@
 				}
 			},
 			"minecraft:collision_box": {
-						"origin": [-4.5, 2, -4.5],
-						"size": [9, 14, 9]
+				"origin": [
+					-4.5,
+					2,
+					-4.5
+				],
+				"size": [
+					9,
+					14,
+					9
+				]
 			},
 			"minecraft:selection_box": {
-						"origin": [-4.5, 2, -4.5],
-						"size": [9, 14, 9]
+				"origin": [
+					-4.5,
+					2,
+					-4.5
+				],
+				"size": [
+					9,
+					14,
+					9
+				]
 			},
 			"fr:single_interactive": {},
 			"fr:down_precise_rotation": {}
@@ -108,12 +130,28 @@
 				"condition": "q.block_state('minecraft:block_face') != 'down'",
 				"components": {
 					"minecraft:collision_box": {
-						"origin": [-4.5, 2, -4.5],
-						"size": [9, 14, 9]
+						"origin": [
+							-4.5,
+							2,
+							-4.5
+						],
+						"size": [
+							9,
+							14,
+							9
+						]
 					},
 					"minecraft:selection_box": {
-						"origin": [-4.5, 2, -4.5],
-						"size": [9, 14, 9]
+						"origin": [
+							-4.5,
+							2,
+							-4.5
+						],
+						"size": [
+							9,
+							14,
+							9
+						]
 					}
 				}
 			}
