@@ -29,8 +29,8 @@
 			"minecraft:geometry": {
 				"identifier": "geometry.kitchencounter_upper_drawers",
 				"bone_visibility": {
-					"open": "q.block_state('fr:drawer_state') == "opened",
-					"closed": "q.block_state('fr:drawer_state') == "closed",
+					"open": "q.block_state('fr:drawer_state') == 'opened'",
+					"closed": "q.block_state('fr:drawer_state') == 'closed'",
 					"kitchencounter_upper_drawers_corner": false
 				}
 			},
