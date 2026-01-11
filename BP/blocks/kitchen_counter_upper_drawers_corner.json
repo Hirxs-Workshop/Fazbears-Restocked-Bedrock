@@ -2,7 +2,7 @@
 	"format_version": "1.21.30",
 	"minecraft:block": {
 		"description": {
-			"identifier": "fr:kitchencounter_upper_drawers",
+			"identifier": "fr:kitchen_counter_upper_drawers_corner",
 			"menu_category": {
 				"category": "construction"
 			},
@@ -12,9 +12,6 @@
 						"minecraft:cardinal_direction"
 					]
 				}
-			},
-			"states": {
-				"fr:drawer_state": ["closed", "open"]
 			}
 		},
 		"components": {
@@ -27,45 +24,16 @@
 				"size": [16, 16, 16]
 			},
 			"minecraft:geometry": {
-				"identifier": "geometry.kitchencounter_upper_drawers",
-				"bone_visibility": {
-					"open": false,
-					"closed": true
-				}
+				"identifier": "geometry.kitchen_counter_upper_drawers_corner"
 			},
 			"minecraft:material_instances": {
 				"*": {
 					"texture": "kitchencounter_upper_drawers",
 					"render_method": "alpha_test"
 				}
-			},
-			"fr:single_interactive": {}
+			}
 		},
 		"permutations": [
-			{
-				"condition": "q.block_state('fr:drawer_state') == 'closed'",
-				"components": {
-					"minecraft:geometry": {
-						"identifier": "geometry.kitchencounter_upper_drawers",
-						"bone_visibility": {
-							"open": false,
-							"closed": true
-						}
-					}
-				}
-			},
-			{
-				"condition": "q.block_state('fr:drawer_state') == 'open'",
-				"components": {
-					"minecraft:geometry": {
-						"identifier": "geometry.kitchencounter_upper_drawers",
-						"bone_visibility": {
-							"open": true,
-							"closed": false
-						}
-					}
-				}
-			},
 			{
 				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
 				"components": {
