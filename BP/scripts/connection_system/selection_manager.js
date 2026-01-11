@@ -64,7 +64,6 @@ export function getSelection(playerId) {
 export function clearSelection(playerId) {
   const previous = playerSelections.get(playerId);
   if (previous) {
-    // Execute cleanup handler for the selection being cleared
     const cleanupHandler = externalCleanupHandlers.get(previous.type);
     if (cleanupHandler) {
       try {
@@ -72,7 +71,6 @@ export function clearSelection(playerId) {
       } catch (e) { }
     }
 
-    // Destroy selection entity if it was a switch or generator
     if (previous.type === SelectionType.SWITCH || previous.type === SelectionType.GENERATOR) {
       try {
         if (previous.data && previous.data.pos) {

@@ -1,0 +1,128 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:gift",
+			"menu_category": {
+				"category": "construction"
+			},
+			"states": {
+				"fr:advanced_rot": {
+					"values": {
+						"min": 0,
+						"max": 15
+					}
+				},
+				"fr:variants": [0, 1, 2, 3, 4, 5, 6]
+			},
+			"traits": {
+				"minecraft:placement_position": {
+					"enabled_states": [
+						"minecraft:block_face"
+					]
+				}
+			}
+		},
+		"components": {
+			"minecraft:geometry": {
+				"identifier": "geometry.fr_gift",
+				"bone_visibility": {
+					"up_0": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot'), 4)",
+					"up_22_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot') - 1, 4)",
+					"up_45": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot') - 2, 4)",
+					"up_67_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot') - 3, 4)",
+					"side": "q.block_state('minecraft:block_face') != 'up'"
+				}
+			},
+			"minecraft:collision_box": {
+				"origin": [-5, 0, -5],
+				"size": [10, 10, 10]
+			},
+			"minecraft:selection_box": {
+				"origin": [-5, 0, -5],
+				"size": [10, 10, 10]
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "gift_blue",
+					"render_method": "alpha_test"
+				}
+			},
+			"fr:advanced_rotation": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:advanced_rot') >= 4 || q.block_state('minecraft:block_face') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, -90, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:advanced_rot') >= 8 || q.block_state('minecraft:block_face') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 180, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:advanced_rot') >= 12 || q.block_state('minecraft:block_face') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [0, 90, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:material_instances": {
+						"*": { "texture": "gift_green", "render_method": "alpha_test" }
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:material_instances": {
+						"*": { "texture": "gift_greenred", "render_method": "alpha_test" }
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:material_instances": {
+						"*": { "texture": "gift_orange", "render_method": "alpha_test" }
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+					"minecraft:material_instances": {
+						"*": { "texture": "gift_purple", "render_method": "alpha_test" }
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 5",
+				"components": {
+					"minecraft:material_instances": {
+						"*": { "texture": "gift_red", "render_method": "alpha_test" }
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 6",
+				"components": {
+					"minecraft:material_instances": {
+						"*": { "texture": "gift_yellow", "render_method": "alpha_test" }
+					}
+				}
+			}
+		]
+	}
+}

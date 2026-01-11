@@ -22,8 +22,8 @@ class SecurityCameraSystem {
     this.viewers = new Set();
     this.pendingExit = new Set();
     this.viewSessions = new Map();
-    this.PC_EXIT_RADIUS = 32;
-    this.PC_EXIT_RADIUS_SQUARED = 1024;
+    this.PC_EXIT_RADIUS = 64;
+    this.PC_EXIT_RADIUS_SQUARED = 4096;
     this.viewYaw = new Map();
     this.autoPan = new Map();
     this.cameraLocks = new Map();
@@ -2266,7 +2266,7 @@ class SecurityCameraSystem {
             return;
           }
 
-          const newName = (res.formValues[0] || "").trim();
+          const newName = (res.formValues[3] || "").trim();
           if (newName) {
             settings.customName = newName;
           } else {

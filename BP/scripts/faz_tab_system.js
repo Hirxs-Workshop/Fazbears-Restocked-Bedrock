@@ -12,7 +12,7 @@ import { world, system } from '@minecraft/server';
 import { securityCameraSystem } from './camera_system/security_camera_system.js';
 import { toast, showFazTabOpen, distance3D, safeGet } from './utils.js';
 
-const DEFAULT_MAX_RANGE = 32;
+const DEFAULT_MAX_RANGE = 64;
 const DEFAULT_MIN_RANGE = 3;
 const PC_TYPES = new Set(['fr:old_pc', 'fr:black_old_pc']);
 

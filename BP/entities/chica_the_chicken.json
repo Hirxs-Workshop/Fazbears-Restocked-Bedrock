@@ -10,7 +10,10 @@
 				"chica:attack_time": {
 					"type": "float",
 					"default": 0.0,
-					"range": [0.0, 10.0]
+					"range": [
+						0.0,
+						10.0
+					]
 				}
 			},
 			"animations": {
@@ -74,13 +77,19 @@
 			},
 			"chica_chasing": {
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.9], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.6,
+								1.9
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.152
 				},
@@ -140,13 +149,19 @@
 					"value": 1
 				},
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.6,
+								1.6
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.0
 				},
@@ -169,15 +184,20 @@
 				}
 			},
 			"chica_attack_timer": {
-								
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.6, 1.6], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.6,
+								1.6
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.0
 				},
@@ -267,7 +287,11 @@
 		},
 		"components": {
 			"minecraft:type_family": {
-				"family": ["chica", "animatronic", "hostile"]
+				"family": [
+					"chica",
+					"animatronic",
+					"hostile"
+				]
 			},
 			"minecraft:collision_box": {
 				"width": 0.8,
@@ -308,7 +332,10 @@
 				"priority": 10
 			},
 			"minecraft:timer": {
-				"time": [1.0, 2.0],
+				"time": [
+					1.0,
+					2.0
+				],
 				"looping": true,
 				"time_down_event": {
 					"event": "chica_check_for_player"
@@ -327,23 +354,35 @@
 		"events": {
 			"minecraft:entity_spawned": {
 				"add": {
-					"component_groups": ["chica_hostile", "chica_normal"]
+					"component_groups": [
+						"chica_hostile",
+						"chica_normal"
+					]
 				}
 			},
 			"chica_start_chase": {
 				"add": {
-					"component_groups": ["chica_chasing"]
+					"component_groups": [
+						"chica_chasing"
+					]
 				},
 				"remove": {
-					"component_groups": ["chica_hostile"]
+					"component_groups": [
+						"chica_hostile"
+					]
 				}
 			},
 			"chica_stop_chase": {
 				"add": {
-					"component_groups": ["chica_hostile"]
+					"component_groups": [
+						"chica_hostile"
+					]
 				},
 				"remove": {
-					"component_groups": ["chica_chasing", "chica_scare_cooldown"]
+					"component_groups": [
+						"chica_chasing",
+						"chica_scare_cooldown"
+					]
 				},
 				"queue_command": {
 					"command": [
@@ -375,10 +414,16 @@
 			},
 			"chica_start_attack": {
 				"add": {
-					"component_groups": ["chica_attacking", "chica_attack_timer"]
+					"component_groups": [
+						"chica_attacking",
+						"chica_attack_timer"
+					]
 				},
 				"remove": {
-					"component_groups": ["chica_chasing", "chica_hostile"]
+					"component_groups": [
+						"chica_chasing",
+						"chica_hostile"
+					]
 				},
 				"set_property": {
 					"chica:attack_time": "1.0"
@@ -404,10 +449,17 @@
 			},
 			"chica_end_attack": {
 				"remove": {
-					"component_groups": ["chica_attacking", "chica_attack_timer", "chica_normal"]
+					"component_groups": [
+						"chica_attacking",
+						"chica_attack_timer",
+						"chica_normal"
+					]
 				},
 				"add": {
-					"component_groups": ["chica_chasing", "chica_post_attack"]
+					"component_groups": [
+						"chica_chasing",
+						"chica_post_attack"
+					]
 				},
 				"set_property": {
 					"chica:attack_time": "0.0"
@@ -429,15 +481,21 @@
 					]
 				},
 				"remove": {
-					"component_groups": ["chica_scare_cooldown"]
+					"component_groups": [
+						"chica_scare_cooldown"
+					]
 				}
 			},
 			"chica_clean_blood": {
 				"remove": {
-					"component_groups": ["chica_post_attack"]
+					"component_groups": [
+						"chica_post_attack"
+					]
 				},
 				"add": {
-					"component_groups": ["chica_normal"]
+					"component_groups": [
+						"chica_normal"
+					]
 				},
 				"queue_command": {
 					"command": [
@@ -450,15 +508,27 @@
 					{
 						"filters": {
 							"all_of": [
-								{ "test": "has_target" },
-								{ "test": "has_tag", "subject": "self", "value": "played_scare", "operator": "not" }
+								{
+									"test": "has_target"
+								},
+								{
+									"test": "has_tag",
+									"subject": "self",
+									"value": "played_scare",
+									"operator": "not"
+								}
 							]
 						},
 						"add": {
-							"component_groups": ["chica_chasing", "chica_scare_cooldown"]
+							"component_groups": [
+								"chica_chasing",
+								"chica_scare_cooldown"
+							]
 						},
 						"remove": {
-							"component_groups": ["chica_hostile"]
+							"component_groups": [
+								"chica_hostile"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -473,10 +543,14 @@
 							"operator": "not"
 						},
 						"add": {
-							"component_groups": ["chica_hostile"]
+							"component_groups": [
+								"chica_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["chica_chasing"]
+							"component_groups": [
+								"chica_chasing"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -488,10 +562,15 @@
 			},
 			"chica_ignore_player": {
 				"add": {
-					"component_groups": ["chica_ignoring_player"]
+					"component_groups": [
+						"chica_ignoring_player"
+					]
 				},
 				"remove": {
-					"component_groups": ["chica_hostile", "chica_chasing"]
+					"component_groups": [
+						"chica_hostile",
+						"chica_chasing"
+					]
 				}
 			},
 			"chica_stop_ignore_player": {
@@ -501,10 +580,14 @@
 							"test": "has_target"
 						},
 						"add": {
-							"component_groups": ["chica_chasing"]
+							"component_groups": [
+								"chica_chasing"
+							]
 						},
 						"remove": {
-							"component_groups": ["chica_ignoring_player"]
+							"component_groups": [
+								"chica_ignoring_player"
+							]
 						}
 					},
 					{
@@ -513,10 +596,14 @@
 							"operator": "not"
 						},
 						"add": {
-							"component_groups": ["chica_hostile"]
+							"component_groups": [
+								"chica_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["chica_ignoring_player"]
+							"component_groups": [
+								"chica_ignoring_player"
+							]
 						}
 					}
 				]

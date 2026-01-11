@@ -2544,13 +2544,13 @@
                 "textures/blocks/reworked/dev/fantastic_bob_dev_plush"
             ]
         },
-        "werty_dev_plush":{
-            "texture":[
+        "werty_dev_plush": {
+            "textures": [
                 "textures/blocks/reworked/dev/werty_dev_plush"
             ]
         },
         "warden_dev_plush": {
-            "texture": [
+            "textures": [
                 "textures/blocks/reworked/dev/warden_dev_plush"
             ]
         },

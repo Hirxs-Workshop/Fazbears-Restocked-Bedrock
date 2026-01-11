@@ -1,12 +1,12 @@
 {
 	"format_version": 2,
 	"header": {
-		"name": "BP | Fazbear's Restocked | Public early build 1.8 - Hotfix",
+		"name": "BP | Fazbear's Restocked | Public early build 1.9 - Hotfix",
 		"description": "Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!",
 		"version": [
 			0,
 			1,
-			31
+			34
 		],
 		"min_engine_version": [
 			1,
@@ -22,7 +22,7 @@
 			"version": [
 				0,
 				1,
-				31
+				34
 			]
 		},
 		{
@@ -33,7 +33,7 @@
 			"version": [
 				0,
 				1,
-				31
+				34
 			]
 		}
 	],
@@ -54,7 +54,7 @@
 			"version": [
 				0,
 				1,
-				31
+				34
 			]
 		}
 	]

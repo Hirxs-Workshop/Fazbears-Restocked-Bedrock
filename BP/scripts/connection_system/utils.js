@@ -36,16 +36,30 @@ export function dynamicToastEvent(text) {
 
 export let lampVfxEntities = {};
 
+const VFX_ENTITY_TYPES = [
+  "fr:office_lamp_vfx",
+  "fr:stage_spotlight_vfx",
+  "fr:hallway_lamp_vfx",
+  "fr:pizzeria_lamp_vfx",
+  "fr:ceiling_light_vfx",
+  "fr:pirate_cove_light_entity"
+];
+
 export function cleanupLampVfxEntitiesOnReload() {
-  const dimensions = ["overworld", "nether", "the end"];
+  const dimensions = ["overworld", "nether", "the_end"];
   system.runTimeout(() => {
     dimensions.forEach(dimName => {
       try {
         const dimension = world.getDimension(dimName);
-        dimension.runCommand(`event entity @e[type=fr:office_lamp_vfx] destroy`);
-        dimension.runCommand(`event entity @e[type=fr:stage_spotlight_vfx] destroy`);
+        VFX_ENTITY_TYPES.forEach(vfxType => {
+          try {
+            dimension.runCommand(`event entity @e[type=${vfxType}] destroy`);
+          } catch { }
+        });
       } catch { }
     });
+    lampVfxEntities = {};
+    
     const elapsedTime = Date.now();
     world.getPlayers().forEach(player => {
       player.sendMessage(dynamicToast(

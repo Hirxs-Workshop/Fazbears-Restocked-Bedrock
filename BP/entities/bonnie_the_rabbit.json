@@ -10,7 +10,10 @@
 				"bonnie:attack_time": {
 					"type": "float",
 					"default": 0.0,
-					"range": [0.0, 10.0]
+					"range": [
+						0.0,
+						10.0
+					]
 				}
 			},
 			"animations": {
@@ -74,13 +77,19 @@
 			},
 			"bonnie_chasing": {
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.4, 1.0], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.4,
+								1.0
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.152
 				},
@@ -140,13 +149,19 @@
 					"value": 1
 				},
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.4, 1.0], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.4,
+								1.0
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.0
 				},
@@ -169,15 +184,20 @@
 				}
 			},
 			"bonnie_attack_timer": {
-								
 				"minecraft:rideable": {
-				"seat_count": 1,
-				"seats": [
-				  {
-					"position": [0, 0.4, 1.0], "rotate_rider_by": 180, "lock_rider_rotation": 0
-				  }
-				]
-			},
+					"seat_count": 1,
+					"seats": [
+						{
+							"position": [
+								0,
+								0.4,
+								1.0
+							],
+							"rotate_rider_by": 180,
+							"lock_rider_rotation": 0
+						}
+					]
+				},
 				"minecraft:movement": {
 					"value": 0.0
 				},
@@ -267,7 +287,11 @@
 		},
 		"components": {
 			"minecraft:type_family": {
-				"family": ["bonnie", "animatronic", "hostile"]
+				"family": [
+					"bonnie",
+					"animatronic",
+					"hostile"
+				]
 			},
 			"minecraft:collision_box": {
 				"width": 0.8,
@@ -306,7 +330,10 @@
 				"priority": 10
 			},
 			"minecraft:timer": {
-				"time": [1.0, 2.0],
+				"time": [
+					1.0,
+					2.0
+				],
 				"looping": true,
 				"time_down_event": {
 					"event": "bonnie_check_for_player"
@@ -325,23 +352,35 @@
 		"events": {
 			"minecraft:entity_spawned": {
 				"add": {
-					"component_groups": ["bonnie_hostile", "bonnie_normal"]
+					"component_groups": [
+						"bonnie_hostile",
+						"bonnie_normal"
+					]
 				}
 			},
 			"bonnie_start_chase": {
 				"add": {
-					"component_groups": ["bonnie_chasing"]
+					"component_groups": [
+						"bonnie_chasing"
+					]
 				},
 				"remove": {
-					"component_groups": ["bonnie_hostile"]
+					"component_groups": [
+						"bonnie_hostile"
+					]
 				}
 			},
 			"bonnie_stop_chase": {
 				"add": {
-					"component_groups": ["bonnie_hostile"]
+					"component_groups": [
+						"bonnie_hostile"
+					]
 				},
 				"remove": {
-					"component_groups": ["bonnie_chasing", "bonnie_scare_cooldown"]
+					"component_groups": [
+						"bonnie_chasing",
+						"bonnie_scare_cooldown"
+					]
 				},
 				"queue_command": {
 					"command": [
@@ -373,10 +412,16 @@
 			},
 			"bonnie_start_attack": {
 				"add": {
-					"component_groups": ["bonnie_attacking", "bonnie_attack_timer"]
+					"component_groups": [
+						"bonnie_attacking",
+						"bonnie_attack_timer"
+					]
 				},
 				"remove": {
-					"component_groups": ["bonnie_chasing", "bonnie_hostile"]
+					"component_groups": [
+						"bonnie_chasing",
+						"bonnie_hostile"
+					]
 				},
 				"set_property": {
 					"bonnie:attack_time": "1.0"
@@ -402,10 +447,17 @@
 			},
 			"bonnie_end_attack": {
 				"remove": {
-					"component_groups": ["bonnie_attacking", "bonnie_attack_timer", "bonnie_normal"]
+					"component_groups": [
+						"bonnie_attacking",
+						"bonnie_attack_timer",
+						"bonnie_normal"
+					]
 				},
 				"add": {
-					"component_groups": ["bonnie_chasing", "bonnie_post_attack"]
+					"component_groups": [
+						"bonnie_chasing",
+						"bonnie_post_attack"
+					]
 				},
 				"set_property": {
 					"bonnie:attack_time": "0.0"
@@ -427,15 +479,21 @@
 					]
 				},
 				"remove": {
-					"component_groups": ["bonnie_scare_cooldown"]
+					"component_groups": [
+						"bonnie_scare_cooldown"
+					]
 				}
 			},
 			"bonnie_clean_blood": {
 				"remove": {
-					"component_groups": ["bonnie_post_attack"]
+					"component_groups": [
+						"bonnie_post_attack"
+					]
 				},
 				"add": {
-					"component_groups": ["bonnie_normal"]
+					"component_groups": [
+						"bonnie_normal"
+					]
 				},
 				"queue_command": {
 					"command": [
@@ -448,15 +506,27 @@
 					{
 						"filters": {
 							"all_of": [
-								{ "test": "has_target" },
-								{ "test": "has_tag", "subject": "self", "value": "played_scare", "operator": "not" }
+								{
+									"test": "has_target"
+								},
+								{
+									"test": "has_tag",
+									"subject": "self",
+									"value": "played_scare",
+									"operator": "not"
+								}
 							]
 						},
 						"add": {
-							"component_groups": ["bonnie_chasing", "bonnie_scare_cooldown"]
+							"component_groups": [
+								"bonnie_chasing",
+								"bonnie_scare_cooldown"
+							]
 						},
 						"remove": {
-							"component_groups": ["bonnie_hostile"]
+							"component_groups": [
+								"bonnie_hostile"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -471,10 +541,14 @@
 							"operator": "not"
 						},
 						"add": {
-							"component_groups": ["bonnie_hostile"]
+							"component_groups": [
+								"bonnie_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["bonnie_chasing"]
+							"component_groups": [
+								"bonnie_chasing"
+							]
 						},
 						"queue_command": {
 							"command": [
@@ -486,10 +560,15 @@
 			},
 			"bonnie_ignore_player": {
 				"add": {
-					"component_groups": ["bonnie_ignoring_player"]
+					"component_groups": [
+						"bonnie_ignoring_player"
+					]
 				},
 				"remove": {
-					"component_groups": ["bonnie_hostile", "bonnie_chasing"]
+					"component_groups": [
+						"bonnie_hostile",
+						"bonnie_chasing"
+					]
 				}
 			},
 			"bonnie_stop_ignore_player": {
@@ -499,10 +578,14 @@
 							"test": "has_target"
 						},
 						"add": {
-							"component_groups": ["bonnie_chasing"]
+							"component_groups": [
+								"bonnie_chasing"
+							]
 						},
 						"remove": {
-							"component_groups": ["bonnie_ignoring_player"]
+							"component_groups": [
+								"bonnie_ignoring_player"
+							]
 						}
 					},
 					{
@@ -511,10 +594,14 @@
 							"operator": "not"
 						},
 						"add": {
-							"component_groups": ["bonnie_hostile"]
+							"component_groups": [
+								"bonnie_hostile"
+							]
 						},
 						"remove": {
-							"component_groups": ["bonnie_ignoring_player"]
+							"component_groups": [
+								"bonnie_ignoring_player"
+							]
 						}
 					}
 				]

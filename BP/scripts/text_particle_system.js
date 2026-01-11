@@ -10,7 +10,7 @@
 */
 
 
-import { world, system, MolangVariableMap } from "@minecraft/server";
+import { world, system, MolangVariableMap, EquipmentSlot } from "@minecraft/server";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 
 const COLOR_PRESETS = {
@@ -42,6 +42,42 @@ const COLOR_PRESETS = {
   material_lapis: { r: 0.129, g: 0.286, b: 0.482, code: '§t' },
   material_amethyst: { r: 0.604, g: 0.361, b: 0.776, code: '§u' },
   material_resin: { r: 0.922, g: 0.447, b: 0.078, code: '§v' },
+  glow: { r: 0.498, g: 0.859, b: 0.737, code: '§z', emissive: true },
+  dye_red: { r: 0.69, g: 0.22, b: 0.22 },
+  dye_orange: { r: 0.98, g: 0.55, b: 0.24 },
+  dye_yellow: { r: 0.99, g: 0.83, b: 0.31 },
+  dye_lime: { r: 0.51, g: 0.80, b: 0.09 },
+  dye_green: { r: 0.37, g: 0.60, b: 0.13 },
+  dye_light_blue: { r: 0.23, g: 0.68, b: 0.80 },
+  dye_cyan: { r: 0.09, g: 0.44, b: 0.44 },
+  dye_blue: { r: 0.24, g: 0.31, b: 0.71 },
+  dye_purple: { r: 0.54, g: 0.26, b: 0.68 },
+  dye_magenta: { r: 0.78, g: 0.29, b: 0.62 },
+  dye_pink: { r: 0.95, g: 0.55, b: 0.66 },
+  dye_white: { r: 0.96, g: 0.96, b: 0.96 },
+  dye_light_gray: { r: 0.62, g: 0.62, b: 0.62 },
+  dye_gray: { r: 0.28, g: 0.27, b: 0.27 },
+  dye_black: { r: 0.11, g: 0.11, b: 0.11 },
+  dye_brown: { r: 0.51, g: 0.33, b: 0.20 },
+};
+
+const DYE_TO_COLOR = {
+  "minecraft:red_dye": COLOR_PRESETS.dye_red,
+  "minecraft:orange_dye": COLOR_PRESETS.dye_orange,
+  "minecraft:yellow_dye": COLOR_PRESETS.dye_yellow,
+  "minecraft:lime_dye": COLOR_PRESETS.dye_lime,
+  "minecraft:green_dye": COLOR_PRESETS.dye_green,
+  "minecraft:light_blue_dye": COLOR_PRESETS.dye_light_blue,
+  "minecraft:cyan_dye": COLOR_PRESETS.dye_cyan,
+  "minecraft:blue_dye": COLOR_PRESETS.dye_blue,
+  "minecraft:purple_dye": COLOR_PRESETS.dye_purple,
+  "minecraft:magenta_dye": COLOR_PRESETS.dye_magenta,
+  "minecraft:pink_dye": COLOR_PRESETS.dye_pink,
+  "minecraft:white_dye": COLOR_PRESETS.dye_white,
+  "minecraft:light_gray_dye": COLOR_PRESETS.dye_light_gray,
+  "minecraft:gray_dye": COLOR_PRESETS.dye_gray,
+  "minecraft:black_dye": COLOR_PRESETS.dye_black,
+  "minecraft:brown_dye": COLOR_PRESETS.dye_brown,
 };
 
 const COLOR_NAMES = Object.keys(COLOR_PRESETS);
@@ -58,6 +94,7 @@ const CODE_TO_COLOR = {
   'p': COLOR_PRESETS.material_gold, 'q': COLOR_PRESETS.material_emerald,
   's': COLOR_PRESETS.material_diamond, 't': COLOR_PRESETS.material_lapis,
   'u': COLOR_PRESETS.material_amethyst, 'v': COLOR_PRESETS.material_resin,
+  'z': COLOR_PRESETS.glow,
 };
 
 const FLAG_WALL_SIGN_2 = "§W§A§L§L§S§I§G§N§2";
@@ -179,10 +216,11 @@ class TextParticleSystem {
 
   getCharWidth(char) { return CHAR_WIDTHS[char] || 1.0; }
 
-  getParticleForChar(char, facing) {
+  getParticleForChar(char, facing, glow = false) {
     const charData = CHAR_TO_PARTICLE[char];
     if (!charData) return null;
-    return charData[facing] || charData.north;
+    const baseId = charData[facing] || charData.north;
+    return glow ? baseId + '_glow' : baseId;
   }
 
   getPosKey(location) {
@@ -206,14 +244,12 @@ class TextParticleSystem {
   saveToBlock(block, textData) {
     if (!textData || !textData.blockLocation) return;
     try {
-      const colorStrings = [];
-      const colors = textData.lineColors || [];
-      for (let j = 0; j < colors.length; j++) colorStrings.push("white");
       const saveData = {
         lines: textData.lines || [],
-        lineColors: colorStrings,
         lineScales: textData.lineScales || [],
-        lineAligns: textData.lineAligns || []
+        lineAligns: textData.lineAligns || [],
+        glowing: textData.glowing || false,
+        dyeColor: textData.dyeColor || null
       };
       const jsonStr = JSON.stringify(saveData);
       const key = "fr:text_" + Math.floor(textData.blockLocation.x) + "_" + Math.floor(textData.blockLocation.y) + "_" + Math.floor(textData.blockLocation.z);
@@ -229,18 +265,40 @@ class TextParticleSystem {
       if (!savedJson) return null;
       const saveData = JSON.parse(savedJson);
       if (!saveData.lines || saveData.lines.length === 0) return null;
+      const lineCount = saveData.lines.length;
+      const defaultColor = block.typeId.includes("white_wall_sign") ? COLOR_PRESETS.black : COLOR_PRESETS.white;
+      const dyeColor = saveData.dyeColor ? { r: saveData.dyeColor.r, g: saveData.dyeColor.g, b: saveData.dyeColor.b } : null;
       const lineColors = [];
-      const savedColors = saveData.lineColors || [];
-      for (let i = 0; i < savedColors.length; i++) lineColors.push(COLOR_PRESETS[savedColors[i]] || COLOR_PRESETS.white);
+      for (let i = 0; i < lineCount; i++) lineColors.push(dyeColor || defaultColor);
       const lineScales = saveData.lineScales || [];
-      if (lineScales.length === 0) for (let i = 0; i < saveData.lines.length; i++) lineScales.push(1.0);
+      if (lineScales.length === 0) for (let i = 0; i < lineCount; i++) lineScales.push(1.0);
       const lineAligns = saveData.lineAligns || [];
-      if (lineAligns.length === 0) for (let i = 0; i < saveData.lines.length; i++) lineAligns.push('center');
-      return { lines: saveData.lines, lineColors, lineScales, lineAligns };
+      if (lineAligns.length === 0) for (let i = 0; i < lineCount; i++) lineAligns.push('center');
+      return { lines: saveData.lines, lineColors, lineScales, lineAligns, glowing: saveData.glowing || false, dyeColor };
     } catch (e) { return null; }
   }
 
-  spawnLineParticles(dimension, text, facing, scale, baseLocation, yOffset, defaultColor, align = 'center') {
+  toggleGlow(location, block, glowing) {
+    const posKey = this.getPosKey(location);
+    const textData = this.activeTexts.get(posKey);
+    if (!textData) return;
+    textData.glowing = glowing;
+    this.saveToBlock(block, textData);
+  }
+
+  setTextColor(location, block, color) {
+    const posKey = this.getPosKey(location);
+    const textData = this.activeTexts.get(posKey);
+    if (!textData) return false;
+    for (let i = 0; i < textData.lineColors.length; i++) {
+      textData.lineColors[i] = color;
+    }
+    textData.dyeColor = { r: color.r, g: color.g, b: color.b };
+    this.saveToBlock(block, textData);
+    return true;
+  }
+
+  spawnLineParticles(dimension, text, facing, scale, baseLocation, yOffset, defaultColor, align = 'center', glowing = false) {
     const segments = parseColoredText(text, defaultColor);
     const plainText = stripColorCodes(text);
     let totalWidth = 0;
@@ -256,11 +314,12 @@ class TextParticleSystem {
       const molangVars = new MolangVariableMap();
       molangVars.setColorRGB("color", { red: segment.color.r, green: segment.color.g, blue: segment.color.b });
       molangVars.setVector3("size", { x: scale, y: scale, z: 0 });
+      const segmentGlow = glowing || segment.color.emissive;
       for (let i = 0; i < segment.text.length; i++) {
         const char = segment.text[i];
         const charWidth = this.baseSpacing * this.getCharWidth(char) * scale;
         currentOffset += charWidth / 2;
-        const particleId = this.getParticleForChar(char, facing);
+        const particleId = this.getParticleForChar(char, facing, segmentGlow);
         if (particleId && char !== ' ') {
           let particlePos;
           switch (facing) {
@@ -280,7 +339,7 @@ class TextParticleSystem {
   spawnTextParticles(dimensionId, textData) {
     try {
       const dimension = world.getDimension(dimensionId.replace("minecraft:", ""));
-      const { lines, lineColors, lineScales, lineAligns, facing, scale, spawnLocation } = textData;
+      const { lines, lineColors, lineScales, lineAligns, facing, scale, spawnLocation, glowing } = textData;
       const lineCount = lines.length;
       let totalHeight = 0;
       for (let i = 0; i < lineCount - 1; i++) totalHeight += this.lineHeight * (lineScales?.[i] || scale);
@@ -289,7 +348,7 @@ class TextParticleSystem {
         const lineScale = lineScales?.[lineIndex] || scale;
         const color = lineColors[lineIndex] || COLOR_PRESETS.white;
         const align = lineAligns?.[lineIndex] || 'center';
-        this.spawnLineParticles(dimension, lines[lineIndex], facing, lineScale, spawnLocation, currentY, color, align);
+        this.spawnLineParticles(dimension, lines[lineIndex], facing, lineScale, spawnLocation, currentY, color, align, glowing);
         if (lineIndex < lineCount - 1) {
           const nextScale = lineScales?.[lineIndex + 1] || scale;
           currentY -= this.lineHeight * ((lineScale + nextScale) / 2);
@@ -302,6 +361,7 @@ class TextParticleSystem {
     let { scale = 1.0, facing = "north", color = COLOR_PRESETS.white, block = null } = options;
     if (block && block.typeId.includes("white_wall_sign") && color === COLOR_PRESETS.white) color = COLOR_PRESETS.black;
     const posKey = this.getPosKey(blockLocation);
+    const existingGlow = this.activeTexts.get(posKey)?.glowing || false;
     this.activeTexts.delete(posKey);
     let spawnLocation = { x: blockLocation.x + 0.5, y: blockLocation.y + 0.5, z: blockLocation.z + 0.5 };
     const offset = 0.9;
@@ -325,7 +385,8 @@ class TextParticleSystem {
 
     const textData = {
       lines: [text], lineColors: [color], lineScales: [scale], lineAligns: [options.align || 'center'],
-      facing, scale, spawnLocation, blockLocation: { ...blockLocation }, dimensionId: dimension.id
+      facing, scale, spawnLocation, blockLocation: { ...blockLocation }, dimensionId: dimension.id,
+      glowing: existingGlow
     };
     this.activeTexts.set(posKey, textData);
     this.spawnTextParticles(dimension.id, textData);
@@ -419,7 +480,9 @@ class TextParticleSystem {
       lines: savedData.lines, lineColors, lineScales: lineScales,
       lineAligns: savedData.lineAligns || savedData.lines.map(() => 'center'),
       facing, scale: fixedScale || savedData.lineScales[0] || 1.0, spawnLocation,
-      blockLocation: { ...block.location }, dimensionId: block.dimension.id
+      blockLocation: { ...block.location }, dimensionId: block.dimension.id,
+      glowing: savedData.glowing || false,
+      dyeColor: savedData.dyeColor || null
     };
     this.activeTexts.set(posKey, textData);
   }
@@ -472,19 +535,48 @@ function getMaxLinesForBlock(blockTypeId) {
   return 2;
 }
 
+function handleSignInteraction(player, block, showMenuFunc) {
+  textParticleSystem.restoreFromBlock(block);
+  const item = player.getComponent("equippable")?.getEquipment(EquipmentSlot.Mainhand);
+  if (!item) { showMenuFunc(player, block); return; }
+  
+  if (item.typeId === "minecraft:glow_ink_sac") {
+    textParticleSystem.toggleGlow(block.location, block, true);
+    player.sendMessage("§aSign is now glowing!");
+    return;
+  }
+  if (item.typeId === "minecraft:ink_sac") {
+    textParticleSystem.toggleGlow(block.location, block, false);
+    player.sendMessage("§7Sign glow removed.");
+    return;
+  }
+  
+  const dyeColor = DYE_TO_COLOR[item.typeId];
+  if (dyeColor) {
+    if (textParticleSystem.setTextColor(block.location, block, dyeColor)) {
+      player.sendMessage("§aText color changed!");
+    } else {
+      player.sendMessage("§cNo text to color. Write something first!");
+    }
+    return;
+  }
+  
+  showMenuFunc(player, block);
+}
+
 system.beforeEvents.startup.subscribe((initEvent) => {
   initEvent.blockComponentRegistry.registerCustomComponent('fr:text_display', {
     onPlayerInteract(event) {
       const { player, block } = event;
       if (!player || !block) return;
-      system.run(() => { textParticleSystem.restoreFromBlock(block); showTextMainMenu(player, block); });
+      system.run(() => handleSignInteraction(player, block, showTextMainMenu));
     }
   });
   initEvent.blockComponentRegistry.registerCustomComponent('fr:text_display_small', {
     onPlayerInteract(event) {
       const { player, block } = event;
       if (!player || !block) return;
-      system.run(() => { textParticleSystem.restoreFromBlock(block); showTextMainMenuSmall(player, block); });
+      system.run(() => handleSignInteraction(player, block, showTextMainMenuSmall));
     }
   });
 });

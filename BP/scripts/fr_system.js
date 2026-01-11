@@ -34,6 +34,7 @@ import 'updateBlock'
 import 'faz_tab_system'
 import 'advanced_wall'
 import 'text_particle_system'
+// import 'block_data_view'
 
 import {
     adjustTextLength, dynamicToast, ACTIONBAR_CUSTOM_STYLE, customActionbar,

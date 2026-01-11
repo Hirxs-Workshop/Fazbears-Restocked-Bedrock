@@ -33,28 +33,12 @@
 				}
 			},
 			"minecraft:collision_box": {
-				"origin": [
-					-8,
-					0,
-					-8
-				],
-				"size": [
-					16,
-					16,
-					16
-				]
+				"origin": [-8, 0, 6],
+				"size": [16, 16, 2]
 			},
 			"minecraft:selection_box": {
-				"origin": [
-					-8,
-					0,
-					-8
-				],
-				"size": [
-					16,
-					16,
-					16
-				]
+				"origin": [-8, 0, 6],
+				"size": [16, 16, 2]
 			}
 		},
 		"permutations": [

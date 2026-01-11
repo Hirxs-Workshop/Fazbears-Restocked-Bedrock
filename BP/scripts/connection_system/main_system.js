@@ -1,4 +1,4 @@
-﻿﻿/**
+﻿﻿﻿﻿/**
  * FAZBEAR'S RESTOCKED - BEDROCK
  * §2025
  * 
@@ -15,6 +15,7 @@ import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/serve
 import { dynamicToast, dynamicToastEvent, cleanupLampVfxEntitiesOnReload, getLinePoints, turnOffLight, lampVfxEntities } from "./utils.js";
 import { LIGHT_TYPES, SWITCH_TYPES, GENERATOR_TYPES, LIGHT_ALIASES, SWITCH_ALIASES, GENERATOR_ALIASES, LIGHT_ICONS, SWITCH_ICONS, GENERATOR_ICONS, CONNECTIONS_KEY, GENERATORS_KEY, MAX_ENERGY, DEFAULT_CONSUMPTION_RATE, CONSUMPTION_MULTIPLIER, NEAR_DISTANCE, getAllLightTypes, getAllSwitchTypes, isLightType, isSwitchType, getBlockAlias, getBlockIcon, DOOR_BUTTON_GENERATOR_LINKS_KEY, getVfxEntityForLight } from "./connection_types.js";
 import { isPlayerInCamera } from "../camera_system/security_camera_system.js";
+import { getChunkedData, setChunkedData, initializeStorage, STORAGE_KEYS } from "./chunked_storage.js";
 
 const DEFAULT_SWITCH_LIMIT = 15;
 const DEFAULT_GENERATOR_LIMIT = 40;
@@ -36,7 +37,7 @@ export function setGeneratorLimit(value) {
 }
 
 import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType, registerCleanupHandler } from "./selection_manager.js";
-import { getGeneratorLinkedDoorButtons, getDoorButtonConnections, removeDoorButtonGeneratorLink, openConnectedDoors, isLightConnectedToDoorButton } from './door_buttons.js'
+import { getGeneratorLinkedDoorButtons, getDoorButtonConnections, removeDoorButtonGeneratorLink, openConnectedDoors, isLightConnectedToDoorButton, clearDoorButtonVfxCache } from './door_buttons.js'
 
 let selections = {};
 
@@ -91,6 +92,7 @@ export function hasSwitchSelection(playerId) {
 }
 
 cleanupLampVfxEntitiesOnReload();
+clearDoorButtonVfxCache();
 
 function clearAllHudsOnReload() {
   for (const key in selections) {
@@ -130,13 +132,59 @@ system.runTimeout(() => {
   } catch { }
 }, 20);
 
-let __memConnectionsES = [];
-let __memGeneratorsES = [];
-
 system.afterEvents.scriptEventReceive.subscribe((data) => {
   const { id, sourceEntity, message } = data;
   if (id === 'cn:main') {
     sourceEntity.sendMessage(dynamicToastEvent(message));
+  }
+  if (id === 'fr:debug_connections' && sourceEntity) {
+    const doorButtonConns = getDoorButtonConnections();
+    const switchConns = getConnections();
+    sourceEntity.sendMessage(`§e=== Door Button Connections (${doorButtonConns.length}) ===`);
+    doorButtonConns.slice(0, 10).forEach((conn, i) => {
+      const lightData = conn.lightBlock || conn.officeLightBlock;
+      if (lightData) {
+        sourceEntity.sendMessage(`§7[${i}] Light: ${lightData.x},${lightData.y},${lightData.z}`);
+      }
+    });
+    if (doorButtonConns.length > 10) sourceEntity.sendMessage(`§7... and ${doorButtonConns.length - 10} more`);
+    sourceEntity.sendMessage(`§e=== Switch/Generator Connections (${switchConns.length}) ===`);
+    switchConns.slice(0, 10).forEach((conn, i) => {
+      sourceEntity.sendMessage(`§7[${i}] Light: ${conn.light.x},${conn.light.y},${conn.light.z}`);
+    });
+    if (switchConns.length > 10) sourceEntity.sendMessage(`§7... and ${switchConns.length - 10} more`);
+  }
+  if (id === 'fr:check_light' && sourceEntity) {
+    const parts = message.split(' ');
+    if (parts.length >= 3) {
+      const x = parseInt(parts[0]), y = parseInt(parts[1]), z = parseInt(parts[2]);
+      const dimId = sourceEntity.dimension.id;
+      const doorButtonConns = getDoorButtonConnections();
+      const found = doorButtonConns.find(conn => {
+        const lightData = conn.lightBlock || conn.officeLightBlock;
+        return lightData && lightData.x === x && lightData.y === y && lightData.z === z && lightData.dimensionId === dimId;
+      });
+      if (found) {
+        sourceEntity.sendMessage(`§c[FOUND] Light at ${x},${y},${z} IS connected to door button at ${found.doorBlock.x},${found.doorBlock.y},${found.doorBlock.z}`);
+      } else {
+        sourceEntity.sendMessage(`§a[OK] Light at ${x},${y},${z} is NOT connected to any door button`);
+      }
+    }
+  }
+  if (id === 'fr:clear_door_button_conn' && sourceEntity) {
+    const parts = message.split(' ');
+    if (parts.length >= 3) {
+      const x = parseInt(parts[0]), y = parseInt(parts[1]), z = parseInt(parts[2]);
+      const dimId = sourceEntity.dimension.id;
+      let doorButtonConns = getDoorButtonConnections();
+      const before = doorButtonConns.length;
+      doorButtonConns = doorButtonConns.filter(conn => {
+        const lightData = conn.lightBlock || conn.officeLightBlock;
+        return !(lightData && lightData.x === x && lightData.y === y && lightData.z === z && lightData.dimensionId === dimId);
+      });
+      setChunkedData(STORAGE_KEYS.DOOR_BUTTON_CONNECTIONS, doorButtonConns);
+      sourceEntity.sendMessage(`§aRemoved ${before - doorButtonConns.length} connection(s) for light at ${x},${y},${z}`);
+    }
   }
   if (id === 'fr:show_generator_hud') {
     const parts = message.split(' ');
@@ -166,53 +214,8 @@ system.afterEvents.scriptEventReceive.subscribe((data) => {
   }
 });
 
-function getConnections() {
-  try {
-    const chunkCount = world.getDynamicProperty(`${CONNECTIONS_KEY}_count`);
-    if (chunkCount !== undefined && chunkCount > 0) {
-      let fullJson = "";
-      for (let i = 0; i < chunkCount; i++) {
-        const chunk = world.getDynamicProperty(`${CONNECTIONS_KEY}_${i}`);
-        if (chunk) fullJson += chunk;
-      }
-      return JSON.parse(fullJson);
-    }
-    const json = world.getDynamicProperty(CONNECTIONS_KEY);
-    return json ? JSON.parse(json) : [];
-  } catch (e) {
-    return __memConnectionsES;
-  }
-}
-
-function setConnections(connections) {
-  try {
-    const fullJson = JSON.stringify(connections);
-    const CHUNK_SIZE = 30000;
-
-    const chunks = [];
-    for (let i = 0; i < fullJson.length; i += CHUNK_SIZE) {
-      chunks.push(fullJson.substring(i, i + CHUNK_SIZE));
-    }
-
-    const oldChunkCount = world.getDynamicProperty(`${CONNECTIONS_KEY}_count`) || 0;
-
-    for (let i = 0; i < chunks.length; i++) {
-      world.setDynamicProperty(`${CONNECTIONS_KEY}_${i}`, chunks[i]);
-    }
-
-    world.setDynamicProperty(`${CONNECTIONS_KEY}_count`, chunks.length);
-
-    for (let i = chunks.length; i < oldChunkCount; i++) {
-      world.setDynamicProperty(`${CONNECTIONS_KEY}_${i}`, undefined);
-    }
-
-    if (world.getDynamicProperty(CONNECTIONS_KEY) !== undefined) {
-      world.setDynamicProperty(CONNECTIONS_KEY, undefined);
-    }
-  } catch (e) {
-    __memConnectionsES = connections;
-  }
-}
+const getConnections = () => getChunkedData(STORAGE_KEYS.SWITCH_CONNECTIONS);
+const setConnections = (connections) => setChunkedData(STORAGE_KEYS.SWITCH_CONNECTIONS, connections);
 
 
 export function isLightConnectedToSwitch(lightPos, dimensionId) {
@@ -223,24 +226,6 @@ export function isLightConnectedToSwitch(lightPos, dimensionId) {
     conn.light.z === lightPos.z &&
     conn.light.dimensionId === dimensionId
   );
-}
-
-
-function isLightConnectedToDoorButton(lightPos, dimensionId) {
-  try {
-    const json = world.getDynamicProperty("connections");
-    const doorButtonConnections = json ? JSON.parse(json) : [];
-    return doorButtonConnections.some(conn => {
-      const lightData = conn.lightBlock || conn.officeLightBlock;
-      return lightData &&
-        lightData.x === lightPos.x &&
-        lightData.y === lightPos.y &&
-        lightData.z === lightPos.z &&
-        lightData.dimensionId === dimensionId;
-    });
-  } catch {
-    return false;
-  }
 }
 
 
@@ -330,53 +315,8 @@ function cleanupOrphanedGenerators() {
     setGenerators(generators);
   }
 }
-function getGenerators() {
-  try {
-    const chunkCount = world.getDynamicProperty(`${GENERATORS_KEY}_count`);
-    if (chunkCount !== undefined && chunkCount > 0) {
-      let fullJson = "";
-      for (let i = 0; i < chunkCount; i++) {
-        const chunk = world.getDynamicProperty(`${GENERATORS_KEY}_${i}`);
-        if (chunk) fullJson += chunk;
-      }
-      return JSON.parse(fullJson);
-    }
-    const json = world.getDynamicProperty(GENERATORS_KEY);
-    return json ? JSON.parse(json) : [];
-  } catch {
-    return __memGeneratorsES;
-  }
-}
-
-function setGenerators(generators) {
-  try {
-    const fullJson = JSON.stringify(generators);
-    const CHUNK_SIZE = 30000;
-
-    const chunks = [];
-    for (let i = 0; i < fullJson.length; i += CHUNK_SIZE) {
-      chunks.push(fullJson.substring(i, i + CHUNK_SIZE));
-    }
-
-    const oldChunkCount = world.getDynamicProperty(`${GENERATORS_KEY}_count`) || 0;
-
-    for (let i = 0; i < chunks.length; i++) {
-      world.setDynamicProperty(`${GENERATORS_KEY}_${i}`, chunks[i]);
-    }
-
-    world.setDynamicProperty(`${GENERATORS_KEY}_count`, chunks.length);
-
-    for (let i = chunks.length; i < oldChunkCount; i++) {
-      world.setDynamicProperty(`${GENERATORS_KEY}_${i}`, undefined);
-    }
-
-    if (world.getDynamicProperty(GENERATORS_KEY) !== undefined) {
-      world.setDynamicProperty(GENERATORS_KEY, undefined);
-    }
-  } catch {
-    __memGeneratorsES = generators;
-  }
-}
+const getGenerators = () => getChunkedData(STORAGE_KEYS.GENERATORS);
+const setGenerators = (generators) => setChunkedData(STORAGE_KEYS.GENERATORS, generators);
 
 export function setGeneratorDrainRate(x, y, z, dimensionId, rate) {
   const blockPos = { x, y, z, dimensionId };
@@ -1049,7 +989,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
           if (isSwitchType(sourceBlock.typeId)) {
           } else if (GENERATOR_TYPES.has(sourceBlock.typeId)) {
             const generatorData = getGeneratorAt(source);
-            allowedRadius = generatorData ? (generatorData.radius || 32) : 32;
+            allowedRadius = generatorData ? (generatorData.radius || 8) : 8;
           }
         }
         if (blockPos.dimensionId !== source.dimensionId) {
@@ -1142,7 +1082,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
           player.sendMessage(dynamicToast("§l§qSUCCESS", "§qConnection established (Off)", "textures/fr_ui/approve_icon", "textures/fr_ui/approve_ui"));
         }
       } else {
-        player.sendMessage(dynamicToast("§l§6INFO", "§6Select a Switch or Generator first", "textures/fr_ui/selection_icon", "textures/fr_ui/selection_ui"));
+        player.sendMessage(dynamicToast("§l§9INFO", "§9Select a Switch or Generator first", "textures/fr_ui/selection_icon", "textures/fr_ui/selection_ui"));
       }
     }
   }
@@ -1360,9 +1300,16 @@ system.runInterval(() => {
             const vfxEntityType = getVfxEntityForLight(lightBlock.typeId);
 
             if (lightBlock.typeId === "fr:stage_spotlight") {
-              const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
-              const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
-              const angle = angles[rotationState];
+              const blockFace = lightBlock.permutation.getState("minecraft:block_face") || "down";
+              let angle;
+              if (blockFace === "down") {
+                const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
+                const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
+                angle = angles[rotationState];
+              } else {
+                const faceAngles = { north: 180, east: 270, south: 0, west: 90 };
+                angle = faceAngles[blockFace] ?? 0;
+              }
               dimension.runCommand(`summon ${vfxEntityType} ${location.x} ${location.y} ${location.z} ${angle} 0`);
               const blockColor = lightBlock.permutation.getState("fr:color") ?? 4;
               const spawnedEntities = dimension.getEntities({ type: vfxEntityType, location: location, maxDistance: 0.5 });
@@ -1925,7 +1872,7 @@ function updateLightTestActionBarForPlayer(player) {
       if (GENERATOR_TYPES.has(block.typeId)) {
         const generatorData = getGeneratorAt(blockPos);
         const energyInfo = generatorData ? generatorData.energy : "N/A";
-        const radiusInfo = generatorData ? (generatorData.radius || 32) : 32;
+        const radiusInfo = generatorData ? (generatorData.radius || 8) : 8;
         message = `${blockName}\n?§p Energy: ${energyInfo}/500§r\n?§7 Connections: ${connectionsText}\n?§7 Radius: ${radiusInfo}${selectionHint}`;
       } else {
         message = `${blockName}\n?§7 Connections: ${connectionsText}${selectionHint}`;
@@ -1959,7 +1906,7 @@ function updateLightTestActionBarForPlayer(player) {
           if (GENERATOR_TYPES.has(selectedBlock.typeId)) {
             const generatorData = getGeneratorAt(selPos);
             const energyInfo = generatorData ? generatorData.energy : "N/A";
-            const radiusInfo = generatorData ? (generatorData.radius || 32) : 32;
+            const radiusInfo = generatorData ? (generatorData.radius || 8) : 8;
             selectedMessage += `\n?§p Energy: ${energyInfo}/500§r`;
             selectedMessage += `\n?§7 Radius: ${radiusInfo}`;
           }

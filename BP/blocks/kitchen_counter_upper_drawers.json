@@ -46,7 +46,7 @@
 				"condition": "q.block_state('fr:drawer_state') == 'closed'",
 				"components": {
 					"minecraft:geometry": {
-						"identifier": "geometry.kitchencounter_upper_drawers",
+						"identifier": "geometry.kitchen_counter_upper_drawers",
 						"bone_visibility": {
 							"open": false,
 							"closed": true
@@ -58,7 +58,7 @@
 				"condition": "q.block_state('fr:drawer_state') == 'open'",
 				"components": {
 					"minecraft:geometry": {
-						"identifier": "geometry.kitchencounter_upper_drawers",
+						"identifier": "geometry.kitchen_counter_upper_drawers",
 						"bone_visibility": {
 							"open": true,
 							"closed": false

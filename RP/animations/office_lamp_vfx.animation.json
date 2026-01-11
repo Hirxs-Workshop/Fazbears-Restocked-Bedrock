@@ -8,6 +8,14 @@
 					"rotation": ["q.camera_rotation(0)*0", "q.body_y_rotation+q.rotation_to_camera(1)", 0]
 				}
 			}
+		},
+		"animation.spotlight_vfx.fixed": {
+			"loop": true,
+			"bones": {
+				"bone": {
+					"rotation": [0, 0, 0]
+				}
+			}
 		}
 	}
 }

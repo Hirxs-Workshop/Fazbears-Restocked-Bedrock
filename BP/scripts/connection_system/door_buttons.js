@@ -14,10 +14,15 @@ import { dynamicToast } from "./utils.js";
 import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType } from "./selection_manager.js";
 import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY, DOOR_BUTTON_GENERATOR_LINKS_KEY, GENERATORS_KEY, getVfxEntityForLight } from "./connection_types.js";
 import { getGeneratorLimit, getSwitchConnections } from "./main_system.js";
+import { getChunkedData, setChunkedData, initializeStorage, STORAGE_KEYS } from "./chunked_storage.js";
 import * as FRAPI from "../fr_api.js";
 
 const ANIMATION_DELAY_TICKS = 2;
-const hallwayLampVfxEntities = {};
+let hallwayLampVfxEntities = {};
+
+export function clearDoorButtonVfxCache() {
+  hallwayLampVfxEntities = {};
+}
 
 const DEFAULT_DOOR_BUTTON_LIMIT = 5;
 
@@ -31,68 +36,16 @@ export function setDoorButtonLimit(value) {
 
 
 
-let __memConnections = [];
-let __memWoodenDoorClaims = [];
-
 system.beforeEvents.startup.subscribe(() => {
   try {
-    if (!world.getDynamicProperty("connections")) {
-      world.setDynamicProperty("connections", JSON.stringify([]));
-    }
-    if (!world.getDynamicProperty("woodenDoorClaims")) {
-      world.setDynamicProperty("woodenDoorClaims", JSON.stringify([]));
-    }
+    initializeStorage(STORAGE_KEYS.DOOR_BUTTON_CONNECTIONS);
+    initializeStorage(STORAGE_KEYS.WOODEN_DOOR_CLAIMS);
   } catch { }
   selectedDoorButton.clear();
 });
 
-const getConnections = () => {
-  try {
-    const chunkCount = world.getDynamicProperty("connections_count");
-    if (chunkCount !== undefined && chunkCount > 0) {
-      let fullJson = "";
-      for (let i = 0; i < chunkCount; i++) {
-        const chunk = world.getDynamicProperty(`connections_${i}`);
-        if (chunk) fullJson += chunk;
-      }
-      return JSON.parse(fullJson);
-    }
-    const data = world.getDynamicProperty("connections");
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return __memConnections;
-  }
-};
-
-const setConnections = (connections) => {
-  try {
-    const fullJson = JSON.stringify(connections);
-    const CHUNK_SIZE = 30000;
-
-    const chunks = [];
-    for (let i = 0; i < fullJson.length; i += CHUNK_SIZE) {
-      chunks.push(fullJson.substring(i, i + CHUNK_SIZE));
-    }
-
-    const oldChunkCount = world.getDynamicProperty("connections_count") || 0;
-
-    for (let i = 0; i < chunks.length; i++) {
-      world.setDynamicProperty(`connections_${i}`, chunks[i]);
-    }
-
-    world.setDynamicProperty("connections_count", chunks.length);
-
-    for (let i = chunks.length; i < oldChunkCount; i++) {
-      world.setDynamicProperty(`connections_${i}`, undefined);
-    }
-
-    if (world.getDynamicProperty("connections") !== undefined) {
-      world.setDynamicProperty("connections", undefined);
-    }
-  } catch {
-    __memConnections = connections;
-  }
-};
+const getConnections = () => getChunkedData(STORAGE_KEYS.DOOR_BUTTON_CONNECTIONS);
+const setConnections = (connections) => setChunkedData(STORAGE_KEYS.DOOR_BUTTON_CONNECTIONS, connections);
 
 
 export function isLightConnectedToDoorButton(lightPos, dimensionId) {
@@ -109,39 +62,18 @@ export function isLightConnectedToDoorButton(lightPos, dimensionId) {
 
 
 function isLightConnectedToSwitch(lightPos, dimensionId) {
-  try {
-    const json = world.getDynamicProperty(CONNECTIONS_KEY);
-    const switchConnections = json ? JSON.parse(json) : [];
-    return switchConnections.some(conn =>
-      conn.light &&
-      conn.light.x === lightPos.x &&
-      conn.light.y === lightPos.y &&
-      conn.light.z === lightPos.z &&
-      conn.light.dimensionId === dimensionId
-    );
-  } catch {
-    return false;
-  }
+  const switchConnections = getChunkedData(STORAGE_KEYS.SWITCH_CONNECTIONS);
+  return switchConnections.some(conn =>
+    conn.light &&
+    conn.light.x === lightPos.x &&
+    conn.light.y === lightPos.y &&
+    conn.light.z === lightPos.z &&
+    conn.light.dimensionId === dimensionId
+  );
 }
 
-let __memDoorButtonGeneratorLinks = [];
-
-export function getDoorButtonGeneratorLinks() {
-  try {
-    const data = world.getDynamicProperty(DOOR_BUTTON_GENERATOR_LINKS_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return __memDoorButtonGeneratorLinks;
-  }
-}
-
-export function setDoorButtonGeneratorLinks(links) {
-  try {
-    world.setDynamicProperty(DOOR_BUTTON_GENERATOR_LINKS_KEY, JSON.stringify(links));
-  } catch {
-    __memDoorButtonGeneratorLinks = links;
-  }
-}
+export const getDoorButtonGeneratorLinks = () => getChunkedData(STORAGE_KEYS.DOOR_BUTTON_GENERATOR_LINKS);
+export const setDoorButtonGeneratorLinks = (links) => setChunkedData(STORAGE_KEYS.DOOR_BUTTON_GENERATOR_LINKS, links);
 
 export function addDoorButtonGeneratorLink(link) {
   const links = getDoorButtonGeneratorLinks();
@@ -583,9 +515,16 @@ function syncLightState(block, dimension, player) {
           try {
 
             if (lightTypeId === "fr:stage_spotlight") {
-              const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
-              const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
-              const angle = angles[rotationState];
+              const blockFace = lightBlock.permutation.getState("minecraft:block_face") || "down";
+              let angle;
+              if (blockFace === "down") {
+                const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
+                const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
+                angle = angles[rotationState];
+              } else {
+                const faceAngles = { north: 180, east: 270, south: 0, west: 90 };
+                angle = faceAngles[blockFace] ?? 0;
+              }
               dimension.runCommand(`summon fr:stage_spotlight_vfx ${location.x} ${location.y} ${location.z} ${angle} 0`);
               const blockColor = lightBlock.permutation.getState("fr:color") ?? 4;
               const spawnedEntities = dimension.getEntities({

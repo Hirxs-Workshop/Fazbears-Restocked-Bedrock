@@ -616,17 +616,17 @@ registerChainedVariantBlock("fr:shelf_supply_closet");
 registerBlockVariants("fr:text_display_block", [
   {
     label: "Center",
-    icon: "textures/blocks/reworked/black_wall_sign",
+    icon: "textures/fr_ui/black_wall_sign",
     color: "gray"
   },
   {
     label: "Side 1",
-    icon: "textures/blocks/reworked/black_wall_sign",
+    icon: "textures/fr_ui/black_wall_sign",
     color: "gray"
   },
   {
     label: "Side 2",
-    icon: "textures/blocks/reworked/black_wall_sign",
+    icon: "textures/fr_ui/black_wall_sign",
     color: "gray"
   }
 ]);
@@ -634,17 +634,17 @@ registerBlockVariants("fr:text_display_block", [
 registerBlockVariants("fr:black_wall_sign_small", [
   {
     label: "Center",
-    icon: "textures/blocks/reworked/black_wall_sign_small",
+    icon: "textures/fr_ui/black_wall_sign_small",
     color: "gray"
   },
   {
     label: "Side 1",
-    icon: "textures/blocks/reworked/black_wall_sign_small",
+    icon: "textures/fr_ui/black_wall_sign_small",
     color: "gray"
   },
   {
     label: "Side 2",
-    icon: "textures/blocks/reworked/black_wall_sign_small",
+    icon: "textures/fr_ui/black_wall_sign_small",
     color: "gray"
   }
 ]);
@@ -652,68 +652,157 @@ registerBlockVariants("fr:black_wall_sign_small", [
 registerBlockVariants("fr:white_wall_sign", [
   {
     label: "Center",
-    icon: "textures/blocks/reworked/white_wall_sign",
-    color: "white"
+    icon: "textures/fr_ui/white_wall_sign",
+    color: "gray"
   },
   {
     label: "Side 1",
-    icon: "textures/blocks/reworked/white_wall_sign",
-    color: "white"
+    icon: "textures/fr_ui/white_wall_sign",
+    color: "gray"
   },
   {
     label: "Side 2",
-    icon: "textures/blocks/reworked/white_wall_sign",
-    color: "white"
+    icon: "textures/fr_ui/white_wall_sign",
+    color: "gray"
   }
 ]);
 
 registerBlockVariants("fr:white_wall_sign_small", [
   {
     label: "Center",
-    icon: "textures/blocks/reworked/white_wall_sign_small",
-    color: "white"
+    icon: "textures/fr_ui/white_wall_sign_small",
+    color: "gray"
   },
   {
     label: "Side 1",
-    icon: "textures/blocks/reworked/white_wall_sign_small",
-    color: "white"
+    icon: "textures/fr_ui/white_wall_sign_small",
+    color: "gray"
   },
   {
     label: "Side 2",
-    icon: "textures/blocks/reworked/white_wall_sign_small",
-    color: "white"
+    icon: "textures/fr_ui/white_wall_sign_small",
+    color: "gray"
   }
 ]);
 
 registerBlockVariants("fr:arcade_stool", [
   {
     label: "Blue",
-    icon: "textures/blocks/reworked/arcade_stool_blue",
+    icon: "textures/fr_ui/icons/arcade_stool_blue",
     color: "blue"
   },
   {
     label: "Green",
-    icon: "textures/blocks/reworked/arcade_stool_green",
+    icon: "textures/fr_ui/icons/arcade_stool_green",
     color: "green"
   },
   {
     label: "Orange",
-    icon: "textures/blocks/reworked/arcade_stool_orange",
+    icon: "textures/fr_ui/icons/arcade_stool_orange",
     color: "orange"
   },
   {
     label: "Purple",
-    icon: "textures/blocks/reworked/arcade_stool_purple",
+    icon: "textures/fr_ui/icons/arcade_stool_purple",
     color: "purple"
   },
   {
     label: "Red",
-    icon: "textures/blocks/reworked/arcade_stool_red",
+    icon: "textures/fr_ui/icons/arcade_stool_red",
     color: "red"
   },
   {
     label: "Yellow",
-    icon: "textures/blocks/reworked/arcade_stool_yellow",
+    icon: "textures/fr_ui/icons/arcade_stool_yellow",
+    color: "yellow"
+  }
+]);
+
+registerBlockVariants("fr:small_gifts", [
+  {
+    label: "ITP Style",
+    icon: "textures/fr_ui/icons/small_gifts_var_1",
+    color: "blue"
+  },
+  {
+    label: "Cam8 Style",
+    icon: "textures/fr_ui/icons/small_gifts_var_2",
+    color: "purple"
+  }
+]);
+
+registerBlockVariants("fr:gift", [
+  {
+    label: "Blue",
+    icon: "textures/fr_ui/icons/gift_blue",
+    color: "blue"
+  },
+  {
+    label: "Green",
+    icon: "textures/fr_ui/icons/gift_green",
+    color: "green"
+  },
+  {
+    label: "Green & Red",
+    icon: "textures/fr_ui/icons/gift_greenred",
+    color: "green"
+  },
+  {
+    label: "Orange",
+    icon: "textures/fr_ui/icons/gift_orange",
+    color: "orange"
+  },
+  {
+    label: "Purple",
+    icon: "textures/fr_ui/icons/gift_purple",
+    color: "purple"
+  },
+  {
+    label: "Red",
+    icon: "textures/fr_ui/icons/gift_red",
+    color: "red"
+  },
+  {
+    label: "Yellow",
+    icon: "textures/fr_ui/icons/gift_yellow",
+    color: "yellow"
+  }
+]);
+
+registerBlockVariants("fr:small_gift", [
+  {
+    label: "Blue",
+    icon: "textures/fr_ui/icons/small_gift_blue",
+    color: "blue"
+  },
+  {
+    label: "Green",
+    icon: "textures/fr_ui/icons/small_gift_green",
+    color: "green"
+  },
+  {
+    label: "Green & Red",
+    icon: "textures/fr_ui/icons/small_gift_greenred",
+    color: "green"
+  },
+  {
+    label: "Orange",
+    icon: "textures/fr_ui/icons/small_gift_orange",
+    color: "orange"
+  },
+  {
+    label: "Purple",
+    icon: "textures/fr_ui/icons/small_gift_purple",
+    color: "purple"
+  },
+  {
+    label: "Red",
+    icon: "textures/fr_ui/icons/small_gift_red",
+    color: "red"
+  },
+  {
+    label: "Yellow",
+    icon: "textures/fr_ui/icons/small_gift_yellow",
     color: "yellow"
   }
 ]);
