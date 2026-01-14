@@ -38,31 +38,31 @@
 		"permutations": [			
 			{
 				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
-				"components":{
-					"minecraft:transformation": {"rotation": [0, 180, 0]}
-				}
-			},
-			{
-				"condition":"q.block_state('minecraft:cardinal_direction') == 'south'",
 				"components": {
-					"minecraft:transformation": {"rotation": [0, -90, 0]}
+					"minecraft:transformation": { "rotation": [0, 180, 0] }
 				}
 			},
 			{
-				"condition":"q.block_state('minecraft:cardinal_direction') == 'east'",
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
 				"components": {
-					"minecraft:transformation": {"rotation": [0, 0, 0]}
+					"minecraft:transformation": { "rotation": [0, -90, 0] }
 				}
 			},
 			{
-				"condition":"q.block_state('minecraft:cardinal_direction') == 'west'",
-				"components":{
-					"minecraft:transformation":{"rotation":[0, 90, 0]}
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 0, 0] }
 				}
 			},
-		    {
+			{
+				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": { "rotation": [0, 90, 0] }
+				}
+			},
+			{
 				"condition": "q.block_state('fr:placed') == 0",
-				"components":{
+				"components": {
 					"minecraft:geometry": { "identifier": "geometry.inv_cube" }
 				}
 			}

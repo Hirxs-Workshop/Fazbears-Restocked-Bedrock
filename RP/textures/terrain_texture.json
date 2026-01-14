@@ -2555,13 +2555,43 @@
             ]
         },
         "tinfly_dev_plush": {
-                        "textures": [
+                "textures": [
                 "textures/blocks/reworked/dev/tinfly_dev_plush"
             ]
         },
         "kitchencounter_upper_drawers": {
             "textures": [
                 "textures/blocks/reworked/kitchen/kitchencounter_upper_drawers"
+            ]
+        },
+        "plunger": {
+            "textures": [
+                "textures/blocks/reworked/plunger_texture"
+            ]
+        },
+        "xeno_neo_dev_plush":{
+            "textures": [
+                "textures/blocks/reworked/dev/xeno_neo_dev_plush"
+            ]
+        },
+        "fnafmovie_thankyoubin": {
+            "textures": [
+                "textures/blocks/reworked/fnafmovie_thankyoubin"
+            ]
+        },
+        "condiment_case": {
+            "textures": [
+                "textures/blocks/reworked/kitchen/condiment_case"
+            ]
+        },
+        "iron_rack_for_freezer": {
+            "textures": [
+                "textures/blocks/reworked/kitchen/iron rack for freezer"
+            ]
+        },
+        "cutting_board": {
+            "textures": [
+                "textures/blocks/reworked/kitchen/cutting_board"
             ]
         }
     }

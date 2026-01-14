@@ -2,13 +2,9 @@
 	"format_version": "1.21.0",
 	"minecraft:block": {
 		"description": {
-			"identifier": "fr:warden45e_dev_plush",
+			"identifier": "fr:fnafmovie_thankyoubin",
 			"menu_category": {
 				"category": "construction"
-			},
-			"states": {
-				"fr:placed": [1, 0],
-				"fr:is_placed_on": ["full", "box", "medium_box", "chair"]
 			},
 			"traits": {
 				"minecraft:placement_direction": {
@@ -19,25 +15,15 @@
 			}
 		},
 		"components": {
-			"minecraft:geometry":{
-				"identifier":"geometry.warden45e_dev_plush"
-			},
+			"minecraft:geometry": "geometry.fnafmovie_thankyoubin",
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "warden_dev_plush",
+					"texture": "fnafmovie_thankyoubin",
 					"render_method": "alpha_test"
 				}
-			},
-			"minecraft:selection_box":{
-				"origin":[-5.5, 0, -4.5],
-				"size":[11, 16, 9]
-			},
-			"minecraft:collision_box":{
-				"origin": [-5.5, 0, -4.5],
-				"size":[11, 16, 9]
 			}
 		},
-		"permutations": [			
+		"permutations": [
 			{
 				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
 				"components": {
@@ -60,12 +46,6 @@
 				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
 				"components": {
 					"minecraft:transformation": { "rotation": [0, 90, 0] }
-				}
-			},
-			{
-				"condition": "q.block_state('fr:placed') == 0",
-				"components": {
-					"minecraft:geometry": { "identifier": "geometry.inv_cube" }
 				}
 			}
 		]

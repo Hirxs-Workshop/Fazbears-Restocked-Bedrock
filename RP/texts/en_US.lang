@@ -454,6 +454,11 @@ tile.fr:stage_sun.name=Stage Sun
 item.fr:restroom_stall_door=Restroom Stall Door
 tile.fr:vending_machine.name=Vending Machine
 tile.fr:office_window.name=§E§M§P§L§O§Y§E§EOffice Window
+tile.fr:plunger.name=Plunger
+tile.fr:fnafmovie_thankyoubin.name=Thank You Bin
+tile.fr:condiment_case.name=Condiment Case
+tiles.fr:iron_rack_for_freezer.name=Iron rack For freezer
+tile.fr:cutting_board.name=Cutting Board
 
 entity.fr:backstage_door.name=Backstage Door
 entity.fr:blank_door.name=Blank Door
@@ -518,6 +523,7 @@ tile.fr:kris_dev_plush.name=Kris Dev Plush
 tile.fr:mansam_plush.name=Mansam Plush
 tile.fr:polar_dev_plush.name=Polar Dev Plush
 tile.fr:sgt_dev_plush.name=Sgt Dev Plush
+tile.fr:xeno_neo_dev_plush.name=✧Xeno Neo✧ Dev Plush
 
 ## Carpets (FNaF Movie)
 tile.fr:carpet_blue.name=Carpet Blue
