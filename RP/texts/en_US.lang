@@ -457,7 +457,7 @@ tile.fr:office_window.name=§E§M§P§L§O§Y§E§EOffice Window
 tile.fr:plunger.name=Plunger
 tile.fr:fnafmovie_thankyoubin.name=Thank You Bin
 tile.fr:condiment_case.name=Condiment Case
-tiles.fr:iron_rack_for_freezer.name=Iron rack For freezer
+tile.fr:iron_rack_for_freezer.name=Iron rack For freezer
 tile.fr:cutting_board.name=Cutting Board
 
 entity.fr:backstage_door.name=Backstage Door
