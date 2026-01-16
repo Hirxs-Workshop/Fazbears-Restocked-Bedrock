@@ -1,7 +1,7 @@
 {
 	"format_version": "1.10.0",
 	"animation_controllers": {
-		"controller.animation.bridge_sofa.execute_commands": {
+		"controller.animation.bridge_freddy.execute_commands": {
 			"states": {
 				"default": {
 					"transitions": [

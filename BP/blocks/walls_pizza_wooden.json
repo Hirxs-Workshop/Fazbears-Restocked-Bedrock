@@ -17,7 +17,7 @@
 				"fr:variants": {
 					"values": {
 						"min": 0,
-						"max": 2
+						"max": 4
 					}
 				}
 			}
@@ -32,7 +32,7 @@
 				"size": [16, 16, 2]
 			},
 			"minecraft:geometry": {
-				"identifier": "geometry.walls_pizza_wooden_1"
+				"identifier": "geometry.walls_pizza_wooden"
 			},
 			"minecraft:material_instances": {
 				"*": {
@@ -95,7 +95,7 @@
 				"condition": "q.block_state('fr:variants') == 0",
 				"components": {
 					"minecraft:geometry": {
-						"identifier": "geometry.walls_pizza_wooden_1"
+						"identifier": "geometry.walls_pizza_wooden"
 					}
 				}
 			},
@@ -112,6 +112,22 @@
 				"components": {
 					"minecraft:geometry": {
 						"identifier": "geometry.walls_pizza_wooden_3"
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.walls_pizza_wooden_4"
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.walls_pizza_wooden_5"
 					}
 				}
 			}

@@ -314,7 +314,7 @@ registerBlockVariants("fr:backstage_shelf_freddy_head", [
 registerBlockVariants("fr:walls_pepperoni_pizza_wooden", [
   {
     label: "Shape 1",
-    icon: "textures/fr_ui/icons/walls_pepperoni_pizza_wooden",
+    icon: "textures/fr_ui/icons/walls_pepperoni_pizza_wooden_1",
     color: "yellow"
   },
   {
@@ -325,14 +325,24 @@ registerBlockVariants("fr:walls_pepperoni_pizza_wooden", [
   {
     label: "Shape 3",
     icon: "textures/fr_ui/icons/walls_pepperoni_pizza_wooden_3",
-    color: "orange"
+    color: "yellow"
+  },
+  {
+    label: "Shape 4",
+    icon: "textures/fr_ui/icons/walls_pepperoni_pizza_wooden_4",
+    color: "yellow"
+  },
+  {
+    label: "Shape 5",
+    icon: "textures/fr_ui/icons/walls_pepperoni_pizza_wooden_5",
+    color: "yellow"
   }
 ]);
 
 registerBlockVariants("fr:walls_pizza_wooden", [
   {
     label: "Shape 1",
-    icon: "textures/fr_ui/icons/walls_pizza_wooden",
+    icon: "textures/fr_ui/icons/walls_pizza_wooden_1",
     color: "yellow"
   },
   {
@@ -343,6 +353,16 @@ registerBlockVariants("fr:walls_pizza_wooden", [
   {
     label: "Shape 3",
     icon: "textures/fr_ui/icons/walls_pizza_wooden_3",
+    color: "yellow"
+  },
+  {
+    label: "Shape 4",
+    icon: "textures/fr_ui/icons/walls_pizza_wooden_4",
+    color: "yellow"
+  },
+  {
+    label: "Shape 5",
+    icon: "textures/fr_ui/icons/walls_pizza_wooden_5",
     color: "yellow"
   }
 ]);
@@ -356,6 +376,11 @@ registerBlockVariants("fr:backstage_shelf_bonnie_head", [
   {
     label: "Position 2",
     icon: "textures/fr_ui/icons/backstage_shelf_bonnie_head_pupils",
+    color: "blue"
+  },
+  {
+    label: "Position 3",
+    icon: "textures/fr_ui/icons/backstage_shelf_bonnie_head_2",
     color: "blue"
   }
 ]);
@@ -416,6 +441,16 @@ registerBlockVariants("fr:retro_phone", [
     label: "Black",
     icon: "textures/fr_ui/icons/retro_phone_black",
     color: "black"
+  },
+  {
+    label: "Green",
+    icon: "textures/fr_ui/icons/retro_phone_green",
+    color: "green"
+  },
+  {
+    label: "Purple",
+    icon: "textures/fr_ui/icons/retro_phone_purple",
+    color: "purple"
   }
 ]);
 
@@ -804,5 +839,22 @@ registerBlockVariants("fr:small_gift", [
     label: "Yellow",
     icon: "textures/fr_ui/icons/small_gift_yellow",
     color: "yellow"
+  },
+]);
+registerBlockVariants("fr:breaker", [
+  {
+    label: "Black",
+    icon: "textures/fr_ui/icons/breaker_black",
+    color: "black"
+  },
+  {
+    label: "White",
+    icon: "textures/fr_ui/icons/breaker_white",
+    color: "gray"
+  },
+  {
+    label: "Gray",
+    icon: "textures/fr_ui/icons/breaker_gray",
+    color: "gray"
   }
 ]);

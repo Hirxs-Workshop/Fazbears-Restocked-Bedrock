@@ -1,0 +1,59 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.movie_booths",
+				"texture_width": 128,
+				"texture_height": 128,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "MovieBooth",
+					"pivot": [0, 0, 0],
+					"cubes": [
+						{
+							"origin": [-8, 0, -6],
+							"size": [16, 5, 14],
+							"uv": {
+								"north": {"uv": [0, 0], "uv_size": [31.0303, 10]},
+								"east": {"uv": [0, 0], "uv_size": [27.15152, 10]},
+								"south": {"uv": [0, 0], "uv_size": [31.0303, 10]},
+								"west": {"uv": [27.15152, 0], "uv_size": [-27.15152, 10]},
+								"up": {"uv": [0, 14], "uv_size": [31.0303, 26]},
+								"down": {"uv": [0, 40], "uv_size": [31.0303, -28]}
+							}
+						},
+						{
+							"origin": [-8, 10, 3],
+							"size": [16, 14, 5],
+							"uv": {
+								"north": {"uv": [34, 0], "uv_size": [31, 26], "material_instance": "lines"},
+								"east": {"uv": [34, 0], "uv_size": [9, 26], "material_instance": "lines"},
+								"south": {"uv": [34, 0], "uv_size": [32, 26], "material_instance": "lines"},
+								"west": {"uv": [34, 0], "uv_size": [10, 26], "material_instance": "lines"},
+								"up": {"uv": [66, 50], "uv_size": [-30, 10], "material_instance": "lines"},
+								"down": {"uv": [93.09091, 4], "uv_size": [31.0303, -4], "material_instance": "lines"}
+							}
+						},
+						{
+							"origin": [-8, 5, -8],
+							"size": [16, 5, 16],
+							"uv": {
+								"north": {"uv": [0, 54], "uv_size": [31, 10]},
+								"east": {"uv": [0, 42], "uv_size": [31, 10]},
+								"south": {"uv": [34, 26], "uv_size": [32, 10]},
+								"west": {"uv": [31, 42], "uv_size": [-31, 10]},
+								"up": {"uv": [34, 28], "uv_size": [32, 32]},
+								"down": {"uv": [34, 60], "uv_size": [31.0303, -26]}
+							}
+						}
+					]
+				}
+			]
+		}
+	]
+}

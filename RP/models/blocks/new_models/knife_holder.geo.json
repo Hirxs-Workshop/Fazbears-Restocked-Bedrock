@@ -1,0 +1,51 @@
+{
+	"format_version": "1.12.0",
+	"minecraft:geometry": [
+		{
+			"description": {
+				"identifier": "geometry.knife_holder",
+				"texture_width": 48,
+				"texture_height": 48,
+				"visible_bounds_width": 2,
+				"visible_bounds_height": 2.5,
+				"visible_bounds_offset": [0, 0.75, 0]
+			},
+			"bones": [
+				{
+					"name": "knife_holder",
+					"pivot": [0, 3.17774, -0.21179],
+					"cubes": [
+						{"origin": [-3.5, 1.05602, -1.4022], "size": [7, 8, 6], "pivot": [0, 5.05602, 1.5978], "rotation": [7.5, 0, 0], "uv": [0, 13]},
+						{"origin": [-3.5, 1.47721, -4.23317], "size": [7, 4, 3], "pivot": [0, 3.47721, -2.73317], "rotation": [7.5, 0, 0], "uv": [26, 13]},
+						{"origin": [-4, 0, -5], "size": [8, 2, 11], "uv": [0, 0]}
+					]
+				},
+				{
+					"name": "knifes",
+					"parent": "knife_holder",
+					"pivot": [2, 0, 0]
+				},
+				{
+					"name": "knife1",
+					"parent": "knifes",
+					"pivot": [0, 9.48539, 1.34131],
+					"rotation": [-7.5, 0, 180],
+					"cubes": [
+						{"origin": [0, 8.23539, -0.40869], "size": [0, 10, 3], "uv": [26, 20]},
+						{"origin": [-0.5, 3.23539, 0.59131], "size": [1, 5, 2], "uv": [6, 27]}
+					]
+				},
+				{
+					"name": "knife2",
+					"parent": "knifes",
+					"pivot": [2, 9.48539, 1.34131],
+					"rotation": [-7.5, 0, 180],
+					"cubes": [
+						{"origin": [2, 8.23539, -0.40869], "size": [0, 10, 3], "uv": [0, 27]},
+						{"origin": [1.5, 3.23539, 0.59131], "size": [1, 5, 2], "uv": [12, 27]}
+					]
+				}
+			]
+		}
+	]
+}
