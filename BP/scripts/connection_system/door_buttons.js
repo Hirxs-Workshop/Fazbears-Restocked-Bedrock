@@ -10,9 +10,9 @@ import { EquipmentSlot, system, world, BlockPermutation } from "@minecraft/serve
 
 import { ModalFormData, ActionFormData } from "@minecraft/server-ui";
 import FaceSelectionPlains from "./face_selection_plains";
-import { dynamicToast } from "./utils.js";
+import { dynamicToast, getExistingVfxEntity, VFX_ENTITY_TYPES, findAnyVfxEntityAtLocation } from "./utils.js";
 import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType } from "./selection_manager.js";
-import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY, DOOR_BUTTON_GENERATOR_LINKS_KEY, GENERATORS_KEY, getVfxEntityForLight } from "./connection_types.js";
+import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY, DOOR_BUTTON_GENERATOR_LINKS_KEY, getVfxEntityForLight } from "./connection_types.js";
 import { getGeneratorLimit, getSwitchConnections } from "./main_system.js";
 import { getChunkedData, setChunkedData, initializeStorage, STORAGE_KEYS } from "./chunked_storage.js";
 import * as FRAPI from "../fr_api.js";
@@ -22,6 +22,27 @@ let hallwayLampVfxEntities = {};
 
 export function clearDoorButtonVfxCache() {
   hallwayLampVfxEntities = {};
+}
+
+export function rebuildDoorButtonVfxCache() {
+  hallwayLampVfxEntities = {};
+  const connections = getConnections();
+  
+  for (const conn of connections) {
+    try {
+      const lightData = conn.lightBlock || conn.officeLightBlock;
+      if (!lightData) continue;
+      
+      const dimension = world.getDimension(lightData.dimensionId);
+      const location = { x: lightData.x + 0.5, y: lightData.y + 0.5, z: lightData.z + 0.5 };
+      const key = `${lightData.dimensionId}_${lightData.x}_${lightData.y}_${lightData.z}`;
+      
+      const found = findAnyVfxEntityAtLocation(dimension, location);
+      if (found) {
+        hallwayLampVfxEntities[key] = { vfxType: found.vfxType, entity: found.entity };
+      }
+    } catch { }
+  }
 }
 
 const DEFAULT_DOOR_BUTTON_LIMIT = 5;
@@ -139,8 +160,7 @@ export function getGeneratorLinkedDoorButtons(generatorPos) {
 
 function getGeneratorAt(pos) {
   try {
-    const json = world.getDynamicProperty(GENERATORS_KEY);
-    const generators = json ? JSON.parse(json) : [];
+    const generators = getChunkedData(STORAGE_KEYS.GENERATORS);
     return generators.find(gen =>
       gen.pos.x === pos.x &&
       gen.pos.y === pos.y &&
@@ -273,12 +293,7 @@ const getConnectionByOfficeLightBlock = (block, dimension) => {
 };
 
 export const getWoodenDoorConnections = () => {
-  try {
-    const data = world.getDynamicProperty("woodenDoorClaims");
-    return data ? JSON.parse(data) : [];
-  } catch {
-    return __memWoodenDoorClaims;
-  }
+  return getChunkedData(STORAGE_KEYS.WOODEN_DOOR_CLAIMS);
 };
 
 export function closeConnectedDoors(doorButtonPos, dimension) {
@@ -326,17 +341,26 @@ export function openConnectedDoors(doorButtonPos, dimension) {
     }
   }
 }
-const setWoodenDoorConnections = (connections) => {
-  try {
-    world.setDynamicProperty("woodenDoorClaims", JSON.stringify(connections));
-  } catch {
-    __memWoodenDoorClaims = connections;
+function sendDebug(player, message) {
+  if (player.hasTag("debug_door")) {
+    player.sendMessage(`§7[DEBUG-DOOR] ${message}`);
   }
+}
+
+const setWoodenDoorConnections = (connections) => {
+  setChunkedData(STORAGE_KEYS.WOODEN_DOOR_CLAIMS, connections);
 };
 const addWoodenDoorConnection = (connection) => {
   const connections = getWoodenDoorConnections();
   connections.push(connection);
   setWoodenDoorConnections(connections);
+  
+  const verify = getWoodenDoorConnections();
+  world.getPlayers().forEach(p => {
+    sendDebug(p, `Added connection. Total now: ${verify.length}`);
+    sendDebug(p, `Connection: ${JSON.stringify(connection)}`);
+  });
+  
   return true;
 };
 const removeWoodenDoorConnection = (connection) => {
@@ -375,14 +399,21 @@ const getConnectionByWoodenDoorBlock = (block, dimension) => {
 
 function connectDoorToLight(doorBlock, lightBlock, doorDimension, player) {
   const connections = getConnections();
-  const doorConnections = connections.filter(conn =>
+  const lightConnections = connections.filter(conn =>
     conn.doorBlock.x === doorBlock.location.x &&
     conn.doorBlock.y === doorBlock.location.y &&
     conn.doorBlock.z === doorBlock.location.z &&
     conn.doorBlock.dimensionId === doorDimension.id
   );
+  const woodenConnections = getWoodenDoorConnections().filter(conn =>
+    conn.doorBlock.x === doorBlock.location.x &&
+    conn.doorBlock.y === doorBlock.location.y &&
+    conn.doorBlock.z === doorBlock.location.z &&
+    conn.doorBlock.dimensionId === doorDimension.id
+  );
+  const totalConnections = lightConnections.length + woodenConnections.length;
   const limit = getDoorButtonLimit();
-  if (doorConnections.length >= limit) {
+  if (totalConnections >= limit) {
     player.sendMessage(dynamicToast("§l§cERROR", `§cMaximum connections (${limit}) reached`, "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
@@ -513,8 +544,12 @@ function syncLightState(block, dimension, player) {
 
         if (!hallwayLampVfxEntities[key]) {
           try {
-
-            if (lightTypeId === "fr:stage_spotlight") {
+            const vfxEntityType = getVfxEntityForLight(lightTypeId);
+            
+            const existingVfx = findAnyVfxEntityAtLocation(dimension, location);
+            if (existingVfx) {
+              hallwayLampVfxEntities[key] = { vfxType: existingVfx.vfxType, entity: existingVfx.entity };
+            } else if (lightTypeId === "fr:stage_spotlight") {
               const blockFace = lightBlock.permutation.getState("minecraft:block_face") || "down";
               let angle;
               if (blockFace === "down") {
@@ -597,15 +632,31 @@ function syncLightState(block, dimension, player) {
 }
 
 function connectDoorToWoodenDoor(doorBlock, woodenDoorBlock, doorDimension, player) {
+  sendDebug(player, `=== connectDoorToWoodenDoor START ===`);
+  sendDebug(player, `doorBlock location: ${JSON.stringify(doorBlock.location)}`);
+  sendDebug(player, `woodenDoorBlock location: ${JSON.stringify(woodenDoorBlock.location)}`);
+  sendDebug(player, `doorDimension.id: ${doorDimension.id}`);
+  
   const connections = getWoodenDoorConnections();
-  const doorConnections = connections.filter(conn =>
+  sendDebug(player, `Current connections count: ${connections.length}`);
+  
+  const woodenConnections = connections.filter(conn =>
     conn.doorBlock.x === doorBlock.location.x &&
     conn.doorBlock.y === doorBlock.location.y &&
     conn.doorBlock.z === doorBlock.location.z &&
     conn.doorBlock.dimensionId === doorDimension.id
   );
+  const lightConnections = getConnections().filter(conn =>
+    conn.doorBlock.x === doorBlock.location.x &&
+    conn.doorBlock.y === doorBlock.location.y &&
+    conn.doorBlock.z === doorBlock.location.z &&
+    conn.doorBlock.dimensionId === doorDimension.id
+  );
+  const totalConnections = woodenConnections.length + lightConnections.length;
   const limit = getDoorButtonLimit();
-  if (doorConnections.length >= limit) {
+  sendDebug(player, `Total connections for this button: ${totalConnections}, limit: ${limit}`);
+  
+  if (totalConnections >= limit) {
     player.sendMessage(dynamicToast("§l§cERROR", `§cMaximum connections (${limit}) reached`, "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
@@ -624,10 +675,15 @@ function connectDoorToWoodenDoor(doorBlock, woodenDoorBlock, doorDimension, play
       z: woodenDoorBlock.location.z
     }
   };
+  
+  sendDebug(player, `New connection to add: ${JSON.stringify(connection)}`);
+  
   if (!addWoodenDoorConnection(connection)) {
     player.sendMessage(dynamicToast("§l§cERROR", "§cCould not add wooden door connection", "textures/fr_ui/deny_icon", "textures/fr_ui/deny_ui"));
     return;
   }
+  
+  sendDebug(player, `=== connectDoorToWoodenDoor SUCCESS ===`);
   player.sendMessage(dynamicToast("§l§qSUCCESS", "§qOffice door linked successfully", "textures/fr_ui/approve_icon", "textures/fr_ui/approve_ui"));
   doorDimension.playSound("fr:connect_office_light", woodenDoorBlock.center());
 }
@@ -1010,7 +1066,7 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
       const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
 
       const generatorData = getGeneratorAt(generatorPos);
-      const allowedRadius = generatorData ? (generatorData.radius || 8) : 8;
+      const allowedRadius = generatorData ? (generatorData.radius || 32) : 32;
 
       if (distance > allowedRadius) {
         if (player.hasTag("debug_energy")) {
@@ -1114,20 +1170,31 @@ function handleDoorButtonsInteract({ block, face, faceLocation, dimension, playe
     dimension.playSound("door_button", block.center());
     dimension.playSound("fr:toggle_door", block.center());
 
-    const connections = getWoodenDoorConnections().filter(conn =>
-      conn.doorBlock.x === doorButtonPos.x &&
-      conn.doorBlock.y === doorButtonPos.y &&
-      conn.doorBlock.z === doorButtonPos.z &&
-      conn.doorBlock.dimensionId === doorButtonPos.dimensionId
-    );
+    const allConnections = getWoodenDoorConnections();
+    sendDebug(player, `All wooden door connections: ${allConnections.length}`);
+    sendDebug(player, `Looking for doorButtonPos: ${JSON.stringify(doorButtonPos)}`);
+    
+    const connections = allConnections.filter(conn => {
+      const match = conn.doorBlock.x === doorButtonPos.x &&
+        conn.doorBlock.y === doorButtonPos.y &&
+        conn.doorBlock.z === doorButtonPos.z &&
+        conn.doorBlock.dimensionId === doorButtonPos.dimensionId;
+      sendDebug(player, `Checking conn: ${JSON.stringify(conn.doorBlock)} -> match: ${match}`);
+      return match;
+    });
+    
+    sendDebug(player, `Filtered connections for this button: ${connections.length}`);
+    
     const desiredOpen = newState;
     for (const connection of connections) {
       const doorDim = block.dimension;
+      sendDebug(player, `Trying to get door at: ${JSON.stringify(connection.woodenDoorBlock)}`);
       const officeDoorBlock = doorDim.getBlock({
         x: connection.woodenDoorBlock.x,
         y: connection.woodenDoorBlock.y,
         z: connection.woodenDoorBlock.z,
       });
+      sendDebug(player, `officeDoorBlock found: ${officeDoorBlock ? officeDoorBlock.typeId : 'null'}`);
       if (officeDoorBlock) {
         applyOfficeDoorState(officeDoorBlock, desiredOpen);
         doorDim.playSound("fr:toggle_door", officeDoorBlock.center());
@@ -1554,10 +1621,11 @@ function updateLightTestActionBarForPlayer(player) {
           conn.doorBlock.z === doorBlockPos.z &&
           conn.doorBlock.dimensionId === doorBlockPos.dimensionId
         ).length;
+        const totalConnections = lightConnections + doorConnections;
         const title = "§l§fDoor Buttons§r";
         const coords = `(${doorBlockPos.x}, ${doorBlockPos.y}, ${doorBlockPos.z})`;
         const limit = getDoorButtonLimit();
-        message = `${title}\n §7Door Links: ${doorConnections}/${limit}\n §7Light Links: ${lightConnections}/${limit}`;
+        message = `${title}\n §7Total Links: ${totalConnections}/${limit}\n §7(Doors: ${doorConnections}, Lights: ${lightConnections})`;
 
         if (pendingConnections.has(player.name) || pendingWoodenDoorConnections.has(player.name)) {
           const selection = pendingConnections.has(player.name) ? "Light" : "Door";

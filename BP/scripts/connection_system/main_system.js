@@ -12,7 +12,7 @@
 
 import { world, system, BlockPermutation, Direction, EquipmentSlot, GameMode } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
-import { dynamicToast, dynamicToastEvent, cleanupLampVfxEntitiesOnReload, getLinePoints, turnOffLight, lampVfxEntities } from "./utils.js";
+import { dynamicToast, dynamicToastEvent, cleanupLampVfxEntitiesOnReload, cleanupLampVfxEntitiesSilent, getLinePoints, turnOffLight, lampVfxEntities, getExistingVfxEntity, VFX_ENTITY_TYPES, rebuildVfxCache, findAnyVfxEntityAtLocation } from "./utils.js";
 import { LIGHT_TYPES, SWITCH_TYPES, GENERATOR_TYPES, LIGHT_ALIASES, SWITCH_ALIASES, GENERATOR_ALIASES, LIGHT_ICONS, SWITCH_ICONS, GENERATOR_ICONS, CONNECTIONS_KEY, GENERATORS_KEY, MAX_ENERGY, DEFAULT_CONSUMPTION_RATE, CONSUMPTION_MULTIPLIER, NEAR_DISTANCE, getAllLightTypes, getAllSwitchTypes, isLightType, isSwitchType, getBlockAlias, getBlockIcon, DOOR_BUTTON_GENERATOR_LINKS_KEY, getVfxEntityForLight } from "./connection_types.js";
 import { isPlayerInCamera } from "../camera_system/security_camera_system.js";
 import { getChunkedData, setChunkedData, initializeStorage, STORAGE_KEYS } from "./chunked_storage.js";
@@ -37,7 +37,7 @@ export function setGeneratorLimit(value) {
 }
 
 import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType, registerCleanupHandler } from "./selection_manager.js";
-import { getGeneratorLinkedDoorButtons, getDoorButtonConnections, removeDoorButtonGeneratorLink, openConnectedDoors, isLightConnectedToDoorButton, clearDoorButtonVfxCache } from './door_buttons.js'
+import { getGeneratorLinkedDoorButtons, getDoorButtonConnections, removeDoorButtonGeneratorLink, openConnectedDoors, isLightConnectedToDoorButton, clearDoorButtonVfxCache, rebuildDoorButtonVfxCache } from './door_buttons.js'
 
 let selections = {};
 
@@ -91,8 +91,25 @@ export function hasSwitchSelection(playerId) {
   return !!selections[playerId];
 }
 
-cleanupLampVfxEntitiesOnReload();
-clearDoorButtonVfxCache();
+// Reconstruir cache de entidades VFX al cargar (NO limpiar, reutilizar existentes)
+system.runTimeout(() => {
+  const connections = getConnections();
+  rebuildVfxCache(connections, getVfxEntityForLight);
+  rebuildDoorButtonVfxCache();
+  
+  const players = world.getPlayers();
+  if (players.length > 0) {
+    players.forEach(player => {
+      player.sendMessage(dynamicToast(
+        "§l§qSUCCESS",
+        `§qScripts reloaded...`,
+        "textures/fr_ui/approve_icon",
+        "textures/fr_ui/approve_ui"
+      ));
+    });
+  }
+}, 5);
+// Ya no limpiamos el cache, lo reconstruimos arriba
 
 function clearAllHudsOnReload() {
   for (const key in selections) {
@@ -542,7 +559,7 @@ function showAdjustTimeForm(player, generatorData) {
 function showAdjustRadiusForm(player, generatorData) {
   const radii = [8, 16, 32, 48, 64];
   const effectList = radii.map(r => r.toString());
-  const currentRadius = generatorData.radius || 8;
+  const currentRadius = generatorData.radius || 32;
   let defaultIndex = radii.indexOf(currentRadius);
   if (defaultIndex === -1) defaultIndex = 0;
 
@@ -668,7 +685,7 @@ function showGeneratorIndicatorMenu(player, generatorData) {
 
 function showGeneratorMenu(player, generatorData) {
   const consumoPorcentaje = (generatorData.consumptionRate || DEFAULT_CONSUMPTION_RATE) * 100;
-  const currentRadius = generatorData.radius || 8;
+  const currentRadius = generatorData.radius || 32;
   const dimension = world.getDimension(generatorData.pos.dimensionId);
   const activeConsumers = getActiveGeneratorConsumers(generatorData, dimension);
 
@@ -989,7 +1006,7 @@ world.afterEvents.playerInteractWithBlock.subscribe(event => {
           if (isSwitchType(sourceBlock.typeId)) {
           } else if (GENERATOR_TYPES.has(sourceBlock.typeId)) {
             const generatorData = getGeneratorAt(source);
-            allowedRadius = generatorData ? (generatorData.radius || 8) : 8;
+            allowedRadius = generatorData ? (generatorData.radius || 32) : 32;
           }
         }
         if (blockPos.dimensionId !== source.dimensionId) {
@@ -1299,7 +1316,11 @@ system.runInterval(() => {
             const location = { x: conn.light.x + 0.5, y: conn.light.y + 0, z: conn.light.z + 0.5 };
             const vfxEntityType = getVfxEntityForLight(lightBlock.typeId);
 
-            if (lightBlock.typeId === "fr:stage_spotlight") {
+            // Verificar si ya existe CUALQUIER entidad VFX en esta posición
+            const existingVfx = findAnyVfxEntityAtLocation(dimension, location);
+            if (existingVfx) {
+              lampVfxEntities[key] = { vfxType: existingVfx.vfxType, entity: existingVfx.entity };
+            } else if (lightBlock.typeId === "fr:stage_spotlight") {
               const blockFace = lightBlock.permutation.getState("minecraft:block_face") || "down";
               let angle;
               if (blockFace === "down") {
@@ -1872,7 +1893,7 @@ function updateLightTestActionBarForPlayer(player) {
       if (GENERATOR_TYPES.has(block.typeId)) {
         const generatorData = getGeneratorAt(blockPos);
         const energyInfo = generatorData ? generatorData.energy : "N/A";
-        const radiusInfo = generatorData ? (generatorData.radius || 8) : 8;
+        const radiusInfo = generatorData ? (generatorData.radius || 32) : 32;
         message = `${blockName}\n?§p Energy: ${energyInfo}/500§r\n?§7 Connections: ${connectionsText}\n?§7 Radius: ${radiusInfo}${selectionHint}`;
       } else {
         message = `${blockName}\n?§7 Connections: ${connectionsText}${selectionHint}`;
@@ -1906,7 +1927,7 @@ function updateLightTestActionBarForPlayer(player) {
           if (GENERATOR_TYPES.has(selectedBlock.typeId)) {
             const generatorData = getGeneratorAt(selPos);
             const energyInfo = generatorData ? generatorData.energy : "N/A";
-            const radiusInfo = generatorData ? (generatorData.radius || 8) : 8;
+            const radiusInfo = generatorData ? (generatorData.radius || 32) : 32;
             selectedMessage += `\n?§p Energy: ${energyInfo}/500§r`;
             selectedMessage += `\n?§7 Radius: ${radiusInfo}`;
           }

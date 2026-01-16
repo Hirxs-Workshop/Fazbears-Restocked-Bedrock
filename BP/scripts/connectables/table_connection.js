@@ -14,7 +14,9 @@ import { system, world } from '@minecraft/server'
 
 const TABLE_TYPE_ID = 'fr:party_table';
 const STANCHION_TYPE_ID = 'fr:stanchion';
-const CONNECTABLE_TYPES = [TABLE_TYPE_ID, STANCHION_TYPE_ID];
+const TABLE_TYPES = [TABLE_TYPE_ID];
+const STANCHION_TYPES = [STANCHION_TYPE_ID];
+const ALL_CONNECTABLE_TYPES = [TABLE_TYPE_ID, STANCHION_TYPE_ID];
 
 const updateStanchionBasesForLine = (center) => {
   if (!center || center.typeId !== STANCHION_TYPE_ID) return;
@@ -25,8 +27,8 @@ const updateStanchionBasesForLine = (center) => {
   const west = center.west();
 
   const hasNSNeighbor =
-    (north && CONNECTABLE_TYPES.includes(north.typeId)) ||
-    (south && CONNECTABLE_TYPES.includes(south.typeId));
+    (north && STANCHION_TYPES.includes(north.typeId)) ||
+    (south && STANCHION_TYPES.includes(south.typeId));
   const axisNS = hasNSNeighbor;
 
   const stepNeg = (block) => (axisNS ? block.north() : block.west());
@@ -35,16 +37,16 @@ const updateStanchionBasesForLine = (center) => {
   let start = center;
   while (true) {
     const nb = stepNeg(start);
-    if (!(nb && CONNECTABLE_TYPES.includes(nb.typeId))) break;
+    if (!(nb && STANCHION_TYPES.includes(nb.typeId))) break;
     start = nb;
   }
 
   const line = [];
   let cur = start;
-  while (cur && CONNECTABLE_TYPES.includes(cur.typeId)) {
+  while (cur && STANCHION_TYPES.includes(cur.typeId)) {
     line.push(cur);
     const nb = stepPos(cur);
-    if (!(nb && CONNECTABLE_TYPES.includes(nb.typeId))) break;
+    if (!(nb && STANCHION_TYPES.includes(nb.typeId))) break;
     cur = nb;
   }
 
@@ -88,16 +90,19 @@ const updateStanchionBasesForLine = (center) => {
 };
 
 const updateForBlock = (b) => {
-  if (!b || !CONNECTABLE_TYPES.includes(b.typeId)) return;
+  if (!b || !ALL_CONNECTABLE_TYPES.includes(b.typeId)) return;
+  
+  const connectableTypes = b.typeId === TABLE_TYPE_ID ? TABLE_TYPES : STANCHION_TYPES;
+  
   const north = b.north();
   const south = b.south();
   const east = b.east();
   const west = b.west();
 
-  const n = north && CONNECTABLE_TYPES.includes(north.typeId);
-  const s = south && CONNECTABLE_TYPES.includes(south.typeId);
-  const eConn = east && CONNECTABLE_TYPES.includes(east.typeId);
-  const w = west && CONNECTABLE_TYPES.includes(west.typeId);
+  const n = north && connectableTypes.includes(north.typeId);
+  const s = south && connectableTypes.includes(south.typeId);
+  const eConn = east && connectableTypes.includes(east.typeId);
+  const w = west && connectableTypes.includes(west.typeId);
 
   b.setPermutation(
     b.permutation
@@ -116,7 +121,7 @@ const updateNeighborsIfConnectable = (block) => {
   if (!block) return;
   const neighbors = [block.north(), block.south(), block.east(), block.west()];
   for (const nb of neighbors) {
-    if (nb && CONNECTABLE_TYPES.includes(nb.typeId)) updateForBlock(nb);
+    if (nb && ALL_CONNECTABLE_TYPES.includes(nb.typeId)) updateForBlock(nb);
   }
 };
 
@@ -138,7 +143,7 @@ world.afterEvents.playerBreakBlock.subscribe(({ block }) => {
 world.afterEvents.playerPlaceBlock.subscribe(({ block }) => {
   if (!block) return;
   
-  if (CONNECTABLE_TYPES.includes(block.typeId)) {
+  if (ALL_CONNECTABLE_TYPES.includes(block.typeId)) {
     updateForBlock(block);
     updateNeighborsIfConnectable(block);
   } 

@@ -45,20 +45,90 @@ const VFX_ENTITY_TYPES = [
   "fr:pirate_cove_light_entity"
 ];
 
-export function cleanupLampVfxEntitiesOnReload() {
-  const dimensions = ["overworld", "nether", "the_end"];
-  system.runTimeout(() => {
-    dimensions.forEach(dimName => {
-      try {
-        const dimension = world.getDimension(dimName);
-        VFX_ENTITY_TYPES.forEach(vfxType => {
-          try {
-            dimension.runCommand(`event entity @e[type=${vfxType}] destroy`);
-          } catch { }
-        });
-      } catch { }
+export { VFX_ENTITY_TYPES };
+
+export function getExistingVfxEntity(dimension, location, vfxType) {
+  try {
+    const entities = dimension.getEntities({ 
+      type: vfxType, 
+      location: location, 
+      maxDistance: 1.5 
     });
-    lampVfxEntities = {};
+    return entities.length > 0 ? entities[0] : null;
+  } catch {
+    return null;
+  }
+}
+
+export function findAnyVfxEntityAtLocation(dimension, location) {
+  for (const vfxType of VFX_ENTITY_TYPES) {
+    const entity = getExistingVfxEntity(dimension, location, vfxType);
+    if (entity) return { entity, vfxType };
+  }
+  return null;
+}
+
+export function rebuildVfxCache(connections, getVfxEntityForLight) {
+  lampVfxEntities = {};
+  
+  for (const conn of connections) {
+    try {
+      const dimension = world.getDimension(conn.light.dimensionId);
+      const location = { x: conn.light.x + 0.5, y: conn.light.y + 0.5, z: conn.light.z + 0.5 };
+      const key = `${conn.light.dimensionId}_${conn.light.x}_${conn.light.y}_${conn.light.z}`;
+      
+      const found = findAnyVfxEntityAtLocation(dimension, location);
+      if (found) {
+        lampVfxEntities[key] = { vfxType: found.vfxType, entity: found.entity };
+      }
+    } catch { }
+  }
+}
+
+export function hasExistingVfxAtLocation(dimension, location) {
+  for (const vfxType of VFX_ENTITY_TYPES) {
+    try {
+      const entities = dimension.getEntities({ 
+        type: vfxType, 
+        location: location, 
+        maxDistance: 1.5 
+      });
+      if (entities.length > 0) return true;
+    } catch { }
+  }
+  return false;
+}
+
+export function cleanupLampVfxEntitiesSilent() {
+  const dimensions = ["overworld", "nether", "the_end"];
+  dimensions.forEach(dimName => {
+    try {
+      const dimension = world.getDimension(dimName);
+      VFX_ENTITY_TYPES.forEach(vfxType => {
+        try {
+          // Usar getEntities para eliminar entidades cargadas
+          const entities = dimension.getEntities({ type: vfxType });
+          entities.forEach(entity => {
+            try {
+              entity.triggerEvent("destroy");
+            } catch {
+              try { entity.remove(); } catch { }
+            }
+          });
+        } catch { }
+        try {
+          // Fallback con comando para entidades que no se alcanzaron
+          dimension.runCommand(`event entity @e[type=${vfxType}] destroy`);
+        } catch { }
+      });
+    } catch { }
+  });
+  lampVfxEntities = {};
+}
+
+export function cleanupLampVfxEntitiesOnReload() {
+  system.runTimeout(() => {
+    cleanupLampVfxEntitiesSilent();
     
     const elapsedTime = Date.now();
     world.getPlayers().forEach(player => {
