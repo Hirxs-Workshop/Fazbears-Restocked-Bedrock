@@ -38,7 +38,10 @@
 			"minecraft:material_instances": {
 				"*": {
 					"texture": "trash",
-					"render_method": "alpha_test"
+					"render_method": "alpha_test",
+					"ambient_occlusion": false,
+					"emissive": false,
+					"face_dimming": false
 				}
 			}
 		},

@@ -2555,7 +2555,7 @@
             ]
         },
         "tinfly_dev_plush": {
-                "textures": [
+                        "textures": [
                 "textures/blocks/reworked/dev/tinfly_dev_plush"
             ]
         },
@@ -2564,34 +2564,174 @@
                 "textures/blocks/reworked/kitchen/kitchencounter_upper_drawers"
             ]
         },
-        "plunger": {
+        "east_hall_corner_shelf": {
             "textures": [
-                "textures/blocks/reworked/plunger_texture"
+                "textures/blocks/reworked/east_hall_corner_shelf"
             ]
         },
-        "xeno_neo_dev_plush":{
+        "retro_phone_purple": {
             "textures": [
-                "textures/blocks/reworked/dev/xeno_neo_dev_plush"
+                "textures/blocks/reworked/retro_phone_purple"
             ]
         },
-        "fnafmovie_thankyoubin": {
+        "retro_phone_green": {
             "textures": [
-                "textures/blocks/reworked/fnafmovie_thankyoubin"
+                "textures/blocks/reworked/retro_phone_green"
             ]
         },
         "condiment_case": {
             "textures": [
-                "textures/blocks/reworked/kitchen/condiment_case"
+                "textures/blocks/reworked/condiment_case"
             ]
         },
-        "iron_rack_for_freezer": {
+        "cafe_chair": {
             "textures": [
-                "textures/blocks/reworked/kitchen/iron rack for freezer"
+                "textures/blocks/reworked/cafe_chair"
+            ]
+        },
+        "freezer_iron_rack": {
+            "textures": [
+                "textures/blocks/reworked/freezer_iron_rack"
+            ]
+        },
+        "knife_holder_empty": {
+            "textures": [
+                "textures/blocks/reworked/knife_holder_empty"
+            ]
+        },
+        "knife_holder": {
+            "textures": [
+                "textures/blocks/reworked/knife_holder"
+            ]
+        },
+        "vhs_tape": {
+            "textures": [
+                "textures/blocks/reworked/vhs_tape"
+            ]
+        },
+        "clipboard": {
+            "textures": [
+                "textures/blocks/reworked/clipboard"
+            ]
+        },
+        "plunger": {
+            "textures": [
+                "textures/blocks/reworked/plunger"
+            ]
+        },
+        "thank_you_bin": {
+            "textures": [
+                "textures/blocks/reworked/thank_you_bin"
             ]
         },
         "cutting_board": {
             "textures": [
-                "textures/blocks/reworked/kitchen/cutting_board"
+                "textures/blocks/reworked/cutting_board"
+            ]
+        },
+        "d&d_booth_table": {
+            "textures": [
+                "textures/blocks/reworked/booths/d&d_booth_table"
+            ]
+        },
+        "movie_booth_table": {
+            "textures": [
+                "textures/blocks/reworked/booths/movie_booth_table"
+            ]
+        },
+        "silver_booth_table": {
+            "textures": [
+                "textures/blocks/reworked/booths/silver_booth_table"
+            ]
+        },
+        "black_booth_table": {
+            "textures": [
+                "textures/blocks/reworked/booths/black_booth_table"
+            ]
+        },
+        "booth_blank": {
+            "textures": [
+                "textures/blocks/reworked/booths/booth_blank"
+            ]
+        },
+        "booth_design_1": {
+            "textures": [
+                "textures/blocks/reworked/booths/booth_design_1"
+            ]
+        },
+        "booth_tornup": {
+            "textures": [
+                "textures/blocks/reworked/booths/booth_tornup"
+            ]
+        },
+        "booth_50_50": {
+            "textures": [
+                "textures/blocks/reworked/booths/booth_50_50"
+            ]
+        },
+        "booth_2_lines": {
+            "textures": [
+                "textures/blocks/reworked/booths/booth_2_lines"
+            ]
+        },
+        "d&d_booth_fixed": {
+            "textures": [
+                "textures/blocks/reworked/booths/d&d_booth_fixed"
+            ]
+        },
+        "d&d_booth_torn": {
+            "textures": [
+                "textures/blocks/reworked/booths/d&d_booth_torn"
+            ]
+        },
+        "d&d_booth_paper": {
+            "textures": [
+                "textures/blocks/reworked/booths/d&d_booth_paper"
+            ]
+        },
+        "movie_booth_2": {
+            "textures": [
+                "textures/blocks/reworked/booths/movie_booth_2"
+            ]
+        },
+        "movie_booth_1": {
+            "textures": [
+                "textures/blocks/reworked/booths/movie_booth_1"
+            ]
+        },
+        "breaker_black": {
+            "textures": [
+                "textures/blocks/reworked/breaker_black"
+            ]
+        },
+        "breaker_white": {
+            "textures": [
+                "textures/blocks/reworked/breaker_white"
+            ]
+        },
+        "breaker_gray": {
+            "textures": [
+                "textures/blocks/reworked/breaker_gray"
+            ]
+        },
+        "ceiling_wire": {
+            "textures": [
+                "textures/blocks/reworked/ceiling_wire"
+            ]
+        },
+        "xeno_neo_dev_plush": {
+            "textures": [
+                "textures/blocks/reworked/dev/xeno_neo_dev_plush"
+            ]
+        },
+        "gumball_machine_1": {
+            "textures": [
+                "textures/blocks/reworked/gumball_machine_1"
+            ]
+        },
+        "gumball_machine_2": {
+            "textures": [
+                "textures/blocks/reworked/gumball_machine_2"
             ]
         }
     }

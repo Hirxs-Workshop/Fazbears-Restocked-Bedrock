@@ -1,0 +1,210 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:security_cameras",
+			"menu_category": {
+				"category": "construction"
+			},
+			"traits": {
+				"minecraft:placement_position": {
+					"enabled_states": [
+						"minecraft:block_face"
+					]
+				}
+			},
+			"states": {
+				"fr:rotation": {
+					"values": {
+						"min": 0,
+						"max": 15
+					}
+				},
+				"fr:variants": [
+					0, 
+					1, 
+					2
+				]
+			}
+		},
+		"components": {
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 0.5
+			},
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 0.5
+			},
+			"minecraft:flammable": {
+				"catch_chance_modifier": 30,
+				"destroy_chance_modifier": 30
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.fr_security_camera",
+				"bone_visibility": {
+					"up_0": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation'), 4)",
+					"up_22_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 1, 4)",
+					"up_45": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 2, 4)",
+					"up_67_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 3, 4)",
+					"side": "q.block_state('minecraft:block_face') != 'down'"
+				}
+			},
+			"minecraft:placement_filter": {
+				"conditions": [
+					{
+						"allowed_faces": [
+							"down",
+							"north",
+							"south",
+							"east",
+							"west"
+						]
+					}
+				]
+			},
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "camera",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:collision_box": {
+				"origin": [
+					-4.5,
+					2,
+					-4.5
+				],
+				"size": [
+					9,
+					14,
+					9
+				]
+			},
+			"minecraft:selection_box": {
+				"origin": [
+					-4.5,
+					2,
+					-4.5
+				],
+				"size": [
+					9,
+					14,
+					9
+				]
+			},
+			"fr:single_interactive": {},
+			"fr:down_precise_rotation": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:rotation') >= 4 || q.block_state('minecraft:block_face') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:rotation') >= 8 || q.block_state('minecraft:block_face') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:rotation') >= 12 || q.block_state('minecraft:block_face') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:block_face') != 'down'",
+				"components": {
+					"minecraft:collision_box": {
+						"origin": [
+							-4.5,
+							2,
+							-4.5
+						],
+						"size": [
+							9,
+							14,
+							9
+						]
+					},
+					"minecraft:selection_box": {
+						"origin": [
+							-4.5,
+							2,
+							-4.5
+						],
+						"size": [
+							9,
+							14,
+							9
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.fr_security_camera",
+						"bone_visibility": {
+							"up_0": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation'), 4)",
+							"up_22_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 1, 4)",
+							"up_45": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 2, 4)",
+							"up_67_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 3, 4)",
+							"side": "q.block_state('minecraft:block_face') != 'down'"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.fr_security_camera_1",
+						"bone_visibility": {
+							"up_0": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation'), 4)",
+							"up_22_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 1, 4)",
+							"up_45": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 2, 4)",
+							"up_67_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 3, 4)",
+							"side": "q.block_state('minecraft:block_face') != 'down'"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 2",
+				"components": {
+					"minecraft:geometry": {
+						"identifier": "geometry.fr_security_camera_2",
+						"bone_visibility": {
+							"up_0": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation'), 4)",
+							"up_22_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 1, 4)",
+							"up_45": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 2, 4)",
+							"up_67_5": "q.block_state('minecraft:block_face') == 'down' && !math.mod(q.block_state('fr:rotation') - 3, 4)",
+							"side": "q.block_state('minecraft:block_face') != 'down'"
+						}
+					}
+				}
+			}
+		]
+	}
+}

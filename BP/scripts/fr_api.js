@@ -59,7 +59,7 @@ export function registerBlockVariants(blockId, variants) {
       return false;
     }
 
-    const validColors = ["yellow", "gray", "blue", "green", "red", "purple", "cyan", "orange", "black"];
+    const validColors = ["yellow", "gray", "blue", "green", "red", "purple", "cyan", "orange", "black", "white"];
     
     const processedVariants = [];
     

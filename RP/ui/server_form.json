@@ -4835,6 +4835,32 @@
         }
       },
       {
+        "white_bg": {
+          "type": "image",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "texture": "textures/fr_ui/buttons/button_white_background",
+          "layer": 5,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#label"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#label - 'white') = #label))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
         "pink_bg": {
           "type": "image",
           "size": [
@@ -4978,7 +5004,7 @@
             },
             {
               "binding_type": "view",
-              "source_property_name": "(((((((((((#label - 'yellow ') - 'blue ') - 'green ') - 'red ') - 'purple ') - 'cyan ') - 'gray ') - 'pink ') - 'orange ') - 'black ') - '§a✓ §r')",
+              "source_property_name": "((((((((((((#label - 'yellow ') - 'blue ') - 'green ') - 'red ') - 'purple ') - 'cyan ') - 'gray ') -'white ') - 'pink ') - 'orange ') - 'black ') - '§a✓ §r')",
               "target_property_name": "#text"
             }
           ]

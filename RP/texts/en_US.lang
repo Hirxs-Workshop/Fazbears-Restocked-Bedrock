@@ -454,11 +454,6 @@ tile.fr:stage_sun.name=Stage Sun
 item.fr:restroom_stall_door=Restroom Stall Door
 tile.fr:vending_machine.name=Vending Machine
 tile.fr:office_window.name=§E§M§P§L§O§Y§E§EOffice Window
-tile.fr:plunger.name=Plunger
-tile.fr:fnafmovie_thankyoubin.name=Thank You Bin
-tile.fr:condiment_case.name=Condiment Case
-tile.fr:iron_rack_for_freezer.name=Iron rack For freezer
-tile.fr:cutting_board.name=Cutting Board
 
 entity.fr:backstage_door.name=Backstage Door
 entity.fr:blank_door.name=Blank Door
@@ -565,3 +560,22 @@ tile.fr:tinfly_dev_plush.name=Tinfly Dev Plush
 tile.fr:the_fantasticbob_dev_plush.name=The FantasticBOB Dev plush
 tile.fr:arcade_stool.name=§E§M§P§L§O§Y§E§EArcade stool
 tile.fr:arcade_freddy.name=Arcade freddy
+
+tile.fr:ceiling_wire.name=Ceiling Wire
+tile.fr:breaker.name=§E§M§P§L§O§Y§E§EBreaker
+tile.fr:condiment_case.name=Condiment Case
+tile.fr:clipboard.name=Clipboard
+tile.fr:freezer_iron_rack.name=Freezer Iron Rack
+tile.fr:sink.name=Sink
+tile.fr:knife_holder.name=§E§M§P§L§O§Y§E§EKnife Holder
+tile.fr:gumball_machine.name=§E§M§P§L§O§Y§E§EGumball Machine
+tile.fr:east_hall_corner_shelf.name=§E§M§P§L§O§Y§E§EEast Hall Corner Shelf
+tile.fr:fr_office_chair.name=Office Chair
+tile.fr:cutting_board.name=Cutting Board
+tile.fr:deep_fryer_machine.name=Deep Fryer Machine
+tile.fr:plunger.name=Plunger
+tile.fr:thank_you_bin.name=Thank You Bin
+tile.fr:trash_can.name=Trash Can
+
+
+

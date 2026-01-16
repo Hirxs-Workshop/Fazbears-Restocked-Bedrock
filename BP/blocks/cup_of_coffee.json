@@ -1,0 +1,104 @@
+{
+	"format_version": "1.21.30",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fr:cup_of_coffee",
+			"menu_category": {
+				"category": "construction"
+			},
+			"states": {
+				"fr:advanced_rot": {
+					"values": {
+						"min": 0,
+						"max": 15
+					}
+				}
+			},
+			"traits": {
+				"minecraft:placement_position": {
+					"enabled_states": [
+						"minecraft:block_face"
+					]
+				}
+			}
+		},
+		"components": {
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "cup_of_coffee",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:geometry": {
+				"identifier": "geometry.cup_of_coffee",
+				"bone_visibility": {
+					"up_0": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot'), 4)",
+					"up_22_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot') - 1, 4)",
+					"up_45": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot') - 2, 4)",
+					"up_67_5": "q.block_state('minecraft:block_face') == 'up' && !math.mod(q.block_state('fr:advanced_rot') - 3, 4)",
+					"side": "q.block_state('minecraft:block_face') != 'up'"
+				}
+			},
+			"minecraft:collision_box": {
+				"origin": [-3, 0, -2.5],
+				"size": [6, 6, 6]
+			},
+			"minecraft:selection_box": {
+				"origin": [-3, 0, -2.5],
+				"size": [6, 6, 6]
+			},
+			"fr:advanced_rotation": {}
+		},
+		"permutations": [
+			{
+				"condition": "q.block_state('fr:advanced_rot') >= 4 || q.block_state('minecraft:block_face') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							-90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:advanced_rot') >= 8 || q.block_state('minecraft:block_face') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							180,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:advanced_rot') >= 12 || q.block_state('minecraft:block_face') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"rotation": [
+							0,
+							90,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('minecraft:block_face') != 'up'",
+				"components": {
+					"minecraft:collision_box": {
+						"origin": [-3, 0, -2.5],
+						"size": [6, 6, 6]
+					},
+					"minecraft:selection_box": {
+						"origin": [-3, 0, -2.5],
+						"size": [6, 6, 6]
+					}
+				}
+			}
+		]
+	}
+}

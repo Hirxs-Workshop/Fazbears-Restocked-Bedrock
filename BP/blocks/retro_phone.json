@@ -17,7 +17,9 @@
 				"fr:variants": [
 					0,
 					1,
-					2
+					2,
+					3,
+					4
 				]
 			}
 		},
@@ -117,6 +119,28 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "retro_phone_black",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 3",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "retro_phone_green",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 4",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "retro_phone_purple",
 							"render_method": "alpha_test"
 						}
 					}
