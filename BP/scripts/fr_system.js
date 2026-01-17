@@ -24,6 +24,7 @@ import 'entrance_door'
 import 'paper_block_component'
 import 'connectables/table_connection'
 import 'connectables/door_frame_connection'
+import 'connectables/window_connection'
 import 'connection_system/main_system'
 
 import 'camera_system/security_camera_system'

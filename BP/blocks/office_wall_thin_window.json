@@ -1,0 +1,409 @@
+{
+    "format_version": "1.21.30",
+    "minecraft:block": {
+        "description": {
+            "identifier": "fr:modular_office_window",
+            "menu_category": {
+                "category": "construction"
+            },
+            "traits": {
+                "minecraft:placement_direction": {
+                    "enabled_states": [
+                        "minecraft:cardinal_direction"
+                    ]
+                }
+            },
+            "states": {
+                "fr:connection_type": [
+                    "single",
+                    "corner_bottom_left",
+                    "middle_bottom",
+                    "center",
+                    "middle_upper",
+                    "right",
+                    "corner_upper_left",
+                    "corner_upper_right",
+                    "corner_bottom_right",
+                    "left",
+                    "single_upper",
+                    "single_bottom",
+                    "single_center"
+                ]
+            }
+        },
+        "components": {
+            "fr:window_connection": {},
+            "tag:minecraft:is_pickaxe_item_destructible": {},
+            "minecraft:light_dampening": 0,
+            "minecraft:geometry": {
+                "identifier": "geometry.modular_office_window",
+                "bone_visibility": {
+                    "single": true,
+                    "corner_bottom_left": false,
+                    "middle_bottom": false,
+                    "center": false,
+                    "middle_upper": false,
+                    "right": false,
+                    "corner_upper_left": false,
+                    "corner_upper_right": false,
+                    "corner_bottom_right": false,
+                    "left": false,
+                    "single_upper": false,
+                    "single_bottom": false,
+                    "single_center": false
+                }
+            },
+            "minecraft:destructible_by_explosion": {
+                "explosion_resistance": 0.3
+            },
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 0.3
+            },
+            "minecraft:flammable": false,
+            "minecraft:map_color": "#8eb8d4",
+            "minecraft:collision_box": true,
+            "minecraft:selection_box": true,
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "office_wall_thin_window",
+                    "render_method": "blend",
+                    "face_dimming": true,
+                    "ambient_occlusion": true
+                }
+            }
+        },
+        "permutations": [
+            {
+                "condition": "q.block_state('fr:connection_type') == 'single'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "single": true,
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'corner_bottom_left'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": true,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'middle_bottom'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": true,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'center'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": true,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'middle_upper'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": true,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'right'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": true,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'corner_upper_left'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": true,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'corner_upper_right'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": true,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'corner_bottom_right'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": true,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'left'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": true,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'single_upper'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": true,
+                            "single_bottom": false,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'single_bottom'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": true,
+                            "single_center": false,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:connection_type') == 'single_center'",
+                "components": {
+                    "minecraft:geometry": {
+                        "identifier": "geometry.modular_office_window",
+                        "bone_visibility": {
+                            "corner_bottom_left": false,
+                            "middle_bottom": false,
+                            "center": false,
+                            "middle_upper": false,
+                            "right": false,
+                            "corner_upper_left": false,
+                            "corner_upper_right": false,
+                            "corner_bottom_right": false,
+                            "left": false,
+                            "single_upper": false,
+                            "single_bottom": false,
+                            "single_center": true,
+                            "single": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 180, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, -90, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 0, 0]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+                "components": {
+                    "minecraft:transformation": {
+                        "rotation": [0, 90, 0]
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -34,7 +34,7 @@
 			"minecraft:material_instances": {
 				"*": {
 					"texture": "wall_tear_hole_1",
-					"render_method": "alpha_test_single_sided"
+					"render_method": "alpha_test"
 				}
 			},
 			"fr:single_interactive": {}
@@ -46,7 +46,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "wall_tear_hole_1",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -57,7 +57,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "wall_tear_hole_2",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -68,7 +68,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_1",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -79,7 +79,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_2",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -90,7 +90,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_bottom",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -101,7 +101,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_bottom_left_corner",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -112,7 +112,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_bottom_right_corner",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -123,7 +123,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_left",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -134,7 +134,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_left_big",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -145,7 +145,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_right",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -156,7 +156,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_right_big",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -167,7 +167,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_top",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -178,7 +178,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_top_left_corner",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
@@ -189,7 +189,7 @@
 					"minecraft:material_instances": {
 						"*": {
 							"texture": "brick_tear_top_right_corner",
-							"render_method": "alpha_test_single_sided"
+							"render_method": "alpha_test"
 						}
 					}
 				}
