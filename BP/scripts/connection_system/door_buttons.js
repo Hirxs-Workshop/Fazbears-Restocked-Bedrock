@@ -582,6 +582,19 @@ function syncLightState(block, dimension, player) {
               const entity = dimension.spawnEntity("fr:ceiling_light_vfx", location);
               entity.setRotation({ x: 0, y: rotation });
               hallwayLampVfxEntities[key] = { vfxType: "ceiling_light", entity };
+            } else if (lightTypeId === "fr:pirate_cove_light") {
+              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction") || "south";
+              let offsetX = 0, offsetZ = 0, yRot = 0;
+              switch (cardinal) {
+                case 'north': offsetZ = -0.3; yRot = 180; break;
+                case 'south': offsetZ = 0.3; yRot = 0; break;
+                case 'east': offsetX = 0.3; yRot = 90; break;
+                case 'west': offsetX = -0.3; yRot = -90; break;
+              }
+              const spawnPos = { x: lightData.x + 0.5 + offsetX, y: lightData.y + 0.4, z: lightData.z + 0.5 + offsetZ };
+              const entity = dimension.spawnEntity("fr:pirate_cove_light_entity", spawnPos);
+              if (entity) entity.setRotation({ x: 0, y: yRot });
+              hallwayLampVfxEntities[key] = { vfxType: "fr:pirate_cove_light_entity", entity };
             } else if (lightTypeId === "fr:office_light") {
               const entity = dimension.spawnEntity("fr:hallway_lamp_vfx", location);
               hallwayLampVfxEntities[key] = { vfxType: "hallway_lamp", entity };
@@ -613,6 +626,9 @@ function syncLightState(block, dimension, player) {
             dimension.runCommand(`execute at @e[type=fr:pizzeria_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
           } else if (vfxType === "ceiling_light") {
             dimension.runCommand(`execute at @e[type=fr:ceiling_light_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
+          } else if (vfxType === "fr:pirate_cove_light_entity") {
+            const pirateLocation = { x: lightData.x + 0.5, y: lightData.y + 0.4, z: lightData.z + 0.5 };
+            dimension.runCommand(`execute at @e[type=fr:pirate_cove_light_entity] positioned ${pirateLocation.x} ${pirateLocation.y} ${pirateLocation.z} run event entity @e[r=1.5] destroy`);
           } else if (vfxType === "hallway_lamp") {
             dimension.runCommand(`execute at @e[type=fr:hallway_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
           } else if (vfxType === "office_lamp") {
