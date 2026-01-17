@@ -92,6 +92,7 @@ export const LIGHT_BLOCK_CONFIGS = {
     rotationState: "fr:rotation",
     colorState: "fr:color"
   }
+
 };
 
 export const SWITCH_CONFIGS = {
@@ -284,6 +285,17 @@ export function spawnLightVfx(dimension, lightBlock, lightData, vfxCache) {
 
   let spawnLocation = { ...baseLocation };
   let rotation = 0;
+
+  // Handle variant offsets
+  if (config.hasVariants && config.variantOffsets && config.variantState) {
+    const variantValue = lightBlock.permutation.getState(config.variantState) || 0;
+    const variantOffset = config.variantOffsets[variantValue];
+    if (variantOffset) {
+      spawnLocation.x += variantOffset.x;
+      spawnLocation.y += variantOffset.y;
+      spawnLocation.z += variantOffset.z;
+    }
+  }
 
   if (config.requiresCardinalRotation) {
     const cardinal = lightBlock.permutation.getState(config.cardinalState) || "south";
