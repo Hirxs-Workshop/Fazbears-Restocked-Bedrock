@@ -1,18 +1,10 @@
 import { EquipmentSlot, system, world, BlockPermutation } from "@minecraft/server";
-/**
- * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * This code is the property of Fazbear's Restocked.
- * Unauthorized copying, modification, distribution, or use of this code,
- * via any medium, is strictly prohibited without explicit permission.
- * All rights reserved.
- */
 
 import { ModalFormData, ActionFormData } from "@minecraft/server-ui";
 import FaceSelectionPlains from "./face_selection_plains";
 import { dynamicToast, getExistingVfxEntity, VFX_ENTITY_TYPES, findAnyVfxEntityAtLocation } from "./utils.js";
 import { SelectionType, setSelection, getSelection, clearSelection, hasSelectionOfType } from "./selection_manager.js";
-import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY, DOOR_BUTTON_GENERATOR_LINKS_KEY, getVfxEntityForLight } from "./connection_types.js";
+import { isLightType, LIGHT_TYPES, CONNECTIONS_KEY, DOOR_BUTTON_GENERATOR_LINKS_KEY, getVfxEntityForLight, spawnLightVfx, destroyLightVfx } from "./connection_types.js";
 import { getGeneratorLimit, getSwitchConnections } from "./main_system.js";
 import { getChunkedData, setChunkedData, initializeStorage, STORAGE_KEYS } from "./chunked_storage.js";
 import * as FRAPI from "../fr_api.js";
@@ -544,104 +536,19 @@ function syncLightState(block, dimension, player) {
 
         if (!hallwayLampVfxEntities[key]) {
           try {
-            const vfxEntityType = getVfxEntityForLight(lightTypeId);
-            
             const existingVfx = findAnyVfxEntityAtLocation(dimension, location);
             if (existingVfx) {
               hallwayLampVfxEntities[key] = { vfxType: existingVfx.vfxType, entity: existingVfx.entity };
-            } else if (lightTypeId === "fr:stage_spotlight") {
-              const blockFace = lightBlock.permutation.getState("minecraft:block_face") || "down";
-              let angle;
-              if (blockFace === "down") {
-                const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
-                const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
-                angle = angles[rotationState];
-              } else {
-                const faceAngles = { north: 180, east: 270, south: 0, west: 90 };
-                angle = faceAngles[blockFace] ?? 0;
-              }
-              dimension.runCommand(`summon fr:stage_spotlight_vfx ${location.x} ${location.y} ${location.z} ${angle} 0`);
-              const blockColor = lightBlock.permutation.getState("fr:color") ?? 4;
-              const spawnedEntities = dimension.getEntities({
-                type: "fr:stage_spotlight_vfx",
-                location: location,
-                maxDistance: 0.5
-              });
-              for (const entity of spawnedEntities) {
-                const colorComponent = entity.getComponent("minecraft:color");
-                if (colorComponent) colorComponent.value = blockColor;
-              }
-              hallwayLampVfxEntities[key] = { vfxType: "stage_spotlight" };
-            } else if (lightTypeId === "fr:pizzeria_lamp") {
-              const entity = dimension.spawnEntity("fr:pizzeria_lamp_vfx", location);
-              hallwayLampVfxEntities[key] = { vfxType: "pizzeria_lamp", entity };
-            } else if (lightTypeId === "fr:ceiling_light") {
-              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction") || "north";
-              const isNorthSouth = cardinal === "north" || cardinal === "south";
-              const rotation = isNorthSouth ? 0 : 90;
-              const entity = dimension.spawnEntity("fr:ceiling_light_vfx", location);
-              entity.setRotation({ x: 0, y: rotation });
-              hallwayLampVfxEntities[key] = { vfxType: "ceiling_light", entity };
-            } else if (lightTypeId === "fr:pirate_cove_light") {
-              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction") || "south";
-              let offsetX = 0, offsetZ = 0, yRot = 0;
-              switch (cardinal) {
-                case 'north': offsetZ = -0.3; yRot = 180; break;
-                case 'south': offsetZ = 0.3; yRot = 0; break;
-                case 'east': offsetX = 0.3; yRot = 90; break;
-                case 'west': offsetX = -0.3; yRot = -90; break;
-              }
-              const spawnPos = { x: lightData.x + 0.5 + offsetX, y: lightData.y + 0.4, z: lightData.z + 0.5 + offsetZ };
-              const entity = dimension.spawnEntity("fr:pirate_cove_light_entity", spawnPos);
-              if (entity) entity.setRotation({ x: 0, y: yRot });
-              hallwayLampVfxEntities[key] = { vfxType: "fr:pirate_cove_light_entity", entity };
-            } else if (lightTypeId === "fr:office_light") {
-              const entity = dimension.spawnEntity("fr:hallway_lamp_vfx", location);
-              hallwayLampVfxEntities[key] = { vfxType: "hallway_lamp", entity };
-            } else if (lightTypeId === "fr:office_lamp" || lightTypeId === "fr:supply_room_lightbulb") {
-              const entity = dimension.spawnEntity("fr:office_lamp_vfx", location);
-              hallwayLampVfxEntities[key] = { vfxType: "office_lamp", entity };
             } else {
-
-              const vfxEntityType = getVfxEntityForLight(lightTypeId);
-              const entity = dimension.spawnEntity(vfxEntityType, location);
-              hallwayLampVfxEntities[key] = { vfxType: vfxEntityType, entity };
+              spawnLightVfx(dimension, lightBlock, lightData, hallwayLampVfxEntities);
             }
           } catch (e) { }
         }
       } else {
 
-        const locationCenter = {
-          x: lightData.x + 0.5,
-          y: lightData.y + 0.5,
-          z: lightData.z + 0.5
-        };
         try {
-          const storedVfx = hallwayLampVfxEntities[key];
-          const vfxType = storedVfx?.vfxType;
-
-          if (vfxType === "stage_spotlight") {
-            dimension.runCommand(`execute at @e[type=fr:stage_spotlight_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
-          } else if (vfxType === "pizzeria_lamp") {
-            dimension.runCommand(`execute at @e[type=fr:pizzeria_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
-          } else if (vfxType === "ceiling_light") {
-            dimension.runCommand(`execute at @e[type=fr:ceiling_light_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
-          } else if (vfxType === "fr:pirate_cove_light_entity") {
-            const pirateLocation = { x: lightData.x + 0.5, y: lightData.y + 0.4, z: lightData.z + 0.5 };
-            dimension.runCommand(`execute at @e[type=fr:pirate_cove_light_entity] positioned ${pirateLocation.x} ${pirateLocation.y} ${pirateLocation.z} run event entity @e[r=1.5] destroy`);
-          } else if (vfxType === "hallway_lamp") {
-            dimension.runCommand(`execute at @e[type=fr:hallway_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
-          } else if (vfxType === "office_lamp") {
-            dimension.runCommand(`execute at @e[type=fr:office_lamp_vfx] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
-          } else {
-
-            const vfxEntityType = getVfxEntityForLight(lightTypeId);
-            dimension.runCommand(`execute at @e[type=${vfxEntityType}] positioned ${locationCenter.x} ${locationCenter.y} ${locationCenter.z} run event entity @e[r=0.5] destroy`);
-          }
+          destroyLightVfx(dimension, { ...lightData, typeId: lightTypeId }, hallwayLampVfxEntities);
         } catch { }
-        if (hallwayLampVfxEntities[key]) {
-          delete hallwayLampVfxEntities[key];
-        }
       }
     }
   });

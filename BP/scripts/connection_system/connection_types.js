@@ -1,60 +1,123 @@
-import { world } from "@minecraft/server";
 import * as FRAPI from "../fr_api.js";
 
-export const LIGHT_TYPES = new Set([
-  "fr:office_lamp",
-  "fr:supply_room_lightbulb",
-  "fr:stage_spotlight",
-  "fr:pizzeria_lamp",
-  "fr:ceiling_light",
-  "fr:office_light",
-  "fr:pirate_cove_light"
-]);
 
-export const SWITCH_TYPES = new Set([
-  "fr:switch"
-]);
+export const LIGHT_BLOCK_CONFIGS = {
 
-export const GENERATOR_TYPES = new Set([
-  "fr:generator",
-  "fr:sotm_generator"
-]);
+  "fr:office_light": {
+    alias: "Office light",
+    icon: "textures/fr_ui/light_test_icon",
+    vfxEntity: "fr:hallway_lamp_vfx",
+    spawnOffset: { x: 0, y: 0, z: 0 },
+    destroyRadius: 0.5,
+    powerState: "fr:lit"
+  },
 
-export const LIGHT_ALIASES = {
-  "fr:office_lamp": "Office lamp",
-  "fr:supply_room_lightbulb": "Supply room lightbulb",
-  "fr:stage_spotlight": "Stage spotlight",
-  "fr:pizzeria_lamp": "Pizzeria lamp",
-  "fr:ceiling_light": "Ceiling light",
-  "fr:office_light": "Office light",
-  "fr:pirate_cove_light": "Pirate cove light"
+  "fr:office_lamp": {
+    alias: "Office lamp",
+    icon: "textures/fr_ui/light_test_icon",
+    vfxEntity: "fr:office_lamp_vfx",
+    spawnOffset: { x: 0, y: 0, z: 0 },
+    destroyRadius: 0.5,
+    powerState: "fr:lit"
+  },
+
+  "fr:supply_room_lightbulb": {
+    alias: "Supply room lightbulb",
+    icon: "textures/fr_ui/light_test_icon",
+    vfxEntity: "fr:office_lamp_vfx",
+    spawnOffset: { x: 0, y: 0, z: 0 },
+    destroyRadius: 0.5,
+    powerState: "fr:lit"
+  },
+
+  "fr:pizzeria_lamp": {
+    alias: "Pizzeria lamp",
+    icon: "textures/fr_ui/light_test_icon",
+    vfxEntity: "fr:pizzeria_lamp_vfx",
+    spawnOffset: { x: 0, y: 0, z: 0 },
+    destroyRadius: 0.5,
+    powerState: "fr:lit"
+  },
+
+  "fr:ceiling_light": {
+    alias: "Ceiling light",
+    icon: "textures/fr_ui/light_test_icon",
+    vfxEntity: "fr:ceiling_light_vfx",
+    spawnOffset: { x: 0, y: 0, z: 0 },
+    destroyRadius: 0.5,
+    powerState: "fr:lit",
+    requiresCardinalRotation: true,
+    cardinalState: "minecraft:cardinal_direction",
+    rotationMap: {
+      north: 0,
+      south: 0,
+      east: 90,
+      west: 90
+    }
+  },
+
+  "fr:pirate_cove_light": {
+    alias: "Pirate cove light",
+    icon: "textures/fr_ui/light_test_icon",
+    vfxEntity: "fr:pirate_cove_light_entity",
+    spawnOffset: { x: 0, y: 0.4, z: 0 },
+    destroyRadius: 1.5,
+    powerState: "fr:lit",
+    requiresCardinalRotation: true,
+    cardinalState: "minecraft:cardinal_direction",
+    offsetMap: {
+      north: { x: 0, y: 0, z: -0.3 },
+      south: { x: 0, y: 0, z: 0.3 },
+      east: { x: 0.3, y: 0, z: 0 },
+      west: { x: -0.3, y: 0, z: 0 }
+    },
+    rotationMap: {
+      north: 180,
+      south: 0,
+      east: 90,
+      west: -90
+    }
+  },
+  
+  "fr:stage_spotlight": {
+    alias: "Stage spotlight",
+    icon: "textures/fr_ui/light_test_icon",
+    vfxEntity: "fr:stage_spotlight_vfx",
+    spawnOffset: { x: 0, y: 0, z: 0 },
+    destroyRadius: 0.5,
+    powerState: "fr:lit",
+    useCommand: true,
+    requiresFaceRotation: true,
+    faceState: "minecraft:block_face",
+    rotationState: "fr:rotation",
+    colorState: "fr:color"
+  }
 };
 
-export const SWITCH_ALIASES = {
-  "fr:switch": "Switch"
+export const SWITCH_CONFIGS = {
+  "fr:switch": {
+    alias: "Switch",
+    icon: "textures/fr_ui/switch_icon",
+    powerState: "fr:switch_type"
+  }
 };
 
-export const GENERATOR_ALIASES = {
-  "fr:generator": "Generator"
+export const GENERATOR_CONFIGS = {
+  "fr:generator": {
+    alias: "Generator",
+    icon: "textures/fr_ui/generator_icon"
+  },
+  "fr:sotm_generator": {
+    alias: "SOTM Generator",
+    icon: "textures/fr_ui/generator_icon"
+  }
 };
 
-export const LIGHT_ICONS = {
-  "fr:office_lamp": "textures/fr_ui/light_test_icon",
-  "fr:supply_room_lightbulb": "textures/fr_ui/light_test_icon",
-  "fr:stage_spotlight": "textures/fr_ui/light_test_icon",
-  "fr:pizzeria_lamp": "textures/fr_ui/light_test_icon",
-  "fr:ceiling_light": "textures/fr_ui/light_test_icon",
-  "fr:office_light": "textures/fr_ui/light_test_icon",
-  "fr:pirate_cove_light": "textures/fr_ui/light_test_icon"
-};
+// Other code
 
-export const SWITCH_ICONS = {
-  "fr:switch": "textures/fr_ui/switch_icon"
-};
-
-export const GENERATOR_ICONS = {
-  "fr:generator": "textures/fr_ui/generator_icon"
-};
+export const LIGHT_TYPES = new Set(Object.keys(LIGHT_BLOCK_CONFIGS));
+export const SWITCH_TYPES = new Set(Object.keys(SWITCH_CONFIGS));
+export const GENERATOR_TYPES = new Set(Object.keys(GENERATOR_CONFIGS));
 
 export const CONNECTIONS_KEY = "electric_system_connections";
 export const GENERATORS_KEY = "electric_system_generators";
@@ -63,6 +126,55 @@ export const MAX_ENERGY = 500;
 export const DEFAULT_CONSUMPTION_RATE = 0.2;
 export const CONSUMPTION_MULTIPLIER = 0.1;
 export const NEAR_DISTANCE = 64;
+
+export function getLightConfig(blockId) {
+  if (LIGHT_BLOCK_CONFIGS[blockId]) {
+    return LIGHT_BLOCK_CONFIGS[blockId];
+  }
+  const externalConfig = FRAPI.getConnectionType(blockId);
+  if (externalConfig && (externalConfig.type === "light" || externalConfig.type === "light_button")) {
+    return {
+      alias: externalConfig.alias || blockId,
+      icon: externalConfig.icon || "textures/fr_ui/default_icon",
+      vfxEntity: externalConfig.vfxEntity || "fr:hallway_lamp_vfx",
+      spawnOffset: externalConfig.spawnOffset || { x: 0, y: 0, z: 0 },
+      destroyRadius: externalConfig.destroyRadius || 0.5,
+      powerState: externalConfig.powerState || "fr:lit",
+      requiresCardinalRotation: externalConfig.requiresCardinalRotation || false,
+      cardinalState: externalConfig.cardinalState,
+      offsetMap: externalConfig.offsetMap,
+      rotationMap: externalConfig.rotationMap,
+      useCommand: externalConfig.useCommand || false,
+      requiresFaceRotation: externalConfig.requiresFaceRotation || false,
+      faceState: externalConfig.faceState,
+      rotationState: externalConfig.rotationState,
+      colorState: externalConfig.colorState
+    };
+  }
+  return null;
+}
+
+export function getSwitchConfig(blockId) {
+  if (SWITCH_CONFIGS[blockId]) {
+    return SWITCH_CONFIGS[blockId];
+  }
+  const externalConfig = FRAPI.getConnectionType(blockId);
+  if (externalConfig && externalConfig.type === "switch") {
+    return {
+      alias: externalConfig.alias || blockId,
+      icon: externalConfig.icon || "textures/fr_ui/default_icon",
+      powerState: externalConfig.powerState || "fr:switch_type"
+    };
+  }
+  return null;
+}
+
+export function getGeneratorConfig(blockId) {
+  if (GENERATOR_CONFIGS[blockId]) {
+    return GENERATOR_CONFIGS[blockId];
+  }
+  return null;
+}
 
 export function getAllLightTypes() {
   const allTypes = new Set(LIGHT_TYPES);
@@ -87,37 +199,37 @@ export function getAllSwitchTypes() {
 }
 
 export function getBlockAlias(blockId) {
-  if (LIGHT_ALIASES[blockId]) return LIGHT_ALIASES[blockId];
-  if (SWITCH_ALIASES[blockId]) return SWITCH_ALIASES[blockId];
-  if (GENERATOR_ALIASES[blockId]) return GENERATOR_ALIASES[blockId];
-
-  const externalConfig = FRAPI.getConnectionType(blockId);
-  if (externalConfig) return externalConfig.alias;
+  const lightConfig = getLightConfig(blockId);
+  if (lightConfig) return lightConfig.alias;
+  
+  const switchConfig = getSwitchConfig(blockId);
+  if (switchConfig) return switchConfig.alias;
+  
+  const generatorConfig = getGeneratorConfig(blockId);
+  if (generatorConfig) return generatorConfig.alias;
 
   return blockId;
 }
 
 export function getBlockIcon(blockId) {
-  if (LIGHT_ICONS[blockId]) return LIGHT_ICONS[blockId];
-  if (SWITCH_ICONS[blockId]) return SWITCH_ICONS[blockId];
-  if (GENERATOR_ICONS[blockId]) return GENERATOR_ICONS[blockId];
-
-  const externalConfig = FRAPI.getConnectionType(blockId);
-  if (externalConfig) return externalConfig.icon;
+  const lightConfig = getLightConfig(blockId);
+  if (lightConfig) return lightConfig.icon;
+  
+  const switchConfig = getSwitchConfig(blockId);
+  if (switchConfig) return switchConfig.icon;
+  
+  const generatorConfig = getGeneratorConfig(blockId);
+  if (generatorConfig) return generatorConfig.icon;
 
   return "textures/fr_ui/default_icon";
 }
 
 export function isLightType(blockId) {
-  if (LIGHT_TYPES.has(blockId)) return true;
-  const externalConfig = FRAPI.getConnectionType(blockId);
-  return externalConfig && (externalConfig.type === "light" || externalConfig.type === "light_button");
+  return getLightConfig(blockId) !== null;
 }
 
 export function isSwitchType(blockId) {
-  if (SWITCH_TYPES.has(blockId)) return true;
-  const externalConfig = FRAPI.getConnectionType(blockId);
-  return externalConfig && externalConfig.type === "switch";
+  return getSwitchConfig(blockId) !== null;
 }
 
 export function isCameraType(blockId) {
@@ -125,25 +237,103 @@ export function isCameraType(blockId) {
   return externalConfig && externalConfig.type === "camera";
 }
 
-export const LIGHT_VFX_MAP = {
-  "fr:office_light": "fr:hallway_lamp_vfx",
-  "fr:office_lamp": "fr:office_lamp_vfx",
-  "fr:pizzeria_lamp": "fr:pizzeria_lamp_vfx",
-  "fr:ceiling_light": "fr:ceiling_light_vfx",
-  "fr:stage_spotlight": "fr:stage_spotlight_vfx",
-  "fr:supply_room_lightbulb": "fr:office_lamp_vfx",
-  "fr:pirate_cove_light": "fr:pirate_cove_light_entity"
-};
-
 export function getVfxEntityForLight(lightTypeId) {
-  if (LIGHT_VFX_MAP[lightTypeId]) {
-    return LIGHT_VFX_MAP[lightTypeId];
+  const config = getLightConfig(lightTypeId);
+  return config ? config.vfxEntity : "fr:hallway_lamp_vfx";
+}
+
+export function spawnLightVfx(dimension, lightBlock, lightData, vfxCache) {
+  const config = getLightConfig(lightBlock.typeId);
+  if (!config) return null;
+
+  const key = `${lightData.dimensionId}_${lightData.x}_${lightData.y}_${lightData.z}`;
+  const baseLocation = {
+    x: lightData.x + 0.5,
+    y: lightData.y + config.spawnOffset.y,
+    z: lightData.z + 0.5
+  };
+
+  if (config.useCommand && config.requiresFaceRotation) {
+    const blockFace = lightBlock.permutation.getState(config.faceState) || "down";
+    let angle;
+    if (blockFace === "down") {
+      const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
+      const rotationState = lightBlock.permutation.getState(config.rotationState) || 0;
+      angle = angles[rotationState];
+    } else {
+      const faceAngles = { north: 180, east: 270, south: 0, west: 90 };
+      angle = faceAngles[blockFace] ?? 0;
+    }
+    dimension.runCommand(`summon ${config.vfxEntity} ${baseLocation.x} ${baseLocation.y} ${baseLocation.z} ${angle} 0`);
+    
+    if (config.colorState) {
+      const blockColor = lightBlock.permutation.getState(config.colorState) ?? 4;
+      const spawnedEntities = dimension.getEntities({
+        type: config.vfxEntity,
+        location: baseLocation,
+        maxDistance: 0.5
+      });
+      for (const entity of spawnedEntities) {
+        const colorComponent = entity.getComponent("minecraft:color");
+        if (colorComponent) colorComponent.value = blockColor;
+      }
+    }
+    vfxCache[key] = { vfxType: config.vfxEntity };
+    return { key, vfxType: config.vfxEntity };
   }
 
-  const externalConfig = FRAPI.getConnectionType(lightTypeId);
-  if (externalConfig && externalConfig.vfxEntity) {
-    return externalConfig.vfxEntity;
+  let spawnLocation = { ...baseLocation };
+  let rotation = 0;
+
+  if (config.requiresCardinalRotation) {
+    const cardinal = lightBlock.permutation.getState(config.cardinalState) || "south";
+    
+    if (config.offsetMap) {
+      const offset = config.offsetMap[cardinal] || { x: 0, y: 0, z: 0 };
+      spawnLocation.x += offset.x;
+      spawnLocation.y += offset.y;
+      spawnLocation.z += offset.z;
+    }
+    
+    if (config.rotationMap) {
+      rotation = config.rotationMap[cardinal] || 0;
+    }
   }
 
-  return "fr:hallway_lamp_vfx";
+  const entity = dimension.spawnEntity(config.vfxEntity, spawnLocation);
+  if (entity && rotation !== 0) {
+    entity.setRotation({ x: 0, y: rotation });
+  }
+  
+  vfxCache[key] = { vfxType: config.vfxEntity, entity };
+  return { key, vfxType: config.vfxEntity, entity };
+}
+
+export function destroyLightVfx(dimension, lightData, vfxCache) {
+  const config = getLightConfig(lightData.typeId);
+  if (!config) return;
+
+  const key = `${lightData.dimensionId}_${lightData.x}_${lightData.y}_${lightData.z}`;
+  const storedVfx = vfxCache[key];
+  const vfxType = storedVfx?.vfxType || config.vfxEntity;
+
+  let destroyLocation = {
+    x: lightData.x + 0.5,
+    y: lightData.y + 0.5,
+    z: lightData.z + 0.5
+  };
+
+  if (config.spawnOffset.y !== 0) {
+    destroyLocation.y = lightData.y + config.spawnOffset.y;
+  }
+
+  try {
+    dimension.runCommand(
+      `execute at @e[type=${vfxType}] positioned ${destroyLocation.x} ${destroyLocation.y} ${destroyLocation.z} run event entity @e[r=${config.destroyRadius}] destroy`
+    );
+  } catch {}
+
+  if (vfxCache[key]) {
+    delete vfxCache[key];
+  }
 }

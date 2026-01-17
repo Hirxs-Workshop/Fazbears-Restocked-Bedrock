@@ -13,7 +13,7 @@
 import { world, system, BlockPermutation, Direction, EquipmentSlot, GameMode } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
 import { dynamicToast, dynamicToastEvent, cleanupLampVfxEntitiesOnReload, cleanupLampVfxEntitiesSilent, getLinePoints, turnOffLight, lampVfxEntities, getExistingVfxEntity, VFX_ENTITY_TYPES, rebuildVfxCache, findAnyVfxEntityAtLocation } from "./utils.js";
-import { LIGHT_TYPES, SWITCH_TYPES, GENERATOR_TYPES, LIGHT_ALIASES, SWITCH_ALIASES, GENERATOR_ALIASES, LIGHT_ICONS, SWITCH_ICONS, GENERATOR_ICONS, CONNECTIONS_KEY, GENERATORS_KEY, MAX_ENERGY, DEFAULT_CONSUMPTION_RATE, CONSUMPTION_MULTIPLIER, NEAR_DISTANCE, getAllLightTypes, getAllSwitchTypes, isLightType, isSwitchType, getBlockAlias, getBlockIcon, DOOR_BUTTON_GENERATOR_LINKS_KEY, getVfxEntityForLight } from "./connection_types.js";
+import { LIGHT_TYPES, SWITCH_TYPES, GENERATOR_TYPES, CONNECTIONS_KEY, GENERATORS_KEY, MAX_ENERGY, DEFAULT_CONSUMPTION_RATE, CONSUMPTION_MULTIPLIER, NEAR_DISTANCE, getAllLightTypes, getAllSwitchTypes, isLightType, isSwitchType, getBlockAlias, getBlockIcon, DOOR_BUTTON_GENERATOR_LINKS_KEY, getVfxEntityForLight, spawnLightVfx, destroyLightVfx } from "./connection_types.js";
 import { isPlayerInCamera } from "../camera_system/security_camera_system.js";
 import { getChunkedData, setChunkedData, initializeStorage, STORAGE_KEYS } from "./chunked_storage.js";
 
@@ -1313,70 +1313,17 @@ system.runInterval(() => {
         if (isActive) {
           if (!lampVfxEntities[key]) {
             const dimension = world.getDimension(conn.light.dimensionId);
-            const location = { x: conn.light.x + 0.5, y: conn.light.y + 0, z: conn.light.z + 0.5 };
-            const vfxEntityType = getVfxEntityForLight(lightBlock.typeId);
-
-            // Verificar si ya existe CUALQUIER entidad VFX en esta posición
-            const existingVfx = findAnyVfxEntityAtLocation(dimension, location);
+            const existingVfx = findAnyVfxEntityAtLocation(dimension, { x: conn.light.x + 0.5, y: conn.light.y, z: conn.light.z + 0.5 });
             if (existingVfx) {
               lampVfxEntities[key] = { vfxType: existingVfx.vfxType, entity: existingVfx.entity };
-            } else if (lightBlock.typeId === "fr:stage_spotlight") {
-              const blockFace = lightBlock.permutation.getState("minecraft:block_face") || "down";
-              let angle;
-              if (blockFace === "down") {
-                const angles = [180, 200, 225, 250, 270, 290, 315, 335, 0, 25, 45, 70, 90, 115, 135, 160];
-                const rotationState = lightBlock.permutation.getState("fr:rotation") || 0;
-                angle = angles[rotationState];
-              } else {
-                const faceAngles = { north: 180, east: 270, south: 0, west: 90 };
-                angle = faceAngles[blockFace] ?? 0;
-              }
-              dimension.runCommand(`summon ${vfxEntityType} ${location.x} ${location.y} ${location.z} ${angle} 0`);
-              const blockColor = lightBlock.permutation.getState("fr:color") ?? 4;
-              const spawnedEntities = dimension.getEntities({ type: vfxEntityType, location: location, maxDistance: 0.5 });
-              for (const entity of spawnedEntities) {
-                const colorComponent = entity.getComponent("minecraft:color");
-                if (colorComponent) colorComponent.value = blockColor;
-              }
-              lampVfxEntities[key] = { vfxType: vfxEntityType };
-            } else if (lightBlock.typeId === "fr:ceiling_light") {
-              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction") || "north";
-              const isNorthSouth = cardinal === "north" || cardinal === "south";
-              const rotation = isNorthSouth ? 0 : 90;
-              const entity = dimension.spawnEntity(vfxEntityType, location);
-              entity.setRotation({ x: 0, y: rotation });
-              lampVfxEntities[key] = { vfxType: vfxEntityType, entity };
-            } else if (lightBlock.typeId === "fr:pirate_cove_light") {
-              const cardinal = lightBlock.permutation.getState("minecraft:cardinal_direction") || "south";
-              let offsetX = 0, offsetZ = 0, yRot = 0;
-              switch (cardinal) {
-                case 'north': offsetZ = -0.3; yRot = 180; break;
-                case 'south': offsetZ = 0.3; yRot = 0; break;
-                case 'east': offsetX = 0.3; yRot = 90; break;
-                case 'west': offsetX = -0.3; yRot = -90; break;
-              }
-              const spawnPos = { x: conn.light.x + 0.5 + offsetX, y: conn.light.y + 0.4, z: conn.light.z + 0.5 + offsetZ };
-              const entity = dimension.spawnEntity(vfxEntityType, spawnPos);
-              if (entity) entity.setRotation({ x: 0, y: yRot });
-              lampVfxEntities[key] = { vfxType: vfxEntityType, entity };
             } else {
-              const entity = dimension.spawnEntity(vfxEntityType, location);
-              lampVfxEntities[key] = { vfxType: vfxEntityType, entity };
+              spawnLightVfx(dimension, lightBlock, conn.light, lampVfxEntities);
             }
           }
         } else {
           if (lampVfxEntities[key]) {
             const dimension = world.getDimension(conn.light.dimensionId);
-            const location = { x: conn.light.x + 0.5, y: conn.light.y + 0.5, z: conn.light.z + 0.5 };
-            const vfxEntityType = getVfxEntityForLight(lightBlock?.typeId || "fr:office_light");
-
-            if (vfxEntityType === "fr:pirate_cove_light_entity") {
-              const pirateLocation = { x: conn.light.x + 0.5, y: conn.light.y + 0.4, z: conn.light.z + 0.5 };
-              dimension.runCommand(`execute at @e[type=${vfxEntityType}] positioned ${pirateLocation.x} ${pirateLocation.y} ${pirateLocation.z} run event entity @e[r=1.5] destroy`);
-            } else {
-              dimension.runCommand(`execute at @e[type=${vfxEntityType}] positioned ${location.x} ${location.y} ${location.z} run event entity @e[r=0.5] destroy`);
-            }
-            delete lampVfxEntities[key];
+            destroyLightVfx(dimension, { ...conn.light, typeId: lightBlock?.typeId || "fr:office_light" }, lampVfxEntities);
           }
         }
       }
