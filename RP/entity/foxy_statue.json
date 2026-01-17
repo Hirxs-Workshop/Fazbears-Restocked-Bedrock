@@ -4,14 +4,21 @@
 		"description": {
 			"identifier": "fr:foxy_statue",
 			"materials": {
-				"default": "spider"
+				"default": "enderman",
+				"radioactive_body": "fr_radioactive_body",
+				"radioactive_outline": "fr_radioactive_outline"
 			},
 			"textures": {
 				"default": "textures/entity/reworked/fnaf1/foxy_the_pirate",
 				"variant_1": "textures/entity/reworked/fnaf1/foxy_the_pirate_fixed",
 				"variant_2": "textures/entity/reworked/fnaf1/foxy_the_pirate_glow_eyes",
 				"variant_3": "textures/entity/reworked/fnaf1/foxy_the_pirate_fixed_glow_eyes",
-				"variant_4": "textures/entity/reworked/fnaf1/foxy_the_gingerbread_fox"
+				"variant_4": "textures/entity/reworked/fnaf1/foxy_the_gingerbread_fox",
+				"variant_5": "textures/entity/reworked/fnaf1/radioactive_foxy",
+				"variant_6": "textures/entity/reworked/fnaf1/damaged_foxy_the_pirate_captain_fixed",
+				"variant_7": "textures/entity/reworked/fnaf1/damaged_foxy_the_pirate_captain_torn",
+				"variant_8": "textures/entity/reworked/fnaf1/fixed_foxy_the_pirate_captain_fixed",
+				"variant_9": "textures/entity/reworked/fnaf1/fixed_foxy_the_pirate_captain_torn"
 			},
 			"animations": {
 				"pose_0": "animation.foxy_stand",
@@ -96,10 +103,22 @@
 				]
 			},
 			"geometry": {
-				"default": "geometry.Foxy_the_Pirate_alt"
+				"default": "geometry.Foxy_the_Pirate_alt",
+				"variant_1": "geometry.Foxy_the_Pirate_alt",
+				"variant_2": "geometry.Foxy_the_Pirate_alt",
+				"variant_3": "geometry.Foxy_the_Pirate_alt",
+				"variant_4": "geometry.Foxy_the_Pirate_alt",
+				"variant_5": "geometry.Foxy_the_Pirate_alt",
+				"variant_6": "geometry.Foxy_the_Pirate_alt",
+				"variant_7": "geometry.Foxy_the_Pirate_alt",
+				"variant_8": "geometry.Foxy_the_Pirate_alt",
+				"variant_9": "geometry.Foxy_the_Pirate_alt",
+				"outline": "geometry.foxy_outline",
+				"radioactive": "geometry.Foxy_the_Pirate_radioactive"
 			},
 			"render_controllers": [
-				"controller.render.fr_foxy_statue_rc"
+				"controller.render.fr_foxy_statue_rc",
+				"controller.render.fr.entity.outline"
 			],
 			"enable_attachables": true,
 			"spawn_egg": {

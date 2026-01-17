@@ -1,7 +1,7 @@
 {
 	"format_version": 2,
 	"header": {
-		"name": "RP | Fazbear's Restocked | Public early build 1.9.1",
+		"name": "RP | Fazbear's Restocked | Public build 1",
 		"description": "Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!",
 		"min_engine_version": [
 			1,
@@ -12,7 +12,7 @@
 		"version": [
 			0,
 			1,
-			36
+			70
 		]
 	},
 	"modules": [
@@ -22,7 +22,7 @@
 			"version": [
 				0,
 				1,
-				36
+				70
 			]
 		}
 	],
@@ -35,7 +35,7 @@
 			"version": [
 				0,
 				1,
-				36
+				70
 			]
 		}
 	]

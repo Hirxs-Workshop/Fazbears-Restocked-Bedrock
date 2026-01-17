@@ -1,0 +1,28 @@
+{
+  "format_version": "1.10.0",
+  "render_controllers": {
+    "controller.render.fr.entity.outline": {
+      "geometry": "geometry.outline",
+      "textures": [
+        "texture.variant_5"
+      ],
+      "ignore_lighting": true,
+      "materials": [
+        {
+          "*": "material.radioactive_outline"
+        }
+      ],
+      "part_visibility": [
+        {
+          "*": "q.property('fr:variant') == 5"
+        }
+      ],
+      "overlay_color": {
+        "r": 0.2,
+        "g": 1.0,
+        "b": 0.2,
+        "a": 0.8
+      }
+    }
+  }
+}

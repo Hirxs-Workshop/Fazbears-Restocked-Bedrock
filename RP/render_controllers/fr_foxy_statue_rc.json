@@ -5,7 +5,7 @@
             "geometry": "Geometry.default",
             "materials": [
                 {
-                    "*": "Material.default"
+                    "*": "q.property('fr:variant') == 5 ? Material.radioactive_body : Material.default"
                 }
             ],
             "textures": [
@@ -18,7 +18,12 @@
                         "Texture.variant_1",
                         "Texture.variant_2",
                         "Texture.variant_3",
-                        "Texture.variant_4"
+                        "Texture.variant_4",
+                        "Texture.variant_5",
+                        "Texture.variant_6",
+                        "Texture.variant_7",
+                        "Texture.variant_8",
+                        "Texture.variant_9"
                     ]
                 }
             }

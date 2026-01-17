@@ -156,47 +156,52 @@ const POSES_FREDDY = [
 
 
 const VARIANTS_BONNIE = [
-  { name: "classic.theme", icon: "textures/fr_ui/variants/bonnie/bonnie_regular", type: "normal" },
-  { name: "chocolate.theme", icon: "textures/fr_ui/variants/bonnie/bonnie_chocolate", type: "seasonal" },
-  { name: "elf.theme", icon: "textures/fr_ui/variants/bonnie/bonnie_elf", type: "seasonal" },
-  { name: "hw_guitar.theme", icon: "textures/fr_ui/variants/bonnie/bonnie_hw_guitar", type: "normal" },
-  { name: "black_eyes.theme", icon: "textures/fr_ui/variants/bonnie/bonnie_black_eyes", type: "normal" }
+  { name: "classic", icon: "textures/fr_ui/variants/bonnie/bonnie_regular", type: "normal" },
+  { name: "chocolate", icon: "textures/fr_ui/variants/bonnie/bonnie_chocolate", type: "seasonal" },
+  { name: "elf", icon: "textures/fr_ui/variants/bonnie/bonnie_elf", type: "seasonal" },
+  { name: "hw_guitar", icon: "textures/fr_ui/variants/bonnie/bonnie_hw_guitar", type: "normal" },
+  { name: "black_eyes", icon: "textures/fr_ui/variants/bonnie/bonnie_black_eyes", type: "normal" }
 ];
 
 const VARIANTS_CHICA = [
-  { name: "base.theme", icon: "textures/fr_ui/variants/chica/chica_base", type: "normal" },
-  { name: "pizza.theme", icon: "textures/fr_ui/variants/chica/chica_pizza", type: "normal" },
-  { name: "snow.theme", icon: "textures/fr_ui/variants/chica/chica_snow", type: "seasonal" },
-  { name: "cursed.theme", icon: "textures/fr_ui/variants/chica/chica_cursed", type: "special" },
-  { name: "sotm.theme", icon: "textures/fr_ui/variants/chica/chica_sotm", type: "special" },
-  { name: "withered.theme", icon: "textures/fr_ui/variants/chica/chica_withered", type: "special" }
+  { name: "base", icon: "textures/fr_ui/variants/chica/chica_base", type: "normal" },
+  { name: "pizza", icon: "textures/fr_ui/variants/chica/chica_pizza", type: "normal" },
+  { name: "snow", icon: "textures/fr_ui/variants/chica/chica_snow", type: "seasonal" },
+  { name: "cursed", icon: "textures/fr_ui/variants/chica/chica_cursed", type: "special" },
+  { name: "sotm", icon: "textures/fr_ui/variants/chica/chica_sotm", type: "special" },
+  { name: "withered", icon: "textures/fr_ui/variants/chica/chica_withered", type: "special" }
 ];
 
 const VARIANTS_FOXY = [
-  { name: "base.theme", icon: "textures/fr_ui/variants/foxy/foxy_base", type: "normal" },
-  { name: "fixed.theme", icon: "textures/fr_ui/variants/foxy/foxy_fixed", type: "normal" },
-  { name: "glow.theme", icon: "textures/fr_ui/variants/foxy/foxy_glow_eyes", type: "special" },
-  { name: "fixed_glow.theme", icon: "textures/fr_ui/variants/foxy/foxy_fixed_glow_eyes", type: "special" },
-  { name: "gingerbread.theme", icon: "textures/fr_ui/variants/foxy/foxy_gingerbread", type: "seasonal" }
+  { name: "base", icon: "textures/fr_ui/variants/foxy/foxy_base", type: "normal" },
+  { name: "fixed", icon: "textures/fr_ui/variants/foxy/foxy_fixed", type: "normal" },
+  { name: "glow", icon: "textures/fr_ui/variants/foxy/foxy_glow_eyes", type: "special" },
+  { name: "fixed_glow", icon: "textures/fr_ui/variants/foxy/foxy_fixed_glow_eyes", type: "special" },
+  { name: "gingerbread", icon: "textures/fr_ui/variants/foxy/foxy_gingerbread", type: "seasonal" },
+  { name: "radioactive", icon: "textures/fr_ui/variants/foxy/foxy_radioactive", type: "special" },
+  { name: "suit_damaged", icon: "textures/fr_ui/variants/foxy/foxy_captain_torn", type: "normal" },
+  { name: "suit_fixed", icon: "textures/fr_ui/variants/foxy/foxy_captain_fixed", type: "normal" },
+  { name: "suit_damaged", icon: "textures/fr_ui/variants/foxy/foxy_fixed_captain_torn", type: "normal" },
+  { name: "suit_fixed", icon: "textures/fr_ui/variants/foxy/foxy_fixed_captain_fixed", type: "normal" },
 ];
 
 const VARIANTS_SPARKY = [
-  { name: "base.theme", icon: "textures/fr_ui/variants/sparky/sparky_base", type: "normal" },
-  { name: "fixed.theme", icon: "textures/fr_ui/variants/sparky/sparky_fixed", type: "normal" },
-  { name: "accurate.theme", icon: "textures/fr_ui/variants/sparky/sparky_accurate", type: "special" },
-  { name: "withered.theme", icon: "textures/fr_ui/variants/sparky/sparky_accurate_withered", type: "special" },
-  { name: "hot_chocolate.theme", icon: "textures/fr_ui/variants/sparky/sparky_hot_chocolate", type: "seasonal" }
+  { name: "base", icon: "textures/fr_ui/variants/sparky/sparky_base", type: "normal" },
+  { name: "fixed", icon: "textures/fr_ui/variants/sparky/sparky_fixed", type: "normal" },
+  { name: "accurate", icon: "textures/fr_ui/variants/sparky/sparky_accurate", type: "special" },
+  { name: "withered", icon: "textures/fr_ui/variants/sparky/sparky_accurate_withered", type: "special" },
+  { name: "hot_chocolate", icon: "textures/fr_ui/variants/sparky/sparky_hot_chocolate", type: "seasonal" }
 ];
 
 const VARIANTS_FREDDY = [
-  { name: "base.theme", icon: "textures/fr_ui/variants/freddy/freddy_basic", type: "normal" },
-  { name: "black_eyes.theme", icon: "textures/fr_ui/variants/freddy/freddy_black_eyes", type: "normal" },
-  { name: "hardmode.theme", icon: "textures/fr_ui/variants/freddy/freddy_hardmode", type: "special" },
-  { name: "frost.theme", icon: "textures/fr_ui/variants/freddy/freddy_frost", type: "seasonal" },
-  { name: "santa.theme", icon: "textures/fr_ui/variants/freddy/freddy_santa", type: "seasonal" },
-  { name: "blacklight.theme", icon: "textures/fr_ui/variants/freddy/freddy_blacklight", type: "special" },
-  { name: "bear5.theme", icon: "textures/fr_ui/variants/freddy/freddy_bear5", type: "special" },
-  { name: "venom.theme", icon: "textures/fr_ui/variants/freddy/freddy_venom", type: "special" }
+  { name: "base", icon: "textures/fr_ui/variants/freddy/freddy_basic", type: "normal" },
+  { name: "black_eyes", icon: "textures/fr_ui/variants/freddy/freddy_black_eyes", type: "normal" },
+  { name: "hardmode", icon: "textures/fr_ui/variants/freddy/freddy_hardmode", type: "special" },
+  { name: "frost", icon: "textures/fr_ui/variants/freddy/freddy_frost", type: "seasonal" },
+  { name: "santa", icon: "textures/fr_ui/variants/freddy/freddy_santa", type: "seasonal" },
+  { name: "blacklight", icon: "textures/fr_ui/variants/freddy/freddy_blacklight", type: "special" },
+  { name: "bear5", icon: "textures/fr_ui/variants/freddy/freddy_bear5", type: "special" },
+  { name: "venom", icon: "textures/fr_ui/variants/freddy/freddy_venom", type: "special" }
 ];
 const POSES_PER_PAGE = 6;
 

@@ -1,5 +1,5 @@
 {
-	"format_version": "1.21.30",
+	"format_version": "1.21.0",
 	"minecraft:block": {
 		"description": {
 			"identifier": "fr:east_hall_corner_shelf",
@@ -15,19 +15,35 @@
 			},
 			"states": {
 				"fr:variants": [
-					0, 
+					0,
 					1
 				]
 			}
 		},
 		"components": {
 			"minecraft:collision_box": {
-				"origin": [-8, 0, -8],
-				"size": [16, 16, 16]
+				"origin": [
+					-6,
+					0,
+					-1
+				],
+				"size": [
+					12,
+					9.5,
+					5
+				]
 			},
 			"minecraft:selection_box": {
-				"origin": [-8, 0, -8],
-				"size": [16, 16, 16]
+				"origin": [
+					-6,
+					0,
+					-1
+				],
+				"size": [
+					12,
+					9.5,
+					5
+				]
 			},
 			"minecraft:geometry": {
 				"identifier": "geometry.east_hall_corner_shelf"
@@ -44,8 +60,21 @@
 				"condition": "q.block_state('fr:variants') == 0 && q.block_state('minecraft:cardinal_direction') == 'north'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [ 0, 180, 0 ],
-						"translation": [-0.5, 0, 0]
+						"rotation": [
+							0,
+							180,
+							0
+						],
+						"translation": [
+							-0.5,
+							0.5,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						]
 					}
 				}
 			},
@@ -53,8 +82,21 @@
 				"condition": "q.block_state('fr:variants') == 0 && q.block_state('minecraft:cardinal_direction') == 'west'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [0, -90, 0],
-						"translation": [0, 0, 0.5]
+						"rotation": [
+							0,
+							-90,
+							0
+						],
+						"translation": [
+							0,
+							0.5,
+							0.5
+						],
+						"scale": [
+							2,
+							2,
+							2
+						]
 					}
 				}
 			},
@@ -62,8 +104,21 @@
 				"condition": "q.block_state('fr:variants') == 0 && q.block_state('minecraft:cardinal_direction') == 'south'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [0, 0, 0],
-						"translation": [0.5, 0, 0]
+						"rotation": [
+							0,
+							0,
+							0
+						],
+						"translation": [
+							0.5,
+							0.5,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						]
 					}
 				}
 			},
@@ -71,8 +126,21 @@
 				"condition": "q.block_state('fr:variants') == 0 && q.block_state('minecraft:cardinal_direction') == 'east'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [0, 90, 0],
-						"translation": [0, 0, -0.5]
+						"rotation": [
+							0,
+							90,
+							0
+						],
+						"translation": [
+							0,
+							0.5,
+							-0.5
+						],
+						"scale": [
+							2,
+							2,
+							2
+						]
 					}
 				}
 			},
@@ -80,7 +148,21 @@
 				"condition": "q.block_state('fr:variants') == 1 && q.block_state('minecraft:cardinal_direction') == 'north'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [ 0, 180, 0 ]
+						"rotation": [
+							0,
+							180,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						]
 					}
 				}
 			},
@@ -88,7 +170,21 @@
 				"condition": "q.block_state('fr:variants') == 1 && q.block_state('minecraft:cardinal_direction') == 'west'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [0, -90, 0]
+						"rotation": [
+							0,
+							-90,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						]
 					}
 				}
 			},
@@ -96,7 +192,21 @@
 				"condition": "q.block_state('fr:variants') == 1 && q.block_state('minecraft:cardinal_direction') == 'south'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [0, 0, 0]
+						"rotation": [
+							0,
+							0,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						]
 					}
 				}
 			},
@@ -104,7 +214,21 @@
 				"condition": "q.block_state('fr:variants') == 1 && q.block_state('minecraft:cardinal_direction') == 'east'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [0, 90, 0]
+						"rotation": [
+							0,
+							90,
+							0
+						],
+						"translation": [
+							0,
+							0.5,
+							0
+						],
+						"scale": [
+							2,
+							2,
+							2
+						]
 					}
 				}
 			}

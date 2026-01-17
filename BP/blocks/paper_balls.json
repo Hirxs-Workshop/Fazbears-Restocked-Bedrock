@@ -1,10 +1,22 @@
 {
-	"format_version": "1.21.30",
+	"format_version": "1.21.0",
 	"minecraft:block": {
 		"description": {
 			"identifier": "fr:paper_balls",
 			"menu_category": {
 				"category": "construction"
+			},
+			"states": {
+				"fr:pulled": [
+					"false",
+					"true"
+				],
+				"fr:placed": {
+					"values": {
+						"min": 1,
+						"max": 5
+					}
+				}
 			},
 			"traits": {
 				"minecraft:placement_direction": {
@@ -15,53 +27,324 @@
 			}
 		},
 		"components": {
-			"minecraft:collision_box": false,
-			"minecraft:selection_box": {
-				"origin": [-8, 0, -8],
-				"size": [16, 1, 16]
+			"minecraft:geometry": {
+				"identifier": "geometry.paper_balls"
 			},
-			"minecraft:geometry": "geometry.paper_balls",
+			"minecraft:destructible_by_explosion": {
+				"explosion_resistance": 1
+			},
+			"minecraft:destructible_by_mining": {
+				"seconds_to_destroy": 1
+			},
+			"minecraft:flammable": true,
+			"minecraft:map_color": "#ffffff",
 			"minecraft:material_instances": {
 				"*": {
 					"texture": "paper_balls",
-					"render_method": "alpha_test",
-					"ambient_occlusion": false,
-					"emissive": false,
-					"face_dimming": false
+					"render_method": "alpha_test_single_sided",
+					"face_dimming": true,
+					"ambient_occlusion": false
 				}
-			}
+			},
+			"minecraft:selection_box": {
+				"origin": [
+					-8,
+					0,
+					-8
+				],
+				"size": [
+					16,
+					1,
+					16
+				]
+			},
+			"minecraft:collision_box": false,
+			"fr:hat_pull": {},
+			"fr:hat_placed_selector": {}
 		},
 		"permutations": [
 			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'north'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [
-							0,
-							180,
+						"translation": [
+							-0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.0,
+							0.0,
+							0.0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.0,
+							0.0,
+							0.0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.0,
+							0.0,
+							0.0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'false' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.0,
+							0.0,
+							0.0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							0.5
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							0.5
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'south'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
 							0
 						]
 					}
 				}
 			},
 			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'south'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [
-							0,
-							-90,
-							0
-						]
-					}
-				}
-			},
-			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
-				"components": {
-					"minecraft:transformation": {
-						"rotation": [
-							0,
+						"translation": [
+							-0.25,
 							0,
 							0
 						]
@@ -69,13 +352,193 @@
 				}
 			},
 			{
-				"condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'south'",
 				"components": {
 					"minecraft:transformation": {
-						"rotation": [
-							0,
-							90,
+						"translation": [
+							0.0,
+							0.0,
+							0.5
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
+							-0.5
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0.0,
+							-0.5
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.25,
+							0.0,
 							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.25,
+							0,
+							0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'north'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.0,
+							0.0,
+							-0.5
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.5,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.5,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'east'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0.5,
+							0.0,
+							0.0
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 1 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 2 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							0,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 3 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.5,
+							0.0,
+							-0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 4 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.5,
+							0.0,
+							0.25
+						]
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fr:pulled') == 'true' && query.block_state('fr:placed') == 5 && query.block_state('minecraft:cardinal_direction') == 'west'",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [
+							-0.5,
+							0.0,
+							0.0
 						]
 					}
 				}
