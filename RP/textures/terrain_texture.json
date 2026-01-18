@@ -2734,5 +2734,10 @@
                 "textures/blocks/reworked/gumball_machine_2"
             ]
         }
+	"camera_ceiling_mount": {
+            "textures": [
+                "textures/blocks/reworked/camera_ceiling_mount"
+            ]
+	}
     }
 }
