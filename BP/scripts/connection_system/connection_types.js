@@ -8,8 +8,14 @@ export const LIGHT_BLOCK_CONFIGS = {
     icon: "textures/fr_ui/light_test_icon",
     vfxEntity: "fr:hallway_lamp_vfx",
     spawnOffset: { x: 0, y: 0, z: 0 },
-    destroyRadius: 0.5,
-    powerState: "fr:lit"
+    destroyRadius: 0.8,
+    powerState: "fr:lit",
+    hasVariants: true,
+    variantState: "fr:variants",
+    variantOffsets: {
+      0: { x: 0, y: 0, z: 0 },
+      1: { x: -0.5, y: 0, z: 0 }
+    },
   },
 
   "fr:office_lamp": {
@@ -35,8 +41,14 @@ export const LIGHT_BLOCK_CONFIGS = {
     icon: "textures/fr_ui/light_test_icon",
     vfxEntity: "fr:pizzeria_lamp_vfx",
     spawnOffset: { x: 0, y: 0, z: 0 },
-    destroyRadius: 0.5,
-    powerState: "fr:lit"
+    destroyRadius: 0.8,
+    powerState: "fr:lit",
+    hasVariants: true,
+    variantState: "fr:variants",
+    variantOffsets: {
+      0: { x: 0, y: 0, z: 0 },
+      1: { x: -0.5, y: 0, z: 0 }
+    },
   },
 
   "fr:ceiling_light": {

@@ -10,6 +10,10 @@
 				"fr:lit": [
 					false,
 					true
+				],
+				"fr:variants": [
+					0, 
+					1
 				]
 			}
 		},
@@ -22,11 +26,11 @@
 				"origin": [-7, 0, -7],
 				"size": [14, 4, 14]
 			},
-			"minecraft:transformation": {
-				"translation": [0, 0.8, 0]
-			},
 			"minecraft:geometry": {
 				"identifier": "geometry.hallway_light"
+			},
+			"minecraft:transformation": {
+				"translation": [0, 0.8, 0]
 			},
 			"minecraft:material_instances": {
 				"*": {
@@ -37,6 +41,22 @@
 			"fr:single_interactive": {}
 		},
 		"permutations": [
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [0, 0.8, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [-0.5, 0.8, 0]
+					}
+				}
+			},
 			{
 				"condition": "q.block_state('fr:lit') == false",
 				"components": {

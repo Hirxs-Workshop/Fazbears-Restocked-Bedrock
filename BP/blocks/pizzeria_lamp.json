@@ -10,6 +10,10 @@
 				"fr:lit": [
 					false,
 					true
+				],
+				"fr:variants": [
+					0,
+					1
 				]
 			}
 		},
@@ -36,6 +40,22 @@
 			}
 		},
 		"permutations": [
+			{
+				"condition": "q.block_state('fr:variants') == 0",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [0, 0.8, 0]
+					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:variants') == 1",
+				"components": {
+					"minecraft:transformation": {
+						"translation": [-0.5, 0.8, 0]
+					}
+				}
+			},
 			{
 				"condition": "q.block_state('fr:lit') == false",
 				"components": {
