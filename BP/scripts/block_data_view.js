@@ -115,7 +115,7 @@ system.runInterval(() => {
 	for (let i = 0; i < players.length; i++) {
 		const player = players[i];
 		
-		if (!player.name == ALLOWED_PLAYER) continue;
+		if (!player.hasTag('fr:dev')) continue;
 		
 		try {
 			const showBlocks = player.hasTag("enable_blocks");
