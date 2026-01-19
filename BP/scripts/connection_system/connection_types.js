@@ -45,9 +45,21 @@ export const LIGHT_BLOCK_CONFIGS = {
     powerState: "fr:lit",
     hasVariants: true,
     variantState: "fr:variants",
-    variantOffsets: {
-      0: { x: 0, y: 0, z: 0 },
-      1: { x: -0.5, y: 0, z: 0 }
+    requiresCardinalRotation: true,
+    cardinalState: "minecraft:cardinal_direction",
+    variantCardinalOffsets: {
+      0: {
+        north: { x: 0, y: 0, z: 0 },
+        south: { x: 0, y: 0, z: 0 },
+        east: { x: 0, y: 0, z: 0 },
+        west: { x: 0, y: 0, z: 0 }
+      },
+      1: {
+        north: { x: 0, y: 0, z: -0.5 },
+        south: { x: 0, y: 0, z: 0.5 },
+        east: { x: 0.5, y: 0, z: 0 },
+        west: { x: -0.5, y: 0, z: 0 }
+      }
     },
   },
 
@@ -161,7 +173,11 @@ export function getLightConfig(blockId) {
       requiresFaceRotation: externalConfig.requiresFaceRotation || false,
       faceState: externalConfig.faceState,
       rotationState: externalConfig.rotationState,
-      colorState: externalConfig.colorState
+      colorState: externalConfig.colorState,
+      hasVariants: externalConfig.hasVariants || false,
+      variantState: externalConfig.variantState,
+      variantOffsets: externalConfig.variantOffsets,
+      variantCardinalOffsets: externalConfig.variantCardinalOffsets
     };
   }
   return null;
@@ -298,21 +314,32 @@ export function spawnLightVfx(dimension, lightBlock, lightData, vfxCache) {
   let spawnLocation = { ...baseLocation };
   let rotation = 0;
 
-  // Handle variant offsets
-  if (config.hasVariants && config.variantOffsets && config.variantState) {
+  if (config.hasVariants && config.variantState) {
     const variantValue = lightBlock.permutation.getState(config.variantState) || 0;
-    const variantOffset = config.variantOffsets[variantValue];
-    if (variantOffset) {
-      spawnLocation.x += variantOffset.x;
-      spawnLocation.y += variantOffset.y;
-      spawnLocation.z += variantOffset.z;
+    
+    if (config.variantCardinalOffsets && config.requiresCardinalRotation) {
+      const cardinal = lightBlock.permutation.getState(config.cardinalState) || "south";
+      const variantOffsets = config.variantCardinalOffsets[variantValue];
+      if (variantOffsets && variantOffsets[cardinal]) {
+        const offset = variantOffsets[cardinal];
+        spawnLocation.x += offset.x;
+        spawnLocation.y += offset.y;
+        spawnLocation.z += offset.z;
+      }
+    } else if (config.variantOffsets) {
+      const variantOffset = config.variantOffsets[variantValue];
+      if (variantOffset) {
+        spawnLocation.x += variantOffset.x;
+        spawnLocation.y += variantOffset.y;
+        spawnLocation.z += variantOffset.z;
+      }
     }
   }
 
   if (config.requiresCardinalRotation) {
     const cardinal = lightBlock.permutation.getState(config.cardinalState) || "south";
     
-    if (config.offsetMap) {
+    if (config.offsetMap && !config.variantCardinalOffsets) {
       const offset = config.offsetMap[cardinal] || { x: 0, y: 0, z: 0 };
       spawnLocation.x += offset.x;
       spawnLocation.y += offset.y;
