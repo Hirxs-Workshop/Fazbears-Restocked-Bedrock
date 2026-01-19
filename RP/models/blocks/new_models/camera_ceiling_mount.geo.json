@@ -13,7 +13,7 @@
 			"bones": [
 				{
 					"name": "bb_main",
-					"pivot": [0, 0, 0],
+					"pivot": [0, 7.91667, 0.83333],
 					"cubes": [
 						{
 							"origin": [-2, 15, -2],

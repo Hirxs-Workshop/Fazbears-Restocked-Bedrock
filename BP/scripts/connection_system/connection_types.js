@@ -7,14 +7,25 @@ export const LIGHT_BLOCK_CONFIGS = {
     alias: "Office light",
     icon: "textures/fr_ui/light_test_icon",
     vfxEntity: "fr:hallway_lamp_vfx",
-    spawnOffset: { x: 0, y: 0, z: 0 },
     destroyRadius: 0.8,
     powerState: "fr:lit",
     hasVariants: true,
     variantState: "fr:variants",
-    variantOffsets: {
-      0: { x: 0, y: 0, z: 0 },
-      1: { x: -0.5, y: 0, z: 0 }
+    requiresCardinalRotation: true,
+    cardinalState: "minecraft:cardinal_direction",
+    variantCardinalOffsets: {
+      0: {
+        north: { x: 0, y: 0, z: 0 },
+        south: { x: 0, y: 0, z: 0 },
+        east: { x: 0, y: 0, z: 0 },
+        west: { x: 0, y: 0, z: 0 }
+      },
+      1: {
+        north: { x: 0, y: 0, z: -0.5 },
+        south: { x: 0, y: 0, z: 0.5 },
+        east: { x: 0.5, y: 0, z: 0 },
+        west: { x: -0.5, y: 0, z: 0 }
+      }
     },
   },
 
