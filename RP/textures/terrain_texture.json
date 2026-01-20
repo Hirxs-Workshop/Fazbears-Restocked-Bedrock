@@ -1364,9 +1364,9 @@
                 "textures/blocks/reworked/dev/fox_dev_plush"
             ]
         },
-        "gui_dev_plush_": {
+        "gui_dev_plush": {
             "textures": [
-                "textures/blocks/reworked/dev/gui_dev_plush_"
+                "textures/blocks/reworked/dev/gui_dev_plush"
             ]
         },
         "hyrxs_dev_plush": {
@@ -1389,9 +1389,9 @@
                 "textures/blocks/reworked/dev/sgt_dev_plush"
             ]
         },
-        "mansam_plush": {
+        "mansam_dev_plush": {
             "textures": [
-                "textures/blocks/reworked/dev/mansam_plush"
+                "textures/blocks/reworked/dev/mansam_dev_plush"
             ]
         },
         "blue_pizzeria_floor": {
@@ -2737,6 +2737,11 @@
 	"camera_ceiling_mount": {
             "textures": [
                 "textures/blocks/reworked/camera_ceiling_mount"
+            ]
+	},
+	"zach_dev_plush": {
+            "textures": [
+                "textures/blocks/reworked/dev/zach_dev_plush"
             ]
 	}
     }

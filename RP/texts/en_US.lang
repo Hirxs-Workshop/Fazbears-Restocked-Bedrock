@@ -515,11 +515,11 @@ tile.fr:fox_dev_plush.name=Fox Dev Plush
 tile.fr:gui_dev_plush.name=Gui Dev Plush
 tile.fr:hyrxs_dev_plush.name=Hyrxs Dev Plush
 tile.fr:kris_dev_plush.name=Kris Dev Plush
-tile.fr:mansam_plush.name=Mansam Plush
+tile.fr:mansam_dev_plush.name=Mansam Dev Plush
 tile.fr:polar_dev_plush.name=Polar Dev Plush
 tile.fr:sgt_dev_plush.name=Sgt Dev Plush
 tile.fr:xeno_neo_dev_plush.name=✧Xeno Neo✧ Dev Plush
-
+tile.fr:zach_dev_plush.name=Zach Dev Plush
 ## Carpets (FNaF Movie)
 tile.fr:carpet_blue.name=Carpet Blue
 tile.fr:carpet_dark_blue.name=Carpet Dark Blue

@@ -2,7 +2,7 @@
 	"format_version": "1.21.0",
 	"minecraft:block": {
 		"description": {
-			"identifier": "fr:mansam_plush",
+			"identifier": "fr:mansam_dev_plush",
 			"menu_category": {
 				"category": "construction"
 			},
@@ -28,11 +28,11 @@
 				"size": [11, 16, 9]
 			},
 			"minecraft:geometry": {
-				"identifier": "geometry.mansam_plush"
+				"identifier": "geometry.mansam_dev_plush"
 			},
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "mansam_plush",
+					"texture": "mansam_dev_plush",
 					"render_method": "alpha_test"
 				}
 			}
