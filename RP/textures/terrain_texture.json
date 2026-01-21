@@ -2734,15 +2734,40 @@
                 "textures/blocks/reworked/gumball_machine_2"
             ]
         },
-	"camera_ceiling_mount": {
+	    "camera_ceiling_mount": {
             "textures": [
                 "textures/blocks/reworked/camera_ceiling_mount"
             ]
-	},
-	"zach_dev_plush": {
+	    },
+	    "zach_dev_plush": {
             "textures": [
                 "textures/blocks/reworked/dev/zach_dev_plush"
             ]
-	}
+	    },
+       "animdude_plush_fnaf_extra_stuff": {
+        "textures": [
+            "textures/blocks/reworked/plushies/AnimDude_Plush_FNaF_Extra_Stuff"
+        ]
+       },
+       "cash_register": {
+        "textures": [
+            "textures/blocks/reworked/cash_register"
+        ]
+       },
+       "big_metal_lighter": {
+        "textures": [
+            "textures/blocks/reworked/Big_Metal_Lighter"
+        ]
+       },
+       "survival_logbook": {
+        "textures": [
+            "textures/blocks/reworked/survival_logbook_fnaf"
+        ]
+       },
+       "microphone_stand": {
+        "textures": [
+            "textures/blocks/reworked/microphone_stand_texture"
+        ]
+       }
     }
 }

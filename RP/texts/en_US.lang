@@ -227,6 +227,7 @@ tile.fr:freddy_plush.name=Freddy Plush
 tile.fr:endo_01_plush.name=Endo 01 Plush
 tile.fr:freddy_plushhw.name=Freddy Plush HW
 tile.fr:freddy_poster.name=Freddy Poster
+tile.fr:animdude_plush_fnaf_extra_stuff.name=AnimDude Plush (FNaF Extra Stuff)
 tile.fr:generator.name=§S§E§C§U§R§I§T§YGenerator
 tile.fr:gift.name=§E§M§P§L§O§Y§E§EGift
 tile.fr:golden_freddy_plush.name=Golden Freddy Plush
@@ -576,6 +577,8 @@ tile.fr:deep_fryer_machine.name=Deep Fryer Machine
 tile.fr:plunger.name=Plunger
 tile.fr:thank_you_bin.name=Thank You Bin
 tile.fr:trash_can.name=Trash Can
-
-
-
+tile.fr:cash_register.name=Cash Register
+tile.fr:big_metal_lighter.name=Big Metal Lighter
+tile.fr:vhs_tape.name=VHS Tape
+tile.fr:survival_logbook.name=Survival Logbook
+tile.fr:microphone_stand.name=Microphone Stand
