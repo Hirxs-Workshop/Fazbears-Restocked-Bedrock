@@ -23,10 +23,10 @@
 				"origin": [-5, 0, -1],
 				"size": [10, 15, 8]
 			},
-			"minecraft:geometry": "geometry.animdude_plush_fnaf_extra_stuff",
+			"minecraft:geometry": "geometry.animdude_plush",
 			"minecraft:material_instances": {
 				"*": {
-					"texture": "animdude_plush_fnaf_extra_stuff",
+					"texture": "animdude_plush",
 					"render_method": "alpha_test"
 				}
 			}

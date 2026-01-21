@@ -13,13 +13,13 @@
 			"bones": [
 				{
 					"name": "pizza_walls",
-					"pivot": [0, 8, 7.5],
+					"pivot": [0, 4.34097, 0],
 					"rotation": [0, 0, -10],
 					"cubes": [
 						{
-							"origin": [-10, -2, 7],
+							"origin": [-3, 1.34097, -0.5],
 							"size": [6, 6, 1],
-							"pivot": [-4, -2, 0],
+							"pivot": [0, 4.34097, 0],
 							"rotation": [0, 0, 35],
 							"uv": {
 								"north": {"uv": [0, 6], "uv_size": [6, 6]},

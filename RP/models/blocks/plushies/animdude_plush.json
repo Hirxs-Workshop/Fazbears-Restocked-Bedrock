@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.animdude_plush_fnaf_extra_stuff",
+				"identifier": "geometry.animdude_plush",
 				"texture_width": 48,
 				"texture_height": 48,
 				"visible_bounds_width": 3,

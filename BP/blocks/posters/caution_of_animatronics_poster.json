@@ -11,7 +11,7 @@
 			"minecraft:collision_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] },
 			"minecraft:selection_box": { "origin": [-8, 0, 6], "size": [16, 16, 2] },
 			"minecraft:geometry": { "identifier": "geometry.more_fnaf_n_ffd_poster" },
-			"minecraft:material_instances": { "*": { "texture": "caution_of_animatronics_poster_texture", "render_method": "alpha_test" } },
+			"minecraft:material_instances": { "*": { "texture": "caution_of_animatronics_poster", "render_method": "alpha_test" } },
 			"minecraft:custom_components": ["fr:poster_position"]
 		},
 		"permutations": [
