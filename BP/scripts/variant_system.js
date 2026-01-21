@@ -411,17 +411,17 @@ registerBlockVariants("fr:wall_wire", [
 registerBlockVariants("fr:trash", [
   {
     label: "Pattern 1",
-    icon: "textures/fr_ui/icons/trash1",
+    icon: "textures/fr_ui/icons/trash",
     color: "gray"
   },
   {
     label: "Pattern 2",
-    icon: "textures/fr_ui/icons/trash2",
+    icon: "textures/fr_ui/icons/trash_2",
     color: "gray"
   },
   {
     label: "Pattern 3",
-    icon: "textures/fr_ui/icons/trash3",
+    icon: "textures/fr_ui/icons/trash_3",
     color: "gray"
   }
 ]);
@@ -850,7 +850,7 @@ registerBlockVariants("fr:breaker", [
   {
     label: "White",
     icon: "textures/fr_ui/icons/breaker_white",
-    color: "gray"
+    color: "white"
   },
   {
     label: "Gray",
