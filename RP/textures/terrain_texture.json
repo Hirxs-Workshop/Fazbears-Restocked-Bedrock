@@ -364,11 +364,7 @@
                 "textures/blocks/reworked/door_frames"
             ]
         },
-        "endo_plush": {
-            "textures": [
-                "textures/blocks/reworked/endo_plush"
-            ]
-        },
+
         "fan": {
             "textures": [
                 "textures/blocks/reworked/fan"
@@ -422,11 +418,6 @@
         "fr_fan": {
             "textures": [
                 "textures/blocks/reworked/fr_fan"
-            ]
-        },
-        "fr_freddy_plush": {
-            "textures": [
-                "textures/blocks/reworked/fr_freddy_plush"
             ]
         },
         "fr_office_chair": {
@@ -2382,6 +2373,11 @@
         "chica_hwplush": {
             "textures": [
                 "textures/blocks/reworked/plushies/chica_hwplush"
+            ]
+        },
+        "endo_plush": {
+            "textures": [
+                "textures/blocks/reworked/plushies/endo_plush"
             ]
         },
         "fnaf4mangle_plush": {

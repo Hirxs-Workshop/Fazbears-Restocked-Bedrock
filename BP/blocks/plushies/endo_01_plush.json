@@ -28,7 +28,7 @@
 				"size": [6, 11, 6]
 			},
 			"minecraft:geometry": {
-				"identifier": "geometry.fr_endo_plush"
+				"identifier": "geometry.endo_plush"
 			},
 			"minecraft:material_instances": {
 				"*": {

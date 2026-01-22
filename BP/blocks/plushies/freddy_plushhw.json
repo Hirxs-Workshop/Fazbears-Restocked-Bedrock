@@ -28,7 +28,7 @@
 				"size": [11, 16, 9]
 			},
 			"minecraft:geometry": {
-				"identifier": "geometry.fr_freddy_plush_block"
+				"identifier": "geometry.freddy_plush"
 			},
 			"minecraft:material_instances": {
 				"*": {
