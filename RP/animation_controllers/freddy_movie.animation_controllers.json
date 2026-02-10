@@ -1,0 +1,28 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.freddy.movie": {
+            "initial_state": "active",
+            "states": {
+                "active": {
+                    "animations": [
+                        { "movie_pose_0": "variable.pose == 0" },
+                        { "movie_pose_1": "variable.pose == 1" },
+                        { "movie_pose_2": "variable.pose == 2" },
+                        { "movie_pose_3": "variable.pose == 3" },
+                        { "movie_pose_4": "variable.pose == 4" },
+                        { "movie_pose_5": "variable.pose == 5" },
+                        { "movie_pose_6": "variable.pose == 6" },
+                        { "movie_pose_7": "variable.pose == 7" },
+                        { "movie_pose_8": "variable.pose == 8" },
+                        { "movie_pose_9": "variable.pose == 9" },
+                        { "movie_pose_10": "variable.pose == 10" },
+                        { "movie_pose_11": "variable.pose == 11" },
+                        { "movie_pose_12": "variable.pose == 12" }
+                    ],
+                    "blend_transition": 0.2
+                }
+            }
+        }
+    }
+}

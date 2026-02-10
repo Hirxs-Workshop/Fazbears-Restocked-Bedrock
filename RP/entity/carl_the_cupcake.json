@@ -1,0 +1,37 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "fr:carl_the_cupcake",
+            "min_engine_version": "1.8.0",
+            "materials": {
+                "default": "entity_alphatest"
+            },
+            "textures": {
+                "default": "textures/entity/reworked/fnaf1/carl_the_cupcake"
+            },
+            "geometry": {
+                "default": "geometry.carl_the_cupcake_entity"
+            },
+            "spawn_egg": {
+                "texture": "cupcake_icon"
+            },
+            "animations": {
+                "idle": "animation.carl_the_cupcake_idle",
+                "hop": "animation.carl_the_cupcake_hop",
+                "charge_and_pounce": "animation.carl_the_cupcake_charge_and_pounce",
+                "bite_static": "animation.carl_the_cupcake_bite_static",
+                "pounce_midair": "animation.carl_the_cupcake_pounce_midair",
+                "controller.movement": "controller.animation.carl_the_cupcake.movement"
+            },
+            "scripts": {
+                "animate": [
+                    "controller.movement"
+                ]
+            },
+            "render_controllers": [
+                "controller.render.default"
+            ]
+        }
+    }
+}

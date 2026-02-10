@@ -1,0 +1,1180 @@
+{
+  "format_version": "1.21.0",
+  "minecraft:entity": {
+    "description": {
+      "identifier": "fr:fnaf1_bonnie_entity",
+      "is_spawnable": true,
+      "is_summonable": true,
+      "is_experimental": false,
+      "properties": {
+        "bonnie:attack_time": {
+          "type": "float",
+          "default": 0.0,
+          "range": [
+            0.0,
+            10.0
+          ]
+        },
+        "bonnie:kill_counter": {
+          "type": "int",
+          "default": 0,
+          "range": [
+            0,
+            20
+          ]
+        },
+        "fr:pose": {
+          "client_sync": true,
+          "type": "int",
+          "default": 0,
+          "range": [
+            0,
+            32
+          ]
+        },
+        "fr:variant": {
+          "client_sync": true,
+          "type": "int",
+          "default": 0,
+          "range": [
+            0,
+            7
+          ]
+        }
+      },
+      "animations": {
+        "attack_animation": "controller.animation.fnaf1_bonnie.attack"
+      },
+      "scripts": {
+        "animate": [
+          "attack_animation"
+        ]
+      }
+    },
+    "component_groups": {
+      "bonnie_hostile": {
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 1,
+          "must_see": true,
+          "reselect_targets": true,
+          "entity_types": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "self",
+                    "value": "ignore_player_now",
+                    "operator": "not"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "self",
+                    "value": "fr_no_attack",
+                    "operator": "not"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "value": "bonnie_hit",
+                    "operator": "not"
+                  }
+                ]
+              },
+              "max_dist": 16
+            }
+          ]
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": false,
+          "avoid_water": true,
+          "avoid_damage_blocks": true
+        },
+        "minecraft:movement.basic": {},
+        "minecraft:movement": {
+          "value": 0.2
+        },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 1
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 2,
+          "speed_multiplier": 1.25,
+          "reach_multiplier": 2.0
+        },
+        "minecraft:behavior.look_at_target": {
+          "priority": 3
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 7,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:behavior.random_look_around": {
+          "priority": 10
+        },
+        "minecraft:entity_sensor": {
+          "subsensors": [
+            {
+              "range": [
+                16.0,
+                16.0
+              ],
+              "minimum_count": 1,
+              "event_filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "value": "bonnie_hit"
+                  }
+                ]
+              },
+              "event": "bonnie_detected_attacked_player"
+            }
+          ]
+        },
+        "minecraft:timer": {
+          "time": [
+            2.0,
+            4.0
+          ],
+          "looping": true,
+          "time_down_event": {
+            "event": "bonnie_check_for_player"
+          }
+        }
+      },
+      "bonnie_chasing": {
+        "minecraft:movement": {
+          "value": 0.152
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": false,
+          "avoid_water": true,
+          "avoid_damage_blocks": true
+        },
+        "minecraft:movement.basic": {},
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 1,
+          "must_see": true,
+          "reselect_targets": true,
+          "within_radius": 16.0,
+          "entity_types": [
+            {
+              "filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "self",
+                    "value": "ignore_player_now",
+                    "operator": "not"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "self",
+                    "value": "fr_no_attack",
+                    "operator": "not"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "value": "bonnie_hit",
+                    "operator": "not"
+                  }
+                ]
+              },
+              "max_dist": 16
+            }
+          ]
+        },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 1
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 2,
+          "speed_multiplier": 1.5,
+          "reach_multiplier": 2.0,
+          "on_attack": {
+            "event": "bonnie_try_attack",
+            "target": "self"
+          }
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 7,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:behavior.look_at_target": {
+          "priority": 9
+        },
+        "minecraft:behavior.random_look_around": {
+          "priority": 10
+        },
+        "minecraft:entity_sensor": {
+          "subsensors": [
+            {
+              "range": [
+                16.0,
+                16.0
+              ],
+              "minimum_count": 1,
+              "event_filters": {
+                "all_of": [
+                  {
+                    "test": "is_family",
+                    "subject": "other",
+                    "value": "player"
+                  },
+                  {
+                    "test": "has_tag",
+                    "subject": "other",
+                    "value": "bonnie_hit"
+                  }
+                ]
+              },
+              "event": "bonnie_detected_attacked_player"
+            }
+          ]
+        },
+        "minecraft:timer": {
+          "time": [
+            0.5,
+            1.0
+          ],
+          "looping": true,
+          "time_down_event": {
+            "event": "bonnie_check_for_player"
+          }
+        }
+      },
+      "bonnie_attacking": {
+        "minecraft:variant": {
+          "value": 1
+        },
+        "minecraft:rideable": {
+          "seat_count": 1,
+          "pull_in_entities": true,
+          "seats": [
+            {
+              "position": [
+                0,
+                0.3,
+                1.3
+              ],
+              "rotate_rider_by": 180,
+              "lock_rider_rotation": 0
+            }
+          ]
+        },
+        "minecraft:movement": {
+          "value": 0.0
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": false,
+          "avoid_water": false,
+          "avoid_damage_blocks": false
+        },
+        "minecraft:movement.basic": {
+          "max_turn": 0
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 1,
+          "speed_multiplier": 1.0,
+          "reach_multiplier": 2.0,
+          "on_attack": {
+            "event": "bonnie_hit_particles",
+            "target": "self"
+          }
+        },
+        "minecraft:timer": {
+          "time": 3.8,
+          "looping": false,
+          "time_down_event": {
+            "event": "bonnie_end_attack"
+          }
+        }
+      },
+      "bonnie_scare_cooldown": {
+        "minecraft:timer": {
+          "time": 8.0,
+          "looping": false,
+          "time_down_event": {
+            "event": "bonnie_reset_scare"
+          }
+        }
+      },
+      "bonnie_normal": {
+        "minecraft:variant": {
+          "value": 0
+        }
+      },
+      "bonnie_ignoring_player": {
+        "minecraft:variant": {
+          "value": 0
+        },
+        "minecraft:movement": {
+          "value": 0.152
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": false,
+          "avoid_water": true,
+          "avoid_damage_blocks": true
+        },
+        "minecraft:movement.basic": {},
+        "minecraft:behavior.random_stroll": {
+          "priority": 7,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:behavior.random_look_around": {
+          "priority": 10
+        },
+        "minecraft:timer": {
+          "time": [
+            1.0,
+            2.0
+          ],
+          "looping": true,
+          "time_down_event": {
+            "event": "bonnie_check_can_attack_again"
+          }
+        }
+      },
+      "bonnie_post_attack": {
+        "minecraft:variant": {
+          "value": 1
+        },
+        "minecraft:interact": {
+          "interactions": [
+            {
+              "on_interact": {
+                "filters": {
+                  "all_of": [
+                    {
+                      "test": "is_family",
+                      "subject": "other",
+                      "value": "player"
+                    },
+                    {
+                      "test": "has_equipment",
+                      "subject": "other",
+                      "domain": "hand",
+                      "value": "minecraft:paper"
+                    }
+                  ]
+                },
+                "event": "bonnie_clean_blood",
+                "target": "self"
+              },
+              "use_item": true,
+              "interact_text": "action.interact.clean_blood"
+            }
+          ]
+        }
+      },
+      "bonnie_seat_player": {},
+      "fr:route_walking": {
+        "minecraft:movement": {
+          "value": 0.15
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": false,
+          "avoid_water": true,
+          "avoid_damage_blocks": true
+        },
+        "minecraft:movement.basic": {}
+      },
+      "fr:route_stopped": {
+        "minecraft:movement": {
+          "value": 0.0
+        },
+        "minecraft:navigation.walk": {
+          "can_path_over_water": false,
+          "avoid_water": false,
+          "avoid_damage_blocks": false
+        },
+        "minecraft:movement.basic": {
+          "max_turn": 0
+        }
+      },
+      "fr:pathfinding_mode": {
+        "minecraft:movement": {
+          "value": 0.0
+        },
+        "minecraft:movement.basic": {
+          "max_turn": 0
+        },
+        "minecraft:behavior.random_stroll": {
+          "priority": 99
+        },
+        "minecraft:behavior.look_at_player": {
+          "priority": 99,
+          "look_distance": 0.0,
+          "probability": 0.0
+        },
+        "minecraft:behavior.random_look_around": {
+          "priority": 99
+        },
+        "minecraft:timer": {
+          "time": 9999,
+          "looping": false
+        },
+        "minecraft:behavior.nearest_attackable_target": {
+          "priority": 99,
+          "must_see": false,
+          "entity_types": []
+        },
+        "minecraft:behavior.hurt_by_target": {
+          "priority": 99
+        },
+        "minecraft:behavior.melee_attack": {
+          "priority": 99
+        }
+      },
+      "fr:normal_ai_mode": {
+        "minecraft:behavior.random_stroll": {
+          "priority": 7,
+          "speed_multiplier": 1.0
+        },
+        "minecraft:behavior.look_at_player": {
+          "priority": 9,
+          "look_distance": 8.0,
+          "probability": 0.02
+        },
+        "minecraft:behavior.random_look_around": {
+          "priority": 10
+        },
+        "minecraft:timer": {
+          "time": [
+            1.0,
+            2.0
+          ],
+          "looping": true,
+          "time_down_event": {
+            "event": "bonnie_check_for_player"
+          }
+        }
+      }
+    },
+    "components": {
+      "minecraft:type_family": {
+        "family": [
+          "bonnie",
+          "animatronic",
+          "hostile"
+        ]
+      },
+      "minecraft:collision_box": {
+        "width": 0.8,
+        "height": 1.8
+      },
+      "minecraft:health": {
+        "value": 100,
+        "max": 100
+      },
+      "minecraft:movement": {
+        "value": 0.2
+      },
+      "minecraft:navigation.walk": {
+        "can_path_over_water": false,
+        "avoid_water": true,
+        "avoid_damage_blocks": true
+      },
+      "minecraft:movement.basic": {},
+      "minecraft:jump.static": {},
+      "minecraft:can_climb": {},
+      "minecraft:behavior.float": {
+        "priority": 0
+      },
+      "minecraft:knockback_resistance": {
+        "value": 100,
+        "max": 100
+      },
+      "minecraft:behavior.random_stroll": {
+        "priority": 7,
+        "speed_multiplier": 1.0
+      },
+      "minecraft:behavior.look_at_player": {
+        "priority": 9,
+        "look_distance": 8.0,
+        "probability": 0.02
+      },
+      "minecraft:behavior.random_look_around": {
+        "priority": 10
+      },
+      "minecraft:physics": {},
+      "minecraft:pushable": {
+        "is_pushable": true,
+        "is_pushable_by_piston": true
+      },
+      "minecraft:conditional_bandwidth_optimization": {},
+      "minecraft:attack": {
+        "damage": 0
+      }
+    },
+    "events": {
+      "minecraft:entity_spawned": {
+        "add": {
+          "component_groups": [
+            "bonnie_hostile",
+            "bonnie_normal"
+          ]
+        }
+      },
+      "bonnie_start_chase": {
+        "add": {
+          "component_groups": [
+            "bonnie_chasing"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_hostile"
+          ]
+        }
+      },
+      "bonnie_stop_chase": {
+        "add": {
+          "component_groups": [
+            "bonnie_hostile"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_chasing",
+            "bonnie_scare_cooldown"
+          ]
+        },
+        "queue_command": {
+          "command": [
+            "tag @s remove played_scare"
+          ]
+        }
+      },
+      "bonnie_set_attack_time_1": {
+        "set_property": {
+          "bonnie:attack_time": "1.0"
+        }
+      },
+      "bonnie_set_attack_time_0": {
+        "set_property": {
+          "bonnie:attack_time": "0.0"
+        }
+      },
+      "bonnie_kill_player": {
+        "queue_command": {
+          "command": "kill @p"
+        }
+      },
+      "bonnie_hit_particles": {
+        "queue_command": {
+          "command": [
+            "execute at @p positioned ~ ~ ~ run particle minecraft:endrod ~ ~ ~"
+          ]
+        }
+      },
+      "bonnie_start_attack": {
+        "add": {
+          "component_groups": [
+            "bonnie_attacking"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_chasing",
+            "bonnie_hostile"
+          ]
+        },
+        "set_property": {
+          "bonnie:attack_time": "1.0"
+        },
+        "queue_command": {
+          "command": [
+            "tag @p add bonnie_hit",
+            "ride @p start_riding @s teleport_ride",
+            "camerashake add @p 0.05 3.4 rotational",
+            "hud @p hide all",
+            "execute at @p positioned ~ ~ ~ run particle fr:attack_blood_drip ~ ~0.6 ~"
+          ]
+        }
+      },
+      "bonnie_try_attack": {
+        "sequence": [
+          {
+            "filters": {
+              "test": "has_tag",
+              "subject": "target",
+              "value": "bonnie_hit",
+              "operator": "not"
+            },
+            "trigger": "bonnie_start_attack"
+          },
+          {
+            "filters": {
+              "test": "has_tag",
+              "subject": "target",
+              "value": "bonnie_hit"
+            },
+            "add": {
+              "component_groups": [
+                "bonnie_ignoring_player"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "bonnie_chasing",
+                "bonnie_hostile"
+              ]
+            }
+          }
+        ]
+      },
+      "bonnie_sitting_player": {
+        "queue_command": {
+          "command": [
+            "ride @p start_riding @s teleport_ride"
+          ]
+        }
+      },
+      "bonnie_do_seat_player": {
+        "remove": {
+          "component_groups": [
+            "bonnie_seat_player"
+          ]
+        },
+        "queue_command": {
+          "command": [
+            "ride @p start_riding @s teleport_ride"
+          ]
+        }
+      },
+      "bonnie_keep_player_seated": {
+        "queue_command": {
+          "command": [
+            "ride @p[tag=bonnie_hit,r=3] start_riding @s teleport_ride"
+          ]
+        }
+      },
+      "bonnie_attack_tick": {
+        "set_property": {
+          "bonnie:kill_counter": "q.property('bonnie:kill_counter') + 1"
+        },
+        "sequence": [
+          {
+            "filters": {
+              "test": "int_property",
+              "subject": "self",
+              "domain": "bonnie:kill_counter",
+              "operator": ">=",
+              "value": 19
+            },
+            "trigger": "bonnie_end_attack"
+          },
+          {
+            "filters": {
+              "test": "int_property",
+              "subject": "self",
+              "domain": "bonnie:kill_counter",
+              "operator": "<",
+              "value": 19
+            },
+            "queue_command": {
+              "command": [
+                "ride @p[tag=bonnie_hit,r=3] start_riding @s teleport_ride"
+              ]
+            }
+          }
+        ]
+      },
+      "bonnie_end_attack": {
+        "set_property": {
+          "bonnie:attack_time": "0.0"
+        },
+        "queue_command": {
+          "command": [
+            "execute at @s run kill @a[r=5,tag=bonnie_hit]",
+            "execute at @s run particle fr:attack_blood_drip_final ~ ~0.6 ~",
+            "execute at @s run tag @a[r=5] remove bonnie_hit",
+            "hud @a[r=5] reset all",
+            "tag @s remove played_scare"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_attacking",
+            "bonnie_normal"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "bonnie_hostile",
+            "bonnie_post_attack"
+          ]
+        }
+      },
+      "bonnie_reset_scare": {
+        "queue_command": {
+          "command": [
+            "tag @s remove played_scare"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_scare_cooldown"
+          ]
+        }
+      },
+      "bonnie_clean_blood": {
+        "remove": {
+          "component_groups": [
+            "bonnie_post_attack"
+          ]
+        },
+        "add": {
+          "component_groups": [
+            "bonnie_normal"
+          ]
+        },
+        "queue_command": {
+          "command": [
+            "execute at @p positioned ~ ~ ~ run particle minecraft:splash ~ ~1 ~ 0.5 0.5 0.5 0.1 10"
+          ]
+        }
+      },
+      "bonnie_check_for_player": {
+        "sequence": [
+          {
+            "filters": {
+              "all_of": [
+                {
+                  "test": "has_target"
+                },
+                {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "played_scare",
+                  "operator": "not"
+                }
+              ]
+            },
+            "add": {
+              "component_groups": [
+                "bonnie_chasing",
+                "bonnie_scare_cooldown"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "bonnie_hostile"
+              ]
+            },
+            "queue_command": {
+              "command": [
+                "execute at @s run playsound fnaf1_bonnie_scare @a[r=16] ~ ~ ~ 1 1",
+                "tag @s add played_scare"
+              ]
+            }
+          },
+          {
+            "filters": {
+              "any_of": [
+                {
+                  "test": "has_target",
+                  "operator": "not"
+                },
+                {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "fr_no_attack"
+                },
+                {
+                  "test": "has_tag",
+                  "subject": "self",
+                  "value": "returning_home"
+                }
+              ]
+            },
+            "add": {
+              "component_groups": [
+                "bonnie_hostile"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "bonnie_chasing"
+              ]
+            },
+            "queue_command": {
+              "command": [
+                "tag @s remove played_scare"
+              ]
+            }
+          }
+        ]
+      },
+      "bonnie_ignore_player": {
+        "add": {
+          "component_groups": [
+            "bonnie_ignoring_player"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_hostile",
+            "bonnie_chasing"
+          ]
+        }
+      },
+      "bonnie_detected_attacked_player": {
+        "filters": {
+          "test": "has_component",
+          "subject": "self",
+          "value": "minecraft:behavior.nearest_attackable_target"
+        },
+        "add": {
+          "component_groups": [
+            "bonnie_ignoring_player"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_hostile",
+            "bonnie_chasing"
+          ]
+        }
+      },
+      "bonnie_check_can_attack_again": {
+        "add": {
+          "component_groups": [
+            "bonnie_hostile"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_ignoring_player"
+          ]
+        }
+      },
+      "bonnie_stop_ignore_player": {
+        "sequence": [
+          {
+            "filters": {
+              "test": "has_target"
+            },
+            "add": {
+              "component_groups": [
+                "bonnie_chasing"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "bonnie_ignoring_player"
+              ]
+            }
+          },
+          {
+            "filters": {
+              "test": "has_target",
+              "operator": "not"
+            },
+            "add": {
+              "component_groups": [
+                "bonnie_hostile"
+              ]
+            },
+            "remove": {
+              "component_groups": [
+                "bonnie_ignoring_player"
+              ]
+            }
+          }
+        ]
+      },
+      "fr:start_walking": {
+        "add": {
+          "component_groups": [
+            "fr:route_walking"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "fr:route_stopped",
+            "bonnie_hostile",
+            "bonnie_chasing",
+            "bonnie_ignoring_player"
+          ]
+        }
+      },
+      "fr:stop_walking": {
+        "add": {
+          "component_groups": [
+            "fr:route_stopped"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "fr:route_walking"
+          ]
+        }
+      },
+      "bonnie_return_home": {
+        "add": {
+          "component_groups": [
+            "fr:route_walking"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "fr:route_stopped",
+            "bonnie_hostile",
+            "bonnie_chasing",
+            "bonnie_ignoring_player"
+          ]
+        }
+      },
+      "bonnie_stop_returning": {
+        "add": {
+          "component_groups": [
+            "fr:route_stopped"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "fr:route_walking"
+          ]
+        }
+      },
+      "fr:set_pose_0": {
+        "set_property": {
+          "fr:pose": 0
+        }
+      },
+      "fr:set_pose_1": {
+        "set_property": {
+          "fr:pose": 1
+        }
+      },
+      "fr:set_pose_2": {
+        "set_property": {
+          "fr:pose": 2
+        }
+      },
+      "fr:set_pose_3": {
+        "set_property": {
+          "fr:pose": 3
+        }
+      },
+      "fr:set_pose_4": {
+        "set_property": {
+          "fr:pose": 4
+        }
+      },
+      "fr:set_pose_5": {
+        "set_property": {
+          "fr:pose": 5
+        }
+      },
+      "fr:set_pose_6": {
+        "set_property": {
+          "fr:pose": 6
+        }
+      },
+      "fr:set_pose_7": {
+        "set_property": {
+          "fr:pose": 7
+        }
+      },
+      "fr:set_pose_8": {
+        "set_property": {
+          "fr:pose": 8
+        }
+      },
+      "fr:set_pose_9": {
+        "set_property": {
+          "fr:pose": 9
+        }
+      },
+      "fr:set_pose_10": {
+        "set_property": {
+          "fr:pose": 10
+        }
+      },
+      "fr:set_pose_11": {
+        "set_property": {
+          "fr:pose": 11
+        }
+      },
+      "fr:set_pose_12": {
+        "set_property": {
+          "fr:pose": 12
+        }
+      },
+      "fr:set_pose_13": {
+        "set_property": {
+          "fr:pose": 13
+        }
+      },
+      "fr:set_pose_14": {
+        "set_property": {
+          "fr:pose": 14
+        }
+      },
+      "fr:set_pose_15": {
+        "set_property": {
+          "fr:pose": 15
+        }
+      },
+      "fr:set_pose_16": {
+        "set_property": {
+          "fr:pose": 16
+        }
+      },
+      "fr:set_pose_17": {
+        "set_property": {
+          "fr:pose": 17
+        }
+      },
+      "fr:set_pose_18": {
+        "set_property": {
+          "fr:pose": 18
+        }
+      },
+      "fr:set_pose_19": {
+        "set_property": {
+          "fr:pose": 19
+        }
+      },
+      "fr:set_pose_20": {
+        "set_property": {
+          "fr:pose": 20
+        }
+      },
+      "fr:set_pose_21": {
+        "set_property": {
+          "fr:pose": 21
+        }
+      },
+      "fr:set_pose_22": {
+        "set_property": {
+          "fr:pose": 22
+        }
+      },
+      "fr:set_pose_23": {
+        "set_property": {
+          "fr:pose": 23
+        }
+      },
+      "fr:set_pose_24": {
+        "set_property": {
+          "fr:pose": 24
+        }
+      },
+      "fr:set_pose_25": {
+        "set_property": {
+          "fr:pose": 25
+        }
+      },
+      "fr:set_pose_26": {
+        "set_property": {
+          "fr:pose": 26
+        }
+      },
+      "fr:set_pose_27": {
+        "set_property": {
+          "fr:pose": 27
+        }
+      },
+      "fr:set_pose_28": {
+        "set_property": {
+          "fr:pose": 28
+        }
+      },
+      "fr:set_pose_29": {
+        "set_property": {
+          "fr:pose": 29
+        }
+      },
+      "fr:set_pose_30": {
+        "set_property": {
+          "fr:pose": 30
+        }
+      },
+      "fr:set_pose_31": {
+        "set_property": {
+          "fr:pose": 31
+        }
+      },
+      "fr:set_pose_32": {
+        "set_property": {
+          "fr:pose": 32
+        }
+      },
+      "fr:set_variant_0": {
+        "set_property": {
+          "fr:variant": 0
+        }
+      },
+      "fr:set_variant_1": {
+        "set_property": {
+          "fr:variant": 1
+        }
+      },
+      "fr:set_variant_2": {
+        "set_property": {
+          "fr:variant": 2
+        }
+      },
+      "fr:set_variant_3": {
+        "set_property": {
+          "fr:variant": 3
+        }
+      },
+      "fr:set_variant_4": {
+        "set_property": {
+          "fr:variant": 4
+        }
+      },
+      "fr:disable_ai_walk": {
+        "add": {
+          "component_groups": [
+            "fr:pathfinding_mode"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "bonnie_hostile",
+            "bonnie_chasing",
+            "bonnie_ignoring_player",
+            "fr:normal_ai_mode"
+          ]
+        }
+      },
+      "fr:enable_ai_walk": {
+        "add": {
+          "component_groups": [
+            "bonnie_hostile",
+            "fr:normal_ai_mode"
+          ]
+        },
+        "remove": {
+          "component_groups": [
+            "fr:pathfinding_mode"
+          ]
+        }
+      }
+    }
+  }
+}

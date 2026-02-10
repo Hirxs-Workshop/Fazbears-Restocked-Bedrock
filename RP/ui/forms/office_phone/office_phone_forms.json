@@ -1,0 +1,2569 @@
+{
+  "namespace": "fr_office_phone_screen",
+  "office_phone_ui": {
+    "type": "panel",
+    "$flag_office_phone": "§P§H§O§N§E",
+    "$flag_office_phone_menu": "§M§E§N§U",
+    "$flag_office_phone_help": "§H§E§L§P",
+    "$flag_office_phone_history": "§H§I§S§T",
+    "$flag_office_phone_options": "§O§P§T§S",
+    "$sel_mark": "§S§E§L",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "modal_panel": {
+          "type": "panel",
+          "size": [
+            250,
+            290
+          ],
+          "max_size": [
+            "52%",
+            "85%"
+          ],
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "offset": [
+            -15,
+            0
+          ],
+          "layer": 200,
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/phone_ui/phone_modal_bg",
+                "layer": 1
+              }
+            },
+            {
+              "title_bar": {
+                "type": "panel",
+                "size": [
+                  "100% - 8px",
+                  20
+                ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  2
+                ],
+                "layer": 3,
+                "controls": [
+                  {
+                    "title_bg": {
+                      "type": "image",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "texture": "textures/fr_ui/phone_ui/phone_modal_number_bg",
+                      "layer": 1
+                    }
+                  },
+                  {
+                    "title_label": {
+                      "type": "label",
+                      "text": "SECURITY PHONE",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        5
+                      ],
+                      "layer": 2,
+                      "font_scale_factor": 0.8,
+                      "text_alignment": "center",
+                      "color": [
+                        1,
+                        1,
+                        1
+                      ]
+                    }
+                  },
+                  {
+                    "close_button": {
+                      "type": "panel",
+                      "size": [
+                        16,
+                        16
+                      ],
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [
+                        -1,
+                        1
+                      ],
+                      "layer": 3,
+                      "controls": [
+                        {
+                          "x_close_button": {
+                            "type": "button",
+                            "size": [
+                              "100%",
+                              "100%"
+                            ],
+                            "controls": [
+                              {
+                                "x_icon": {
+                                  "type": "image",
+                                  "size": [
+                                    10,
+                                    10
+                                  ],
+                                  "anchor_from": "center",
+                                  "anchor_to": "center",
+                                  "texture": "textures/fr_ui/phone_ui/close_phone_x",
+                                  "layer": 3
+                                }
+                              }
+                            ],
+                            "button_mappings": [
+                              {
+                                "from_button_id": "button.menu_select",
+                                "to_button_id": "button.menu_exit",
+                                "mapping_type": "pressed"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "subtitle": {
+                "type": "label",
+                "text": "FAZBEAR ENTERTAINMENT",
+                "anchor_from": "top_left",
+                "anchor_to": "top_left",
+                "offset": [
+                  8,
+                  25
+                ],
+                "layer": 3,
+                "font_scale_factor": 0.8,
+                "text_alignment": "left",
+                "color": [
+                  0.45,
+                  0.45,
+                  0.45
+                ]
+              }
+            },
+            {
+              "divider": {
+                "type": "image",
+                "size": [
+                  "100% - 16px",
+                  1
+                ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  40
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.22,
+                  0.24,
+                  0.26
+                ],
+                "alpha": 1,
+                "layer": 3
+              }
+            },
+            {
+              "content_panel": {
+                "type": "panel",
+                "size": [
+                  "100% - 16px",
+                  "100% - 48px"
+                ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [
+                  0,
+                  55
+                ],
+                "layer": 2,
+                "controls": [
+                  {
+                    "dialpad_screen": {
+                      "type": "panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "dial_row": {
+                            "type": "collection_panel",
+                            "collection_name": "form_buttons",
+                            "size": [
+                              "100%",
+                              34
+                            ],
+                            "anchor_from": "top_middle",
+                            "anchor_to": "top_middle",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "controls": [
+                              {
+                                "plus_left": {
+                                  "type": "panel",
+                                  "collection_index": 0,
+                                  "size": [
+                                    34,
+                                    34
+                                  ],
+                                  "anchor_from": "left_middle",
+                                  "anchor_to": "left_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "dial_display_bg": {
+                                  "type": "image",
+                                  "size": [
+                                    "100% - 84px",
+                                    34
+                                  ],
+                                  "anchor_from": "center",
+                                  "anchor_to": "center",
+                                "texture": "textures/ui/White",
+                                "color": [
+                                  0.09,
+                                  0.1,
+                                  0.11
+                                ],
+                                "alpha": 1,
+                                  "layer": 1
+                                }
+                              },
+                            {
+                              "dial_display_border": {
+                                "type": "image",
+                                "size": [
+                                  "100% - 82px",
+                                  36
+                                ],
+                                "anchor_from": "center",
+                                "anchor_to": "center",
+                                "texture": "textures/ui/focus_border_white",
+                                "alpha": 0.35,
+                                "layer": 2
+                              }
+                            },
+                              {
+                                "dial_display": {
+                                  "type": "label",
+                                  "text": "#text",
+                                  "collection_index": 16,
+                                  "anchor_from": "center",
+                                  "anchor_to": "center",
+                                  "offset": [
+                                    0,
+                                    -1
+                                  ],
+                                  "layer": 2,
+                                  "font_scale_factor": 0.8,
+                                  "text_alignment": "center",
+                                  "color": [
+                                    1,
+                                    1,
+                                    1
+                                  ],
+                                  "bindings": [
+                                    {
+                                      "binding_type": "collection_details",
+                                      "binding_collection_name": "form_buttons"
+                                    },
+                                    {
+                                      "binding_type": "collection",
+                                      "binding_collection_name": "form_buttons",
+                                      "binding_name": "#form_button_text",
+                                      "binding_name_override": "#text"
+                                    },
+                                    {
+                                      "binding_name": "#null",
+                                      "binding_type": "view",
+                                      "source_property_name": "(not((%.1s * #text) = ' '))",
+                                      "target_property_name": "#visible"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "help_btn": {
+                                  "type": "panel",
+                                  "collection_index": 1,
+                                  "size": [
+                                    34,
+                                    34
+                                  ],
+                                  "anchor_from": "right_middle",
+                                  "anchor_to": "right_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "keypad_grid": {
+                            "type": "stack_panel",
+                            "orientation": "vertical",
+                            "size": [
+                              "100%",
+                              "default"
+                            ],
+                            "anchor_from": "top_middle",
+                            "anchor_to": "top_middle",
+                            "offset": [
+                              0,
+                              36
+                            ],
+                            "controls": [
+                              {
+                                "row1": {
+                                  "type": "collection_panel",
+                                  "collection_name": "form_buttons",
+                                  "size": [
+                                    "100%",
+                                    30
+                                  ],
+                                  "controls": [
+                                    {
+                                      "k1": {
+                                        "type": "panel",
+                                        "collection_index": 2,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "left_middle",
+                                        "anchor_to": "left_middle",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k2": {
+                                        "type": "panel",
+                                        "collection_index": 3,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "center",
+                                        "anchor_to": "center",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k3": {
+                                        "type": "panel",
+                                        "collection_index": 4,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "right_middle",
+                                        "anchor_to": "right_middle",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "row2": {
+                                  "type": "collection_panel",
+                                  "collection_name": "form_buttons",
+                                  "size": [
+                                    "100%",
+                                    30
+                                  ],
+                                  "offset": [
+                                    0,
+                                    6
+                                  ],
+                                  "controls": [
+                                    {
+                                      "k4": {
+                                        "type": "panel",
+                                        "collection_index": 5,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "left_middle",
+                                        "anchor_to": "left_middle",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k5": {
+                                        "type": "panel",
+                                        "collection_index": 6,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "center",
+                                        "anchor_to": "center",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k6": {
+                                        "type": "panel",
+                                        "collection_index": 7,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "right_middle",
+                                        "anchor_to": "right_middle",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "row3": {
+                                  "type": "collection_panel",
+                                  "collection_name": "form_buttons",
+                                  "size": [
+                                    "100%",
+                                    30
+                                  ],
+                                  "offset": [
+                                    0,
+                                    12
+                                  ],
+                                  "controls": [
+                                    {
+                                      "k7": {
+                                        "type": "panel",
+                                        "collection_index": 8,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "left_middle",
+                                        "anchor_to": "left_middle",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k8": {
+                                        "type": "panel",
+                                        "collection_index": 9,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "center",
+                                        "anchor_to": "center",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "k9": {
+                                        "type": "panel",
+                                        "collection_index": 10,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "right_middle",
+                                        "anchor_to": "right_middle",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                              ,
+                              {
+                                "row4": {
+                                  "type": "collection_panel",
+                                  "collection_name": "form_buttons",
+                                  "size": [
+                                    "100%",
+                                    30
+                                  ],
+                                  "offset": [
+                                    0,
+                                    18
+                                  ],
+                                  "controls": [
+                                    {
+                                      "k0": {
+                                        "type": "panel",
+                                        "collection_index": 12,
+                                        "size": [
+                                          "33% - 4px",
+                                          30
+                                        ],
+                                        "anchor_from": "center",
+                                        "anchor_to": "center",
+                                        "controls": [
+                                          {
+                                            "btn@fr_office_phone_screen.phone_button_base": {
+                                              "size": [
+                                                "100%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "bottom_row": {
+                            "type": "collection_panel",
+                            "collection_name": "form_buttons",
+                            "size": [
+                              "100%",
+                              32
+                            ],
+                            "anchor_from": "bottom_middle",
+                            "anchor_to": "bottom_middle",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "controls": [
+                              {
+                                "call_btn": {
+                                  "type": "panel",
+                                  "collection_index": 14,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "left_middle",
+                                  "anchor_to": "left_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_green": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "clear_btn": {
+                                  "type": "panel",
+                                  "collection_index": 11,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "center",
+                                  "anchor_to": "center",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "delete_btn": {
+                                  "type": "panel",
+                                  "collection_index": 13,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "right_middle",
+                                  "anchor_to": "right_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_orange": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(((#title_text - $flag_office_phone_menu) = #title_text) and ((#title_text - $flag_office_phone_help) = #title_text) and ((#title_text - $flag_office_phone_history) = #title_text) and ((#title_text - $flag_office_phone_options) = #title_text))",
+                          "target_property_name": "#visible"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(((#title_text - $flag_office_phone_menu) = #title_text) and ((#title_text - $flag_office_phone_help) = #title_text) and ((#title_text - $flag_office_phone_history) = #title_text) and ((#title_text - $flag_office_phone_options) = #title_text))",
+                          "target_property_name": "#enabled"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "menu_screen": {
+                      "type": "panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "menu_scroll@common.scrolling_panel": {
+                            "size": [
+                              "100%",
+                              "100% - 54px"
+                            ],
+                            "anchor_from": "top_left",
+                            "anchor_to": "top_left",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 10,
+                            "$show_background": false,
+                            "$scrolling_content": "fr_office_phone_screen.phone_menu_scroll_content",
+                            "$scroll_size": [
+                              4,
+                              "100% - 4px"
+                            ],
+                            "$scrolling_pane_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$scrolling_pane_offset": [
+                              0,
+                              0
+                            ],
+                            "$scroll_view_port_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$always_handle_scrolling": true
+                          }
+                        },
+                        {
+                          "menu_bottom_row": {
+                            "type": "collection_panel",
+                            "collection_name": "form_buttons",
+                            "size": [
+                              "100%",
+                        32
+                            ],
+                            "anchor_from": "bottom_middle",
+                            "anchor_to": "bottom_middle",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 20,
+                            "controls": [
+                              {
+                                "call_btn": {
+                                  "type": "panel",
+                                  "collection_index": 8,
+                                  "size": [
+                                    "50% - 4px",
+                              32
+                                  ],
+                                  "anchor_from": "left_middle",
+                                  "anchor_to": "left_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_green": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "cancel_btn": {
+                                  "type": "panel",
+                                  "collection_index": 9,
+                                  "size": [
+                                    "50% - 4px",
+                              32
+                                  ],
+                                  "anchor_from": "right_middle",
+                                  "anchor_to": "right_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "((not ((#title_text - $flag_office_phone_menu) = #title_text)) and ((#title_text - $flag_office_phone_help) = #title_text) and ((#title_text - $flag_office_phone_history) = #title_text) and ((#title_text - $flag_office_phone_options) = #title_text))",
+                          "target_property_name": "#visible"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "((not ((#title_text - $flag_office_phone_menu) = #title_text)) and ((#title_text - $flag_office_phone_help) = #title_text) and ((#title_text - $flag_office_phone_history) = #title_text) and ((#title_text - $flag_office_phone_options) = #title_text))",
+                          "target_property_name": "#enabled"
+                        }
+                      ]
+                    }
+                  }
+                  ,
+                  {
+                    "history_screen": {
+                      "type": "panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "history_scroll@common.scrolling_panel": {
+                            "size": [
+                              "100%",
+                              "100% - 54px"
+                            ],
+                            "anchor_from": "top_left",
+                            "anchor_to": "top_left",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 10,
+                            "$show_background": false,
+                            "$scrolling_content": "fr_office_phone_screen.phone_history_scroll_content",
+                            "$scroll_size": [
+                              4,
+                              "100% - 4px"
+                            ],
+                            "$scrolling_pane_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$scrolling_pane_offset": [
+                              0,
+                              0
+                            ],
+                            "$scroll_view_port_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$always_handle_scrolling": true
+                          }
+                        },
+                        {
+                          "history_bottom_row": {
+                            "type": "collection_panel",
+                            "collection_name": "form_buttons",
+                            "size": [
+                              "100%",
+                              32
+                            ],
+                            "anchor_from": "bottom_middle",
+                            "anchor_to": "bottom_middle",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 20,
+                            "controls": [
+                              {
+                                "select_btn": {
+                                  "type": "panel",
+                                  "collection_index": 6,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "left_middle",
+                                  "anchor_to": "left_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "call_btn": {
+                                  "type": "panel",
+                                  "collection_index": 7,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "center",
+                                  "anchor_to": "center",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_green": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "cancel_btn": {
+                                  "type": "panel",
+                                  "collection_index": 8,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "right_middle",
+                                  "anchor_to": "right_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_office_phone_history) = #title_text))",
+                          "target_property_name": "#visible"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_office_phone_history) = #title_text))",
+                          "target_property_name": "#enabled"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "help_screen": {
+                      "type": "panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "help_scroll@common.scrolling_panel": {
+                            "size": [
+                              "100%",
+                              "100% - 54px"
+                            ],
+                            "anchor_from": "top_left",
+                            "anchor_to": "top_left",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 10,
+                            "$show_background": false,
+                            "$scrolling_content": "fr_office_phone_screen.phone_help_scroll_content",
+                            "$scroll_size": [
+                              4,
+                              "100% - 4px"
+                            ],
+                            "$scrolling_pane_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$scrolling_pane_offset": [
+                              0,
+                              0
+                            ],
+                            "$scroll_view_port_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$always_handle_scrolling": true
+                          }
+                        },
+                        {
+                          "help_bottom_row": {
+                            "type": "collection_panel",
+                            "collection_name": "form_buttons",
+                            "size": [
+                              "100%",
+                              32
+                            ],
+                            "anchor_from": "bottom_middle",
+                            "anchor_to": "bottom_middle",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 20,
+                            "controls": [
+                              {
+                                "back_btn": {
+                                  "type": "panel",
+                                  "collection_index": 0,
+                                  "size": [
+                                    "100%",
+                                    32
+                                  ],
+                                  "anchor_from": "center",
+                                  "anchor_to": "center",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_office_phone_help) = #title_text))",
+                          "target_property_name": "#visible"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_office_phone_help) = #title_text))",
+                          "target_property_name": "#enabled"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "options_screen": {
+                      "type": "panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "options_scroll@common.scrolling_panel": {
+                            "size": [
+                              "100%",
+                              "100% - 54px"
+                            ],
+                            "anchor_from": "top_left",
+                            "anchor_to": "top_left",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 10,
+                            "$show_background": false,
+                            "$scrolling_content": "fr_office_phone_screen.phone_options_scroll_content",
+                            "$scroll_size": [
+                              4,
+                              "100% - 4px"
+                            ],
+                            "$scrolling_pane_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$scrolling_pane_offset": [
+                              0,
+                              0
+                            ],
+                            "$scroll_view_port_size": [
+                              "100% - 5px",
+                              "100%"
+                            ],
+                            "$always_handle_scrolling": true
+                          }
+                        },
+                        {
+                          "options_bottom_row": {
+                            "type": "collection_panel",
+                            "collection_name": "form_buttons",
+                            "size": [
+                              "100%",
+                              32
+                            ],
+                            "anchor_from": "bottom_middle",
+                            "anchor_to": "bottom_middle",
+                            "offset": [
+                              0,
+                              0
+                            ],
+                            "layer": 20,
+                            "controls": [
+                              {
+                                "select_btn": {
+                                  "type": "panel",
+                                  "collection_index": 4,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "left_middle",
+                                  "anchor_to": "left_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "call_btn": {
+                                  "type": "panel",
+                                  "collection_index": 5,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "center",
+                                  "anchor_to": "center",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_green": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "cancel_btn": {
+                                  "type": "panel",
+                                  "collection_index": 6,
+                                  "size": [
+                                    "33% - 4px",
+                                    32
+                                  ],
+                                  "anchor_from": "right_middle",
+                                  "anchor_to": "right_middle",
+                                  "controls": [
+                                    {
+                                      "btn@fr_office_phone_screen.phone_button_base": {
+                                        "size": [
+                                          "100%",
+                                          "100%"
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_office_phone_options) = #title_text))",
+                          "target_property_name": "#visible"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_office_phone_options) = #title_text))",
+                          "target_property_name": "#enabled"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_office_phone) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_name": "#null",
+        "source_property_name": "(not ((#title_text - $flag_office_phone) = #title_text))",
+        "binding_type": "view",
+        "target_property_name": "#enabled"
+      }
+    ]
+  },
+  "phone_button_base": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common.button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "default": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/phone_ui/phone_modal_dial_button",
+                "alpha": 1
+              }
+            },
+            {
+              "hover": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/phone_ui/phone_modal_number_bg",
+                "alpha": 1
+              }
+            },
+            {
+              "pressed": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/phone_ui/phone_modal_number_bg",
+                "alpha": 1
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": "#text",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 10,
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 0.75,
+          "text_alignment": "center",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      }
+    ]
+  },
+  "phone_button_green": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "$default_button_texture": "textures/fr_ui/phone_ui/phone_modal_call_button",
+          "$hover_button_texture": "textures/fr_ui/phone_ui/phone_modal_call_button_hover",
+          "$pressed_button_texture": "textures/fr_ui/phone_ui/phone_modal_call_button_hover",
+          "$locked_button_texture": "textures/fr_ui/phone_ui/phone_modal_call_button_hover",
+          "$border_visible": false,
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": "#text",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 10,
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 0.75,
+          "text_alignment": "center",
+          "color": [
+            0.2,
+            0.2,
+            0.2
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      }
+    ]
+  },
+  "phone_button_orange": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "$default_button_texture": "textures/fr_ui/phone_ui/phone_modal_cancel_button",
+          "$hover_button_texture": "textures/fr_ui/phone_ui/phone_modal_cancel_button_hover",
+          "$pressed_button_texture": "textures/fr_ui/phone_ui/phone_modal_cancel_button_hover",
+          "$locked_button_texture": "textures/fr_ui/phone_ui/phone_modal_cancel_button_hover",
+          "$border_visible": false,
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": "#text",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 10,
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 0.75,
+          "text_alignment": "center",
+          "color": [
+            0.2,
+            0.2,
+            0.2
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      }
+    ]
+  },
+  "phone_plus_left_btn@phone_button_base": {
+    "$button_focus_precedence": 1,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 0)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_plus_right_btn@phone_button_base": {
+    "$button_focus_precedence": 2,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 1)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_1_btn@phone_button_base": {
+    "$button_focus_precedence": 3,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 2)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_2_btn@phone_button_base": {
+    "$button_focus_precedence": 4,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_3_btn@phone_button_base": {
+    "$button_focus_precedence": 5,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 4)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_4_btn@phone_button_base": {
+    "$button_focus_precedence": 6,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 5)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_5_btn@phone_button_base": {
+    "$button_focus_precedence": 7,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 6)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_6_btn@phone_button_base": {
+    "$button_focus_precedence": 8,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 7)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_7_btn@phone_button_base": {
+    "$button_focus_precedence": 9,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 8)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_8_btn@phone_button_base": {
+    "$button_focus_precedence": 10,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 9)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_9_btn@phone_button_base": {
+    "$button_focus_precedence": 11,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 10)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_clear_btn@phone_button_base": {
+    "$button_focus_precedence": 12,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 11)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_0_btn@phone_button_base": {
+    "$button_focus_precedence": 13,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 12)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_key_delete_btn@phone_button_orange": {
+    "$button_focus_precedence": 14,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 13)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_call_btn@phone_button_green": {
+    "$button_focus_precedence": 20,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 14)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_cancel_btn@phone_button_base": {
+    "$button_focus_precedence": 21,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 15)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_menu_scroll_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [
+      "100%",
+      "100%c"
+    ],
+    "controls": [
+      {
+        "top_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            6
+          ]
+        }
+      },
+      {
+        "items_factory": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [
+            "100%",
+            "100%c"
+          ],
+          "collection_name": "form_buttons",
+          "factory": {
+            "name": "menu_items",
+            "control_name": "fr_office_phone_screen.phone_menu_item_template"
+          },
+          "bindings": [
+            {
+              "binding_name": "#form_button_length",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "bottom_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            8
+          ]
+        }
+      }
+    ]
+  },
+  "phone_menu_item_template": {
+    "type": "panel",
+    "$sel_mark": "§S§E§L",
+    "size": [
+      "100%",
+      34
+    ],
+    "controls": [
+      {
+        "btn@common.button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 8px",
+            30
+          ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [
+            0,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ],
+          "controls": [
+            {
+              "default": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.11,
+                  0.12,
+                  0.13
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "selected": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.18,
+                  0.19,
+                  0.2
+                ],
+                "alpha": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#t"
+                  },
+                  {
+                    "binding_name": "#null",
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#t - $sel_mark) = #t))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "hover": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.15,
+                  0.16,
+                  0.17
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "pressed": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.18,
+                  0.19,
+                  0.2
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "border": {
+                "type": "image",
+                "size": [
+                  "100% + 2px",
+                  "100% + 2px"
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "texture": "textures/ui/focus_border_white",
+                "alpha": 0.28,
+                "layer": 5
+              }
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#label",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 12,
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 0.8,
+          "text_alignment": "center",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#label"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index < 8)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_menu_call_btn@phone_button_green": {
+    "$button_focus_precedence": 1,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 8)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_menu_cancel_btn@phone_button_base": {
+    "$button_focus_precedence": 2,
+    "bindings": [
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 9)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_history_scroll_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [
+      "100%",
+      "100%c"
+    ],
+    "controls": [
+      {
+        "top_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            6
+          ]
+        }
+      },
+      {
+        "items_factory": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [
+            "100%",
+            "100%c"
+          ],
+          "collection_name": "form_buttons",
+          "factory": {
+            "name": "history_items",
+            "control_name": "fr_office_phone_screen.phone_history_item_template"
+          },
+          "bindings": [
+            {
+              "binding_name": "#form_button_length",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "bottom_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            8
+          ]
+        }
+      }
+    ]
+  },
+  "phone_history_item_template": {
+    "type": "panel",
+    "$sel_mark": "§S§E§L",
+    "size": [
+      "100%",
+      34
+    ],
+    "controls": [
+      {
+        "btn@common.button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 8px",
+            30
+          ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [
+            0,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ],
+          "controls": [
+            {
+              "default": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.11,
+                  0.12,
+                  0.13
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "selected": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.18,
+                  0.19,
+                  0.2
+                ],
+                "alpha": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#t"
+                  },
+                  {
+                    "binding_name": "#null",
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#t - $sel_mark) = #t))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "hover": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.15,
+                  0.16,
+                  0.17
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "pressed": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.18,
+                  0.19,
+                  0.2
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "border": {
+                "type": "image",
+                "size": [
+                  "100% + 2px",
+                  "100% + 2px"
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "texture": "textures/ui/focus_border_white",
+                "alpha": 0.28,
+                "layer": 5
+              }
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#label",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 12,
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 0.8,
+          "text_alignment": "center",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#label"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "(#collection_index < 6)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_options_scroll_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [
+      "100%",
+      "100%c"
+    ],
+    "controls": [
+      {
+        "top_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            6
+          ]
+        }
+      },
+      {
+        "options_title": {
+          "type": "collection_panel",
+          "collection_name": "form_buttons",
+          "size": [
+            "100%",
+            "default"
+          ],
+          "controls": [
+            {
+              "title_item": {
+                "type": "panel",
+                "collection_index": 7,
+                "size": [
+                  "100%",
+                  "default"
+                ],
+                "controls": [
+                  {
+                    "lbl": {
+                      "type": "label",
+                      "text": "#text",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "text_alignment": "center",
+                      "font_type": "MinecraftTen",
+                      "font_scale_factor": 0.85,
+                      "color": [
+                        0.75,
+                        0.75,
+                        0.75
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "form_buttons"
+                        },
+                        {
+                          "binding_type": "collection",
+                          "binding_collection_name": "form_buttons",
+                          "binding_name": "#form_button_text",
+                          "binding_name_override": "#text"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not((%.1s * #text) = ' '))",
+                          "target_property_name": "#visible"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "items_factory": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [
+            "100%",
+            "100%c"
+          ],
+          "collection_name": "form_buttons",
+          "factory": {
+            "name": "options_items",
+            "control_name": "fr_office_phone_screen.phone_options_item_template"
+          },
+          "bindings": [
+            {
+              "binding_name": "#form_button_length",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "bottom_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            8
+          ]
+        }
+      }
+    ]
+  },
+  "phone_options_item_template": {
+    "type": "panel",
+    "$sel_mark": "§S§E§L",
+    "size": [
+      "100%",
+      34
+    ],
+    "controls": [
+      {
+        "btn@common.button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 8px",
+            30
+          ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [
+            0,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ],
+          "controls": [
+            {
+              "default": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.11,
+                  0.12,
+                  0.13
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "selected": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.18,
+                  0.19,
+                  0.2
+                ],
+                "alpha": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#t"
+                  },
+                  {
+                    "binding_name": "#null",
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#t - $sel_mark) = #t))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "hover": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.15,
+                  0.16,
+                  0.17
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "pressed": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/ui/White",
+                "color": [
+                  0.18,
+                  0.19,
+                  0.2
+                ],
+                "alpha": 1
+              }
+            },
+            {
+              "border": {
+                "type": "image",
+                "size": [
+                  "100% + 2px",
+                  "100% + 2px"
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "texture": "textures/ui/focus_border_white",
+                "alpha": 0.28,
+                "layer": 5
+              }
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#label",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 12,
+          "font_type": "MinecraftTen",
+          "font_scale_factor": 0.8,
+          "text_alignment": "center",
+          "color": [
+            1,
+            1,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#label"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#t"
+      },
+      {
+        "binding_name": "#null",
+        "binding_type": "view",
+        "source_property_name": "((#collection_index < 4) and (not((%.1s * #t) = ' ')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "phone_help_scroll_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [
+      "100%",
+      "100%c"
+    ],
+    "controls": [
+      {
+        "top_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            12
+          ]
+        }
+      },
+      {
+        "help_title": {
+          "type": "collection_panel",
+          "collection_name": "form_buttons",
+          "size": [
+            "100%",
+            "default"
+          ],
+          "controls": [
+            {
+              "title_item": {
+                "type": "panel",
+                "collection_index": 1,
+                "size": [
+                  "100%",
+                  "default"
+                ],
+                "controls": [
+                  {
+                    "lbl": {
+                      "type": "label",
+                      "text": "#text",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "text_alignment": "center",
+                      "font_type": "MinecraftTen",
+                      "font_scale_factor": 1.1,
+                      "color": [
+                        1,
+                        1,
+                        1
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "form_buttons"
+                        },
+                        {
+                          "binding_type": "collection",
+                          "binding_collection_name": "form_buttons",
+                          "binding_name": "#form_button_text",
+                          "binding_name_override": "#text"
+                        },
+                        {
+                          "binding_name": "#null",
+                          "binding_type": "view",
+                          "source_property_name": "(not((%.1s * #text) = ' '))",
+                          "target_property_name": "#visible"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad1": {
+          "type": "panel",
+          "size": [
+            "100%",
+            8
+          ]
+        }
+      },
+      {
+        "help_body": {
+          "type": "collection_panel",
+          "collection_name": "form_buttons",
+          "size": [
+            "100%",
+            "default"
+          ],
+          "controls": [
+            {
+              "body_item": {
+                "type": "panel",
+                "collection_index": 2,
+                "size": [
+                  "100%",
+                  "default"
+                ],
+                "controls": [
+                  {
+                    "lbl": {
+                      "type": "label",
+                      "text": "#text",
+                      "size": [
+                        "100% - 12px",
+                        "default"
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "text_alignment": "left",
+                      "font_type": "MinecraftTen",
+                      "font_scale_factor": 0.75,
+                      "color": [
+                        1,
+                        1,
+                        1
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "form_buttons"
+                        },
+                        {
+                          "binding_type": "collection",
+                          "binding_collection_name": "form_buttons",
+                          "binding_name": "#form_button_text",
+                          "binding_name_override": "#text"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "bottom_pad": {
+          "type": "panel",
+          "size": [
+            "100%",
+            8
+          ]
+        }
+      }
+    ]
+  }
+}

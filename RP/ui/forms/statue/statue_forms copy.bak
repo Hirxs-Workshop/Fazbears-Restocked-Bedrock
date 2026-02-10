@@ -1,0 +1,5152 @@
+{
+  "namespace": "fr_statue_screen",
+  "statue_close_x": {
+    "type": "image",
+    "size": [
+      12,
+      12
+    ],
+    "texture": "textures/fr_ui/x_icon",
+    "color": [
+      1,
+      0.3,
+      0.3
+    ]
+  },
+  "statue_tab_icon_0": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            24,
+            24
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 1,
+          "texture": "textures/fr_ui/paint_icon"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 0)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_tab_icon_1": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            24,
+            24
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 1,
+          "texture": "textures/fr_ui/animation_icon"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 1)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_tab_icon_2": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            20,
+            20
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 1,
+          "texture": "textures/fr_ui/statue_icon"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 2)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_tab_icon_3": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            20,
+            20
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 1,
+          "texture": "textures/fr_ui/terminal_variants_tab_5"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_tab_btn_0": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  24,
+                  24
+                ],
+                "texture": "textures/fr_ui/paint_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  24,
+                  24
+                ],
+                "texture": "textures/fr_ui/paint_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  24,
+                  24
+                ],
+                "texture": "textures/fr_ui/paint_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 0)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_tab_btn_1": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  24,
+                  24
+                ],
+                "texture": "textures/fr_ui/animation_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  24,
+                  24
+                ],
+                "texture": "textures/fr_ui/animation_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  24,
+                  24
+                ],
+                "texture": "textures/fr_ui/animation_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 1)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_tab_btn_2": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  20,
+                  20
+                ],
+                "texture": "textures/fr_ui/statue_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  20,
+                  20
+                ],
+                "texture": "textures/fr_ui/statue_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  20,
+                  20
+                ],
+                "texture": "textures/fr_ui/statue_icon",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 2)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_tab_btn_3": {
+    "type": "button",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "focus_enabled": true,
+    "$pressed_button_name": "button.form_button_click",
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  20,
+                  20
+                ],
+                "texture": "textures/fr_ui/terminal_variants_tab_5",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  20,
+                  20
+                ],
+                "texture": "textures/fr_ui/terminal_variants_tab_5",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal_hover",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  20,
+                  20
+                ],
+                "texture": "textures/fr_ui/terminal_variants_tab_5",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 3)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_info_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "bg": {
+          "type": "image",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/editor_internal_modal",
+          "layer": 0
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 0.9,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 4)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_points_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "bg": {
+          "type": "image",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/editor_internal_modal",
+          "layer": 0
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 0.9,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 5)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_test_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 6)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_list_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 7)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_create_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 8)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_remove_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 9)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_back_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 13)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_ai_level_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 10)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_random_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 11)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_route_change_id_btn": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 12)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_btn_idx_3": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.6,
+          "layer": 10,
+          "offset": [
+            0,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 4)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_btn_idx_4": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.6,
+          "layer": 10,
+          "offset": [
+            0,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 5)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_btn_idx_5": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "offset": [
+            0,
+            1
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 6)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_btn_idx_6": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.0,
+          "layer": 10,
+          "offset": [
+            0,
+            2
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 7)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_rot_value_item": {
+    "type": "label",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "text": "#text",
+    "color": [
+      0.082,
+      0.118,
+      0.008,
+      1.0
+    ],
+    "font_scale_factor": 1.1,
+    "text_alignment": "center",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "offset": [
+      0,
+      1
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 8)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_variant_grid_item": {
+    "type": "panel",
+    "size": [
+      "33%",
+      "100%x"
+    ],
+    "controls": [
+      {
+        "wrapper": {
+          "type": "panel",
+          "size": [
+            "100% - 4px",
+            "100% - 4px"
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/internal_modal_gray",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  48,
+                  48
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  -8
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_texture",
+                    "binding_name_override": "#texture"
+                  },
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_texture_file_system",
+                    "binding_name_override": "#texture_file_system"
+                  }
+                ]
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#text",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -6
+                ],
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "font_scale_factor": 0.75,
+                "text_alignment": "center",
+                "layer": 2,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#text"
+                  }
+                ]
+              }
+            },
+            {
+              "btn@common.button": {
+                "$pressed_button_name": "button.form_button_click",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "layer": 5,
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "form_buttons"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#label"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (((#label = 'V') or (#label = 'P')) or (#label = 'X')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_variant_visuals": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            "95%",
+            "100%"
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -6
+          ],
+          "layer": 115,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture_file_system",
+              "binding_name_override": "#texture_file_system"
+            }
+          ]
+        }
+      },
+      {
+        "text_bg": {
+          "type": "image",
+          "texture": "textures/fr_ui/editor_backgroud",
+          "size": [
+            "96%",
+            13
+          ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -1
+          ],
+          "layer": 116
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -4
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 0.7,
+          "text_alignment": "center",
+          "layer": 117,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "statue_variant_item_content": {
+    "type": "button",
+    "size": [
+      "100% - 4px",
+      "100% - 4px"
+    ],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "focus_enabled": true,
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.form_button_click",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.form_button_click",
+        "mapping_type": "pressed"
+      }
+    ],
+    "sound_name": "random.click",
+    "sound_volume": 1.0,
+    "sound_pitch": 1.0,
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#button_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (#button_text = ' '))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background",
+                "layer": 110
+              }
+            },
+            {
+              "selected_indicator": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#text - '§z') = #text))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "content@fr_statue_screen.statue_variant_visuals": {}
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+                "layer": 110
+              }
+            },
+            {
+              "sel": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111
+              }
+            },
+            {
+              "content@fr_statue_screen.statue_variant_visuals": {}
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+                "layer": 110
+              }
+            },
+            {
+              "sel": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111
+              }
+            },
+            {
+              "content@fr_statue_screen.statue_variant_visuals": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "statue_variant_item_0": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "var0",
+      "control_name": "fr_statue_screen.statue_variant_item_0_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_variant_item_0_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_variant_item_content": {}
+      },
+      {
+        "no_found": {
+          "type": "label",
+          "text": "No variants found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            60,
+            0
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 210,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(#text = ' ')",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 9)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_variant_item_1": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "var1",
+      "control_name": "fr_statue_screen.statue_variant_item_1_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_variant_item_1_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_variant_item_content": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 10)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_variant_item_2": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "var2",
+      "control_name": "fr_statue_screen.statue_variant_item_2_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_variant_item_2_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_variant_item_content": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 11) and (not (#btn_label = ' ')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_pose_grid_item": {
+    "type": "panel",
+    "size": [
+      "33%",
+      "50%"
+    ],
+    "controls": [
+      {
+        "wrapper": {
+          "type": "panel",
+          "size": [
+            "100% - 4px",
+            "100% - 4px"
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/internal_modal_gray",
+                "layer": 0
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [
+                  48,
+                  48
+                ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "offset": [
+                  0,
+                  -8
+                ],
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_texture",
+                    "binding_name_override": "#texture"
+                  },
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_texture_file_system",
+                    "binding_name_override": "#texture_file_system"
+                  }
+                ]
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#text",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -6
+                ],
+                "color": [
+                  1,
+                  1,
+                  1
+                ],
+                "font_scale_factor": 0.75,
+                "text_alignment": "center",
+                "layer": 2,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#text"
+                  }
+                ]
+              }
+            },
+            {
+              "btn@common.button": {
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "layer": 5,
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "form_buttons"
+                  },
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#btn_label"
+                  }
+                ],
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.form_button_click",
+                    "mapping_type": "pressed",
+                    "bindings": [
+                      {
+                        "binding_type": "collection_details",
+                        "binding_collection_name": "form_buttons"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_property_name": "(not (#btn_label = ' '))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "no_found@fr_statue_screen.no_found_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(((#collection_index >= 7) and (#collection_index <= 12)) and ((not (#btn_label = ' ')) or (#collection_index = 7)) and (not (#btn_label = '§v_none')) and (not (#btn_label = '__HIDDEN__')) and (not (#btn_label = '§v_hide')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "no_found_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "label": {
+          "type": "label",
+          "text": "No poses found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            "100%",
+            0
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 20
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "view",
+        "source_property_name": "(#visible)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "no_found_poses_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "label": {
+          "type": "label",
+          "text": "No poses found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            33
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 210
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 7) and (#text = ' '))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "no_found_variants_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "label": {
+          "type": "label",
+          "text": "No variants found!",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            0
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 1.2,
+          "layer": 210
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 8) and (#text = ' '))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_sidebar_item_inner": {
+    "type": "panel",
+    "size": [
+      38,
+      36
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 2px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background",
+          "$hover_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "$pressed_button_texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "selection_indicator": {
+          "type": "image",
+          "size": [
+            "100% - 2px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+          "layer": 12,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            },
+            {
+              "binding_type": "view",
+              "source_property_name": "(not ((#text - '§z') = #text))",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            24,
+            24
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [
+            0,
+            -2
+          ],
+          "layer": 11,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture_file_system",
+              "binding_name_override": "#texture_file_system"
+            }
+          ]
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 0.6,
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -4
+          ],
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "statue_category_btn_idx_3": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 4)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_btn_idx_4": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 5)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_btn_idx_5": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 6)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_category_btn_idx_6": {
+    "type": "panel",
+    "size": [
+      36,
+      34
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_category_sidebar_item_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 7)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_item_visuals": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "icon": {
+          "type": "image",
+          "size": [
+            "95%",
+            "95%"
+          ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 115,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_texture_file_system",
+              "binding_name_override": "#texture_file_system"
+            }
+          ]
+        }
+      },
+      {
+        "text_bg": {
+          "type": "image",
+          "texture": "textures/fr_ui/editor_backgroud",
+          "size": [
+            "96%",
+            13
+          ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -1
+          ],
+          "layer": 116
+        }
+      },
+      {
+        "label": {
+          "type": "label",
+          "text": "#text",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -4
+          ],
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "font_scale_factor": 0.7,
+          "text_alignment": "center",
+          "layer": 116,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "statue_pose_item_content": {
+    "type": "button",
+    "size": [
+      "100% - 4px",
+      "100% - 4px"
+    ],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "focus_enabled": true,
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.form_button_click",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.form_button_click",
+        "mapping_type": "pressed"
+      }
+    ],
+    "sound_name": "random.click",
+    "sound_volume": 1.0,
+    "sound_pitch": 1.0,
+    "default_control": "default",
+    "hover_control": "hover",
+    "pressed_control": "pressed",
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#button_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not (#button_text = ' '))",
+        "target_property_name": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "default": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background",
+                "layer": 110
+              }
+            },
+            {
+              "selected_indicator": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111,
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "form_buttons",
+                    "binding_name": "#form_button_text",
+                    "binding_name_override": "#text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#text - '§z') = #text))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "content@fr_statue_screen.statue_item_visuals": {}
+            }
+          ]
+        }
+      },
+      {
+        "hover": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+                "layer": 110
+              }
+            },
+            {
+              "sel": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111
+              }
+            },
+            {
+              "content@fr_statue_screen.statue_item_visuals": {}
+            }
+          ]
+        }
+      },
+      {
+        "pressed": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "controls": [
+            {
+              "bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+                "layer": 110
+              }
+            },
+            {
+              "sel": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/buttons/terminal/terminal_button_select",
+                "layer": 111
+              }
+            },
+            {
+              "content@fr_statue_screen.statue_item_visuals": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "statue_pose_item_3": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "pose3",
+      "control_name": "fr_statue_screen.statue_pose_item_3_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_pose_item_3_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_pose_item_content": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 8) and (not (#btn_label = ' ')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_pose_item_4": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "pose4",
+      "control_name": "fr_statue_screen.statue_pose_item_4_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_pose_item_4_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_pose_item_content": {}
+      },
+      {
+        "no_found@fr_statue_screen.no_found_poses_inner": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#btn_label"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 9)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_pose_item_5": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "pose5",
+      "control_name": "fr_statue_screen.statue_pose_item_5_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_pose_item_5_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_pose_item_content": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 10)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_pose_item_6": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "pose6",
+      "control_name": "fr_statue_screen.statue_pose_item_6_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_pose_item_6_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_pose_item_content": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 11)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_pose_item_7": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "pose7",
+      "control_name": "fr_statue_screen.statue_pose_item_7_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_pose_item_7_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_pose_item_content": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 12)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_pose_item_8": {
+    "type": "stack_panel",
+    "size": [
+      "33%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "pose8",
+      "control_name": "fr_statue_screen.statue_pose_item_8_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_pose_item_8_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "content@fr_statue_screen.statue_pose_item_content": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(#collection_index = 13)",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_nav_prev": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "nav_prev",
+      "control_name": "fr_statue_screen.statue_nav_prev_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_nav_prev_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": ">prev<",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "layer": 10
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 14) and (not (#nav_btn_text = '§v_hide')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_page_indicator": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "nav_page",
+      "control_name": "fr_statue_screen.statue_page_indicator_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_page_indicator_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "bg": {
+          "type": "image",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "layer": 0
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 15) and (not (#nav_btn_text = '§v_hide')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_nav_next": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "nav_next",
+      "control_name": "fr_statue_screen.statue_nav_next_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_nav_next_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": ">next<",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "layer": 10
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 16) and (not (#nav_btn_text = '§v_hide')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_variant_nav_prev": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "var_nav_prev",
+      "control_name": "fr_statue_screen.statue_variant_nav_prev_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_variant_nav_prev_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": ">prev<",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "layer": 10
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 12) and (not (#nav_btn_text = '_HIDE_')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_variant_nav_page": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "var_nav_page",
+      "control_name": "fr_statue_screen.statue_variant_nav_page_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_variant_nav_page_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "bg": {
+          "type": "image",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "texture": "textures/fr_ui/buttons/terminal/terminal_button_background_hover",
+          "layer": 0
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": "#text",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "layer": 10,
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "form_buttons",
+              "binding_name": "#form_button_text",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 13) and (not (#text = '_HIDE_')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_variant_nav_next": {
+    "type": "stack_panel",
+    "size": [
+      "50%",
+      "100%"
+    ],
+    "collection_name": "form_buttons",
+    "factory": {
+      "name": "var_nav_next",
+      "control_name": "fr_statue_screen.statue_variant_nav_next_inner"
+    },
+    "bindings": [
+      {
+        "binding_name": "#form_button_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  "statue_variant_nav_next_inner": {
+    "type": "panel",
+    "size": [
+      "100%",
+      "100%"
+    ],
+    "controls": [
+      {
+        "btn@common_buttons.light_text_button": {
+          "$pressed_button_name": "button.form_button_click",
+          "size": [
+            "100% - 4px",
+            "100% - 2px"
+          ],
+          "$button_text": " ",
+          "$border_visible": false,
+          "$default_button_texture": "textures/fr_ui/statue_menu_button",
+          "$hover_button_texture": "textures/fr_ui/green_button",
+          "$pressed_button_texture": "textures/fr_ui/green_button",
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "form_buttons"
+            }
+          ]
+        }
+      },
+      {
+        "lbl": {
+          "type": "label",
+          "text": ">next<",
+          "color": [
+            0.592,
+            0.855,
+            0.063,
+            1.0
+          ],
+          "layer": 10
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "form_buttons"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "form_buttons",
+        "binding_name": "#form_button_text",
+        "binding_name_override": "#nav_btn_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "((#collection_index = 14) and (not (#nav_btn_text = '_HIDE_')))",
+        "target_property_name": "#visible"
+      }
+    ]
+  },
+  "statue_ui": {
+    "type": "panel",
+    "$flag_statue": "§S§T§A§T§U§E",
+    "$flag_sec_variants": "§s§e§c§:§1",
+    "$flag_sec_poses": "§s§e§c§:§2",
+    "$flag_sec_statue": "§s§e§c§:§3",
+    "$flag_sec_routes": "§s§e§c§:§4",
+    "$flag_platform_linked": "§p§l§a§t§:§1",
+    "$flag_platform_not_linked": "§p§l§a§t§:§0",
+    "size": [
+      260,
+      190
+    ],
+    "anchor_from": "right_middle",
+    "anchor_to": "right_middle",
+    "offset": [
+      -30,
+      15
+    ],
+    "controls": [
+      {
+        "dummy_focus_trap": {
+          "type": "button",
+          "size": [
+            1,
+            1
+          ],
+          "offset": [
+            10000,
+            10000
+          ],
+          "default_focus_precedence": 10,
+          "layer": -10
+        }
+      },
+      {
+        "tabs_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [
+            145,
+            34
+          ],
+          "anchor_from": "top_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [
+            0,
+            -2
+          ],
+          "layer": 105,
+          "controls": [
+            {
+              "tab_variants": {
+                "type": "panel",
+                "size": [
+                  34,
+                  34
+                ],
+                "controls": [
+                  {
+                    "btn_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "tab0_btn",
+                        "control_name": "fr_statue_screen.statue_tab_btn_0"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacer1": {
+                "type": "panel",
+                "size": [
+                  3,
+                  "100%"
+                ]
+              }
+            },
+            {
+              "tab_poses": {
+                "type": "panel",
+                "size": [
+                  34,
+                  34
+                ],
+                "controls": [
+                  {
+                    "btn_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "tab1_btn",
+                        "control_name": "fr_statue_screen.statue_tab_btn_1"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacer2": {
+                "type": "panel",
+                "size": [
+                  3,
+                  "100%"
+                ]
+              }
+            },
+            {
+              "tab_close": {
+                "type": "panel",
+                "size": [
+                  34,
+                  34
+                ],
+                "controls": [
+                  {
+                    "btn_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "tab2_btn",
+                        "control_name": "fr_statue_screen.statue_tab_btn_2"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "spacer3": {
+                "type": "panel",
+                "size": [
+                  3,
+                  "100%"
+                ]
+              }
+            },
+            {
+              "tab_routes": {
+                "type": "panel",
+                "size": [
+                  34,
+                  34
+                ],
+                "controls": [
+                  {
+                    "btn_factory": {
+                      "type": "stack_panel",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "collection_name": "form_buttons",
+                      "factory": {
+                        "name": "tab3_btn",
+                        "control_name": "fr_statue_screen.statue_tab_btn_3"
+                      },
+                      "bindings": [
+                        {
+                          "binding_name": "#form_button_length",
+                          "binding_name_override": "#collection_length"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "statue_modal": {
+          "type": "panel",
+          "size": [
+            "100%",
+            "100%"
+          ],
+          "layer": 10,
+          "controls": [
+            {
+              "modal_bg": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "texture": "textures/fr_ui/editor_modal",
+                "layer": 0
+              }
+            },
+            {
+              "title_bar": {
+                "type": "panel",
+                "size": [
+                  "100%",
+                  24
+                ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "layer": 1,
+                "controls": [
+                  {
+                    "title_bg": {
+                      "type": "image",
+                      "size": [
+                        "98.5%",
+                        "87%"
+                      ],
+                      "texture": "textures/fr_ui/editor_internal_modal",
+                      "layer": 0
+                    }
+                  },
+                  {
+                    "title_statue": {
+                      "type": "label",
+                      "text": "statue_editor.exe",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "color": [
+                        0.082,
+                        0.118,
+                        0.008,
+                        1.0
+                      ],
+                      "font_scale_factor": 1,
+                      "layer": 2,
+                      "font_type": "MinecraftTen",
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_sec_statue) = #title_text))",
+                          "target_property_name": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "title_variants": {
+                      "type": "label",
+                      "text": "variants_editor.exe",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "color": [
+                        0.082,
+                        0.118,
+                        0.008,
+                        1.0
+                      ],
+                      "font_scale_factor": 1,
+                      "layer": 2,
+                      "font_type": "MinecraftTen",
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_sec_variants) = #title_text))",
+                          "target_property_name": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "title_poses": {
+                      "type": "label",
+                      "text": "poses_editor.exe",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "color": [
+                        0.082,
+                        0.118,
+                        0.008,
+                        1.0
+                      ],
+                      "font_scale_factor": 1,
+                      "layer": 2,
+                      "font_type": "MinecraftTen",
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_sec_poses) = #title_text))",
+                          "target_property_name": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "title_routes": {
+                      "type": "label",
+                      "text": "routes_editor.exe",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "color": [
+                        0.082,
+                        0.118,
+                        0.008,
+                        1.0
+                      ],
+                      "font_scale_factor": 1,
+                      "layer": 2,
+                      "font_type": "MinecraftTen",
+                      "bindings": [
+                        {
+                          "binding_type": "global",
+                          "binding_condition": "none",
+                          "binding_name": "#title_text",
+                          "binding_name_override": "#title_text"
+                        },
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "(not ((#title_text - $flag_sec_routes) = #title_text))",
+                          "target_property_name": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "close_btn": {
+                      "type": "button",
+                      "size": [
+                        18,
+                        18
+                      ],
+                      "anchor_from": "right_middle",
+                      "anchor_to": "right_middle",
+                      "offset": [
+                        -6,
+                        0
+                      ],
+                      "layer": 10,
+                      "$pressed_button_name": "button.menu_exit",
+                      "default_control": "default",
+                      "hover_control": "hover",
+                      "pressed_control": "pressed",
+                      "button_mappings": [
+                        {
+                          "from_button_id": "button.menu_select",
+                          "to_button_id": "button.menu_exit",
+                          "mapping_type": "pressed"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "default": {
+                            "type": "image",
+                            "size": [
+                              12,
+                              12
+                            ],
+                            "texture": "textures/fr_ui/terminal_close"
+                          }
+                        },
+                        {
+                          "hover": {
+                            "type": "image",
+                            "size": [
+                              12,
+                              12
+                            ],
+                            "texture": "textures/fr_ui/terminal_close_hover"
+                          }
+                        },
+                        {
+                          "pressed": {
+                            "type": "image",
+                            "size": [
+                              12,
+                              12
+                            ],
+                            "texture": "textures/fr_ui/terminal_close_hover"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "statue_section_content": {
+                "type": "panel",
+                "size": [
+                  "100% - 14px",
+                  "100% - 30px"
+                ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -4
+                ],
+                "layer": 105,
+                "controls": [
+                  {
+                    "rot_label": {
+                      "type": "label",
+                      "text": "rotation.toggle",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        2
+                      ],
+                      "color": [
+                        0.592,
+                        0.855,
+                        0.063,
+                        1.0
+                      ],
+                      "font_scale_factor": 0.85
+                    }
+                  },
+                  {
+                    "rotation_row": {
+                      "type": "panel",
+                      "size": [
+                        "100%",
+                        28
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        18
+                      ],
+                      "controls": [
+                        {
+                          "rot_minus_btn": {
+                            "type": "panel",
+                            "size": [
+                              36,
+                              "100%"
+                            ],
+                            "anchor_from": "left_middle",
+                            "anchor_to": "left_middle",
+                            "controls": [
+                              {
+                                "btn_factory": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    "100%"
+                                  ],
+                                  "layer": 2,
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "rot_minus",
+                                    "control_name": "fr_statue_screen.statue_btn_idx_3"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "rot_value_panel": {
+                            "type": "panel",
+                            "size": [
+                              "100% - 86px",
+                              "100%"
+                            ],
+                            "anchor_from": "center",
+                            "anchor_to": "center",
+                            "controls": [
+                              {
+                                "bg": {
+                                  "type": "image",
+                                  "size": [
+                                    "100%",
+                                    "100%"
+                                  ],
+                                  "texture": "textures/fr_ui/editor_internal_modal",
+                                  "layer": 0
+                                }
+                              },
+                              {
+                                "value_factory": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    "100%"
+                                  ],
+                                  "layer": 1,
+                                  "collection_name": "form_buttons",
+                                  "offset": [
+                                    0,
+                                    8
+                                  ],
+                                  "factory": {
+                                    "name": "rot_val",
+                                    "control_name": "fr_statue_screen.statue_rot_value_item"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "rot_plus_btn": {
+                            "type": "panel",
+                            "size": [
+                              36,
+                              "100%"
+                            ],
+                            "anchor_from": "right_middle",
+                            "anchor_to": "right_middle",
+                            "controls": [
+                              {
+                                "btn_factory": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    "100%"
+                                  ],
+                                  "layer": 2,
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "rot_plus",
+                                    "control_name": "fr_statue_screen.statue_btn_idx_4"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "night_label": {
+                      "type": "label",
+                      "text": "night_mode.toggle",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        102
+                      ],
+                      "color": [
+                        0.592,
+                        0.855,
+                        0.063,
+                        1.0
+                      ],
+                      "font_scale_factor": 0.85
+                    }
+                  },
+                  {
+                    "night_row": {
+                      "type": "panel",
+                      "size": [
+                        "100%",
+                        48
+                      ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [
+                        0,
+                        118
+                      ],
+                      "controls": [
+                        {
+                          "night_desc": {
+                            "type": "label",
+                            "text": "the animatronic will be able to move around at night and return during the day",
+                            "size": [
+                              "60%",
+                              "100%"
+                            ],
+                            "anchor_from": "left_middle",
+                            "anchor_to": "left_middle",
+                            "offset": [
+                              4,
+                              2
+                            ],
+                            "color": [
+                              0.592,
+                              0.855,
+                              0.063,
+                              1.0
+                            ],
+                            "font_scale_factor": 0.7
+                          }
+                        },
+                        {
+                          "night_btn": {
+                            "type": "panel",
+                            "size": [
+                              80,
+                              28
+                            ],
+                            "anchor_from": "right_middle",
+                            "anchor_to": "right_middle",
+                            "controls": [
+                              {
+                                "btn_factory": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    "100%"
+                                  ],
+                                  "layer": 2,
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "night_btn",
+                                    "control_name": "fr_statue_screen.statue_btn_idx_6"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_condition": "none",
+                    "binding_name": "#title_text",
+                    "binding_name_override": "#title_text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#title_text - $flag_sec_statue) = #title_text))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "variants_section_content": {
+                "type": "panel",
+                "size": [
+                  "100% - 14px",
+                  "100% - 30px"
+                ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -4
+                ],
+                "layer": 105,
+                "controls": [
+                  {
+                    "variants_main_wrap": {
+                      "type": "stack_panel",
+                      "orientation": "horizontal",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "sidebar": {
+                            "type": "stack_panel",
+                            "size": [
+                              42,
+                              "100%"
+                            ],
+                            "controls": [
+                              {
+                                "c3": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat3",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_3"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "c4": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat4",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_4"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "c5": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat5",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_5"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "c6": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat6",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_6"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "grid_area": {
+                            "type": "panel",
+                            "size": [
+                              "fill",
+                              "100%"
+                            ],
+                            "controls": [
+                              {
+                                "nf_factory": {
+                                  "type": "stack_panel",
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "nf",
+                                    "control_name": "fr_statue_screen.no_found_variants_inner"
+                                  }
+                                }
+                              },
+                              {
+                                "variants_wrap": {
+                                  "type": "stack_panel",
+                                  "orientation": "vertical",
+                                  "size": [
+                                    "100%",
+                                    "100%"
+                                  ],
+                                  "controls": [
+                                    {
+                                      "var_row": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "84%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "var0@fr_statue_screen.statue_variant_item_0": {}
+                                          },
+                                          {
+                                            "var1@fr_statue_screen.statue_variant_item_1": {}
+                                          },
+                                          {
+                                            "var2@fr_statue_screen.statue_variant_item_2": {}
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "nav_row": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "16%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "nav_prev@fr_statue_screen.statue_variant_nav_prev": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "nav_page@fr_statue_screen.statue_variant_nav_page": {
+                                              "size": [
+                                                "34%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "nav_next@fr_statue_screen.statue_variant_nav_next": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_condition": "none",
+                    "binding_name": "#title_text",
+                    "binding_name_override": "#title_text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#title_text - $flag_sec_variants) = #title_text))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "poses_section_content": {
+                "type": "panel",
+                "size": [
+                  "100% - 14px",
+                  "100% - 30px"
+                ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -4
+                ],
+                "layer": 105,
+                "controls": [
+                  {
+                    "poses_main_wrap": {
+                      "type": "stack_panel",
+                      "orientation": "horizontal",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "sidebar": {
+                            "type": "stack_panel",
+                            "size": [
+                              42,
+                              "100%"
+                            ],
+                            "collection_name": "form_buttons",
+                            "controls": [
+                              {
+                                "c3": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat3",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_3"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "c4": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat4",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_4"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "c5": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "100%",
+                                    36
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "cat5",
+                                    "control_name": "fr_statue_screen.statue_category_btn_idx_5"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "grid_area": {
+                            "type": "panel",
+                            "size": [
+                              "fill",
+                              "100%"
+                            ],
+                            "controls": [
+                              {
+                                "poses_wrap": {
+                                  "type": "stack_panel",
+                                  "orientation": "vertical",
+                                  "size": [
+                                    "100%",
+                                    "100%"
+                                  ],
+                                  "controls": [
+                                    {
+                                      "row1": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "42%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "item3@fr_statue_screen.statue_pose_item_3": {}
+                                          },
+                                          {
+                                            "item4@fr_statue_screen.statue_pose_item_4": {}
+                                          },
+                                          {
+                                            "item5@fr_statue_screen.statue_pose_item_5": {}
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "row2": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "42%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "item6@fr_statue_screen.statue_pose_item_6": {}
+                                          },
+                                          {
+                                            "item7@fr_statue_screen.statue_pose_item_7": {}
+                                          },
+                                          {
+                                            "item8@fr_statue_screen.statue_pose_item_8": {}
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    {
+                                      "nav_row": {
+                                        "type": "stack_panel",
+                                        "orientation": "horizontal",
+                                        "size": [
+                                          "100%",
+                                          "16%"
+                                        ],
+                                        "controls": [
+                                          {
+                                            "nav_prev@fr_statue_screen.statue_nav_prev": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "page_indicator@fr_statue_screen.statue_page_indicator": {
+                                              "size": [
+                                                "34%",
+                                                "100%"
+                                              ]
+                                            }
+                                          },
+                                          {
+                                            "nav_next@fr_statue_screen.statue_nav_next": {
+                                              "size": [
+                                                "33%",
+                                                "100%"
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_condition": "none",
+                    "binding_name": "#title_text",
+                    "binding_name_override": "#title_text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "(not ((#title_text - $flag_sec_poses) = #title_text))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "routes_not_linked_panel": {
+                "type": "panel",
+                "size": [
+                  "100% - 14px",
+                  "100% - 30px"
+                ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -4
+                ],
+                "layer": 105,
+                "controls": [
+                  {
+                    "message_panel": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "spacer_top": {
+                            "type": "panel",
+                            "size": [
+                              "100%",
+                              "fill"
+                            ]
+                          }
+                        },
+                        {
+                          "message_text": {
+                            "type": "label",
+                            "text": "(!) Not Linked to Platform\n\nLink this animatronic to a platform\nto enable route configuration",
+                            "color": [
+                              0.592,
+                              0.855,
+                              0.063,
+                              1.0
+                            ],
+                            "size": [
+                              "100%",
+                              "default"
+                            ],
+                            "text_alignment": "center",
+                            "layer": 2
+                          }
+                        },
+                        {
+                          "spacer_bottom": {
+                            "type": "panel",
+                            "size": [
+                              "100%",
+                              "fill"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_condition": "none",
+                    "binding_name": "#title_text",
+                    "binding_name_override": "#title_text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "((not ((#title_text - $flag_sec_routes) = #title_text)) and (not ((#title_text - $flag_platform_not_linked) = #title_text)))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "routes_section_content": {
+                "type": "panel",
+                "size": [
+                  "100% - 14px",
+                  "100% - 30px"
+                ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [
+                  0,
+                  -4
+                ],
+                "layer": 105,
+                "controls": [
+                  {
+                    "routes_main_wrap": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": [
+                        "100%",
+                        "100%"
+                      ],
+                      "controls": [
+                        {
+                          "info_row": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [
+                              "100%",
+                              28
+                            ],
+                            "controls": [
+                              {
+                                "id_display": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_id",
+                                    "control_name": "fr_statue_screen.statue_route_info_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "points_display": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_points",
+                                    "control_name": "fr_statue_screen.statue_route_points_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacer_top": {
+                            "type": "panel",
+                            "size": [
+                              "100%",
+                              8
+                            ]
+                          }
+                        },
+                        {
+                          "action_row_1": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [
+                              "100%",
+                              28
+                            ],
+                            "controls": [
+                              {
+                                "test_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_test",
+                                    "control_name": "fr_statue_screen.statue_route_test_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "list_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_list",
+                                    "control_name": "fr_statue_screen.statue_route_list_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacer_mid": {
+                            "type": "panel",
+                            "size": [
+                              "100%",
+                              4
+                            ]
+                          }
+                        },
+                        {
+                          "action_row_2": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [
+                              "100%",
+                              28
+                            ],
+                            "controls": [
+                              {
+                                "create_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_create",
+                                    "control_name": "fr_statue_screen.statue_route_create_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "remove_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_remove",
+                                    "control_name": "fr_statue_screen.statue_route_remove_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacer_mid2": {
+                            "type": "panel",
+                            "size": [
+                              "100%",
+                              4
+                            ]
+                          }
+                        },
+                        {
+                          "action_row_3": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [
+                              "100%",
+                              28
+                            ],
+                            "controls": [
+                              {
+                                "ai_level_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_ai_level",
+                                    "control_name": "fr_statue_screen.statue_route_ai_level_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "random_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_random",
+                                    "control_name": "fr_statue_screen.statue_route_random_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "spacer_bottom": {
+                            "type": "panel",
+                            "size": [
+                              "100%",
+                              4
+                            ]
+                          }
+                        },
+                        {
+                          "action_row_4": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [
+                              "100%",
+                              28
+                            ],
+                            "controls": [
+                              {
+                                "change_id_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_change_id",
+                                    "control_name": "fr_statue_screen.statue_route_change_id_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "back_btn": {
+                                  "type": "stack_panel",
+                                  "size": [
+                                    "50%",
+                                    "100%"
+                                  ],
+                                  "collection_name": "form_buttons",
+                                  "factory": {
+                                    "name": "route_back",
+                                    "control_name": "fr_statue_screen.statue_route_back_btn"
+                                  },
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#form_button_length",
+                                      "binding_name_override": "#collection_length"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_condition": "none",
+                    "binding_name": "#title_text",
+                    "binding_name_override": "#title_text"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "((not ((#title_text - $flag_sec_routes) = #title_text)) and (not ((#title_text - $flag_platform_linked) = #title_text)))",
+                    "target_property_name": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "tv_overlay": {
+                "type": "image",
+                "size": [
+                  "100%",
+                  "100%"
+                ],
+                "keep_ratio": false,
+                "texture": "textures/fr_ui/old_tv_effect",
+                "layer": 100
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_condition": "none",
+        "binding_name": "#title_text",
+        "binding_name_override": "#title_text"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not ((#title_text - $flag_statue) = #title_text))",
+        "target_property_name": "#visible"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "(not ((#title_text - $flag_statue) = #title_text))",
+        "target_property_name": "#enabled"
+      }
+    ]
+  }
+}

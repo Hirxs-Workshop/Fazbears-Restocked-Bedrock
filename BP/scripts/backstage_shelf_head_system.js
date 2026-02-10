@@ -1,14 +1,13 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ * ©2026
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
+ *
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+ *
 */
-
 
 import { world, system, BlockPermutation, ItemStack, EquipmentSlot } from '@minecraft/server'
 
@@ -38,7 +37,7 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                 const currentDirection = block.permutation.getState('minecraft:cardinal_direction');
 
                 const hasVariants = shelfBlock === 'fr:backstage_shelf_freddy_head';
-                const newPermutation = hasVariants 
+                const newPermutation = hasVariants
                     ? BlockPermutation.resolve(shelfBlock, {
                         'minecraft:cardinal_direction': currentDirection,
                         'fr:variants': 0
@@ -59,13 +58,13 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                             eq.setEquipment(EquipmentSlot.Mainhand, undefined);
                         }
                     }
-                } catch {}
+                } catch { }
 
                 try {
                     player.playSound('dig.stone', { volume: 1.0 });
-                } catch {}
+                } catch { }
 
-            } catch {}
+            } catch { }
         }
     });
 
@@ -101,17 +100,17 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
                     const itemStack = new ItemStack(itemToGive, 1);
                     const inv = player.getComponent('minecraft:inventory');
                     const container = inv?.container;
-                    
+
                     if (container) {
                         container.addItem(itemStack);
                     }
-                } catch {}
+                } catch { }
 
                 try {
                     player.playSound('dig.stone', { volume: 1.0 });
-                } catch {}
+                } catch { }
 
-            } catch {}
+            } catch { }
         }
     });
 });

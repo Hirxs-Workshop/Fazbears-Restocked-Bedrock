@@ -1,0 +1,49 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:fnaf1_sparky_entity",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "skeleton",
+				"fr_b": "slime_outer"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/fnaf1/sparky/sparky_the_dog",
+				"fr_b": "textures/entity/reworked/fnaf1/sparky/sparky_the_dog"
+			},
+			"spawn_egg": {
+				"texture": "sparky_the_dog"
+			},
+			"animations": {
+				"look_at_target": "animation.common.look_at_target",
+				"default": "animation.bonnie_the_rabbit.base",
+				"default_bloody": "animation.bonnie_the_rabbit.base_with_blood",
+				"walk": "animation.bonnie_walk",
+				"walk_bloody": "animation.bonnie_walk_with_blood",
+				"run": "animation.bonnie_walk",
+				"run_bloody": "animation.bonnie_walk_with_blood",
+				"idle": "animation.sparky_idle_normal_noBone",
+				"idle_bloody": "animation.sparky_idle_normal_noBone",
+				"attack": "animation.bonnie_punch_and_bite_jumpscare",
+				"base": "controller.animation.fnaf1_bonnie.base",
+				"movement_controller": "controller.animation.fnaf1_bonnie.movement"
+			},
+			"scripts": {
+				"animate": [
+					"base",
+					"movement_controller"
+				]
+			},
+			"geometry": {
+				"default": "geometry.Sparky_The_Dog",
+				"fr_b": "geometry.Sparky_The_Dog"
+			},
+			"render_controllers": [
+				"controller.render.fr_render_vars",
+				"controller.render.fr_sparky_vars"
+			],
+			"enable_attachables": false
+		}
+	}
+}

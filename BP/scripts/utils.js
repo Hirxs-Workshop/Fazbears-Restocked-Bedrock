@@ -1,3 +1,13 @@
+import { world } from "@minecraft/server";
+
+const broadcastDebug = (message, prefix = "§e[AI Debug]") => {
+    try {
+        const msgString = typeof message === 'object' ? JSON.stringify(message) : message;
+
+        console.warn(`${prefix} ${msgString}`);
+    } catch { }
+};
+
 const adjustTextLength = (text = '', len = 100) => (text.slice(0, len)).padEnd(len, '\t');
 
 const dynamicToast = (title = '', message = '', icon = '', bg = 'textures/ui/greyBorder') =>
@@ -92,4 +102,5 @@ export {
     resetPlayerState,
     getHeldItem,
     isCreativeMode,
+    broadcastDebug,
 };

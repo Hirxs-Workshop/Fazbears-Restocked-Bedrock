@@ -1,0 +1,171 @@
+{
+    "format_version": "1.21.30",
+    "minecraft:block": 
+    {
+        "description": 
+        {
+            "identifier": "fr:pirate_cove_light_yellow",
+            "menu_category": 
+            {
+                "category": "construction"
+            },
+            "states": 
+            {
+                "fr:lit": 
+                [
+                    false,
+                    true
+                ]
+            },
+            "traits": 
+            {
+                "minecraft:placement_direction": 
+                {
+                    "enabled_states": 
+                    [
+                        "minecraft:cardinal_direction"
+                    ]
+                }
+            }
+        },
+        "components": 
+        {
+            "minecraft:collision_box": 
+            {
+                "origin": 
+                [
+                    -5,
+                    0,
+                    0
+                ],
+                "size": 
+                [
+                    10,
+                    13,
+                    8
+                ]
+            },
+            "minecraft:selection_box": 
+            {
+                "origin": 
+                [
+                    -5,
+                    0,
+                    0
+                ],
+                "size": 
+                [
+                    10,
+                    13,
+                    8
+                ]
+            },
+            "minecraft:geometry": 
+            {
+                "identifier": "geometry.pirate_cove_light"
+            },
+            "minecraft:material_instances": 
+            {
+                "*": 
+                {
+                    "texture": "pirate_cove_light_yellow",
+                    "render_method": "alpha_test"
+                }
+            }
+        },
+        "permutations": 
+        [
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'north'",
+                "components": 
+                {
+                    "minecraft:transformation": 
+                    {
+                        "rotation": 
+                        [
+                            0,
+                            180,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'west'",
+                "components": 
+                {
+                    "minecraft:transformation": 
+                    {
+                        "rotation": 
+                        [
+                            0,
+                            -90,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'south'",
+                "components": 
+                {
+                    "minecraft:transformation": 
+                    {
+                        "rotation": 
+                        [
+                            0,
+                            0,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('minecraft:cardinal_direction') == 'east'",
+                "components": 
+                {
+                    "minecraft:transformation": 
+                    {
+                        "rotation": 
+                        [
+                            0,
+                            90,
+                            0
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:lit') == false",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "pirate_cove_light_yellow_off",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:lit') == true",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "pirate_cove_light_yellow",
+                            "render_method": "alpha_test",
+                            "ambient_occlusion": false,
+                            "face_dimming": false
+                        }
+                    },
+                    "minecraft:light_emission": 14
+                }
+            }
+        ]
+    }
+}

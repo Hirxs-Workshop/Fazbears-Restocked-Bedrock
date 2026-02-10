@@ -1,22 +1,22 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ * ©2026
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
+ *
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+ *
 */
-
 
 import { system, world } from '@minecraft/server'
 
-const TABLE_TYPE_ID = 'fr:party_table';
+const PARTY_TABLE_TYPE_ID = 'fr:party_table';
+const BACKSTAGE_TABLE_TYPE_ID = 'fr:backstage_table_1';
 const STANCHION_TYPE_ID = 'fr:stanchion';
-const TABLE_TYPES = [TABLE_TYPE_ID];
+const TABLE_TYPES = [PARTY_TABLE_TYPE_ID, BACKSTAGE_TABLE_TYPE_ID];
 const STANCHION_TYPES = [STANCHION_TYPE_ID];
-const ALL_CONNECTABLE_TYPES = [TABLE_TYPE_ID, STANCHION_TYPE_ID];
+const ALL_CONNECTABLE_TYPES = [PARTY_TABLE_TYPE_ID, BACKSTAGE_TABLE_TYPE_ID, STANCHION_TYPE_ID];
 
 const updateStanchionBasesForLine = (center) => {
   if (!center || center.typeId !== STANCHION_TYPE_ID) return;
@@ -69,7 +69,7 @@ const updateStanchionBasesForLine = (center) => {
       hasBase = isEnd;
     } else {
       const isLast = si === stanchionCount - 1;
-      
+
       if (si % 2 === 0) {
         hasBase = true;
       } else if (isLast && stanchionCount % 2 === 0) {
@@ -91,9 +91,9 @@ const updateStanchionBasesForLine = (center) => {
 
 const updateForBlock = (b) => {
   if (!b || !ALL_CONNECTABLE_TYPES.includes(b.typeId)) return;
-  
-  const connectableTypes = b.typeId === TABLE_TYPE_ID ? TABLE_TYPES : STANCHION_TYPES;
-  
+
+  const connectableTypes = TABLE_TYPES.includes(b.typeId) ? TABLE_TYPES : STANCHION_TYPES;
+
   const north = b.north();
   const south = b.south();
   const east = b.east();
@@ -132,21 +132,20 @@ system.beforeEvents.startup.subscribe((eventData) => {
       updateForBlock(block);
       updateNeighborsIfConnectable(block);
     },
+    onPlayerBreak({ block }) {
+      if (!block) return;
+      updateNeighborsIfConnectable(block);
+    }
   });
-});
-
-world.afterEvents.playerBreakBlock.subscribe(({ block }) => {
-  if (!block) return;
-  updateNeighborsIfConnectable(block);
 });
 
 world.afterEvents.playerPlaceBlock.subscribe(({ block }) => {
   if (!block) return;
-  
+
   if (ALL_CONNECTABLE_TYPES.includes(block.typeId)) {
     updateForBlock(block);
     updateNeighborsIfConnectable(block);
-  } 
+  }
   else {
     updateNeighborsIfConnectable(block);
   }

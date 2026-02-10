@@ -24,6 +24,9 @@
 							"attack": "variable.attack_time > 0"
 						},
 						{
+							"deploying": "query.property('chica:is_deploying')"
+						},
+						{
 							"run": "variable.attack_time <= 0 && (query.is_moving || query.modified_move_speed > 0.02) && query.modified_move_speed >= 0.6"
 						},
 						{
@@ -34,6 +37,16 @@
 						}
 					],
 					"blend_transition": 0.3
+				},
+				"deploying": {
+					"animations": [
+						"deploy"
+					],
+					"transitions": [
+						{
+							"idle": "!query.property('chica:is_deploying')"
+						}
+					]
 				},
 				"walk": {
 					"animations": [
@@ -119,6 +132,50 @@
 						}
 					],
 					"blend_transition": 0.8
+				}
+			}
+		},
+		"controller.animation.fnaf1_chica.cupcake_logic": {
+			"states": {
+				"default": {
+					"transitions": [
+						{
+							"deploying": "query.property('chica:is_deploying')"
+						},
+						{
+							"no_cupcake": "query.any_tag('chica_no_cupcake')"
+						}
+					]
+				},
+				"deploying": {
+					"animations": [
+						"deploy"
+					],
+					"transitions": [
+						{
+							"no_cupcake": "!query.property('chica:is_deploying')"
+						}
+					]
+				},
+				"no_cupcake": {
+					"animations": [
+						"hide_cupcake"
+					],
+					"transitions": [
+						{
+							"pickup": "!query.any_tag('chica_no_cupcake') && !query.property('chica:is_deploying')"
+						}
+					]
+				},
+				"pickup": {
+					"animations": [
+						"pickup"
+					],
+					"transitions": [
+						{
+							"default": "query.all_animations_finished"
+						}
+					]
 				}
 			}
 		}

@@ -1,7 +1,4 @@
-
-
 import { world } from "@minecraft/server";
-
 
 export const SelectionType = {
   SWITCH: "switch",
@@ -11,23 +8,18 @@ export const SelectionType = {
   CAMERA: "camera"
 };
 
-
 const playerSelections = new Map();
 
-
 const externalCleanupHandlers = new Map();
-
 
 export function registerCleanupHandler(type, handler) {
   externalCleanupHandlers.set(type, handler);
 }
 
-
 export function setSelection(playerId, type, data, onClearPrevious = null) {
   const previous = playerSelections.get(playerId);
 
-
-  if (previous && previous.type !== type) {
+if (previous && previous.type !== type) {
 
     const cleanupHandler = externalCleanupHandlers.get(previous.type);
     if (cleanupHandler) {
@@ -36,13 +28,11 @@ export function setSelection(playerId, type, data, onClearPrevious = null) {
       } catch (e) { }
     }
 
-
-    if (onClearPrevious) {
+if (onClearPrevious) {
       onClearPrevious(previous);
     }
 
-
-    if (previous.type === SelectionType.SWITCH || previous.type === SelectionType.GENERATOR) {
+if (previous.type === SelectionType.SWITCH || previous.type === SelectionType.GENERATOR) {
       try {
         if (previous.data && previous.data.pos) {
           const oldDim = world.getDimension(previous.data.pos.dimensionId);
@@ -55,11 +45,9 @@ export function setSelection(playerId, type, data, onClearPrevious = null) {
   playerSelections.set(playerId, { type, data, timestamp: Date.now() });
 }
 
-
 export function getSelection(playerId) {
   return playerSelections.get(playerId) || null;
 }
-
 
 export function clearSelection(playerId) {
   const previous = playerSelections.get(playerId);
@@ -83,7 +71,6 @@ export function clearSelection(playerId) {
   playerSelections.delete(playerId);
 }
 
-
 export function hasSelectionOfType(playerId, types) {
   const selection = playerSelections.get(playerId);
   if (!selection) return false;
@@ -94,14 +81,11 @@ export function hasSelectionOfType(playerId, types) {
   return selection.type === types;
 }
 
-
 export function clearAllSelections() {
   playerSelections.clear();
 }
 
-
 const clearCallbacks = new Map();
-
 
 export function onSelectionCleared(type, callback) {
   if (!clearCallbacks.has(type)) {
@@ -109,7 +93,6 @@ export function onSelectionCleared(type, callback) {
   }
   clearCallbacks.get(type).push(callback);
 }
-
 
 export function clearSelectionWithCallback(playerId) {
   const selection = playerSelections.get(playerId);

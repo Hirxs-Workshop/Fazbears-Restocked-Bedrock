@@ -1,322 +1,661 @@
 {
-   "format_version": "1.21.90",
-   "minecraft:crafting_items_catalog": {
-      "categories": [
-         {
-            "category_name": "construction",
-            "groups": [
-               {
-                  "group_identifier": {
-                     "icon": "fr:freddy_plush",
-                     "name": "fr:itemGroup.name.plushies"
-                  },
-                  "items": [
-                     "fr:freddy_plush",
-                     "fr:freddy_plushhw",
-                     "fr:golden_freddy_plush",
-                     "fr:bonnie_plush",
-                     "fr:bonnie_plushhw",
-                     "fr:chica_plush",
-                     "fr:chica_hwplush",
-                     "fr:acurate_chica_plush",
-                     "fr:foxy_plush",
-                     "fr:foxy_hwplush",
-                     "fr:foxy_plush_headless",
-                     "fr:bizabizow_foxy_plush",
-                     "fr:endo_01_plush"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:hyrxs_dev_plush",
-                     "name": "fr:itemGroup.name.dev_plushies"
-                  },
-                  "items": [
-                     "fr:hyrxs_dev_plush",
-                     "fr:drixs_dev_plush",
-                     "fr:egor_dev_plush",
-                     "fr:electro_dev_plush",
-                     "fr:forb_dev_plush",
-                     "fr:fox_dev_plush",
-                     "fr:gui_dev_plush",
-                     "fr:kris_dev_plush",
-                     "fr:mansam_dev_plush",
-                     "fr:polar_dev_plush",
-                     "fr:sgt_dev_plush",
-                     "fr:werty_dev_plush",
-                     "fr:warden45e_dev_plush",
-                     "fr:tinfly_dev_plush",
-                     "fr:the_fantasticbob_dev_plush",
-                     "fr:zach_dev_plush"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:red_pizzeria_floor",
-                     "name": "fr:itemGroup.name.floors_and_carpets"
-                  },
-                  "items": [
-                     "fr:red_pizzeria_floor",
-                     "fr:red_pizzeria_floor_cracked_stage_1",
-                     "fr:red_pizzeria_floor_cracked_stage_2",
-                     "fr:red_pizzeria_floor_cracked_stage_3",
-                     "fr:red_pizzeria_floor_cracked_stage_4",
-                     "fr:blue_pizzeria_floor",
-                     "fr:blue_pizzeria_floor_cracked_stage_1",
-                     "fr:blue_pizzeria_floor_cracked_stage_2",
-                     "fr:blue_pizzeria_floor_cracked_stage_3",
-                     "fr:blue_pizzeria_floor_cracked_stage_4",
-                     "fr:white_pizzeria_floor",
-                     "fr:red_n_blue_pizzeria_floor",
-                     "fr:blue_green_pizzeria_floor",
-                     "fr:purple_black_pizzeria_floor",
-                     "fr:red_green_pizzeria_floor",
-                     "fr:white_purple_pizzeria_floor",
-                     "fr:white_red_pizzeria_floor",
-                     "fr:yellow_black_pizzeria_floor",
-                     "fr:yellow_purple_pizzeria_floor",
-                     "fr:yellow_red_1_pizzeria_floor",
-                     "fr:yellow_red_2_pizzeria_floor",
-                     "fr:yellow_red_3_pizzeria_floor",
-                     "fr:yellow_red_4_pizzeria_floor",
-                     "fr:shit_stain_yellow_n_moldy_blue_pizzeria_floor",
-                     "fr:carpet_blue",
-                     "fr:carpet_dark_blue",
-                     "fr:carpet_dark_blue_with_confetti",
-                     "fr:carpet_deep_wine",
-                     "fr:carpet_with_confetti",
-                     "fr:stage_floor",
-                     "fr:classic_stage_floor",
-                     "fr:black_stage_floor"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:bricks_red",
-                     "name": "fr:itemGroup.name.colored_bricks"
-                  },
-                  "items": [
-                     "fr:bricks_red",
-                     "fr:bricks_red_bottom",
-                     "fr:bricks_red_top",
-                     "fr:bricks_orange",
-                     "fr:bricks_orange_bottom",
-                     "fr:bricks_orange_top",
-                     "fr:bricks_yellow",
-                     "fr:bricks_yellow_bottom",
-                     "fr:bricks_yellow_top",
-                     "fr:bricks_lime",
-                     "fr:bricks_lime_bottom",
-                     "fr:bricks_lime_top",
-                     "fr:bricks_green",
-                     "fr:bricks_green_bottom",
-                     "fr:bricks_green_top",
-                     "fr:bricks_cyan",
-                     "fr:bricks_cyan_bottom",
-                     "fr:bricks_cyan_top",
-                     "fr:bricks_light_blue",
-                     "fr:bricks_light_blue_bottom",
-                     "fr:bricks_light_blue_top",
-                     "fr:bricks_blue",
-                     "fr:bricks_blue_bottom",
-                     "fr:bricks_blue_top",
-                     "fr:bricks_purple",
-                     "fr:bricks_purple_bottom",
-                     "fr:bricks_purple_top",
-                     "fr:bricks_magenta",
-                     "fr:bricks_magenta_bottom",
-                     "fr:bricks_magenta_top",
-                     "fr:bricks_pink",
-                     "fr:bricks_pink_bottom",
-                     "fr:bricks_pink_top",
-                     "fr:bricks_white",
-                     "fr:bricks_white_bottom",
-                     "fr:bricks_white_top",
-                     "fr:bricks_gray",
-                     "fr:bricks_gray_bottom",
-                     "fr:bricks_gray_top",
-                     "fr:bricks_dark_gray",
-                     "fr:bricks_dark_gray_bottom",
-                     "fr:bricks_dark_gray_top",
-                     "fr:bricks_black",
-                     "fr:bricks_black_bottom",
-                     "fr:bricks_black_top",
-                     "fr:bricks_brown",
-                     "fr:bricks_brown_bottom",
-                     "fr:bricks_brown_top"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:pizzeria_bricks",
-                     "name": "fr:itemGroup.name.pizzeria_bricks"
-                  },
-                  "items": [
-                     "fr:pizzeria_bricks",
-                     "fr:pizzeria_bricks_bottom",
-                     "fr:pizzeria_bricks_top"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:fnaf1_bricks_dark",
-                     "name": "fr:itemGroup.name.fnaf1_bricks"
-                  },
-                  "items": [
-                     "fr:fnaf1_bricks_dark",
-                     "fr:fnaf1_bricks_dark_bottom",
-                     "fr:fnaf1_bricks_dark_top",
-                     "fr:fnaf1_bricks_dark_pattern",
-                     "fr:fnaf1_bricks_dark_pattern_black"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:wall_red_top",
-                     "name": "fr:itemGroup.name.flat_colored_walls"
-                  },
-                  "items": [
-                     "fr:wall_red_bottom",
-                     "fr:wall_red_middle",
-                     "fr:wall_red_top",
-                     "fr:wall_red_pattern",
-                     "fr:wall_orange_bottom",
-                     "fr:wall_orange_middle",
-                     "fr:wall_orange_top",
-                     "fr:wall_orange_pattern",
-                     "fr:wall_yellow_bottom",
-                     "fr:wall_yellow_middle",
-                     "fr:wall_yellow_top",
-                     "fr:wall_yellow_pattern",
-                     "fr:wall_lime_bottom",
-                     "fr:wall_lime_middle",
-                     "fr:wall_lime_top",
-                     "fr:wall_lime_pattern",
-                     "fr:wall_green_bottom",
-                     "fr:wall_green_middle",
-                     "fr:wall_green_top",
-                     "fr:wall_green_pattern",
-                     "fr:wall_cyan_bottom",
-                     "fr:wall_cyan_middle",
-                     "fr:wall_cyan_top",
-                     "fr:wall_cyan_pattern",
-                     "fr:wall_light_blue_bottom",
-                     "fr:wall_light_blue_middle",
-                     "fr:wall_light_blue_top",
-                     "fr:wall_light_blue_pattern",
-                     "fr:wall_blue_bottom",
-                     "fr:wall_blue_middle",
-                     "fr:wall_blue_top",
-                     "fr:wall_blue_pattern",
-                     "fr:wall_purple_bottom",
-                     "fr:wall_purple_middle",
-                     "fr:wall_purple_top",
-                     "fr:wall_purple_pattern",
-                     "fr:wall_magenta_bottom",
-                     "fr:wall_magenta_middle",
-                     "fr:wall_magenta_top",
-                     "fr:wall_magenta_pattern",
-                     "fr:wall_pink_bottom",
-                     "fr:wall_pink_middle",
-                     "fr:wall_pink_top",
-                     "fr:wall_pink_pattern",
-                     "fr:wall_white_bottom",
-                     "fr:wall_white_middle",
-                     "fr:wall_white_top",
-                     "fr:wall_white_pattern",
-                     "fr:wall_light_gray_bottom",
-                     "fr:wall_light_gray_middle",
-                     "fr:wall_light_gray_top",
-                     "fr:wall_light_gray_pattern",
-                     "fr:wall_gray_bottom",
-                     "fr:wall_gray_middle",
-                     "fr:wall_gray_top",
-                     "fr:wall_gray_pattern",
-                     "fr:wall_black_bottom",
-                     "fr:wall_black_middle",
-                     "fr:wall_black_top",
-                     "fr:wall_black_pattern"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:wall_yellow_patteren_rotted",
-                     "name": "fr:itemGroup.name.fnaf_movie_walls"
-                  },
-                  "items": [
-                     "fr:wall_yellow_chizeled",
-                     "fr:wall_yellow_chizeled_rotted",
-                     "fr:wall_yellow_pattern_red",
-                     "fr:wall_yellow_pattern_glass_red",
-                     "fr:wall_yellow_patteren_rotted",
-                     "fr:wall_yellow_patteren_rotted_red",
-                     "fr:wall_yellow_patteren_glass_rotted_red",
-                     "fr:wall_yellow_red_top",
-                     "fr:wall_yellow_red_top_rotted"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:wall_sand_green_middle",
-                     "name": "fr:itemGroup.name.sand_green_walls"
-                  },
-                  "items": [
-                     "fr:wall_sand_green_bottom",
-                     "fr:wall_sand_green_middle",
-                     "fr:wall_sand_green_top",
-                     "fr:wall_sand_green_pattern",
-                     "fr:wall_sand_green_bottom_baseboard",
-                     "fr:wall_sand_green_top_baseboard"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:wall_dead_cyan_middle",
-                     "name": "fr:itemGroup.name.dead_cyan_walls"
-                  },
-                  "items": [
-                     "fr:wall_dead_cyan_bottom",
-                     "fr:wall_dead_cyan_middle",
-                     "fr:wall_dead_cyan_top",
-                     "fr:wall_dead_cyan_pattern",
-                     "fr:wall_dead_cyan_bottom_baseboard",
-                     "fr:wall_dead_cyan_top_baseboard"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:wall_purple_bottom_rotted",
-                     "name": "fr:itemGroup.name.purple_walls_rotted"
-                  },
-                  "items": [
-                     "fr:wall_purple_bottom_rotted"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:pizzeria_bricks_2_middle",
-                     "name": "fr:itemGroup.name.pizzeria_bricks_2"
-                  },
-                  "items": [
-                     "fr:pizzeria_bricks_2_bottom",
-                     "fr:pizzeria_bricks_2_middle",
-                     "fr:pizzeria_bricks_2_top"
-                  ]
-               },
-               {
-                  "group_identifier": {
-                     "icon": "fr:wall_movie_pattern",
-                     "name": "fr:itemGroup.name.movie_walls_special"
-                  },
-                  "items": [
-                     "fr:wall_movie_pattern",
-                     "fr:wall_movie_pattern_bottom",
-                     "fr:movie_wall_top",
-                     "fr:movie_wall_top2"
-                  ]
-               }
+  "format_version": "1.21.90",
+  "minecraft:crafting_items_catalog": {
+    "categories": [
+      {
+        "category_name": "construction",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "fr:freddy_plush",
+              "name": "fr:itemGroup.name.plushies"
+            },
+            "items": [
+              "fr:animdude_plush_fnaf_extra_stuff",
+              "fr:acurate_chica_plush",
+              "fr:bizabizow_foxy_plush",
+              "fr:bonnie_plush",
+              "fr:bonnie_plushhw",
+              "fr:chica_hwplush",
+              "fr:chica_plush",
+              "fr:endo_01_plush",
+              "fr:foxy_hwplush",
+              "fr:foxy_plush",
+              "fr:foxy_plush_headless",
+              "fr:freddy_plush",
+              "fr:freddy_plushhw",
+              "fr:fredrick_plush",
+              "fr:golden_freddy_plush",
+              "fr:drixs_dev_plush",
+              "fr:egor_dev_plush",
+              "fr:electro_dev_plush",
+              "fr:forb_dev_plush",
+              "fr:fox_dev_plush",
+              "fr:gui_dev_plush",
+              "fr:hyrxs_dev_plush",
+              "fr:kris_dev_plush",
+              "fr:mansam_dev_plush",
+              "fr:polar_dev_plush",
+              "fr:sgt_dev_plush",
+              "fr:the_fantasticbob_dev_plush",
+              "fr:tinfly_dev_plush",
+              "fr:warden45e_dev_plush",
+              "fr:werty_dev_plush",
+              "fr:xeno_neo_dev_plush",
+              "fr:zach_dev_plush"
             ]
-         }
-      ]
-   }
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:arcade_freddy",
+              "name": "fr:itemGroup.name.arcade"
+            },
+            "items": [
+              "fr:arcade_freddy",
+              "fr:gold_carlarcade",
+              "fr:present_arcade",
+              "fr:arcade_stool",
+              "fr:gumball_machine"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:office_lamp",
+              "name": "fr:itemGroup.name.lights"
+            },
+            "items": [
+              "fr:ceiling_light",
+              "fr:pirate_cove_light",
+              "fr:pirate_cove_light_yellow",
+              "fr:office_lamp",
+              "fr:office_light",
+              "fr:pizzeria_lamp",
+              "fr:stage_spotlight",
+              "fr:supply_room_lightbulb"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:switch",
+              "name": "fr:itemGroup.name.switches"
+            },
+            "items": [
+              "fr:switch",
+              "fr:breaker",
+              "fr:generator",
+              "fr:sotm_generator"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:office_door",
+              "name": "fr:itemGroup.name.doors"
+            },
+            "items": [
+              "fr:backstage_door_block",
+              "fr:blank_door_block",
+              "fr:blue_party_door_block",
+              "fr:entrance_door_block",
+              "fr:freezer_door_block",
+              "fr:office_door",
+              "fr:purple_party_door_block",
+              "fr:red_party_door_block"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:party_table",
+              "name": "fr:itemGroup.name.party"
+            },
+            "items": [
+              "fr:party_table",
+              "fr:wide_party_table",
+              "fr:party_chair",
+              "fr:party_chair_red",
+              "fr:party_chair_blue",
+              "fr:party_chair_purple",
+              "fr:party_hat_blue",
+              "fr:party_hat_green",
+              "fr:party_hat_purple",
+              "fr:party_hat_red",
+              "fr:party_hat_white",
+              "fr:gift",
+              "fr:small_gift",
+              "fr:small_gifts",
+              "fr:pizza_box",
+              "fr:pizza_slice",
+              "fr:cup_of_coffee",
+              "fr:condiment_bottles",
+              "fr:condiment_case",
+              "fr:vending_machine"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:security_desk",
+              "name": "fr:itemGroup.name.office"
+            },
+            "items": [
+              "fr:security_desk",
+              "fr:security_desk_prop_left",
+              "fr:security_desk_prop_right",
+              "fr:office_phone",
+              "fr:retro_phone",
+              "fr:old_pc",
+              "fr:black_old_pc",
+              "fr:hallway_monitors",
+              "fr:camera_ceiling_mount",
+              "fr:security_cameras",
+              "fr:microphone_stand",
+              "fr:big_speaker",
+              "fr:small_speaker",
+              "fr:vhs_tape",
+              "fr:cigarrete",
+              "fr:big_metal_lighter",
+              "fr:clipboard",
+              "fr:survival_logbook",
+              "fr:office_window",
+              "fr:door_buttons",
+              "fr:door_button_door",
+              "fr:door_button_light",
+              "fr:door_frame",
+              "fr:office_chair"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:cardboard_box",
+              "name": "fr:itemGroup.name.utility"
+            },
+            "items": [
+              "fr:trash",
+              "fr:trash_can",
+              "fr:dumpster",
+              "fr:cardboard_box",
+              "fr:cardboard_box_small",
+              "fr:shelf_supply_closet",
+              "fr:gray_locker",
+              "fr:broom_mop_and_bucket",
+              "fr:thank_you_bin",
+              "fr:freezer_iron_rack",
+              "fr:animatronic_work_table",
+              "fr:backstage_table_1",
+              "fr:wide_backstage_table",
+              "fr:support",
+              "fr:stanchion",
+              "fr:stage_platform"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:freddy_poster",
+              "name": "fr:itemGroup.name.decoration"
+            },
+            "items": [
+              "fr:bonnie_poster",
+              "fr:caution_of_animatronics_poster",
+              "fr:chica_poster",
+              "fr:crying_kid_poster",
+              "fr:foxy_poster",
+              "fr:freddy_head_off_poster",
+              "fr:freddy_poster",
+              "fr:golden_freddy_poster",
+              "fr:lets_party_poster",
+              "fr:office_poster",
+              "fr:sparky_poster",
+              "fr:text_display_block",
+              "fr:black_wall_sign_small",
+              "fr:white_wall_sign",
+              "fr:white_wall_sign_small",
+              "fr:movie_sign",
+              "fr:bonnie_cutout",
+              "fr:chica_cutout",
+              "fr:foxy_cutout",
+              "fr:freddy_cutout",
+              "fr:ceiling_stars",
+              "fr:ceiling_wire",
+              "fr:ceiling_wires",
+              "fr:floor_papers",
+              "fr:floor_papers_2",
+              "fr:hallway_papers_less",
+              "fr:newspaper_1",
+              "fr:newspaper_2",
+              "fr:newspaper_3",
+              "fr:paper_balls",
+              "fr:rules_for_safety",
+              "fr:stage_clouds",
+              "fr:stage_sun",
+              "fr:wall_clock",
+              "fr:wall_stars_1",
+              "fr:wall_tear_holes",
+              "fr:wall_wire",
+              "fr:wet_floor_sign",
+              "fr:pirate_cove_sign",
+              "fr:hallway_drawings",
+              "fr:office_drawings"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:pirate_cove_curtain",
+              "name": "fr:itemGroup.name.curtains"
+            },
+            "items": [
+              "fr:blue_curtain",
+              "fr:blue_curtain_bottom",
+              "fr:blue_curtain_middle",
+              "fr:blue_curtain_upper",
+              "fr:blue_stage_curtain",
+              "fr:blue_stage_curtain_bottom",
+              "fr:blue_stage_curtain_middle",
+              "fr:blue_stage_curtain_top",
+              "fr:pirate_cove_curtain_bottom",
+              "fr:pirate_cove_curtain_middle",
+              "fr:pirate_cove_curtain_middle_line",
+              "fr:pirate_cove_curtain_upper",
+              "fr:green_curtain",
+              "fr:green_curtain_bottom",
+              "fr:green_curtain_middle",
+              "fr:green_curtain_upper",
+              "fr:pirate_cove_curtain",
+              "fr:stage_curtain",
+              "fr:stage_curtain_bottom",
+              "fr:stage_curtain_middle",
+              "fr:stage_curtain_upper"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:red_pizzeria_floor",
+              "name": "fr:itemGroup.name.floors"
+            },
+            "items": [
+              "fr:blue_green_pizzeria_floor",
+              "fr:purple_black_pizzeria_floor",
+              "fr:red_green_pizzeria_floor",
+              "fr:white_purple_pizzeria_floor",
+              "fr:white_red_pizzeria_floor",
+              "fr:yellow_black_pizzeria_floor",
+              "fr:yellow_purple_pizzeria_floor",
+              "fr:yellow_red_1_pizzeria_floor",
+              "fr:yellow_red_2_pizzeria_floor",
+              "fr:yellow_red_3_pizzeria_floor",
+              "fr:yellow_red_4_pizzeria_floor",
+              "fr:blue_pizzeria_floor",
+              "fr:blue_pizzeria_floor_cracked_stage_1",
+              "fr:blue_pizzeria_floor_cracked_stage_2",
+              "fr:blue_pizzeria_floor_cracked_stage_3",
+              "fr:blue_pizzeria_floor_cracked_stage_4",
+              "fr:red_n_blue_pizzeria_floor",
+              "fr:red_pizzeria_floor",
+              "fr:red_pizzeria_floor_cracked_stage_1",
+              "fr:red_pizzeria_floor_cracked_stage_2",
+              "fr:red_pizzeria_floor_cracked_stage_3",
+              "fr:red_pizzeria_floor_cracked_stage_4",
+              "fr:white_pizzeria_floor",
+              "fr:carpet_blue",
+              "fr:carpet_dark_blue",
+              "fr:carpet_dark_blue_with_confetti",
+              "fr:carpet_deep_wine",
+              "fr:carpet_with_confetti",
+              "fr:shit_stain_yellow_n_moldy_blue_pizzeria_floor",
+              "fr:black_stage_floor",
+              "fr:classic_stage_floor",
+              "fr:stage_floor"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:bricks_red",
+              "name": "fr:itemGroup.name.colored_bricks"
+            },
+            "items": [
+              "fr:bricks_black",
+              "fr:bricks_black_bottom",
+              "fr:bricks_black_top",
+              "fr:bricks_blue",
+              "fr:bricks_blue_bottom",
+              "fr:bricks_blue_top",
+              "fr:bricks_brown",
+              "fr:bricks_brown_bottom",
+              "fr:bricks_brown_top",
+              "fr:bricks_cyan",
+              "fr:bricks_cyan_bottom",
+              "fr:bricks_cyan_top",
+              "fr:bricks_dark_gray",
+              "fr:bricks_dark_gray_bottom",
+              "fr:bricks_dark_gray_top",
+              "fr:bricks_gray",
+              "fr:bricks_gray_bottom",
+              "fr:bricks_gray_top",
+              "fr:bricks_green",
+              "fr:bricks_green_bottom",
+              "fr:bricks_green_top",
+              "fr:bricks_light_blue",
+              "fr:bricks_light_blue_bottom",
+              "fr:bricks_light_blue_top",
+              "fr:bricks_lime",
+              "fr:bricks_lime_bottom",
+              "fr:bricks_lime_top",
+              "fr:bricks_magenta",
+              "fr:bricks_magenta_bottom",
+              "fr:bricks_magenta_top",
+              "fr:bricks_orange",
+              "fr:bricks_orange_bottom",
+              "fr:bricks_orange_top",
+              "fr:bricks_pink",
+              "fr:bricks_pink_bottom",
+              "fr:bricks_pink_top",
+              "fr:bricks_purple",
+              "fr:bricks_purple_bottom",
+              "fr:bricks_purple_top",
+              "fr:bricks_red",
+              "fr:bricks_red_bottom",
+              "fr:bricks_red_top",
+              "fr:bricks_white",
+              "fr:bricks_white_bottom",
+              "fr:bricks_white_top",
+              "fr:bricks_yellow",
+              "fr:bricks_yellow_bottom",
+              "fr:bricks_yellow_top",
+              "fr:pizzeria_bricks",
+              "fr:pizzeria_bricks_bottom",
+              "fr:pizzeria_bricks_top",
+              "fr:pizzeria_bricks_tiles"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:fnaf1_wall_middle_tiles_hw",
+              "name": "fr:itemGroup.name.colored_tiles"
+            },
+            "items": [
+              "fr:fnaf1_wall_middle_tiles_hw",
+              "fr:wall_tiles_4x3_blue",
+              "fr:wall_tiles_4x3_cyan",
+              "fr:wall_tiles_4x3_gray",
+              "fr:wall_tiles_4x3_green",
+              "fr:wall_tiles_4x3_light_blue",
+              "fr:wall_tiles_4x3_light_gray",
+              "fr:wall_tiles_4x3_lime",
+              "fr:wall_tiles_4x3_magenta",
+              "fr:wall_tiles_4x3_orange",
+              "fr:wall_tiles_4x3_pink",
+              "fr:wall_tiles_4x3_purple",
+              "fr:wall_tiles_4x3_red",
+              "fr:wall_tiles_4x3_white",
+              "fr:wall_tiles_4x3_yellow",
+              "fr:fnaf1_wall_middle_tiles_3"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:fnaf1_wall_middle_tiles",
+              "name": "fr:itemGroup.name.fnaf1_walls"
+            },
+            "items": [
+              "fr:ceiling_black",
+              "fr:fnaf1_advanced_wall",
+              "fr:fnaf1_backstage_wall_middle",
+              "fr:fnaf1_bathroom_wall",
+              "fr:fnaf1_bathroom_wall_bottom",
+              "fr:fnaf1_bathroom_wall_middle",
+              "fr:fnaf1_bathroom_wall_top",
+              "fr:fnaf1_dark_wall_down",
+              "fr:fnaf1_dark_wall_middle",
+              "fr:fnaf1_dark_wall_middle_tiles",
+              "fr:fnaf1_dark_wall_middle_tiles_black",
+              "fr:fnaf1_dark_wall_up",
+              "fr:fnaf1_wall_down",
+              "fr:fnaf1_wall_middle",
+              "fr:fnaf1_wall_middle_tiles",
+              "fr:fnaf1_wall_middle_tiles_2",
+              "fr:fnaf1_wall_middle_tiles_4",
+              "fr:fnaf1_wall_middle_tiles_black",
+              "fr:fnaf1_wall_top_tiles",
+              "fr:fnaf1_wall_top_tiles_black",
+              "fr:fnaf1_wall_up",
+              "fr:gray_stage_wall_middle",
+              "fr:gray_stage_wall_middle_2",
+              "fr:gray_stage_wall_middle_3",
+              "fr:gray_stage_wall_middle_tiles",
+              "fr:gray_stage_wall_middle_tiles_red",
+              "fr:stage_wall_down",
+              "fr:stage_wall_middle",
+              "fr:stage_wall_middle_tiles",
+              "fr:stage_wall_middle_tiles_3",
+              "fr:stage_wall_up",
+              "fr:fnaf1_bricks_dark",
+              "fr:fnaf1_bricks_dark_bottom",
+              "fr:fnaf1_bricks_dark_pattern",
+              "fr:fnaf1_bricks_dark_pattern_black",
+              "fr:fnaf1_bricks_dark_top"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:wall_movie_pattern",
+              "name": "fr:itemGroup.name.fnaf_movie_walls"
+            },
+            "items": [
+              "fr:wall_cyan_chiseled",
+              "fr:wall_cyan_chizeled_small",
+              "fr:wall_purple_stripe_corner_left_down",
+              "fr:wall_purple_stripe_corner_left_up",
+              "fr:wall_purple_stripe_corner_right_down",
+              "fr:wall_purple_stripe_corner_right_up",
+              "fr:wall_purple_stripe_horizontal_up",
+              "fr:wall_purple_stripe_verticle",
+              "fr:wall_stripe_horizontal_down",
+              "fr:movie_wall_top",
+              "fr:movie_wall_top2",
+              "fr:pizzeria_bricks_2_bottom",
+              "fr:pizzeria_bricks_2_middle",
+              "fr:pizzeria_bricks_2_top",
+              "fr:pizzeria_bricks_2_tiles",
+              "fr:pizzeria_bricks_bottom_purple_top",
+              "fr:wall_black_bottom",
+              "fr:wall_black_middle",
+              "fr:wall_black_pattern",
+              "fr:wall_black_top",
+              "fr:wall_blue_bottom",
+              "fr:wall_blue_middle",
+              "fr:wall_blue_pattern",
+              "fr:wall_blue_top",
+              "fr:wall_brown_black_bottom",
+              "fr:wall_brown_black_top",
+              "fr:wall_brown_middle",
+              "fr:wall_brown_pattern",
+              "fr:wall_cyan_bottom",
+              "fr:wall_cyan_middle",
+              "fr:wall_cyan_pattern",
+              "fr:wall_cyan_top",
+              "fr:wall_dbd_pattern",
+              "fr:wall_dead_cyan_bottom",
+              "fr:wall_dead_cyan_bottom_baseboard",
+              "fr:wall_dead_cyan_middle",
+              "fr:wall_dead_cyan_pattern",
+              "fr:wall_dead_cyan_top",
+              "fr:wall_dead_cyan_top_baseboard",
+              "fr:wall_gray_bottom",
+              "fr:wall_gray_middle",
+              "fr:wall_gray_pattern",
+              "fr:wall_gray_top",
+              "fr:wall_green_bottom",
+              "fr:wall_green_middle",
+              "fr:wall_green_pattern",
+              "fr:wall_green_top",
+              "fr:wall_light_blue_bottom",
+              "fr:wall_light_blue_middle",
+              "fr:wall_light_blue_pattern",
+              "fr:wall_light_blue_top",
+              "fr:wall_light_gray_bottom",
+              "fr:wall_light_gray_middle",
+              "fr:wall_light_gray_pattern",
+              "fr:wall_light_gray_top",
+              "fr:wall_lime_bottom",
+              "fr:wall_lime_middle",
+              "fr:wall_lime_pattern",
+              "fr:wall_lime_top",
+              "fr:wall_magenta_bottom",
+              "fr:wall_magenta_middle",
+              "fr:wall_magenta_pattern",
+              "fr:wall_magenta_top",
+              "fr:wall_movie_pattern",
+              "fr:wall_movie_pattern_bottom",
+              "fr:wall_orange_bottom",
+              "fr:wall_orange_middle",
+              "fr:wall_orange_pattern",
+              "fr:wall_orange_top",
+              "fr:wall_pink_bottom",
+              "fr:wall_pink_middle",
+              "fr:wall_pink_pattern",
+              "fr:wall_pink_top",
+              "fr:wall_purple_bottom",
+              "fr:wall_purple_bottom_rotted",
+              "fr:wall_purple_dbd_big_pattern",
+              "fr:wall_purple_middle",
+              "fr:wall_purple_pattern",
+              "fr:wall_purple_top",
+              "fr:wall_red_bottom",
+              "fr:wall_red_middle",
+              "fr:wall_red_pattern",
+              "fr:wall_red_top",
+              "fr:wall_sand_green_bottom",
+              "fr:wall_sand_green_bottom_baseboard",
+              "fr:wall_sand_green_middle",
+              "fr:wall_sand_green_pattern",
+              "fr:wall_sand_green_top",
+              "fr:wall_sand_green_top_baseboard",
+              "fr:wall_white_bottom",
+              "fr:wall_white_middle",
+              "fr:wall_white_pattern",
+              "fr:wall_white_top",
+              "fr:wall_yellow_bottom",
+              "fr:wall_yellow_chizeled",
+              "fr:wall_yellow_chizeled_rotted",
+              "fr:wall_yellow_middle",
+              "fr:wall_yellow_patteren_glass_rotted_red",
+              "fr:wall_yellow_patteren_rotted",
+              "fr:wall_yellow_patteren_rotted_red",
+              "fr:wall_yellow_pattern",
+              "fr:wall_yellow_pattern_glass_red",
+              "fr:wall_yellow_pattern_red",
+              "fr:wall_yellow_red_top",
+              "fr:wall_yellow_red_top_rotted",
+              "fr:wall_yellow_top"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:exterior_dark_middle_tiles",
+              "name": "fr:itemGroup.name.walls_misc"
+            },
+            "items": [
+              "fr:exterior_dark_middle_tiles",
+              "fr:exterior_dark_wall_bottom",
+              "fr:exterior_dark_wall_bottom_black",
+              "fr:exterior_dark_wall_bottom_rotted",
+              "fr:exterior_dark_wall_chizeled",
+              "fr:exterior_dark_wall_chizeled_top",
+              "fr:exterior_dark_wall_middle",
+              "fr:exterior_dark_wall_top",
+              "fr:exterior_dark_wall_top_black",
+              "fr:exterior_dark_wall_top_rotted",
+              "fr:exterior_wall_bottom_black",
+              "fr:exterior_wall_bottom_rotted",
+              "fr:exterior_wall_bottom_white",
+              "fr:exterior_wall_middle",
+              "fr:exterior_wall_middle_tiles",
+              "fr:exterior_wall_rotted",
+              "fr:exterior_wall_top",
+              "fr:exterior_wall_top_black",
+              "fr:exterior_wall_top_rotted",
+              "fr:exterior_wall_top_white"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:freddy_beta_head",
+              "name": "fr:itemGroup.name.backstage"
+            },
+            "items": [
+              "fr:freddy_beta_head",
+              "fr:chica_head",
+              "fr:bonnie_head",
+              "fr:backstage_shelf_bonnie_head",
+              "fr:backstage_shelf_bonnie_head_pupils",
+              "fr:backstage_shelf_chica_head",
+              "fr:backstage_shelf_freddy_head",
+              "fr:backstage_shelf"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:fridge",
+              "name": "fr:itemGroup.name.kitchen_stuff"
+            },
+            "items": [
+              "fr:fridge",
+              "fr:kitchen_counter_drawers",
+              "fr:kitchen_counter_upper_drawers",
+              "fr:kitchen_counter_upper_drawers_corner",
+              "fr:east_hall_corner_shelf",
+              "fr:deep_fryer_machine",
+              "fr:stone_oven",
+              "fr:knife_holder",
+              "fr:cutting_board",
+              "fr:walls_pepperoni_pizza_wooden",
+              "fr:walls_pizza_wooden"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:toilet",
+              "name": "fr:itemGroup.name.bathroom"
+            },
+            "items": [
+              "fr:toilet",
+              "fr:sink",
+              "fr:restroom_stall",
+              "fr:restroom_stall_door",
+              "fr:plunger",
+              "fr:restroom_sign_man",
+              "fr:restroom_sign_women"
+            ]
+          }
+        ]
+      },
+      {
+        "category_name": "equipment",
+        "groups": [
+          {
+            "group_identifier": {
+              "icon": "fr:fire_axe",
+              "name": "fr:itemGroup.name.tools"
+            },
+            "items": [
+              "fr:fire_axe",
+              "fr:wrench",
+              "fr:faz-tab"
+            ]
+          },
+          {
+            "group_identifier": {
+              "icon": "fr:faz-diver_off",
+              "name": "fr:itemGroup.name.uniforms"
+            },
+            "items": [
+              "fr:faz-diver_off",
+              "fr:faz-diver_executive",
+              "fr:faz-diver_manager",
+              "fr:faz-diver_employee",
+              "fr:faz-diver_repairman",
+              "fr:faz-diver_security"
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

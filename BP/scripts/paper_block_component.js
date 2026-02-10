@@ -1,15 +1,13 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ * ©2026
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
+ *
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+ *
 */
-
-
 
 import { world, BlockPermutation, system } from '@minecraft/server'
 import { dynamicToast, customActionbar, ACTIONBAR_CUSTOM_STYLE } from './utils.js'
@@ -30,7 +28,7 @@ const HallwayDrawingsComponent = {
             const cardinalDirection = permutationToPlace.getState('minecraft:cardinal_direction');
             let adjacentX = loc.x;
             let adjacentZ = loc.z;
-            
+
             switch (cardinalDirection) {
                 case 'north':
                     adjacentX += 1;
@@ -47,7 +45,7 @@ const HallwayDrawingsComponent = {
                 default:
                     return;
             }
-            
+
             const adjacentBlock = dimension.getBlock({ x: adjacentX, y: loc.y, z: adjacentZ });
             if (!adjacentBlock || !adjacentBlock.isAir) {
                 event.cancel = true;
@@ -59,8 +57,8 @@ const HallwayDrawingsComponent = {
                 ));
                 return;
             }
-            
-        } catch {}
+
+        } catch { }
     },
 
     onPlace: (event) => {
@@ -76,10 +74,10 @@ const HallwayDrawingsComponent = {
             const loc = block.location;
             const dimension = block.dimension;
             const cardinalDirection = block.permutation.getState('minecraft:cardinal_direction');
-            
+
             let adjacentX = loc.x;
             let adjacentZ = loc.z;
-            
+
             switch (cardinalDirection) {
                 case 'north':
                     adjacentX += 1;
@@ -96,21 +94,20 @@ const HallwayDrawingsComponent = {
                 default:
                     return;
             }
-            
+
             const adjacentPermutation = BlockPermutation.resolve('fr:hallway_drawings', {
                 'minecraft:cardinal_direction': cardinalDirection,
                 'fr:paper_type': 2
             });
-            
+
             const adjacentBlock = dimension.getBlock({ x: adjacentX, y: loc.y, z: adjacentZ });
             if (adjacentBlock && adjacentBlock.isAir) {
                 adjacentBlock.setPermutation(adjacentPermutation);
             }
-            
-        } catch {}
+
+        } catch { }
     }
 };
-
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     blockComponentRegistry.registerCustomComponent(
@@ -122,28 +119,28 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
 world.beforeEvents.playerBreakBlock.subscribe((event) => {
     const { block } = event;
     if (!block || block.typeId !== 'fr:hallway_drawings') return;
-    
+
     const loc = block.location;
     const dimension = block.dimension;
     const paperType = block.permutation.getState('fr:paper_type');
-    
+
     const directions = [
         { x: 1, z: 0 },
         { x: -1, z: 0 },
         { x: 0, z: 1 },
         { x: 0, z: -1 }
     ];
-    
+
     for (const dir of directions) {
         const adjacentX = loc.x + dir.x;
         const adjacentZ = loc.z + dir.z;
-        
+
         const adjacentBlock = dimension.getBlock({ x: adjacentX, y: loc.y, z: adjacentZ });
-        
+
         if (adjacentBlock && adjacentBlock.typeId === 'fr:hallway_drawings') {
             const adjacentPaperType = adjacentBlock.permutation.getState('fr:paper_type');
-            
-            if ((paperType === 1 && adjacentPaperType === 2) || 
+
+            if ((paperType === 1 && adjacentPaperType === 2) ||
                 (paperType === 2 && adjacentPaperType === 1)) {
                 system.run(() => {
                     const airPermutation = BlockPermutation.resolve('minecraft:air');

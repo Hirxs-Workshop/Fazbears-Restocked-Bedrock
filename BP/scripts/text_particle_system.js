@@ -1,14 +1,13 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
  * §2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
+ *
  * DO NOT COPY OR STEAL, ty :>
- *  
+ *
 */
-
 
 import { world, system, MolangVariableMap, EquipmentSlot } from "@minecraft/server";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
@@ -412,36 +411,45 @@ class TextParticleSystem {
   }
 
   updateAllTexts() {
+
+if (!this.updateCounter) this.updateCounter = 0;
+    this.updateCounter++;
+    const deepCheck = this.updateCounter % 5 === 0;
+
     const toRemove = [];
     for (const [posKey, textData] of this.activeTexts) {
       try {
         const dimension = world.getDimension(textData.dimensionId.replace("minecraft:", ""));
-        const block = dimension.getBlock(textData.blockLocation);
-        if (!block || !TEXT_DISPLAY_BLOCK_IDS.includes(block.typeId)) {
-          toRemove.push(posKey);
-          continue;
-        }
-        const blockDirection = block.permutation.getState("minecraft:cardinal_direction");
-        const opposite = { north: "south", south: "north", east: "west", west: "east" };
-        const blockFacing = opposite[blockDirection] || blockDirection;
-        const variant = block.permutation.getState("fr:variants") || 0;
 
-        if (blockFacing && ["north", "south", "east", "west"].includes(blockFacing)) {
-          textData.facing = blockFacing;
-          textData.spawnLocation = { x: textData.blockLocation.x + 0.5, y: textData.blockLocation.y + 0.5, z: textData.blockLocation.z + 0.5 };
-          const offset = 0.9;
-          switch (blockFacing) {
-            case "north": textData.spawnLocation.z = textData.blockLocation.z + offset; break;
-            case "south": textData.spawnLocation.z = textData.blockLocation.z + (1 - offset); break;
-            case "east": textData.spawnLocation.x = textData.blockLocation.x + (1 - offset); break;
-            case "west": textData.spawnLocation.x = textData.blockLocation.x + offset; break;
+if (deepCheck) {
+          const block = dimension.getBlock(textData.blockLocation);
+          if (!block || !TEXT_DISPLAY_BLOCK_IDS.includes(block.typeId)) {
+            toRemove.push(posKey);
+            continue;
           }
+          const blockDirection = block.permutation.getState("minecraft:cardinal_direction");
+          const opposite = { north: "south", south: "north", east: "west", west: "east" };
+          const blockFacing = opposite[blockDirection] || blockDirection;
+          const variant = block.permutation.getState("fr:variants") || 0;
 
-          const varOffset = getVariantOffset(blockFacing, variant);
-          textData.spawnLocation.x += varOffset.x;
-          textData.spawnLocation.y += varOffset.y;
-          textData.spawnLocation.z += varOffset.z;
+          if (blockFacing && ["north", "south", "east", "west"].includes(blockFacing)) {
+            textData.facing = blockFacing;
+            textData.spawnLocation = { x: textData.blockLocation.x + 0.5, y: textData.blockLocation.y + 0.5, z: textData.blockLocation.z + 0.5 };
+            const offset = 0.9;
+            switch (blockFacing) {
+              case "north": textData.spawnLocation.z = textData.blockLocation.z + offset; break;
+              case "south": textData.spawnLocation.z = textData.blockLocation.z + (1 - offset); break;
+              case "east": textData.spawnLocation.x = textData.blockLocation.x + (1 - offset); break;
+              case "west": textData.spawnLocation.x = textData.blockLocation.x + offset; break;
+            }
+
+            const varOffset = getVariantOffset(blockFacing, variant);
+            textData.spawnLocation.x += varOffset.x;
+            textData.spawnLocation.y += varOffset.y;
+            textData.spawnLocation.z += varOffset.z;
+          }
         }
+
         this.spawnTextParticles(textData.dimensionId, textData);
       } catch (e) { }
     }
@@ -539,7 +547,7 @@ function handleSignInteraction(player, block, showMenuFunc) {
   textParticleSystem.restoreFromBlock(block);
   const item = player.getComponent("equippable")?.getEquipment(EquipmentSlot.Mainhand);
   if (!item) { showMenuFunc(player, block); return; }
-  
+
   if (item.typeId === "minecraft:glow_ink_sac") {
     textParticleSystem.toggleGlow(block.location, block, true);
     player.sendMessage("§aSign is now glowing!");
@@ -550,7 +558,7 @@ function handleSignInteraction(player, block, showMenuFunc) {
     player.sendMessage("§7Sign glow removed.");
     return;
   }
-  
+
   const dyeColor = DYE_TO_COLOR[item.typeId];
   if (dyeColor) {
     if (textParticleSystem.setTextColor(block.location, block, dyeColor)) {
@@ -560,7 +568,7 @@ function handleSignInteraction(player, block, showMenuFunc) {
     }
     return;
   }
-  
+
   showMenuFunc(player, block);
 }
 

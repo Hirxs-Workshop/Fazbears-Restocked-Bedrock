@@ -1,0 +1,593 @@
+{
+    "format_version": "1.21.60",
+    "minecraft:block": 
+    {
+        "description": 
+        {
+            "identifier": "fr:wall_tear_holes",
+            "menu_category": 
+            {
+                "category": "construction"
+            },
+            "traits": 
+            {
+                "minecraft:placement_position": 
+                {
+                    "enabled_states": 
+                    [
+                        "minecraft:block_face"
+                    ]
+                }
+            },
+            "states": 
+            {
+                "fr:attached_north": 
+                [
+                    false,
+                    true
+                ],
+                "fr:attached_south": 
+                [
+                    false,
+                    true
+                ],
+                "fr:attached_east": 
+                [
+                    false,
+                    true
+                ],
+                "fr:attached_west": 
+                [
+                    false,
+                    true
+                ],
+                "fr:variants": 
+                {
+                    "values": 
+                    {
+                        "min": 0,
+                        "max": 13
+                    }
+                }
+            }
+        },
+        "components": 
+        {
+            "minecraft:geometry": "geometry.flat_side_block",
+            "minecraft:material_instances": 
+            {
+                "*": 
+                {
+                    "texture": "wall_tear_hole_1",
+                    "render_method": "alpha_test",
+                    "face_dimming": false,
+                    "ambient_occlusion": false
+                }
+            },
+            "minecraft:collision_box": false,
+            "minecraft:selection_box": true,
+            "minecraft:destructible_by_mining": 
+            {
+                "seconds_to_destroy": 1
+            },
+            "minecraft:custom_components": 
+            [
+                "fr:flat_multiside_logic"
+            ]
+        },
+        "permutations": 
+        [
+            {
+                "condition": "q.block_state('fr:attached_north') && !q.block_state('fr:attached_south') && !q.block_state('fr:attached_east') && !q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": false,
+                            "east_side": false,
+                            "west_side": false
+                        }
+                    },
+                    "minecraft:selection_box": 
+                    {
+                        "origin": 
+                        [
+                            -8,
+                            0,
+                            6
+                        ],
+                        "size": 
+                        [
+                            16,
+                            16,
+                            2
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_south') && !q.block_state('fr:attached_north') && !q.block_state('fr:attached_east') && !q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": false,
+                            "south_side": true,
+                            "east_side": false,
+                            "west_side": false
+                        }
+                    },
+                    "minecraft:selection_box": 
+                    {
+                        "origin": 
+                        [
+                            -8,
+                            0,
+                            -8
+                        ],
+                        "size": 
+                        [
+                            16,
+                            16,
+                            2
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_east') && !q.block_state('fr:attached_north') && !q.block_state('fr:attached_south') && !q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": false,
+                            "south_side": false,
+                            "east_side": true,
+                            "west_side": false
+                        }
+                    },
+                    "minecraft:selection_box": 
+                    {
+                        "origin": 
+                        [
+                            6,
+                            0,
+                            -8
+                        ],
+                        "size": 
+                        [
+                            2,
+                            16,
+                            16
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_west') && !q.block_state('fr:attached_north') && !q.block_state('fr:attached_south') && !q.block_state('fr:attached_east')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": false,
+                            "south_side": false,
+                            "east_side": false,
+                            "west_side": true
+                        }
+                    },
+                    "minecraft:selection_box": 
+                    {
+                        "origin": 
+                        [
+                            -8,
+                            0,
+                            -8
+                        ],
+                        "size": 
+                        [
+                            2,
+                            16,
+                            16
+                        ]
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_north') && q.block_state('fr:attached_south') && !q.block_state('fr:attached_east') && !q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": true,
+                            "east_side": false,
+                            "west_side": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_north') && q.block_state('fr:attached_east') && !q.block_state('fr:attached_south') && !q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": false,
+                            "east_side": true,
+                            "west_side": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_north') && q.block_state('fr:attached_west') && !q.block_state('fr:attached_south') && !q.block_state('fr:attached_east')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": false,
+                            "east_side": false,
+                            "west_side": true
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_south') && q.block_state('fr:attached_east') && !q.block_state('fr:attached_north') && !q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": false,
+                            "south_side": true,
+                            "east_side": true,
+                            "west_side": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_south') && q.block_state('fr:attached_west') && !q.block_state('fr:attached_north') && !q.block_state('fr:attached_east')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": false,
+                            "south_side": true,
+                            "east_side": false,
+                            "west_side": true
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_east') && q.block_state('fr:attached_west') && !q.block_state('fr:attached_north') && !q.block_state('fr:attached_south')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": false,
+                            "south_side": false,
+                            "east_side": true,
+                            "west_side": true
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_north') && q.block_state('fr:attached_south') && q.block_state('fr:attached_east') && !q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": true,
+                            "east_side": true,
+                            "west_side": false
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_north') && q.block_state('fr:attached_south') && q.block_state('fr:attached_west') && !q.block_state('fr:attached_east')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": true,
+                            "east_side": false,
+                            "west_side": true
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_north') && q.block_state('fr:attached_east') && q.block_state('fr:attached_west') && !q.block_state('fr:attached_south')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": false,
+                            "east_side": true,
+                            "west_side": true
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_south') && q.block_state('fr:attached_east') && q.block_state('fr:attached_west') && !q.block_state('fr:attached_north')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": false,
+                            "south_side": true,
+                            "east_side": true,
+                            "west_side": true
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:attached_north') && q.block_state('fr:attached_south') && q.block_state('fr:attached_east') && q.block_state('fr:attached_west')",
+                "components": 
+                {
+                    "minecraft:geometry": 
+                    {
+                        "identifier": "geometry.flat_side_block",
+                        "bone_visibility": 
+                        {
+                            "norte_side": true,
+                            "south_side": true,
+                            "east_side": true,
+                            "west_side": true
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 0",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "wall_tear_hole_1",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 1",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "wall_tear_hole_2",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 2",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_1",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 3",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_2",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 4",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_bottom",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 5",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_bottom_left_corner",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 6",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_bottom_right_corner",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 7",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_left",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 8",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_left_big",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 9",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_right",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 10",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_right_big",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 11",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_top",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 12",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_top_left_corner",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            },
+            {
+                "condition": "q.block_state('fr:variants') == 13",
+                "components": 
+                {
+                    "minecraft:material_instances": 
+                    {
+                        "*": 
+                        {
+                            "texture": "brick_tear_top_right_corner",
+                            "render_method": "alpha_test"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

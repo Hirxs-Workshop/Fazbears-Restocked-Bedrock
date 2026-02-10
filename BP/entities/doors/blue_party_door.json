@@ -73,7 +73,11 @@
 			"time_down_event": {
 				"event": "check_validity"
 			}
-		}
+		},
+		"minecraft:despawn": {
+			"despawn_from_distance": {}
+		},
+		"minecraft:persistent": {}
 	  },
 	  "events": {
 		"inside_block": {

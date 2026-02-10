@@ -1,0 +1,95 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.carl_the_cupcake.movement": {
+            "initial_state": "idle",
+            "states": {
+                "idle": {
+                    "animations": [
+                        "idle"
+                    ],
+                    "transitions": [
+                        {
+                            "clinging": "query.property('carl:is_attached')"
+                        },
+                        {
+                            "charge": "query.is_interested"
+                        },
+                        {
+                            "hop": "query.is_moving && query.is_on_ground"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "hop": {
+                    "animations": [
+                        "hop"
+                    ],
+                    "transitions": [
+                        {
+                            "clinging": "query.property('carl:is_attached')"
+                        },
+                        {
+                            "charge": "query.is_interested"
+                        },
+                        {
+                            "idle": "!query.is_moving && query.is_on_ground"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                },
+                "charge": {
+                    "animations": [
+                        "charge_and_pounce"
+                    ],
+                    "transitions": [
+                        {
+                            "clinging": "query.property('carl:is_attached')"
+                        },
+                        {
+                            "pounce": "!query.is_on_ground"
+                        },
+                        {
+                            "idle": "!query.is_interested && query.is_on_ground && !query.is_moving"
+                        },
+                        {
+                            "hop": "!query.is_interested && query.is_on_ground && query.is_moving"
+                        }
+                    ],
+                    "blend_transition": 0.1
+                },
+                "pounce": {
+                    "animations": [
+                        "pounce_midair"
+                    ],
+                    "transitions": [
+                        {
+                            "clinging": "query.property('carl:is_attached')"
+                        },
+                        {
+                            "hop": "query.is_on_ground && query.is_moving"
+                        },
+                        {
+                            "idle": "query.is_on_ground && !query.is_moving"
+                        }
+                    ],
+                    "blend_transition": 0.1
+                },
+                "clinging": {
+                    "animations": [
+                        "bite_static"
+                    ],
+                    "transitions": [
+                        {
+                            "idle": "!query.property('carl:is_attached') && query.is_on_ground"
+                        },
+                        {
+                            "pounce": "!query.property('carl:is_attached') && !query.is_on_ground"
+                        }
+                    ],
+                    "blend_transition": 0.2
+                }
+            }
+        }
+    }
+}

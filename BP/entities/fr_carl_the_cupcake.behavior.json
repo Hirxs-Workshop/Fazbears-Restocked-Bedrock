@@ -1,0 +1,194 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "fr:carl_the_cupcake",
+            "is_spawnable": true,
+            "is_summonable": true,
+            "is_experimental": false,
+            "properties": {
+                "carl:is_attached": {
+                    "type": "bool",
+                    "default": false,
+                    "client_sync": true
+                }
+            },
+            "animations": {
+                "pounce_damage": "controller.animation.carl:pounce_damage"
+            }
+        },
+        "component_groups": {
+            "carl:normal": {
+                "minecraft:movement": {
+                    "value": 0.22
+                },
+                "minecraft:movement.basic": {},
+                "minecraft:movement.jump": {
+                    "jump_delay": [
+                        0.5,
+                        0.8
+                    ]
+                },
+                "minecraft:navigation.walk": {
+                    "can_path_over_water": false,
+                    "avoid_water": true,
+                    "avoid_damage_blocks": true,
+                    "can_jump": true
+                },
+                "minecraft:jump.static": {
+                    "jump_power": 0.5
+                },
+                "minecraft:can_climb": {},
+                "minecraft:behavior.float": {
+                    "priority": 0
+                },
+                "minecraft:behavior.hurt_by_target": {
+                    "priority": 1
+                },
+                "minecraft:behavior.nearest_attackable_target": {
+                    "priority": 2,
+                    "must_see": true,
+                    "reselect_targets": true,
+                    "within_radius": 16.0,
+                    "entity_types": [
+                        {
+                            "filters": {
+                                "all_of": [
+                                    {
+                                        "test": "is_family",
+                                        "subject": "other",
+                                        "value": "player"
+                                    },
+                                    {
+                                        "test": "is_game_mode",
+                                        "subject": "other",
+                                        "value": "creative",
+                                        "operator": "!="
+                                    },
+                                    {
+                                        "test": "is_game_mode",
+                                        "subject": "other",
+                                        "value": "spectator",
+                                        "operator": "!="
+                                    }
+                                ]
+                            },
+                            "max_dist": 16
+                        }
+                    ]
+                },
+                "minecraft:behavior.stalk_and_pounce_on_target": {
+                    "priority": 3,
+                    "stalk_speed": 1.2,
+                    "max_stalk_dist": 12.0,
+                    "leap_height": 0.5,
+                    "leap_dist": 1.8,
+                    "pounce_max_dist": 5.0,
+                    "interest_time": 1.375,
+                    "stuck_time": 1.0,
+                    "strike_dist": 2.5,
+                    "set_persistent": true
+                },
+                "minecraft:behavior.melee_attack": {
+                    "priority": 6,
+                    "speed_multiplier": 1.1,
+                    "track_target": true,
+                    "reach_multiplier": 0.8
+                },
+                "minecraft:behavior.random_stroll": {
+                    "priority": 7,
+                    "speed_multiplier": 0.8
+                },
+                "minecraft:behavior.look_at_player": {
+                    "priority": 8,
+                    "look_distance": 8.0,
+                    "probability": 0.02
+                },
+                "minecraft:behavior.random_look_around": {
+                    "priority": 9
+                },
+                "minecraft:physics": {},
+                "minecraft:pushable": {
+                    "is_pushable": true,
+                    "is_pushable_by_piston": true
+                },
+                "minecraft:knockback_resistance": {
+                    "value": 0.2
+                }
+            },
+            "carl:attached": {
+                "minecraft:physics": {
+                    "has_gravity": false,
+                    "has_collision": false
+                },
+                "minecraft:knockback_resistance": {
+                    "value": 1.0
+                },
+                "minecraft:pushable": {
+                    "is_pushable": false,
+                    "is_pushable_by_piston": false
+                }
+            }
+        },
+        "components": {
+            "minecraft:type_family": {
+                "family": [
+                    "carl",
+                    "cupcake",
+                    "hostile",
+                    "monster"
+                ]
+            },
+            "minecraft:collision_box": {
+                "width": 0.4,
+                "height": 0.5
+            },
+            "minecraft:health": {
+                "value": 20,
+                "max": 20
+            },
+            "minecraft:attack": {
+                "damage": 4
+            }
+        },
+        "events": {
+            "minecraft:entity_spawned": {
+                "add": {
+                    "component_groups": [
+                        "carl:normal"
+                    ]
+                }
+            },
+            "carl:start_clinging": {
+                "remove": {
+                    "component_groups": [
+                        "carl:normal"
+                    ]
+                },
+                "add": {
+                    "component_groups": [
+                        "carl:attached"
+                    ]
+                },
+                "set_property": {
+                    "carl:is_attached": true
+                }
+            },
+            "carl:stop_clinging": {
+                "remove": {
+                    "component_groups": [
+                        "carl:attached"
+                    ]
+                },
+                "add": {
+                    "component_groups": [
+                        "carl:normal"
+                    ]
+                },
+                "set_property": {
+                    "carl:is_attached": false
+                }
+            }
+        }
+    }
+}
