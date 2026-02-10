@@ -1,12 +1,12 @@
 /**
 * FAZBEAR'S RESTOCKED - BEDROCK
-* ©2025
-* 
-* If you want to modify or use this system as a base, contact the code developer, 
+* ©2026
+*
+* If you want to modify or use this system as a base, contact the code developer,
 * Hyrxs (discord: hyrxs), for more information and authorization
-* 
-* DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
-*  
+*
+* DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+*
 */
 
 import { system, world, EquipmentSlot, BlockPermutation } from "@minecraft/server"

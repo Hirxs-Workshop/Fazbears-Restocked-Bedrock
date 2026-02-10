@@ -9,6 +9,11 @@
                 "textures/blocks/reworked/kitchen/kitchencounter"
             ]
         },
+        "movie_sign_block_center": {
+            "textures": [
+                "textures/blocks/reworked/movie_sign_block_center"
+            ]
+        },
         "kitchencounter_drawer": {
             "textures": [
                 "textures/blocks/reworked/kitchen/kitchencounter_drawer"
@@ -364,7 +369,6 @@
                 "textures/blocks/reworked/door_frames"
             ]
         },
-
         "fan": {
             "textures": [
                 "textures/blocks/reworked/fan"
@@ -683,6 +687,21 @@
         "pirate_cove_light": {
             "textures": [
                 "textures/blocks/reworked/pirate_cove_light"
+            ]
+        },
+        "pirate_cove_light_off": {
+            "textures": [
+                "textures/blocks/reworked/pirate_cove_light_off"
+            ]
+        },
+        "pirate_cove_light_yellow": {
+            "textures": [
+                "textures/blocks/reworked/pirate_cove_light_yellow"
+            ]
+        },
+        "pirate_cove_light_yellow_off": {
+            "textures": [
+                "textures/blocks/reworked/pirate_cove_light_yellow_off"
             ]
         },
         "pirate_cove_sign": {
@@ -1565,6 +1584,11 @@
                 "textures/blocks/reworked/fnaf1/walls/gray_stage_wall_middle_tiles"
             ]
         },
+        "gray_stage_wall_middle_tiles_red": {
+            "textures": [
+                "textures/blocks/reworked/fnaf1/walls/gray_stage_wall_middle_tiles_red"
+            ]
+        },
         "stage_wall_down": {
             "textures": [
                 "textures/blocks/reworked/fnaf1/walls/stage_wall_down"
@@ -1723,6 +1747,16 @@
         "pizzeria_bricks_2_top": {
             "textures": [
                 "textures/blocks/reworked/fnaf_movie/walls/pizzeria_bricks_2_top"
+            ]
+        },
+        "pizzeria_bricks_tiles": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/pizzeria_bricks_tiles"
+            ]
+        },
+        "pizzeria_bricks_2_tiles": {
+            "textures": [
+                "textures/blocks/reworked/fnaf_movie/walls/pizzeria_bricks_2_tiles"
             ]
         },
         "wall_black_bottom": {
@@ -2551,7 +2585,7 @@
             ]
         },
         "tinfly_dev_plush": {
-                        "textures": [
+            "textures": [
                 "textures/blocks/reworked/dev/tinfly_dev_plush"
             ]
         },
@@ -2588,16 +2622,6 @@
         "freezer_iron_rack": {
             "textures": [
                 "textures/blocks/reworked/freezer_iron_rack"
-            ]
-        },
-        "knife_holder_empty": {
-            "textures": [
-                "textures/blocks/reworked/knife_holder_empty"
-            ]
-        },
-        "knife_holder": {
-            "textures": [
-                "textures/blocks/reworked/knife_holder"
             ]
         },
         "vhs_tape": {
@@ -2730,40 +2754,144 @@
                 "textures/blocks/reworked/gumball_machine_2"
             ]
         },
-	"camera_ceiling_mount": {
+        "camera_ceiling_mount": {
             "textures": [
                 "textures/blocks/reworked/camera_ceiling_mount"
             ]
-	},
-	"zach_dev_plush": {
+        },
+        "zach_dev_plush": {
             "textures": [
                 "textures/blocks/reworked/dev/zach_dev_plush"
             ]
-       },
-       "animdude_plush": {
+        },
+        "animdude_plush": {
             "textures": [
                 "textures/blocks/reworked/plushies/animdude_plush"
             ]
-       },
-       "cash_register": {
+        },
+        "cash_register": {
             "textures": [
                 "textures/blocks/reworked/cash_register"
-             ]
-       },
-       "big_metal_lighter": {
+            ]
+        },
+        "big_metal_lighter": {
             "textures": [
                 "textures/blocks/reworked/big_metal_lighter"
             ]
-       },
-       "survival_logbook": {
+        },
+        "survival_logbook": {
             "textures": [
                 "textures/blocks/reworked/survival_logbook"
             ]
-       },
-       "microphone_stand": {
+        },
+        "microphone_stand": {
             "textures": [
                 "textures/blocks/reworked/microphone_stand"
             ]
-        }
+        },
+        "present_arcade": {
+            "textures": [
+                "textures/blocks/reworked/present_arcade"
+            ]
+        },
+        "gold_carlarcade": {
+            "textures": [
+                "textures/blocks/reworked/gold_carlarcade"
+            ]
+        },
+        "fr_platform": {
+            "textures": [
+                "textures/blocks/reworked/fr_platform"
+            ]
+        },
+        "fr_platform_2": {
+            "textures": [
+                "textures/blocks/reworked/fr_platform_2"
+            ]
+        },
+        "fr_toilet": {
+            "textures": [
+                "textures/blocks/reworked/fr_toilet"
+            ]
+        },
+        "fredrick_plush": {
+            "textures": [
+                "textures/blocks/reworked/fredrick_plush"
+            ]
+        },
+        "stage_platform": {
+            "textures": [
+                "textures/blocks/reworked/stage_floor_top"
+            ]
+        },
+        "route_point": {
+            "textures": [
+                "textures/blocks/reworked/inv"
+            ]
+        },
+        "fr_bonnie_cutout": {
+            "textures": [
+                "textures/blocks/reworked/fr_bonnie_cutout"
+            ]
+        },
+        "fr_freddy_cutout": {
+            "textures": [
+                "textures/blocks/reworked/fr_freddy_cutout"
+            ]
+        },
+        "fr_chica_cutout": {
+            "textures": [
+                "textures/blocks/reworked/fr_chica_cutout"
+            ]
+        },
+        "fr_foxy_cutout": {
+            "textures": [
+                "textures/blocks/reworked/fr_foxy_cutout"
+            ]
+        },
+        "neon_lines": {
+            "textures": [
+                "textures/blocks/reworked/neon_lines"
+            ]
+        },
+        "dumpster": {
+            "textures": [
+                "textures/blocks/reworked/dumpster"
+            ]
+        },
+        "dirty_dumpster": {
+            "textures": [
+                "textures/blocks/reworked/dirty_dumpster"
+            ]
+        },
+        "party_chair_blue": {
+            "textures": [
+                "textures/blocks/reworked/party_chairs/party_chair_blue"
+            ]
+        },
+        "party_chair_red": {
+            "textures": [
+                "textures/blocks/reworked/party_chairs/party_chair_red"
+            ]
+        },
+        "party_chair_purple": {
+            "textures": [
+                "textures/blocks/reworked/party_chairs/party_chair_purple"
+            ]
+        },
+        "wall_tiles_4x3_blue": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_blue" ] },
+        "wall_tiles_4x3_cyan": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_cyan" ] },
+        "wall_tiles_4x3_gray": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_gray" ] },
+        "wall_tiles_4x3_green": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_green" ] },
+        "wall_tiles_4x3_light_blue": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_light_blue" ] },
+        "wall_tiles_4x3_light_gray": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_light_gray" ] },
+        "wall_tiles_4x3_lime": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_lime" ] },
+        "wall_tiles_4x3_magenta": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_magenta" ] },
+        "wall_tiles_4x3_orange": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_orange" ] },
+        "wall_tiles_4x3_pink": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_pink" ] },
+        "wall_tiles_4x3_purple": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_purple" ] },
+        "wall_tiles_4x3_red": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_red" ] },
+        "wall_tiles_4x3_white": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_white" ] },
+        "wall_tiles_4x3_yellow": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_yellow" ] }
     }
 }

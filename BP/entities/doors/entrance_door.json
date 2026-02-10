@@ -47,7 +47,11 @@
 					"cause": "all",
 					"deals_damage": false
 				}
-			}
+			},
+			"minecraft:despawn": {
+				"despawn_from_distance": {}
+			},
+			"minecraft:persistent": {}
 		},
 		"events": {
 			"destroy": {

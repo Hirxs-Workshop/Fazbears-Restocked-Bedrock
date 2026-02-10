@@ -26,6 +26,7 @@ entity.fr:pirate_cove_light_entity.name=Pirate Cove Light Entity
 entity.fr:selection.name=Selection
 entity.fr:south_sit.name=South Sit
 entity.fr:sparky_the_dog.name=Sparky The Dog
+entity.fr:carl_the_cupcake.name=Carl the Cupcake
 entity.fr:thin_door_frame.name=Thin Door Frame
 entity.fr:west_sit.name=West Sit
 item.fr:door_item.name=Door Item
@@ -477,6 +478,8 @@ item.spawn_egg.entity.fr:bonnie_statue.name=§©§-Bonnie Statue
 item.spawn_egg.entity.fr:chica_statue.name=§©§-Chica Statue
 item.spawn_egg.entity.fr:foxy_statue.name=§©§-Foxy Statue
 item.spawn_egg.entity.fr:sparky_statue.name=§©§-Sparky Statue
+item.spawn_egg.entity.fr:golden_freddy_statue.name=§©§-Golden Freddy Statue
+item.spawn_egg.entity.fr:endo_01_statue.name=§©§-Endo 01 Statue
 
 tile.fr:backstage_door_block.name=Backstage Door Block
 tile.fr:blank_door_block.name=Blank Door Block
@@ -582,3 +585,48 @@ tile.fr:big_metal_lighter.name=Big Metal Lighter
 tile.fr:vhs_tape.name=VHS Tape
 tile.fr:survival_logbook.name=Survival Logbook
 tile.fr:microphone_stand.name=Microphone Stand
+
+tile.fr:bonnie_cutout.name=Bonnie Cutout
+tile.fr:camera_ceiling_mount.name=Camera Ceiling Mount
+tile.fr:chica_cutout.name=Chica Cutout
+tile.fr:dumpster.name=§E§M§P§L§O§Y§E§EDumpster
+tile.fr:foxy_cutout.name=Foxy Cutout
+tile.fr:freddy_cutout.name=Freddy Cutout
+tile.fr:fredrick_plush.name=Fredrick Plush
+tile.fr:gold_carlarcade.name=Gold Carl Arcade
+tile.fr:modular_office_window.name=Modular Office Window
+tile.fr:pirate_cove_light_yellow.name=§S§E§C§U§R§I§T§YPirate Cove Light Yellow
+tile.fr:present_arcade.name=Present Arcade
+tile.fr:route_point.name=Route Point
+tile.fr:stage_platform.name=§©§-Stage Platform
+tile.fr:toilet.name=Toilet
+
+## Movie Sign
+tile.fr:movie_sign.name=Movie Sign
+tile.fr:movie_sign_side.name=Movie Sign Side
+item.fr:movie_sign.name=Movie Sign Item
+
+## Colored Tiles
+tile.fr:wall_tiles_4x3_blue.name=Wall Tiles 4x3 Blue
+tile.fr:wall_tiles_4x3_cyan.name=Wall Tiles 4x3 Cyan
+tile.fr:wall_tiles_4x3_gray.name=Wall Tiles 4x3 Gray
+tile.fr:wall_tiles_4x3_green.name=Wall Tiles 4x3 Green
+tile.fr:wall_tiles_4x3_light_blue.name=Wall Tiles 4x3 Light Blue
+tile.fr:wall_tiles_4x3_light_gray.name=Wall Tiles 4x3 Light Gray
+tile.fr:wall_tiles_4x3_lime.name=Wall Tiles 4x3 Lime
+tile.fr:wall_tiles_4x3_magenta.name=Wall Tiles 4x3 Magenta
+tile.fr:wall_tiles_4x3_orange.name=Wall Tiles 4x3 Orange
+tile.fr:wall_tiles_4x3_pink.name=Wall Tiles 4x3 Pink
+tile.fr:wall_tiles_4x3_purple.name=Wall Tiles 4x3 Purple
+tile.fr:wall_tiles_4x3_red.name=Wall Tiles 4x3 Red
+tile.fr:wall_tiles_4x3_white.name=Wall Tiles 4x3 White
+tile.fr:wall_tiles_4x3_yellow.name=Wall Tiles 4x3 Yellow
+
+## Missing Blocks
+tile.fr:pizzeria_bricks_tiles.name=Pizzeria Bricks Tiles
+tile.fr:pizzeria_bricks_2_tiles.name=Pizzeria Bricks 2 Tiles
+tile.fr:gray_stage_wall_middle_tiles_red.name=Gray Stage Wall Middle Tiles Red
+tile.fr:party_chair_blue.name=Party Chair Blue
+tile.fr:party_chair_red.name=Party Chair Red
+tile.fr:party_chair_purple.name=Party Chair Purple
+fr:itemGroup.name.colored_tiles=Colored Tiles

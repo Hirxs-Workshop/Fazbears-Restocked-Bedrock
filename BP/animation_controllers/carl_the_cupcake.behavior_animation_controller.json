@@ -1,0 +1,26 @@
+{
+    "format_version": "1.10.0",
+    "animation_controllers": {
+        "controller.animation.carl:pounce_damage": {
+            "states": {
+                "default": {
+                    "transitions": [
+                        {
+                            "damaging": "!query.is_on_ground"
+                        }
+                    ]
+                },
+                "damaging": {
+                    "on_entry": [
+                        "/damage @a[r=2.5,c=1] 1 entity_attack @s"
+                    ],
+                    "transitions": [
+                        {
+                            "default": "query.is_on_ground"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

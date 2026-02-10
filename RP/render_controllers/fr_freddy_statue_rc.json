@@ -2,18 +2,18 @@
     "format_version": "1.8.0",
     "render_controllers": {
         "controller.render.fr_freddy_statue_rc": {
-            "geometry": "Array.geo[q.property('fr:variant')]",
+            "geometry": "query.property('fr:style') == 0 ? Array.geo_classic[query.property('fr:variant')] : Geometry.variant_12",
             "materials": [
                 {
                     "*": "Material.default"
                 }
             ],
             "textures": [
-                "Array.variants[q.property('fr:variant')]"
+                "query.property('fr:style') == 0 ? Array.tex_classic[query.property('fr:variant')] : Array.tex_movie[query.property('fr:variant')]"
             ],
             "arrays": {
                 "textures": {
-                    "Array.variants": [
+                    "Array.tex_classic": [
                         "Texture.default",
                         "Texture.variant_1",
                         "Texture.variant_2",
@@ -21,11 +21,20 @@
                         "Texture.variant_4",
                         "Texture.variant_5",
                         "Texture.variant_6",
-                        "Texture.variant_7"
+                        "Texture.variant_7",
+                        "Texture.variant_8",
+                        "Texture.variant_9",
+                        "Texture.variant_10",
+                        "Texture.variant_11"
+                    ],
+                    "Array.tex_movie": [
+                        "Texture.variant_12",
+                        "Texture.variant_13",
+                        "Texture.variant_14"
                     ]
                 },
                 "geometries": {
-                    "Array.geo": [
+                    "Array.geo_classic": [
                         "Geometry.default",
                         "Geometry.variant_1",
                         "Geometry.variant_2",
@@ -33,7 +42,11 @@
                         "Geometry.variant_4",
                         "Geometry.variant_5",
                         "Geometry.variant_6",
-                        "Geometry.variant_7"
+                        "Geometry.variant_7",
+                        "Geometry.variant_8",
+                        "Geometry.variant_9",
+                        "Geometry.variant_10",
+                        "Geometry.variant_11"
                     ]
                 }
             }

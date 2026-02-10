@@ -69,6 +69,11 @@
       },
       "stencilRef": 2
     },
+    "fr_anim:entity_emissive_alpha": {
+      "+defines": [
+        "USE_UV_ANIM"
+      ]
+    },
     "outline:entity_static": {
       "+states": [ "InvertCulling", "EnableStencilTest", "DisableDepthWrite", "Blending" ],
       "+defines": [ "USE_OVERLAY" ],

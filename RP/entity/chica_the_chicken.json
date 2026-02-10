@@ -9,7 +9,7 @@
 				"fr_b": "slime_outer"
 			},
 			"textures": {
-				"default": "textures/entity/reworked/fnaf1/chica_the_chicken_Nopizza",
+				"default": "textures/entity/reworked/fnaf1/chica/chica_the_chicken_Nopizza",
 				"fr_b": "textures/entity/reworked/fnaf1/chica_the_chicken_Nopizza"
 			},
 			"spawn_egg": {
@@ -27,12 +27,17 @@
 				"idle_bloody": "animation.Chica_the_Chicken_idle1_normal_nocupcake_blood",
 				"attack": "animation.chica_bite_and_wipe_jumpscare",
 				"base": "controller.animation.fnaf1_bonnie.base",
-				"movement_controller": "controller.animation.fnaf1_bonnie.movement"
+				"movement_controller": "controller.animation.fnaf1_bonnie.movement",
+				"cupcake_controller": "controller.animation.fnaf1_chica.cupcake_logic",
+				"deploy": "animation.chica_deploy_carl",
+				"pickup": "animation.chica_pickup_carl",
+				"hide_cupcake": "animation.chica.cupcake_hide"
 			},
 			"scripts": {
 				"animate": [
 					"base",
-					"movement_controller"
+					"movement_controller",
+					"cupcake_controller"
 				]
 			},
 			"geometry": {

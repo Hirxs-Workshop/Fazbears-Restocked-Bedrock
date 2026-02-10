@@ -1,0 +1,73 @@
+{
+	"format_version": "1.21.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:endo_01",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "enderman"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/fnaf1/endo_01/endo_01",
+				"variant_1": "textures/entity/reworked/fnaf1/endo_01/endo_01_black_eyes",
+				"variant_2": "textures/entity/reworked/fnaf1/endo_01/endo_01_brows",
+				"variant_3": "textures/entity/reworked/fnaf1/endo_01/Film_Endoskeleten_01",
+				"variant_4": "textures/entity/reworked/fnaf1/endo_01/Film_Endoskeleten_01_Springlock",
+				"variant_5": "textures/entity/reworked/fnaf1/endo_01/candy_endo"
+			},
+			"spawn_egg": {
+				"texture": "endo"
+			},
+			"animations": {
+				"pose_0": "animation.endo_stand",
+				"pose_1": "animation.endo_wave",
+				"pose_2": "animation.endo_reach",
+				"pose_3": "animation.endo_floor_sit",
+				"pose_4": "animation.endo_sit",
+				"pose_5": "animation.endo_sit_stare",
+				"pose_6": "animation.endo_lay",
+				"pose_7": "animation.endo_dismantled"
+			},
+			"scripts": {
+				"animate": [
+					{
+						"pose_0": "q.property('fr:pose') == 0"
+					},
+					{
+						"pose_1": "q.property('fr:pose') == 1"
+					},
+					{
+						"pose_2": "q.property('fr:pose') == 2"
+					},
+					{
+						"pose_3": "q.property('fr:pose') == 3"
+					},
+					{
+						"pose_4": "q.property('fr:pose') == 4"
+					},
+					{
+						"pose_5": "q.property('fr:pose') == 5"
+					},
+					{
+						"pose_6": "q.property('fr:pose') == 6"
+					},
+					{
+						"pose_7": "q.property('fr:pose') == 7"
+					}
+				]
+			},
+			"geometry": {
+				"default": "geometry.Endoskeleten_01",
+				"variant_1": "geometry.Endoskeleten_01",
+				"variant_2": "geometry.Endoskeleten_01",
+				"variant_3": "geometry.Movie_Endoskeleten_01",
+				"variant_4": "geometry.Movie_Endoskeleten_01",
+				"variant_5": "geometry.Endoskeleten_01"
+			},
+			"render_controllers": [
+				"controller.render.fr_endo_01_statue_rc"
+			],
+			"enable_attachables": false
+		}
+	}
+}

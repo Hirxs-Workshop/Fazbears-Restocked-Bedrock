@@ -1,15 +1,13 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ * ©2026
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
+ *
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+ *
 */
-
-
 
 import { world, system } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
@@ -722,9 +720,9 @@ registerBlockVariants("fr:white_wall_sign_small", [
 
 registerBlockVariants("fr:arcade_stool", [
   {
-    label: "Blue",
-    icon: "textures/fr_ui/icons/arcade_stool_blue",
-    color: "blue"
+    label: "Purple",
+    icon: "textures/fr_ui/icons/arcade_stool_purple",
+    color: "purple"
   },
   {
     label: "Green",
@@ -737,9 +735,9 @@ registerBlockVariants("fr:arcade_stool", [
     color: "orange"
   },
   {
-    label: "Purple",
-    icon: "textures/fr_ui/icons/arcade_stool_purple",
-    color: "purple"
+    label: "Blue",
+    icon: "textures/fr_ui/icons/arcade_stool_blue",
+    color: "blue"
   },
   {
     label: "Red",
@@ -856,5 +854,18 @@ registerBlockVariants("fr:breaker", [
     label: "Gray",
     icon: "textures/fr_ui/icons/breaker_gray",
     color: "gray"
+  }
+]);
+
+registerBlockVariants("fr:dumpster", [
+  {
+    label: "Dumpster",
+    icon: "textures/fr_ui/icons/dumpster",
+    color: "green"
+  },
+  {
+    label: "Dumpster dirty",
+    icon: "textures/fr_ui/icons/dumpster_dirty",
+    color: "green"
   }
 ]);

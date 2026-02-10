@@ -1,0 +1,79 @@
+{
+    "format_version": "1.21.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "fr:golden_freddy_statue",
+            "materials": {
+                "default": "spider"
+            },
+            "textures": {
+                "default": "textures/entity/reworked/fnaf1/Golden_Freddy_NoShadow",
+                "variant_1": "textures/entity/reworked/fnaf1/Golden_Freddy_HeadShadow",
+                "variant_2": "textures/entity/reworked/fnaf1/Golden_Freddy_Shadow",
+                "variant_3": "textures/entity/reworked/fnaf1/Golden_Freddy_Yellow_Bear",
+                "variant_4": "textures/entity/reworked/fnaf1/Golden_Freddy_Yellow_Bear_HeadShadow",
+                "variant_5": "textures/entity/reworked/fnaf1/Golden_Freddy_Yellow_Bear_Shadow",
+                "variant_6": "textures/entity/reworked/fnaf1/Golden_freddy_Holly_lace"
+            },
+            "animations": {
+                "pose_0": "animation.golden_freddy_sit",
+                "pose_1": "animation.golden_freddy_table_sit",
+                "pose_2": "animation.golden_freddy_mysetermini_sit",
+                "pose_3": "animation.golden_freddy_Lean_1",
+                "pose_4": "animation.golden_freddy_lean_2",
+                "pose_5": "animation.golden_freddy_lean_Reach",
+                "pose_6": "animation.golden_freddy_stand",
+                "pose_7": "animation.golden_freddy_lay",
+                "pose_8": "animation.golden_freddy_head"
+            },
+            "scripts": {
+                "animate": [
+                    {
+                        "pose_0": "q.property('fr:pose') == 0"
+                    },
+                    {
+                        "pose_1": "q.property('fr:pose') == 1"
+                    },
+                    {
+                        "pose_2": "q.property('fr:pose') == 2"
+                    },
+                    {
+                        "pose_3": "q.property('fr:pose') == 3"
+                    },
+                    {
+                        "pose_4": "q.property('fr:pose') == 4"
+                    },
+                    {
+                        "pose_5": "q.property('fr:pose') == 5"
+                    },
+                    {
+                        "pose_6": "q.property('fr:pose') == 6"
+                    },
+                    {
+                        "pose_7": "q.property('fr:pose') == 7"
+                    },
+                    {
+                        "pose_8": "q.property('fr:pose') == 8"
+                    }
+                ]
+            },
+            "geometry": {
+                "default": "geometry.fr_golden_freddy",
+                "variant_1": "geometry.fr_golden_freddy",
+                "variant_2": "geometry.fr_golden_freddy",
+                "variant_3": "geometry.fr_golden_freddy",
+                "variant_4": "geometry.fr_golden_freddy",
+                "variant_5": "geometry.fr_golden_freddy",
+                "variant_6": "geometry.fr_golden_freddy",
+                "variant_7": "geometry.fr_golden_freddy"
+            },
+            "render_controllers": [
+                "controller.render.fr_freddy_statue_rc"
+            ],
+            "enable_attachables": false,
+            "spawn_egg": {
+                "texture": "golden_freddy_icon"
+            }
+        }
+    }
+}

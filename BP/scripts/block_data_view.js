@@ -1,6 +1,6 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
+ * ©2026
  * This code is the property of Fazbear's Restocked.
  * Unauthorized copying, modification, distribution, or use of this code,
  * via any medium, is strictly prohibited without explicit permission.
@@ -18,7 +18,7 @@ system.runInterval(() => {
 	tickCounter++;
 	const now = Date.now();
 	const elapsed = now - lastTPSUpdate;
-	
+
 	if (elapsed >= 1000) {
 		const ticksInSecond = tickCounter - lastTickCount;
 		currentTPS = ticksInSecond;
@@ -58,7 +58,7 @@ function registerExecution(systemName, executionTime) {
 			avgTime: 0
 		});
 	}
-	
+
 	const data = profilingData.get(systemName);
 	data.executions++;
 	data.totalTime += executionTime;
@@ -71,26 +71,26 @@ function sendProfileReport(player) {
 		player.sendMessage("§7[Profiler] No hay datos de ejecución registrados");
 		return;
 	}
-	
+
 	const sorted = Array.from(profilingData.values())
 		.sort((a, b) => b.totalTime - a.totalTime)
 		.slice(0, 10);
-	
+
 	player.sendMessage("§6§l=== PERFORMANCE PROFILER ===");
 	player.sendMessage(`§7TPS Actual: ${getTPSColor(currentTPS)}${currentTPS}§7/20 ${getTPSStatus(currentTPS)}`);
 	player.sendMessage("§e§lTop sistemas por tiempo total:");
-	
+
 	for (let i = 0; i < sorted.length; i++) {
 		const data = sorted[i];
 		const impact = data.avgTime > 5 ? "§c⚠" : data.avgTime > 2 ? "§e⚠" : "§a✓";
 		const timeColor = data.avgTime > 5 ? "§c" : data.avgTime > 2 ? "§e" : "§a";
-		
+
 		player.sendMessage(
 			`${impact} §7${data.name}: ${timeColor}${data.avgTime.toFixed(2)}ms§7 avg ` +
 			`§8(max: ${data.maxTime.toFixed(2)}ms, x${data.executions})`
 		);
 	}
-	
+
 	const lagSystems = sorted.filter(d => d.avgTime > 5);
 	if (lagSystems.length > 0) {
 		player.sendMessage("§c§l⚠ SISTEMAS CAUSANDO LAG:");
@@ -98,46 +98,42 @@ function sendProfileReport(player) {
 			player.sendMessage(`§c- ${d.name} §7(${d.avgTime.toFixed(2)}ms promedio)`);
 		});
 	}
-	
+
 	player.sendMessage("§8Use /tag @s remove enable_profiler para detener");
 }
-
-const originalRunInterval = system.runInterval;
-const registeredIntervals = new Map();
-let intervalIdCounter = 0;
 
 system.runInterval(() => {
 	const players = world.getAllPlayers();
 	if (players.length === 0) return;
-	
+
 	const absoluteTick = system.currentTick;
-	
+
 	for (let i = 0; i < players.length; i++) {
 		const player = players[i];
-		
+
 		if (!player.hasTag('fr:dev')) continue;
-		
+
 		try {
 			const showBlocks = player.hasTag("enable_blocks");
 			const showTPS = player.hasTag("enable_tps");
 			const showTick = player.hasTag("enable_tick");
 			const showCoords = player.hasTag("enable_coords");
 			const enableProfiler = player.hasTag("enable_profiler");
-			
+
 			if (enableProfiler) {
 				const now = Date.now();
-				
+
 				const startTime = Date.now();
-				
+
 				if (now - lastProfileReport >= PROFILE_REPORT_INTERVAL) {
 					sendProfileReport(player);
 					lastProfileReport = now;
 					profilingData.clear();
 				}
-				
+
 				const endTime = Date.now();
 				registerExecution("block_data_view", endTime - startTime);
-				
+
 				if (tickCounter % 20 === 0) {
 					registerExecution("fr_system.lockers", Math.random() * 2);
 					registerExecution("fr_system.cameras", Math.random() * 3);
@@ -146,7 +142,7 @@ system.runInterval(() => {
 					registerExecution("camera_system.auto_pan", Math.random() * 1);
 				}
 			}
-			
+
 			if (!showBlocks && !showTPS && !showTick && !showCoords) {
 				const lastKey = lastViewedBlock.get(player.id);
 				if (lastKey !== null) {
@@ -155,9 +151,9 @@ system.runInterval(() => {
 				}
 				continue;
 			}
-			
+
 			let displayText = "";
-			
+
 			if (showBlocks) {
 				const { block, face } = player.getBlockFromViewDirection();
 				if (block) {
@@ -172,13 +168,13 @@ system.runInterval(() => {
 					}
 				}
 			}
-			
+
 			if (showCoords) {
 				const loc = player.location;
 				if (displayText) displayText += "\n";
 				displayText += `§7Player: §bX:${Math.floor(loc.x)} Y:${Math.floor(loc.y)} Z:${Math.floor(loc.z)}`;
 			}
-			
+
 			let perfInfo = "";
 			if (showTPS) {
 				const tpsColor = getTPSColor(currentTPS);
@@ -193,7 +189,7 @@ system.runInterval(() => {
 				if (displayText) displayText += "\n";
 				displayText += perfInfo;
 			}
-			
+
 			if (displayText) {
 				player.onScreenDisplay.setActionBar(displayText);
 			}

@@ -1,4 +1,28 @@
-{
+﻿{
+   "fr_static_overlay_wait": {
+      "anim_type": "wait",
+      "duration": 0.15,
+      "next": "@hud.fr_static_overlay_fade"
+   },
+   "fr_static_overlay_fade": {
+      "anim_type": "alpha",
+      "easing": "in_cubic",
+      "duration": 0.15,
+      "from": 1.0,
+      "to": 0
+   },
+   "fr_static_effect_anim": {
+      "anim_type": "flip_book",
+      "initial_uv": [
+         0,
+         0
+      ],
+      "frame_count": 7,
+      "frame_step": 128,
+      "fps": 10,
+      "reversible": false,
+      "easing": "linear"
+   },
    "loop_offset": {
       "anim_type": "offset",
       "duration": 1,
@@ -41,6 +65,138 @@
       "anim_type": "wait",
       "duration": 0,
       "destroy_at_end": "chat_grid_item"
+   },
+   "camera_disabled_modal": {
+      "type": "panel",
+      "size": [
+         "60%",
+         "30%"
+      ],
+      "anchor_from": "top_middle",
+      "anchor_to": "top_middle",
+      "layer": 10000,
+      "$atext": "$actionbar_text",
+      "visible": "(not (($atext - '§C§A§M§D') = $atext))",
+      "alpha": "@hud.fr_camera_dark_fade_in_text",
+      "controls": [
+         {
+            "bg": {
+               "type": "image",
+               "texture": "textures/ui/Black",
+               "size": [
+                  "100%",
+                  "100%"
+               ],
+               "layer": 90,
+               "alpha": 0
+            }
+         },
+         {
+            "text_panel": {
+               "type": "stack_panel",
+               "orientation": "vertical",
+               "anchor_from": "top_middle",
+               "anchor_to": "top_middle",
+               "size": [
+                  "100%",
+                  "100%"
+               ],
+               "layer": 91,
+               "controls": [
+                  {
+                     "filler_top": {
+                        "type": "panel",
+                        "size": [
+                           "100%",
+                           "45%"
+                        ]
+                     }
+                  },
+                  {
+                     "msg1": {
+                        "type": "label",
+                        "text": "-CAMERA DISABLED-",
+                        "shadow": true,
+                        "anchor_from": "center",
+                        "size": [
+                           "100%",
+                           "10px"
+                        ],
+                        "text_alignment": "center"
+                     }
+                  },
+                  {
+                     "msg2": {
+                        "type": "label",
+                        "text": "AUDIO ONLY",
+                        "shadow": true,
+                        "anchor_from": "center",
+                        "size": [
+                           "100%",
+                           "10px"
+                        ],
+                        "text_alignment": "center"
+                     }
+                  }
+               ]
+            }
+         }
+      ]
+   },
+   "camera_disabled_dark_overlay": {
+      "type": "panel",
+      "size": [
+         "100%",
+         "100%"
+      ],
+      "anchor_from": "center",
+      "anchor_to": "center",
+      "layer": 9000,
+      "propagate_alpha": true,
+      "$atext": "$actionbar_text",
+      "visible": "(not (($atext - '§C§A§M§D') = $atext))",
+      "alpha": "@hud.fr_camera_dark_fade_in_clean",
+      "controls": [
+         {
+            "camera_dark_overlay_fill": {
+               "type": "image",
+               "size": [
+                  "100%",
+                  "100%"
+               ],
+               "texture": "textures/ui/Black",
+               "alpha": 1
+            }
+         },
+         {
+            "static_overlay": {
+               "type": "image",
+               "size": [
+                  "170%",
+                  "170%"
+               ],
+               "uv_size": [
+                  128,
+                  72
+               ],
+               "texture": "textures/fr_ui/static_effect",
+               "layer": 100,
+               "anchor_from": "center",
+               "anchor_to": "center",
+               "uv": "@hud.fr_static_effect_anim",
+               "alpha": "@hud.fr_static_overlay_wait"
+            }
+         }
+      ]
+   },
+   "camera_disabled_factory": {
+      "type": "panel",
+      "factory": {
+         "name": "hud_actionbar_text_factory",
+         "control_ids": {
+            "hud_actionbar_text": "camera_modal@hud.camera_disabled_modal"
+         }
+      }
    },
    "image_hider_panel": {
       "type": "panel",
@@ -1268,6 +1424,22 @@
       "to": 0,
       "destroy_at_end": "hud_actionbar_text"
    },
+   "fr_camera_dark_fade_in_text": {
+      "anim_type": "alpha",
+      "easing": "out_cubic",
+      "duration": 6,
+      "from": 1.0,
+      "to": 0,
+      "destroy_at_end": "hud_actionbar_text"
+   },
+   "fr_camera_dark_fade_in_text_background": {
+      "anim_type": "alpha",
+      "easing": "out_cubic",
+      "duration": 6,
+      "from": 1,
+      "to": 0,
+      "destroy_at_end": "hud_actionbar_text"
+   },
    "alt2_anim_actionbar_text_alpha_out": {
       "anim_type": "alpha",
       "easing": "in_expo",
@@ -1337,6 +1509,39 @@
       "from": 1.0,
       "to": 0,
       "destroy_at_end": "camera_dark_overlay"
+   },
+   "alt_camera_dark_fade_in": {
+      "anim_type": "alpha",
+      "easing": "out_cubic",
+      "duration": 0.25,
+      "from": 0.0,
+      "to": 1.0,
+      "next": "@hud.alt_camera_dark_wait"
+   },
+   "alt_camera_dark_wait": {
+      "anim_type": "wait",
+      "duration": 6,
+      "next": "@hud.alt_camera_dark_fade_out"
+   },
+   "alt_camera_dark_fade_out": {
+      "anim_type": "alpha",
+      "easing": "in_cubic",
+      "duration": 0.5,
+      "from": 1.0,
+      "to": 0,
+      "destroy_at_end": "camera_dark_overlay"
+   },
+   "fr_camera_dark_fade_in_clean": {
+      "anim_type": "alpha",
+      "easing": "out_cubic",
+      "duration": 0.25,
+      "from": 0.0,
+      "to": 1.0,
+      "next": "@hud.fr_camera_dark_wait_clean"
+   },
+   "fr_camera_dark_wait_clean": {
+      "anim_type": "wait",
+      "duration": 60
    },
    "hud_actionbar_text": {
       "visible": "((($atext - '§C§A§M§L') = $atext) and (($atext - 'bar:') = $atext))",
@@ -1546,6 +1751,15 @@
          "name": "hud_actionbar_text_factory",
          "control_ids": {
             "hud_actionbar_text": "camera_dark_overlay@hud.camera_dark_overlay"
+         }
+      }
+   },
+   "camera_disabled_dark_factory": {
+      "type": "panel",
+      "factory": {
+         "name": "hud_actionbar_text_factory",
+         "control_ids": {
+            "hud_actionbar_text": "camera_disabled_dark_overlay@hud.camera_disabled_dark_overlay"
          }
       }
    },
@@ -2115,6 +2329,12 @@
                },
                {
                   "faztab_close_overlay@hud.faztab_close_factory": {}
+               },
+               {
+                  "camera_disabled_overlay@hud.camera_disabled_factory": {}
+               },
+               {
+                  "camera_disabled_dark_overlay@hud.camera_disabled_dark_factory": {}
                },
                {
                   "bar_1@hud.animated_progress_bar": {

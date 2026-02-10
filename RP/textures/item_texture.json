@@ -66,6 +66,11 @@
                 "textures/items/faz-diver_manager"
             ]
         },
+        "cupcake_icon": {
+            "textures": [
+                "textures/items/cupcake_icon"
+            ]
+        },
         "faz-diver_off": {
             "textures": [
                 "textures/items/faz-diver_off"
@@ -139,6 +144,16 @@
         "wall_tear_holes": {
             "textures": [
                 "textures/items/wall_tear_hole"
+            ]
+        },
+        "golden_freddy_icon": {
+            "textures": [
+                "textures/items/golden_freddy_icon"
+            ]
+        },
+        "movie_sign": {
+            "textures": [
+                "textures/items/movie_sign"
             ]
         }
     }

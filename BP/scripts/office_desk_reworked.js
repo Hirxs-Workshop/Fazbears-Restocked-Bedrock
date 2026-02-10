@@ -1,15 +1,13 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ * ©2026
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
+ *
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+ *
 */
-
-
 
 import { system, world, BlockPermutation, ItemStack } from "@minecraft/server";
 system.beforeEvents.startup.subscribe(initEvent => {
@@ -43,7 +41,7 @@ system.beforeEvents.startup.subscribe(initEvent => {
                             deskEx(nb, 'north', 'south', nbFacing, 'desk');
                         }
                     });
-                } catch {}
+                } catch { }
             });
         }
     });
@@ -131,13 +129,13 @@ function modifyDesk(block, start, end) {
         let deskDirection = block.permutation.getState('minecraft:cardinal_direction');
         let startDirection = (deskDirection === 'north' || deskDirection === 'east') ? 'left' : 'right';
         let endDirection = startDirection === 'left' ? 'right' : 'left';
-        
+
         const startBlock = block.dimension.getBlock(start);
         const endBlock = block.dimension.getBlock(end);
-        
+
         const startPerm = modifyPermutation(startBlock, 'fbd:desk_state_sides', startDirection);
         const endPerm = modifyPermutation(endBlock, 'fbd:desk_state_sides', endDirection);
-        
+
         if (startPerm && startBlock) {
             startBlock.setPermutation(startPerm);
         }
@@ -185,7 +183,7 @@ function hasDeskNeighborInAxes(center, axes) {
             const nb = center[a]();
             if (isMatchingBlock(nb, typeId, dir, false)) return true;
         }
-    } catch {}
+    } catch { }
     return false;
 }
 
@@ -198,13 +196,13 @@ function ensureIsolatedAsBoth(center) {
                 center.setPermutation(newPerm);
             }
         }
-    } catch {}
+    } catch { }
 }
 function modifyPermutation(block, permutationName, state) {
     if (!block || block.typeId === 'minecraft:air') {
         return null;
     }
-    
+
     try {
         block.permutation.getState(permutationName);
         return block.permutation.withState(permutationName, state);
@@ -309,38 +307,38 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
             block.dimension.getBlock(aboveBlock.location).setPermutation(newPerm);
         }
     }
-    
+
     let shouldProcessDesk = false;
     try {
         block.permutation?.getState('fbd:desk_state_sides');
         shouldProcessDesk = true;
     } catch {
-        try { 
-            const dirs = ['west','east','north','south'];
+        try {
+            const dirs = ['west', 'east', 'north', 'south'];
             for (const dir of dirs) {
                 let nb;
-                try { nb = block[dir](); } catch {}
+                try { nb = block[dir](); } catch { }
                 if (!nb) continue;
-                try { 
-                    nb.permutation.getState('fbd:desk_state_sides'); 
+                try {
+                    nb.permutation.getState('fbd:desk_state_sides');
                     shouldProcessDesk = true;
                     break;
-                } catch {}
+                } catch { }
             }
-        } catch {}
+        } catch { }
     }
-    
+
     if (!shouldProcessDesk) return;
-    
+
     try {
-        const dirs = ['west','east','north','south'];
+        const dirs = ['west', 'east', 'north', 'south'];
         const processed = new Set();
         for (const dir of dirs) {
             let nb;
-            try { nb = block[dir](); } catch {}
+            try { nb = block[dir](); } catch { }
             if (!nb) continue;
             let isDesk = false;
-            try { nb.permutation.getState('fbd:desk_state_sides'); isDesk = true; } catch {}
+            try { nb.permutation.getState('fbd:desk_state_sides'); isDesk = true; } catch { }
             if (!isDesk) continue;
             const key = `${nb.location.x},${nb.location.y},${nb.location.z}`;
             if (processed.has(key)) continue;
@@ -354,7 +352,7 @@ world.afterEvents.playerBreakBlock.subscribe((e) => {
                 }
             });
         }
-    } catch {}
+    } catch { }
 });
 function removeOneChest(block) {
     block.dimension.getEntities({ type: 'minecraft:item', name: 'Chest', location: block.location }).forEach((item) => {

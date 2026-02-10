@@ -5317,6 +5317,82 @@
 					"scale": 0
 				}
 			}
+		},
+		"animation.freddy_miku": {
+			"loop": true,
+			"bones": {
+				"upperpart": {
+					"rotation": [0, -5, 7.5]
+				},
+				"head": {
+					"rotation": [5.14892, -1.72794, -9.85108]
+				},
+				"eyebrowL": {
+					"position": [0, 0.5, 0]
+				},
+				"eyebrowR": {
+					"position": [0, -0.2, 0]
+				},
+				"bone4": {
+					"scale": 0
+				},
+				"bone6": {
+					"scale": 0
+				},
+				"bone7": {
+					"scale": 0
+				},
+				"jaw": {
+					"rotation": [7.5, 0, 0]
+				},
+				"bone3": {
+					"scale": 0
+				},
+				"bone5": {
+					"scale": 0
+				},
+				"bone14": {
+					"scale": 0
+				},
+				"bodysuit": {
+					"rotation": [0, 0, 0]
+				},
+				"armL": {
+					"rotation": [0, 7.5, -65]
+				},
+				"lower": {
+					"rotation": [-114.52015, 46.04179, -22.17599]
+				},
+				"Gift": {
+					"rotation": [82.94677, 44.78238, 85.01893],
+					"position": [17, 16, -7]
+				},
+				"armR": {
+					"rotation": [-15, 0, 47.5]
+				},
+				"lower2": {
+					"rotation": [-108.84359, -21.40584, 97.09999]
+				},
+				"masktop2": {
+					"scale": 0
+				},
+				"legL": {
+					"rotation": [-7.5, -5, -5]
+				},
+				"lower3": {
+					"rotation": [10, 0, 0]
+				},
+				"foot": {
+					"rotation": [0.44067, 9.99038, 5.03852]
+				},
+				"legR": {
+					"rotation": [1.77603, 7.82775, 8.03026]
+				},
+				"lower4": {
+					"rotation": [78.82717, 18.74724, -7.09597],
+					"position": [0, 1, 0]
+				}
+			}
 		}
 	}
 }

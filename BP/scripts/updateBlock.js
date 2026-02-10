@@ -1,15 +1,13 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ * ©2026
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
- * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ 
- *  
+ *
+ * DO NOT COPY OR STEAL, ty :>ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ ㅤ
+ *
 */
-
-
 
 import { world, system, BlockPermutation, Direction, EquipmentSlot } from "@minecraft/server";
 import { ActionFormData, ModalFormData, MessageFormData } from "@minecraft/server-ui";
@@ -38,7 +36,7 @@ class DoorManager {
       if (!world.getDynamicProperty("fr:backstage_door_block_db")) {
         world.setDynamicProperty("fr:backstage_door_block_db", JSON.stringify({ doorBases: [], baseDimensions: [], stickyOpenBases: [], doorOpenDirections: [], doorBlockTypes: [] }));
       }
-      
+
       this.loadDoorDatabase();
     });
 
@@ -123,6 +121,18 @@ class DoorManager {
       if (animas.length === 0) continue;
       hasAnyAnimatronics = true;
       for (const e of animas) {
+        // Ignorar estatuas (tienen la familia "statue")
+        if (e.hasComponent("minecraft:type_family")) {
+          const typeFamily = e.getComponent("minecraft:type_family");
+          if (typeFamily.hasTypeFamily("statue")) continue;
+        }
+        
+        // Ignorar animatrónicos que tienen night mode activado
+        try {
+          const isStatue = e.getDynamicProperty("fr:night_mode_enabled") === true;
+          if (isStatue) continue;
+        } catch { }
+        
         const loc = e.location;
         const target = this.findNearestDoorBase(dim, Math.floor(loc.x), Math.floor(loc.y), Math.floor(loc.z), 2);
         if (!target) continue;
@@ -152,23 +162,23 @@ class DoorManager {
   playSoundForNearbyPlayers(dimension, center, soundId, radius = 16) {
     const players = dimension.getPlayers({ location: center, maxDistance: radius });
     for (const p of players) {
-      try { p.playSound(soundId); } catch {}
+      try { p.playSound(soundId); } catch { }
     }
   }
 
   triggerDoorEventForAnimatronics(dimension, baseX, baseY, baseZ, isOpening, fromFront = true) {
     const baseKey = this.getBlockKey(baseX, baseY, baseZ);
     let targetEntity = null;
-    
+
     const storedId = this.doorEntities.get(baseKey);
     if (storedId) {
-      try { 
-        targetEntity = dimension.getEntity(storedId); 
-      } catch (_) { 
-        targetEntity = null; 
+      try {
+        targetEntity = dimension.getEntity(storedId);
+      } catch (_) {
+        targetEntity = null;
       }
     }
-    
+
     if (!targetEntity) {
       const allEntities = dimension.getEntities({
         location: { x: baseX + 0.5, y: baseY, z: baseZ + 0.5 },
@@ -182,7 +192,7 @@ class DoorManager {
         }
       }
     }
-    
+
     if (targetEntity) {
       let eventName;
       if (isOpening) {
@@ -190,7 +200,7 @@ class DoorManager {
       } else {
         eventName = fromFront ? "close_door" : "close_door_back";
       }
-      
+
       try {
         targetEntity.triggerEvent(eventName);
       } catch (e) {
@@ -221,7 +231,32 @@ class DoorManager {
       if (!isOpen) continue;
       const center = { x: baseX + 0.5, y: baseY + 1, z: baseZ + 0.5 };
       const animasNear = dim.getEntities({ families: ['animatronic'], location: center, maxDistance: noAnimatronicNearbyRadius });
-      if (animasNear && animasNear.length > 0) continue;
+      
+      // Filtrar estatuas y animatrónicos con night mode
+      let hasActiveAnimatronics = false;
+      if (animasNear && animasNear.length > 0) {
+        for (const anima of animasNear) {
+          // Ignorar estatuas (tienen la familia "statue")
+          if (anima.hasComponent("minecraft:type_family")) {
+            const typeFamily = anima.getComponent("minecraft:type_family");
+            if (typeFamily.hasTypeFamily("statue")) continue;
+          }
+          
+          try {
+            const isStatue = anima.getDynamicProperty("fr:night_mode_enabled") === true;
+            if (!isStatue) {
+              hasActiveAnimatronics = true;
+              break;
+            }
+          } catch {
+            // Si falla al leer la propiedad, asumir que es activo
+            hasActiveAnimatronics = true;
+            break;
+          }
+        }
+      }
+      
+      if (hasActiveAnimatronics) continue;
       this.toggleDoorByBase(dim, baseX, baseY, baseZ, false);
     }
   }
@@ -238,7 +273,7 @@ class DoorManager {
           const baseKey = this.doorBases.get(key) || key;
           const [baseX, baseY, baseZ] = baseKey.split(",").map(Number);
           const dx = x - cx, dy = y - cy, dz = z - cz;
-          const d2 = dx*dx + dy*dy + dz*dz;
+          const d2 = dx * dx + dy * dy + dz * dz;
           if (d2 < bestDist2) {
             const baseBlock = dimension.getBlock({ x: baseX, y: baseY, z: baseZ });
             if (!baseBlock) continue;
@@ -581,7 +616,7 @@ class DoorManager {
   placeDoorSegments(dimension, baseX, baseY, baseZ, offsets, openState, direction, blockType) {
     const baseKey = this.getBlockKey(baseX, baseY, baseZ);
     let successfulPlacements = 0;
-    
+
     for (let i = 0; i < offsets.length; i++) {
       const [dx, dz] = offsets[i];
       const dy = Math.floor(i / 2);
@@ -603,18 +638,18 @@ class DoorManager {
         if (!block) {
           continue;
         }
-        
+
         block.setPermutation(perm);
-        
+
         const verifyBlock = dimension.getBlock(blockLocation);
         if (verifyBlock && this.isDoorBlock(verifyBlock.typeId)) {
           this.processedBlocks.set(this.getBlockKey(blockLocation.x, blockLocation.y, blockLocation.z), true);
           this.doorBases.set(this.getBlockKey(blockLocation.x, blockLocation.y, blockLocation.z), baseKey);
           successfulPlacements++;
         }
-      } catch {}
+      } catch { }
     }
-    
+
     if (successfulPlacements === offsets.length) {
       this.baseDimensions.set(baseKey, dimension.id);
       this.saveDoorDatabase();
@@ -672,8 +707,8 @@ class DoorManager {
     switch (doorDirection) {
       case "north": extraDz = -1; break;
       case "south": extraDz = 1; break;
-      case "west":  extraDx = -1; break;
-      case "east":  extraDx = 1; break;
+      case "west": extraDx = -1; break;
+      case "east": extraDx = 1; break;
       default: break;
     }
     for (let i = 0; i < closedOffsets.length; i++) {
@@ -741,8 +776,8 @@ class DoorManager {
       switch (doorDirection) {
         case "north": extraDz = -1; break;
         case "south": extraDz = 1; break;
-        case "west":  extraDx = -1; break;
-        case "east":  extraDx = 1; break;
+        case "west": extraDx = -1; break;
+        case "east": extraDx = 1; break;
         default: break;
       }
       let minX = Infinity, minY = Infinity, minZ = Infinity;
@@ -781,8 +816,7 @@ class DoorManager {
     return false;
   }
 
-
-  handleOnPlace(e) {
+handleOnPlace(e) {
     const { block } = e;
     if (block.permutation.getState("fr:upper_block_bit")) return;
     const { x, y, z } = block.location;
@@ -793,27 +827,27 @@ class DoorManager {
     const states = block.permutation.getAllStates();
     const direction = states["minecraft:cardinal_direction"] || "south";
     const offsets = this.getClosedOffsets(direction);
-    
+
     const dimension = block.dimension;
     for (let i = 0; i < offsets.length; i++) {
       const [dx, dz] = offsets[i];
       const dy = Math.floor(i / 2);
       const checkPos = { x: x + dx, y: y + dy, z: z + dz };
       const checkBlock = dimension.getBlock(checkPos);
-      
+
       if (checkBlock && checkBlock.typeId !== "minecraft:air" && !(dx === 0 && dz === 0 && dy === 0)) {
         block.setType("minecraft:air");
         return;
       }
     }
-    
+
     const placementSuccess = this.placeDoorSegments(dimension, x, y, z, offsets, false, direction, block.typeId);
-    
+
     if (!placementSuccess) {
       block.setType("minecraft:air");
       return;
     }
-    
+
     this.activateDoorChain(dimension, x, y, z, direction);
 
     this.processedBlocks.set(key, true);
@@ -832,9 +866,9 @@ class DoorManager {
       const entityName = this.doorBlockToEntity[block.typeId] || "fr:backstage_door";
       const entity = dimension.spawnEntity(entityName, { x: x + 0.5, y: y, z: z + 0.5 });
       entity.setRotation({ x: 0, y: angle });
-      
+
       this.doorEntities.set(key, entity.id);
-    } catch {}
+    } catch { }
   }
 
   handleOnInteract(e) {
@@ -885,13 +919,13 @@ class DoorManager {
 
     const equippable = player.getComponent("minecraft:equippable");
     const heldItem = equippable?.getEquipment(EquipmentSlot.Mainhand);
-    
+
     if (heldItem && heldItem.typeId === "fr:faz-diver_employee" && !isOpen) {
       const currentSide = this.doorOpenSide.get(baseKey) ?? false;
       const newSide = !currentSide;
       this.doorOpenSide.set(baseKey, newSide);
       this.saveDoorDatabase();
-      
+
       player.playSound("random.click");
       const sideText = newSide ? "§aFront" : "§cBack";
       player.sendMessage(`§7Door open direction: ${sideText}`);
@@ -899,7 +933,7 @@ class DoorManager {
     }
 
     const fromFront = this.doorOpenSide.get(baseKey) ?? false;
-    
+
     if (!isOpen) {
       if (this.isOpenAreaBlockedForSide(dimension, baseX, baseY, baseZ, doorDirection, fromFront)) {
         player.playSound("mob.zombie.wood");
@@ -968,14 +1002,12 @@ class DoorManager {
         updateSegment(newPos, { dy }, i);
       }
     }
-    
+
     const doorCenter = { x: baseX + 0.5, y: baseY + 1, z: baseZ + 0.5 };
     const soundId = newOpenState ? "open.wooden_door" : "close.wooden_door";
     this.playSoundForNearbyPlayers(dimension, doorCenter, soundId, 16);
-    
 
-
-    system.runTimeout(() => {
+system.runTimeout(() => {
       const offsetsToActivate = newOpenState ? openedOffsets : closedOffsets;
       for (let i = 0; i < offsetsToActivate.length; i++) {
         const [dx, dz] = offsetsToActivate[i];
@@ -993,11 +1025,11 @@ class DoorManager {
       this.stickyOpenBases.delete(baseKeyForSticky);
       this.doorOpenDirections.delete(baseKeyForSticky);
     }
-    
+
     system.runTimeout(() => {
       this.triggerDoorEventForAnimatronics(dimension, baseX, baseY, baseZ, newOpenState, fromFront);
     }, 2);
-    
+
     this.saveDoorDatabase();
   }
 
@@ -1028,7 +1060,7 @@ class DoorManager {
     const [baseX, baseY, baseZ] = baseKey.split(",").map(Number);
     const direction = states["minecraft:cardinal_direction"] || "south";
     const openState = states["fr:open_bit"] || false;
-    
+
     let offsets;
     if (openState) {
       const fromFront = this.doorOpenDirections.get(baseKey);
@@ -1081,34 +1113,34 @@ class DoorManager {
 const doorManager = new DoorManager();
 
 system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
-    blockComponentRegistry.registerCustomComponent("fr:onPlayerInteract", {
-        onPlayerInteract({ block, dimension, face, player }) {
-            if (block.typeId === "fr:restroom_stall_door") {
-		if (block.permutation.getState("fr:open_bit") == false && block.above().permutation.getState("fr:open_bit") == false) {
-		    player.playSound("open.wooden_door")
-                    block.setPermutation(block.permutation.withState("fr:open_bit", true))
-                    block.above().setPermutation(block.above().permutation.withState("fr:open_bit", true))
-                    return;
-           	}
-		if (block.below().permutation.getState("fr:open_bit") == false && block.permutation.getState("fr:open_bit") == false) {
-		    player.playSound("open.wooden_door")
-                    block.setPermutation(block.permutation.withState("fr:open_bit", true))
-                    block.below().setPermutation(block.below().permutation.withState("fr:open_bit", true))
-                    return;
-           	}
-		if (block.permutation.getState("fr:open_bit") == true && block.above().permutation.getState("fr:open_bit") == true) {
-		    player.playSound("close.wooden_door")
-                    block.setPermutation(block.permutation.withState("fr:open_bit", false))
-                    block.above().setPermutation(block.above().permutation.withState("fr:open_bit", false))
-                    return;
-           	}
-		if (block.below().permutation.getState("fr:open_bit") == true && block.permutation.getState("fr:open_bit") == true) {
-		    player.playSound("close.wooden_door")
-                    block.setPermutation(block.permutation.withState("fr:open_bit", false))
-                    block.below().setPermutation(block.below().permutation.withState("fr:open_bit", false))
-                    return;
-           	}
-            }
+  blockComponentRegistry.registerCustomComponent("fr:onPlayerInteract", {
+    onPlayerInteract({ block, dimension, face, player }) {
+      if (block.typeId === "fr:restroom_stall_door") {
+        if (block.permutation.getState("fr:open_bit") == false && block.above().permutation.getState("fr:open_bit") == false) {
+          player.playSound("open.wooden_door")
+          block.setPermutation(block.permutation.withState("fr:open_bit", true))
+          block.above().setPermutation(block.above().permutation.withState("fr:open_bit", true))
+          return;
         }
-    })
+        if (block.below().permutation.getState("fr:open_bit") == false && block.permutation.getState("fr:open_bit") == false) {
+          player.playSound("open.wooden_door")
+          block.setPermutation(block.permutation.withState("fr:open_bit", true))
+          block.below().setPermutation(block.below().permutation.withState("fr:open_bit", true))
+          return;
+        }
+        if (block.permutation.getState("fr:open_bit") == true && block.above().permutation.getState("fr:open_bit") == true) {
+          player.playSound("close.wooden_door")
+          block.setPermutation(block.permutation.withState("fr:open_bit", false))
+          block.above().setPermutation(block.above().permutation.withState("fr:open_bit", false))
+          return;
+        }
+        if (block.below().permutation.getState("fr:open_bit") == true && block.permutation.getState("fr:open_bit") == true) {
+          player.playSound("close.wooden_door")
+          block.setPermutation(block.permutation.withState("fr:open_bit", false))
+          block.below().setPermutation(block.below().permutation.withState("fr:open_bit", false))
+          return;
+        }
+      }
+    }
+  })
 })

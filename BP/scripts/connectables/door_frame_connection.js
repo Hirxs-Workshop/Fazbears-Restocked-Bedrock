@@ -1,12 +1,12 @@
 /**
  * FAZBEAR'S RESTOCKED - BEDROCK
- * ©2025
- * 
- * If you want to modify or use this system as a base, contact the code developer, 
+ * ©2026
+ *
+ * If you want to modify or use this system as a base, contact the code developer,
  * Hyrxs (discord: hyrxs), for more information and authorization
- * 
+ *
  * DO NOT COPY OR STEAL, ty :>
- *  
+ *
 */
 
 import { system, world, BlockPermutation } from '@minecraft/server';
@@ -15,8 +15,8 @@ const DoorFrameSystem = {
     neighborOffsets: Object.freeze({
         north: { left: [-1, 0, 0], right: [1, 0, 0], above: [0, 1, 0], below: [0, -1, 0] },
         south: { left: [1, 0, 0], right: [-1, 0, 0], above: [0, 1, 0], below: [0, -1, 0] },
-        east:  { left: [0, 0, -1], right: [0, 0, 1], above: [0, 1, 0], below: [0, -1, 0] },
-        west:  { left: [0, 0, 1], right: [0, 0, -1], above: [0, 1, 0], below: [0, -1, 0] }
+        east: { left: [0, 0, -1], right: [0, 0, 1], above: [0, 1, 0], below: [0, -1, 0] },
+        west: { left: [0, 0, 1], right: [0, 0, -1], above: [0, 1, 0], below: [0, -1, 0] }
     }),
 
     isDoorFrame(block) {
@@ -42,18 +42,18 @@ const DoorFrameSystem = {
         const neighbors = this.getDoorFrameNeighbors(block);
         let newStates = { ...block.permutation.getAllStates() };
         let hasChanges = false;
-        
+
         for (const [dir, neighbor] of Object.entries(neighbors)) {
             const shouldConnect = this.isDoorFrame(neighbor) && neighbor.permutation.getState('minecraft:cardinal_direction') === direction;
             const newValue = shouldConnect ? 1 : 0;
             const currentValue = newStates[`fr:${dir}_connection`] || 0;
-            
+
             if (newValue !== currentValue) {
                 newStates[`fr:${dir}_connection`] = newValue;
                 hasChanges = true;
             }
         }
-        
+
         if (hasChanges) {
             const newPerm = BlockPermutation.resolve(block.typeId, newStates);
             block.setPermutation(newPerm);
@@ -77,27 +77,26 @@ system.beforeEvents.startup.subscribe((eventData) => {
         onPlace(e) {
             const { block } = e;
             DoorFrameSystem.updateSelfAndNeighbors(block);
+        },
+        onPlayerBreak({ block, brokenBlockPermutation }) {
+            if (!block || brokenBlockPermutation.type.id !== 'fr:door_frame') return;
+
+            const dim = block.dimension;
+            const { x, y, z } = block.location;
+            const neighbors = [
+                dim.getBlock({ x: x - 1, y, z }),
+                dim.getBlock({ x: x + 1, y, z }),
+                dim.getBlock({ x, y: y + 1, z }),
+                dim.getBlock({ x, y: y - 1, z }),
+                dim.getBlock({ x, y, z: z - 1 }),
+                dim.getBlock({ x, y, z: z + 1 })
+            ];
+
+            for (const neighbor of neighbors) {
+                if (DoorFrameSystem.isDoorFrame(neighbor)) {
+                    DoorFrameSystem.updateSelfAndNeighbors(neighbor);
+                }
+            }
         }
     });
-});
-
-world.afterEvents.playerBreakBlock.subscribe(({ block, brokenBlockPermutation }) => {
-    if (!block || brokenBlockPermutation.type.id !== 'fr:door_frame') return;
-    
-    const dim = block.dimension;
-    const { x, y, z } = block.location;
-    const neighbors = [
-        dim.getBlock({ x: x - 1, y, z }),
-        dim.getBlock({ x: x + 1, y, z }),
-        dim.getBlock({ x, y: y + 1, z }),
-        dim.getBlock({ x, y: y - 1, z }),
-        dim.getBlock({ x, y, z: z - 1 }),
-        dim.getBlock({ x, y, z: z + 1 })
-    ];
-    
-    for (const neighbor of neighbors) {
-        if (DoorFrameSystem.isDoorFrame(neighbor)) {
-            DoorFrameSystem.updateSelfAndNeighbors(neighbor);
-        }
-    }
 });

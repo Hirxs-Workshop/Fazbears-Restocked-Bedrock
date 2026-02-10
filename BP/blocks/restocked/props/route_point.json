@@ -1,0 +1,67 @@
+{
+  "format_version": "1.21.30",
+  "minecraft:block": {
+    "description": {
+      "identifier": "fr:route_point",
+      "states": {
+          "fr:visible": [true, false]
+      },
+      "menu_category": {
+        "category": "none",
+        "is_hidden_in_commands": false
+      }
+    },
+    "components": {
+      "minecraft:geometry": {
+        "identifier": "geometry.fr_animatronic_platform"
+      },
+      "minecraft:material_instances": {
+        "*": {
+          "texture": "fr_platform_2",
+          "render_method": "alpha_test",
+          "ambient_occlusion": true,
+          "face_dimming": true
+        }
+      },
+      "minecraft:collision_box": false,
+      "minecraft:selection_box": {
+        "origin": [
+          -8,
+          0,
+          -8
+        ],
+        "size": [
+          16,
+          2,
+          16
+        ]
+      },
+      "minecraft:light_dampening": 0,
+      "minecraft:light_emission": 10,
+      "minecraft:tick": {
+        "interval_range": [
+          10,
+          10
+        ],
+        "looping": true
+      },
+      "minecraft:custom_components": [
+        "fr:route_point_component"
+      ]
+    },
+    "permutations": [
+        {
+            "condition": "q.block_state('fr:visible') == false",
+            "components": {
+                "minecraft:geometry": "geometry.inv_cube",
+                "minecraft:material_instances": {
+                    "*": {
+                        "texture": "fr_platform_2",
+                        "render_method": "alpha_test"
+                    }
+                }
+            }
+        }
+    ]
+  }
+}
