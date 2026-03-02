@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "chica_the_snowbird",
+        "metalness_emissive_roughness": "chica_the_snowbird_mer",
+        "heightmap": "chica_the_snowbird_normal"
+    }
+}

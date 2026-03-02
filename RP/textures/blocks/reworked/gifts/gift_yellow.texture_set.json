@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "gift_yellow",
+        "metalness_emissive_roughness": "gift_yellow_mer",
+        "heightmap": "gift_yellow_normal"
+    }
+}

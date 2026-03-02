@@ -10,31 +10,45 @@
         "freddy:attack_time": {
           "type": "float",
           "default": 0.0,
-          "range": [0.0, 10.0]
+          "range": [
+            0.0,
+            10.0
+          ]
         },
         "freddy:kill_counter": {
           "type": "int",
           "default": 0,
-          "range": [0, 20]
+          "range": [
+            0,
+            20
+          ]
         },
         "fr:pose": {
           "client_sync": true,
           "type": "int",
           "default": 0,
-          "range": [0, 32]
+          "range": [
+            0,
+            32
+          ]
         },
         "fr:variant": {
           "client_sync": true,
           "type": "int",
           "default": 0,
-          "range": [0, 7]
+          "range": [
+            0,
+            11
+          ]
         }
       },
       "animations": {
         "attack_animation": "controller.animation.fnaf1_freddy.attack"
       },
       "scripts": {
-        "animate": ["attack_animation"]
+        "animate": [
+          "attack_animation"
+        ]
       }
     },
     "component_groups": {
@@ -106,7 +120,10 @@
         "minecraft:entity_sensor": {
           "subsensors": [
             {
-              "range": [16.0, 16.0],
+              "range": [
+                16.0,
+                16.0
+              ],
               "minimum_count": 1,
               "event_filters": {
                 "all_of": [
@@ -127,7 +144,10 @@
           ]
         },
         "minecraft:timer": {
-          "time": [2.0, 4.0],
+          "time": [
+            2.0,
+            4.0
+          ],
           "looping": true,
           "time_down_event": {
             "event": "freddy_check_for_player"
@@ -207,7 +227,10 @@
         "minecraft:entity_sensor": {
           "subsensors": [
             {
-              "range": [16.0, 16.0],
+              "range": [
+                16.0,
+                16.0
+              ],
               "minimum_count": 1,
               "event_filters": {
                 "all_of": [
@@ -228,7 +251,10 @@
           ]
         },
         "minecraft:timer": {
-          "time": [0.5, 1.0],
+          "time": [
+            0.5,
+            1.0
+          ],
           "looping": true,
           "time_down_event": {
             "event": "freddy_check_for_player"
@@ -244,7 +270,11 @@
           "pull_in_entities": true,
           "seats": [
             {
-              "position": [0, 0.3, 1.3],
+              "position": [
+                0,
+                0.3,
+                1.3
+              ],
               "rotate_rider_by": 180,
               "lock_rider_rotation": 0
             }
@@ -313,7 +343,10 @@
           "priority": 10
         },
         "minecraft:timer": {
-          "time": [1.0, 2.0],
+          "time": [
+            1.0,
+            2.0
+          ],
           "looping": true,
           "time_down_event": {
             "event": "freddy_check_can_attack_again"
@@ -425,7 +458,10 @@
           "priority": 10
         },
         "minecraft:timer": {
-          "time": [1.0, 2.0],
+          "time": [
+            1.0,
+            2.0
+          ],
           "looping": true,
           "time_down_event": {
             "event": "freddy_check_for_player"
@@ -435,7 +471,11 @@
     },
     "components": {
       "minecraft:type_family": {
-        "family": ["freddy", "animatronic", "hostile"]
+        "family": [
+          "freddy",
+          "animatronic",
+          "hostile"
+        ]
       },
       "minecraft:collision_box": {
         "width": 0.8,
@@ -488,26 +528,40 @@
     "events": {
       "minecraft:entity_spawned": {
         "add": {
-          "component_groups": ["freddy_hostile", "freddy_normal"]
+          "component_groups": [
+            "freddy_hostile",
+            "freddy_normal"
+          ]
         }
       },
       "freddy_start_chase": {
         "add": {
-          "component_groups": ["freddy_chasing"]
+          "component_groups": [
+            "freddy_chasing"
+          ]
         },
         "remove": {
-          "component_groups": ["freddy_hostile"]
+          "component_groups": [
+            "freddy_hostile"
+          ]
         }
       },
       "freddy_stop_chase": {
         "add": {
-          "component_groups": ["freddy_hostile"]
+          "component_groups": [
+            "freddy_hostile"
+          ]
         },
         "remove": {
-          "component_groups": ["freddy_chasing", "freddy_scare_cooldown"]
+          "component_groups": [
+            "freddy_chasing",
+            "freddy_scare_cooldown"
+          ]
         },
         "queue_command": {
-          "command": ["tag @s remove played_scare"]
+          "command": [
+            "tag @s remove played_scare"
+          ]
         }
       },
       "freddy_set_attack_time_1": {
@@ -534,10 +588,15 @@
       },
       "freddy_start_attack": {
         "add": {
-          "component_groups": ["freddy_attacking"]
+          "component_groups": [
+            "freddy_attacking"
+          ]
         },
         "remove": {
-          "component_groups": ["freddy_chasing", "freddy_hostile"]
+          "component_groups": [
+            "freddy_chasing",
+            "freddy_hostile"
+          ]
         },
         "set_property": {
           "freddy:attack_time": "1.0"
@@ -570,25 +629,36 @@
               "value": "freddy_hit"
             },
             "add": {
-              "component_groups": ["freddy_ignoring_player"]
+              "component_groups": [
+                "freddy_ignoring_player"
+              ]
             },
             "remove": {
-              "component_groups": ["freddy_chasing", "freddy_hostile"]
+              "component_groups": [
+                "freddy_chasing",
+                "freddy_hostile"
+              ]
             }
           }
         ]
       },
       "freddy_sitting_player": {
         "queue_command": {
-          "command": ["ride @p start_riding @s teleport_ride"]
+          "command": [
+            "ride @p start_riding @s teleport_ride"
+          ]
         }
       },
       "freddy_do_seat_player": {
         "remove": {
-          "component_groups": ["freddy_seat_player"]
+          "component_groups": [
+            "freddy_seat_player"
+          ]
         },
         "queue_command": {
-          "command": ["ride @p start_riding @s teleport_ride"]
+          "command": [
+            "ride @p start_riding @s teleport_ride"
+          ]
         }
       },
       "freddy_keep_player_seated": {
@@ -643,26 +713,40 @@
           ]
         },
         "remove": {
-          "component_groups": ["freddy_attacking", "freddy_normal"]
+          "component_groups": [
+            "freddy_attacking",
+            "freddy_normal"
+          ]
         },
         "add": {
-          "component_groups": ["freddy_hostile", "freddy_post_attack"]
+          "component_groups": [
+            "freddy_hostile",
+            "freddy_post_attack"
+          ]
         }
       },
       "freddy_reset_scare": {
         "queue_command": {
-          "command": ["tag @s remove played_scare"]
+          "command": [
+            "tag @s remove played_scare"
+          ]
         },
         "remove": {
-          "component_groups": ["freddy_scare_cooldown"]
+          "component_groups": [
+            "freddy_scare_cooldown"
+          ]
         }
       },
       "freddy_clean_blood": {
         "remove": {
-          "component_groups": ["freddy_post_attack"]
+          "component_groups": [
+            "freddy_post_attack"
+          ]
         },
         "add": {
-          "component_groups": ["freddy_normal"]
+          "component_groups": [
+            "freddy_normal"
+          ]
         },
         "queue_command": {
           "command": [
@@ -687,10 +771,15 @@
               ]
             },
             "add": {
-              "component_groups": ["freddy_chasing", "freddy_scare_cooldown"]
+              "component_groups": [
+                "freddy_chasing",
+                "freddy_scare_cooldown"
+              ]
             },
             "remove": {
-              "component_groups": ["freddy_hostile"]
+              "component_groups": [
+                "freddy_hostile"
+              ]
             },
             "queue_command": {
               "command": [
@@ -719,23 +808,34 @@
               ]
             },
             "add": {
-              "component_groups": ["freddy_hostile"]
+              "component_groups": [
+                "freddy_hostile"
+              ]
             },
             "remove": {
-              "component_groups": ["freddy_chasing"]
+              "component_groups": [
+                "freddy_chasing"
+              ]
             },
             "queue_command": {
-              "command": ["tag @s remove played_scare"]
+              "command": [
+                "tag @s remove played_scare"
+              ]
             }
           }
         ]
       },
       "freddy_ignore_player": {
         "add": {
-          "component_groups": ["freddy_ignoring_player"]
+          "component_groups": [
+            "freddy_ignoring_player"
+          ]
         },
         "remove": {
-          "component_groups": ["freddy_hostile", "freddy_chasing"]
+          "component_groups": [
+            "freddy_hostile",
+            "freddy_chasing"
+          ]
         }
       },
       "freddy_detected_attacked_player": {
@@ -745,18 +845,27 @@
           "value": "minecraft:behavior.nearest_attackable_target"
         },
         "add": {
-          "component_groups": ["freddy_ignoring_player"]
+          "component_groups": [
+            "freddy_ignoring_player"
+          ]
         },
         "remove": {
-          "component_groups": ["freddy_hostile", "freddy_chasing"]
+          "component_groups": [
+            "freddy_hostile",
+            "freddy_chasing"
+          ]
         }
       },
       "freddy_check_can_attack_again": {
         "add": {
-          "component_groups": ["freddy_hostile"]
+          "component_groups": [
+            "freddy_hostile"
+          ]
         },
         "remove": {
-          "component_groups": ["freddy_ignoring_player"]
+          "component_groups": [
+            "freddy_ignoring_player"
+          ]
         }
       },
       "freddy_stop_ignore_player": {
@@ -766,10 +875,14 @@
               "test": "has_target"
             },
             "add": {
-              "component_groups": ["freddy_chasing"]
+              "component_groups": [
+                "freddy_chasing"
+              ]
             },
             "remove": {
-              "component_groups": ["freddy_ignoring_player"]
+              "component_groups": [
+                "freddy_ignoring_player"
+              ]
             }
           },
           {
@@ -778,17 +891,23 @@
               "operator": "not"
             },
             "add": {
-              "component_groups": ["freddy_hostile"]
+              "component_groups": [
+                "freddy_hostile"
+              ]
             },
             "remove": {
-              "component_groups": ["freddy_ignoring_player"]
+              "component_groups": [
+                "freddy_ignoring_player"
+              ]
             }
           }
         ]
       },
       "fr:start_walking": {
         "add": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         },
         "remove": {
           "component_groups": [
@@ -801,15 +920,21 @@
       },
       "fr:stop_walking": {
         "add": {
-          "component_groups": ["fr:route_stopped"]
+          "component_groups": [
+            "fr:route_stopped"
+          ]
         },
         "remove": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         }
       },
       "freddy_return_home": {
         "add": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         },
         "remove": {
           "component_groups": [
@@ -822,53 +947,246 @@
       },
       "freddy_stop_returning": {
         "add": {
-          "component_groups": ["fr:route_stopped"]
+          "component_groups": [
+            "fr:route_stopped"
+          ]
         },
         "remove": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         }
       },
-      "fr:set_pose_0": { "set_property": { "fr:pose": 0 } },
-      "fr:set_pose_1": { "set_property": { "fr:pose": 1 } },
-      "fr:set_pose_2": { "set_property": { "fr:pose": 2 } },
-      "fr:set_pose_3": { "set_property": { "fr:pose": 3 } },
-      "fr:set_pose_4": { "set_property": { "fr:pose": 4 } },
-      "fr:set_pose_5": { "set_property": { "fr:pose": 5 } },
-      "fr:set_pose_6": { "set_property": { "fr:pose": 6 } },
-      "fr:set_pose_7": { "set_property": { "fr:pose": 7 } },
-      "fr:set_pose_8": { "set_property": { "fr:pose": 8 } },
-      "fr:set_pose_9": { "set_property": { "fr:pose": 9 } },
-      "fr:set_pose_10": { "set_property": { "fr:pose": 10 } },
-      "fr:set_pose_11": { "set_property": { "fr:pose": 11 } },
-      "fr:set_pose_12": { "set_property": { "fr:pose": 12 } },
-      "fr:set_pose_13": { "set_property": { "fr:pose": 13 } },
-      "fr:set_pose_14": { "set_property": { "fr:pose": 14 } },
-      "fr:set_pose_15": { "set_property": { "fr:pose": 15 } },
-      "fr:set_pose_16": { "set_property": { "fr:pose": 16 } },
-      "fr:set_pose_17": { "set_property": { "fr:pose": 17 } },
-      "fr:set_pose_18": { "set_property": { "fr:pose": 18 } },
-      "fr:set_pose_19": { "set_property": { "fr:pose": 19 } },
-      "fr:set_pose_20": { "set_property": { "fr:pose": 20 } },
-      "fr:set_pose_21": { "set_property": { "fr:pose": 21 } },
-      "fr:set_pose_22": { "set_property": { "fr:pose": 22 } },
-      "fr:set_pose_23": { "set_property": { "fr:pose": 23 } },
-      "fr:set_pose_24": { "set_property": { "fr:pose": 24 } },
-      "fr:set_pose_25": { "set_property": { "fr:pose": 25 } },
-      "fr:set_pose_26": { "set_property": { "fr:pose": 26 } },
-      "fr:set_pose_27": { "set_property": { "fr:pose": 27 } },
-      "fr:set_pose_28": { "set_property": { "fr:pose": 28 } },
-      "fr:set_pose_29": { "set_property": { "fr:pose": 29 } },
-      "fr:set_pose_30": { "set_property": { "fr:pose": 30 } },
-      "fr:set_pose_31": { "set_property": { "fr:pose": 31 } },
-      "fr:set_pose_32": { "set_property": { "fr:pose": 32 } },
-      "fr:set_variant_0": { "set_property": { "fr:variant": 0 } },
-      "fr:set_variant_1": { "set_property": { "fr:variant": 1 } },
-      "fr:set_variant_2": { "set_property": { "fr:variant": 2 } },
-      "fr:set_variant_3": { "set_property": { "fr:variant": 3 } },
-      "fr:set_variant_4": { "set_property": { "fr:variant": 4 } },
+      "fr:set_pose_0": {
+        "set_property": {
+          "fr:pose": 0
+        }
+      },
+      "fr:set_pose_1": {
+        "set_property": {
+          "fr:pose": 1
+        }
+      },
+      "fr:set_pose_2": {
+        "set_property": {
+          "fr:pose": 2
+        }
+      },
+      "fr:set_pose_3": {
+        "set_property": {
+          "fr:pose": 3
+        }
+      },
+      "fr:set_pose_4": {
+        "set_property": {
+          "fr:pose": 4
+        }
+      },
+      "fr:set_pose_5": {
+        "set_property": {
+          "fr:pose": 5
+        }
+      },
+      "fr:set_pose_6": {
+        "set_property": {
+          "fr:pose": 6
+        }
+      },
+      "fr:set_pose_7": {
+        "set_property": {
+          "fr:pose": 7
+        }
+      },
+      "fr:set_pose_8": {
+        "set_property": {
+          "fr:pose": 8
+        }
+      },
+      "fr:set_pose_9": {
+        "set_property": {
+          "fr:pose": 9
+        }
+      },
+      "fr:set_pose_10": {
+        "set_property": {
+          "fr:pose": 10
+        }
+      },
+      "fr:set_pose_11": {
+        "set_property": {
+          "fr:pose": 11
+        }
+      },
+      "fr:set_pose_12": {
+        "set_property": {
+          "fr:pose": 12
+        }
+      },
+      "fr:set_pose_13": {
+        "set_property": {
+          "fr:pose": 13
+        }
+      },
+      "fr:set_pose_14": {
+        "set_property": {
+          "fr:pose": 14
+        }
+      },
+      "fr:set_pose_15": {
+        "set_property": {
+          "fr:pose": 15
+        }
+      },
+      "fr:set_pose_16": {
+        "set_property": {
+          "fr:pose": 16
+        }
+      },
+      "fr:set_pose_17": {
+        "set_property": {
+          "fr:pose": 17
+        }
+      },
+      "fr:set_pose_18": {
+        "set_property": {
+          "fr:pose": 18
+        }
+      },
+      "fr:set_pose_19": {
+        "set_property": {
+          "fr:pose": 19
+        }
+      },
+      "fr:set_pose_20": {
+        "set_property": {
+          "fr:pose": 20
+        }
+      },
+      "fr:set_pose_21": {
+        "set_property": {
+          "fr:pose": 21
+        }
+      },
+      "fr:set_pose_22": {
+        "set_property": {
+          "fr:pose": 22
+        }
+      },
+      "fr:set_pose_23": {
+        "set_property": {
+          "fr:pose": 23
+        }
+      },
+      "fr:set_pose_24": {
+        "set_property": {
+          "fr:pose": 24
+        }
+      },
+      "fr:set_pose_25": {
+        "set_property": {
+          "fr:pose": 25
+        }
+      },
+      "fr:set_pose_26": {
+        "set_property": {
+          "fr:pose": 26
+        }
+      },
+      "fr:set_pose_27": {
+        "set_property": {
+          "fr:pose": 27
+        }
+      },
+      "fr:set_pose_28": {
+        "set_property": {
+          "fr:pose": 28
+        }
+      },
+      "fr:set_pose_29": {
+        "set_property": {
+          "fr:pose": 29
+        }
+      },
+      "fr:set_pose_30": {
+        "set_property": {
+          "fr:pose": 30
+        }
+      },
+      "fr:set_pose_31": {
+        "set_property": {
+          "fr:pose": 31
+        }
+      },
+      "fr:set_pose_32": {
+        "set_property": {
+          "fr:pose": 32
+        }
+      },
+      "fr:set_variant_0": {
+        "set_property": {
+          "fr:variant": 0
+        }
+      },
+      "fr:set_variant_1": {
+        "set_property": {
+          "fr:variant": 1
+        }
+      },
+      "fr:set_variant_2": {
+        "set_property": {
+          "fr:variant": 2
+        }
+      },
+      "fr:set_variant_3": {
+        "set_property": {
+          "fr:variant": 3
+        }
+      },
+      "fr:set_variant_4": {
+        "set_property": {
+          "fr:variant": 4
+        }
+      },
+      "fr:set_variant_5": {
+        "set_property": {
+          "fr:variant": 5
+        }
+      },
+      "fr:set_variant_6": {
+        "set_property": {
+          "fr:variant": 6
+        }
+      },
+      "fr:set_variant_7": {
+        "set_property": {
+          "fr:variant": 7
+        }
+      },
+      "fr:set_variant_8": {
+        "set_property": {
+          "fr:variant": 8
+        }
+      },
+      "fr:set_variant_9": {
+        "set_property": {
+          "fr:variant": 9
+        }
+      },
+      "fr:set_variant_10": {
+        "set_property": {
+          "fr:variant": 10
+        }
+      },
+      "fr:set_variant_11": {
+        "set_property": {
+          "fr:variant": 11
+        }
+      },
       "fr:disable_ai_walk": {
         "add": {
-          "component_groups": ["fr:pathfinding_mode"]
+          "component_groups": [
+            "fr:pathfinding_mode"
+          ]
         },
         "remove": {
           "component_groups": [
@@ -881,10 +1199,15 @@
       },
       "fr:enable_ai_walk": {
         "add": {
-          "component_groups": ["freddy_hostile", "fr:normal_ai_mode"]
+          "component_groups": [
+            "freddy_hostile",
+            "fr:normal_ai_mode"
+          ]
         },
         "remove": {
-          "component_groups": ["fr:pathfinding_mode"]
+          "component_groups": [
+            "fr:pathfinding_mode"
+          ]
         }
       }
     }

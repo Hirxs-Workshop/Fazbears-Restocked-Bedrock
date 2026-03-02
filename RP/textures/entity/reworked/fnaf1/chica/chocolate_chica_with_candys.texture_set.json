@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "chocolate_chica_with_candys",
+        "metalness_emissive_roughness": "chocolate_chica_with_candys_mer",
+        "heightmap": "chocolate_chica_with_candys_normal"
+    }
+}

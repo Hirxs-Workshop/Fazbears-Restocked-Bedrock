@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wide_backstage_table",
+        "metalness_emissive_roughness": "wide_backstage_table_mer",
+        "heightmap": "wide_backstage_table_normal"
+    }
+}

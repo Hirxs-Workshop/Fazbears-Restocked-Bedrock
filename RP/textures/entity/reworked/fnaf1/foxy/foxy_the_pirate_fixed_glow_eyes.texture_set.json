@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "foxy_the_pirate_fixed_glow_eyes",
+        "metalness_emissive_roughness": "foxy_the_pirate_fixed_glow_eyes_mer",
+        "heightmap": "foxy_the_pirate_fixed_glow_eyes_normal"
+    }
+}

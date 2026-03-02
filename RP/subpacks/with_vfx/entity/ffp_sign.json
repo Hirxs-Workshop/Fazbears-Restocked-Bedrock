@@ -1,0 +1,37 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:ffp_sign",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "fr_anim",
+				"vfx": "fr_light_vfx"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/signs/fr_fnaf1_sign_emissive",
+				"vfx": "textures/entity/reworked/signs/fr_fnaf1_sign_emissive_vfx"
+			},
+			"animations": {
+				"fixed": "animation.spotlight_vfx.fixed"
+			},
+			"geometry": {
+				"default": "geometry.fr_ffp_sign",
+				"vfx": "geometry.fr_ffp_sign_vfx"
+			},
+			"render_controllers": [
+				"controller.render.fr_fnaf1_sign_emissive",
+				"controller.render.fr_fnaf1_sign_emissive_vfx"
+			],
+			"scripts": {
+				"animate": [
+					"fixed"
+				]
+			},
+			"enable_attachables": false,
+			"spawn_egg": {
+				"texture": "movie_sign"
+			}
+		}
+	}
+}

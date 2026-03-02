@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "shelf_supply_closet",
+        "metalness_emissive_roughness": "shelf_supply_closet_mer",
+        "heightmap": "shelf_supply_closet_normal"
+    }
+}

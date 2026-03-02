@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "condiment_bottles",
+        "metalness_emissive_roughness": "condiment_bottles_mer",
+        "heightmap": "condiment_bottles_normal"
+    }
+}

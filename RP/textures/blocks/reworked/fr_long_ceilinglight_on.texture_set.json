@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fr_long_ceilinglight_on",
+        "metalness_emissive_roughness": "fr_long_ceilinglight_on_mer",
+        "heightmap": "fr_long_ceilinglight_on_normal"
+    }
+}

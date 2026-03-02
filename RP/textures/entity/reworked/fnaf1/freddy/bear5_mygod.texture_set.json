@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "bear5_mygod",
+        "metalness_emissive_roughness": "bear5_mygod_mer",
+        "heightmap": "bear5_mygod_normal"
+    }
+}

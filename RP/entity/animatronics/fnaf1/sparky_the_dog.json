@@ -10,6 +10,10 @@
 			},
 			"textures": {
 				"default": "textures/entity/reworked/fnaf1/sparky/sparky_the_dog",
+				"variant_1": "textures/entity/reworked/fnaf1/Fixed_Sparky",
+				"variant_2": "textures/entity/reworked/fnaf1/accurate_Sparky",
+				"variant_3": "textures/entity/reworked/fnaf1/accurate_Sparky_withered",
+				"variant_4": "textures/entity/reworked/fnaf1/Sparky_Hot_chocolate_",
 				"fr_b": "textures/entity/reworked/fnaf1/sparky/sparky_the_dog"
 			},
 			"spawn_egg": {
@@ -40,8 +44,8 @@
 				"fr_b": "geometry.Sparky_The_Dog"
 			},
 			"render_controllers": [
-				"controller.render.fr_render_vars",
-				"controller.render.fr_sparky_vars"
+				"controller.render.fr_sparky_walking_rc",
+				"controller.render.fr_bonnie_vars"
 			],
 			"enable_attachables": false
 		}

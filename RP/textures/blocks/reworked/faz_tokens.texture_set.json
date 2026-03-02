@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "faz_tokens",
+        "metalness_emissive_roughness": "faz_tokens_mer",
+        "heightmap": "faz_tokens_normal"
+    }
+}

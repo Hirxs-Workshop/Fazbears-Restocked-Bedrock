@@ -105,9 +105,14 @@ class DoorManager {
       this.rescanDoors(dimension, -20, 0, -20, 20, 10, 20);
     });
 
+    let tickCount = 0;
     system.runInterval(() => {
       this.assistAnimatronicsWithDoors();
       this.closeIdleDoors();
+      tickCount++;
+      if (tickCount % 5 === 0) {
+        this.checkAndRespawnDoorEntities();
+      }
     }, 20);
   }
 
@@ -121,18 +126,10 @@ class DoorManager {
       if (animas.length === 0) continue;
       hasAnyAnimatronics = true;
       for (const e of animas) {
-        // Ignorar estatuas (tienen la familia "statue")
-        if (e.hasComponent("minecraft:type_family")) {
-          const typeFamily = e.getComponent("minecraft:type_family");
-          if (typeFamily.hasTypeFamily("statue")) continue;
-        }
-        
-        // Ignorar animatrónicos que tienen night mode activado
         try {
-          const isStatue = e.getDynamicProperty("fr:night_mode_enabled") === true;
-          if (isStatue) continue;
+          if (e.matches && e.matches({ families: ["statue"] })) continue;
         } catch { }
-        
+
         const loc = e.location;
         const target = this.findNearestDoorBase(dim, Math.floor(loc.x), Math.floor(loc.y), Math.floor(loc.z), 2);
         if (!target) continue;
@@ -231,31 +228,21 @@ class DoorManager {
       if (!isOpen) continue;
       const center = { x: baseX + 0.5, y: baseY + 1, z: baseZ + 0.5 };
       const animasNear = dim.getEntities({ families: ['animatronic'], location: center, maxDistance: noAnimatronicNearbyRadius });
-      
-      // Filtrar estatuas y animatrónicos con night mode
+
       let hasActiveAnimatronics = false;
       if (animasNear && animasNear.length > 0) {
         for (const anima of animasNear) {
-          // Ignorar estatuas (tienen la familia "statue")
-          if (anima.hasComponent("minecraft:type_family")) {
-            const typeFamily = anima.getComponent("minecraft:type_family");
-            if (typeFamily.hasTypeFamily("statue")) continue;
-          }
-          
+          let isStatueFamily = false;
           try {
-            const isStatue = anima.getDynamicProperty("fr:night_mode_enabled") === true;
-            if (!isStatue) {
-              hasActiveAnimatronics = true;
-              break;
-            }
-          } catch {
-            // Si falla al leer la propiedad, asumir que es activo
-            hasActiveAnimatronics = true;
-            break;
-          }
+            if (anima.matches && anima.matches({ families: ["statue"] })) isStatueFamily = true;
+          } catch { }
+          if (isStatueFamily) continue;
+
+          hasActiveAnimatronics = true;
+          break;
         }
       }
-      
+
       if (hasActiveAnimatronics) continue;
       this.toggleDoorByBase(dim, baseX, baseY, baseZ, false);
     }
@@ -816,7 +803,7 @@ class DoorManager {
     return false;
   }
 
-handleOnPlace(e) {
+  handleOnPlace(e) {
     const { block } = e;
     if (block.permutation.getState("fr:upper_block_bit")) return;
     const { x, y, z } = block.location;
@@ -864,10 +851,16 @@ handleOnPlace(e) {
         default: angle = 0; break;
       }
       const entityName = this.doorBlockToEntity[block.typeId] || "fr:backstage_door";
-      const entity = dimension.spawnEntity(entityName, { x: x + 0.5, y: y, z: z + 0.5 });
-      entity.setRotation({ x: 0, y: angle });
-
-      this.doorEntities.set(key, entity.id);
+      const spawnPos = { x: x + 0.5, y: y, z: z + 0.5 };
+      dimension.runCommand(`summon ${entityName} ${spawnPos.x} ${spawnPos.y} ${spawnPos.z} ${angle} 0`);
+      system.runTimeout(() => {
+        try {
+          const ents = dimension.getEntities({ location: spawnPos, maxDistance: 1.5, type: entityName, closest: 1 });
+          if (ents.length > 0) {
+            this.doorEntities.set(key, ents[0].id);
+          }
+        } catch { }
+      }, 2);
     } catch { }
   }
 
@@ -1007,7 +1000,7 @@ handleOnPlace(e) {
     const soundId = newOpenState ? "open.wooden_door" : "close.wooden_door";
     this.playSoundForNearbyPlayers(dimension, doorCenter, soundId, 16);
 
-system.runTimeout(() => {
+    system.runTimeout(() => {
       const offsetsToActivate = newOpenState ? openedOffsets : closedOffsets;
       for (let i = 0; i < offsetsToActivate.length; i++) {
         const [dx, dz] = offsetsToActivate[i];
@@ -1107,6 +1100,84 @@ system.runTimeout(() => {
       this._saveScheduled = false;
       this.saveDoorDatabase();
     }, 20);
+  }
+  checkAndRespawnDoorEntities() {
+    for (const [baseKey, registeredBase] of this.doorBases.entries()) {
+      if (baseKey !== registeredBase) continue;
+
+      const dimId = this.baseDimensions.get(baseKey);
+      if (!dimId) continue;
+      const dim = world.getDimension(dimId);
+      if (!dim) continue;
+
+      const [x, y, z] = baseKey.split(",").map(Number);
+      const block = dim.getBlock({ x, y, z });
+
+      if (!block || !this.isDoorBlock(block.typeId)) continue;
+
+      const storedEntityId = this.doorEntities.get(baseKey);
+      let entity = undefined;
+
+      if (storedEntityId) {
+        try {
+          entity = dim.getEntity(storedEntityId);
+        } catch (e) { }
+      }
+
+      if (!entity) {
+        const entityType = this.doorBlockToEntity[block.typeId] || "fr:backstage_door";
+        const center = { x: x + 0.5, y: y, z: z + 0.5 };
+        const nearby = dim.getEntities({
+          type: entityType,
+          location: center,
+          maxDistance: 1.0,
+          closest: 1
+        });
+
+        if (nearby.length > 0) {
+          entity = nearby[0];
+          this.doorEntities.set(baseKey, entity.id);
+          const states = block.permutation.getAllStates();
+          const direction = states["minecraft:cardinal_direction"] || "south";
+          let angle = 0;
+          switch (direction) {
+            case "north": angle = 0; break;
+            case "east": angle = 90; break;
+            case "south": angle = 180; break;
+            case "west": angle = 270; break;
+          }
+          try { entity.setRotation({ x: 0, y: angle }); } catch (e) { }
+        } else {
+          const states = block.permutation.getAllStates();
+          const direction = states["minecraft:cardinal_direction"] || "south";
+          let angle = 0;
+          switch (direction) {
+            case "north": angle = 0; break;
+            case "east": angle = 90; break;
+            case "south": angle = 180; break;
+            case "west": angle = 270; break;
+          }
+          try {
+            dim.runCommand(`summon ${entityType} ${center.x} ${center.y} ${center.z} ${angle} 0`);
+            system.runTimeout(() => {
+              try {
+                const ents = dim.getEntities({ location: center, maxDistance: 1.5, type: entityType, closest: 1 });
+                if (ents.length > 0) {
+                  this.doorEntities.set(baseKey, ents[0].id);
+                  const openState = states["fr:open_bit"];
+                  if (openState) {
+                    const fromFront = this.doorOpenDirections.get(baseKey) ?? true;
+                    const eventName = fromFront ? "open_door" : "open_door_back";
+                    ents[0].triggerEvent(eventName);
+                  }
+                }
+              } catch { }
+            }, 2);
+          } catch (e) {
+          }
+        }
+      }
+    }
   }
 }
 

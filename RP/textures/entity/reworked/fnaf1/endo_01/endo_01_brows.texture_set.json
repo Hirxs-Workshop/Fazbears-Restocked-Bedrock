@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "endo_01_brows",
+        "metalness_emissive_roughness": "endo_01_brows_mer",
+        "heightmap": "endo_01_brows_normal"
+    }
+}

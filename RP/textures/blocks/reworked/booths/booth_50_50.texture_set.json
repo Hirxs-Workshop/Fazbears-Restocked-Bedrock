@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "booth_50_50",
+        "metalness_emissive_roughness": "booth_50_50_mer",
+        "heightmap": "booth_50_50_normal"
+    }
+}

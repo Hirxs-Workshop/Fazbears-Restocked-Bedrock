@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "animdude_plush",
+        "metalness_emissive_roughness": "animdude_plush_mer",
+        "heightmap": "animdude_plush_normal"
+    }
+}

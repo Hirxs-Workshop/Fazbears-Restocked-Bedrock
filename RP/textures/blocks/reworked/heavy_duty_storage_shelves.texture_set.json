@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "heavy_duty_storage_shelves",
+        "metalness_emissive_roughness": "heavy_duty_storage_shelves_mer",
+        "heightmap": "heavy_duty_storage_shelves_normal"
+    }
+}

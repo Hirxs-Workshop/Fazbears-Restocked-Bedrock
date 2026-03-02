@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "animatronic_work_table",
+        "metalness_emissive_roughness": "animatronic_work_table_mer",
+        "heightmap": "animatronic_work_table_normal"
+    }
+}

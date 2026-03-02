@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fr_office_fan_on",
+        "metalness_emissive_roughness": "fr_office_fan_on_mer",
+        "heightmap": "fr_office_fan_on_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "stone_oven_lit",
+        "metalness_emissive_roughness": "stone_oven_lit_mer",
+        "heightmap": "stone_oven_lit_normal"
+    }
+}

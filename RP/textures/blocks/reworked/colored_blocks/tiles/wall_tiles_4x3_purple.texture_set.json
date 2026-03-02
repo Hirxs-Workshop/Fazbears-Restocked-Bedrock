@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wall_tiles_4x3_purple",
+        "metalness_emissive_roughness": "wall_tiles_4x3_purple_mer",
+        "heightmap": "wall_tiles_4x3_purple_normal"
+    }
+}

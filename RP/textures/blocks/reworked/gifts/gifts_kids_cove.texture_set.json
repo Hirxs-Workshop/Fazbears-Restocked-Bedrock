@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "gifts_kids_cove",
+        "metalness_emissive_roughness": "gifts_kids_cove_mer",
+        "heightmap": "gifts_kids_cove_normal"
+    }
+}

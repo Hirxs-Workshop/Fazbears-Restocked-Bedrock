@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Shadow_Freddy_Film",
+        "metalness_emissive_roughness": "Shadow_Freddy_Film_mer",
+        "heightmap": "Shadow_Freddy_Film_normal"
+    }
+}

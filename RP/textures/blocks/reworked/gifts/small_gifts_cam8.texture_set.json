@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "small_gifts_cam8",
+        "metalness_emissive_roughness": "small_gifts_cam8_mer",
+        "heightmap": "small_gifts_cam8_normal"
+    }
+}

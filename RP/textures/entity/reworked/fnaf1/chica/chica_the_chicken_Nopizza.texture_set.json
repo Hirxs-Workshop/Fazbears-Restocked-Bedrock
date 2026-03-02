@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "chica_the_chicken_Nopizza",
+        "metalness_emissive_roughness": "chica_the_chicken_Nopizza_mer",
+        "heightmap": "chica_the_chicken_Nopizza_normal"
+    }
+}

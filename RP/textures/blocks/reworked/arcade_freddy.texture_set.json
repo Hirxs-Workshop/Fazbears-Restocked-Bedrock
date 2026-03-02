@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "arcade_freddy",
+        "metalness_emissive_roughness": "arcade_freddy_mer",
+        "heightmap": "arcade_freddy_normal"
+    }
+}

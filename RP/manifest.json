@@ -1,7 +1,7 @@
 {
 	"format_version": 2,
 	"header": {
-		"name": "RP | Fazbear's Restocked | Public build #1",
+		"name": "RP | Fazbear's Restocked | Public build #1.1 (Bug fix)",
 		"description": "Ready for an imagined FNAF experience in MC? Fazbear's Restocked is here!",
 		"min_engine_version": [
 			1,
@@ -12,7 +12,7 @@
 		"version": [
 			0,
 			1,
-			90
+			106
 		]
 	},
 	"modules": [
@@ -22,7 +22,7 @@
 			"version": [
 				0,
 				1,
-				90
+				106
 			]
 		}
 	],
@@ -35,8 +35,20 @@
 			"version": [
 				0,
 				1,
-				90
+				106
 			]
 		}
-	]
+	],
+    "subpacks": [
+        {
+            "folder_name": "without_vfx",
+            "name": "Without VFX (for RTX)",
+            "memory_tier": 0
+        },
+        {
+            "folder_name": "with_vfx",
+            "name": "With VFX effect",
+            "memory_tier": 1
+        }
+    ]
 }

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "plunger",
+        "metalness_emissive_roughness": "plunger_mer",
+        "heightmap": "plunger_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fr_block",
+        "metalness_emissive_roughness": "fr_block_mer",
+        "heightmap": "fr_block_normal"
+    }
+}

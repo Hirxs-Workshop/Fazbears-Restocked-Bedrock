@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "freddy_alarm_clock",
+        "metalness_emissive_roughness": "freddy_alarm_clock_mer",
+        "heightmap": "freddy_alarm_clock_normal"
+    }
+}

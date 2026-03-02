@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "knife_holder_empty",
+        "metalness_emissive_roughness": "knife_holder_empty_mer",
+        "heightmap": "knife_holder_empty_normal"
+    }
+}

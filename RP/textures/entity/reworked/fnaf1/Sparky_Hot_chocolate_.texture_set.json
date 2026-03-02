@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Sparky_Hot_chocolate_",
+        "metalness_emissive_roughness": "Sparky_Hot_chocolate__mer",
+        "heightmap": "Sparky_Hot_chocolate__normal"
+    }
+}

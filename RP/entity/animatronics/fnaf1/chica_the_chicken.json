@@ -10,6 +10,13 @@
 			},
 			"textures": {
 				"default": "textures/entity/reworked/fnaf1/chica/chica_the_chicken_Nopizza",
+				"variant_1": "textures/entity/reworked/fnaf1/chica/chica_the_chicken",
+				"variant_2": "textures/entity/reworked/fnaf1/chica/chica_the_snowbird",
+				"variant_3": "textures/entity/reworked/fnaf1/chica/chica_the_chicken_cursed_cupcake",
+				"variant_4": "textures/entity/reworked/fnaf1/chica/sotm_chica_the_chicken",
+				"variant_5": "textures/entity/reworked/fnaf1/chica/withered_classic_chica_the_chicken",
+				"variant_6": "textures/entity/reworked/fnaf1/chica/chocolate_Chica",
+				"variant_7": "textures/entity/reworked/fnaf1/chica/chocolate_chica_with_candys",
 				"fr_b": "textures/entity/reworked/fnaf1/chica/chica_the_chicken_Nopizza"
 			},
 			"spawn_egg": {
@@ -45,7 +52,7 @@
 				"fr_b": "geometry.chica_the_chicken_blood"
 			},
 			"render_controllers": [
-				"controller.render.fr_render_vars",
+				"controller.render.fr_chica_walking_rc",
 				"controller.render.fr_bonnie_vars"
 			],
 			"enable_attachables": false

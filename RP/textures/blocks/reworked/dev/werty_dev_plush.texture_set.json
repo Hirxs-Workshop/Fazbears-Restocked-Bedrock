@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "werty_dev_plush",
+        "metalness_emissive_roughness": "werty_dev_plush_mer",
+        "heightmap": "werty_dev_plush_normal"
+    }
+}

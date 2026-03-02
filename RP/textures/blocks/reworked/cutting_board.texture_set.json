@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "cutting_board",
+        "metalness_emissive_roughness": "cutting_board_mer",
+        "heightmap": "cutting_board_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fnaf1_advanced_wall",
+        "metalness_emissive_roughness": "fnaf1_advanced_wall_mer",
+        "heightmap": "fnaf1_advanced_wall_normal"
+    }
+}

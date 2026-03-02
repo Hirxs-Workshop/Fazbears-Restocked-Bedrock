@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Shreddy_Fazchair_Film",
+        "metalness_emissive_roughness": "Shreddy_Fazchair_Film_mer",
+        "heightmap": "Shreddy_Fazchair_Film_normal"
+    }
+}

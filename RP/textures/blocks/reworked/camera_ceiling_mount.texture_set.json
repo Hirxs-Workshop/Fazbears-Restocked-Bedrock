@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "camera_ceiling_mount",
+        "metalness_emissive_roughness": "camera_ceiling_mount_mer",
+        "heightmap": "camera_ceiling_mount_normal"
+    }
+}

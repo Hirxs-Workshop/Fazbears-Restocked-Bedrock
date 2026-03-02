@@ -160,6 +160,20 @@
 							}
 						}
 					]
+				},
+				{
+					"name": "locker",
+					"pivot": [9, 1.32143, 0.5]
+				},
+				{
+					"name": "L",
+					"parent": "locker",
+					"pivot": [7.625, 7.875, -2.255]
+				},
+				{
+					"name": "R",
+					"parent": "locker",
+					"pivot": [10.375, 7.875, -2.255]
 				}
 			],
 			"item_display_transforms": {

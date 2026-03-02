@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "survival_logbook",
+        "metalness_emissive_roughness": "survival_logbook_mer",
+        "heightmap": "survival_logbook_normal"
+    }
+}

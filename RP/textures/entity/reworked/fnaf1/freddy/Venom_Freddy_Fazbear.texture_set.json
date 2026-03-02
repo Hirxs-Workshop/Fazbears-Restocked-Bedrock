@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Venom_Freddy_Fazbear",
+        "metalness_emissive_roughness": "Venom_Freddy_Fazbear_mer",
+        "heightmap": "Venom_Freddy_Fazbear_normal"
+    }
+}

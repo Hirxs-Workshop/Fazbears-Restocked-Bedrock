@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wall_wires_3",
+        "metalness_emissive_roughness": "wall_wires_3_mer",
+        "heightmap": "wall_wires_3_normal"
+    }
+}

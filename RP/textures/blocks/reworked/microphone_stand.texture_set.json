@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "microphone_stand",
+        "metalness_emissive_roughness": "microphone_stand_mer",
+        "heightmap": "microphone_stand_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fridge",
+        "metalness_emissive_roughness": "fridge_mer",
+        "heightmap": "fridge_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wide_party_table",
+        "metalness_emissive_roughness": "wide_party_table_mer",
+        "heightmap": "wide_party_table_normal"
+    }
+}

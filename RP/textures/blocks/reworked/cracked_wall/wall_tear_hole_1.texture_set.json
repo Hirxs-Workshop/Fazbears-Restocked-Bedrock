@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "wall_tear_hole_1",
+        "metalness_emissive_roughness": "wall_tear_hole_1_mer",
+        "heightmap": "wall_tear_hole_1_normal"
+    }
+}

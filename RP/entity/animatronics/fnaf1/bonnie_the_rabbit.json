@@ -10,6 +10,11 @@
 			},
 			"textures": {
 				"default": "textures/entity/reworked/fnaf1/bonnie/bonnie_the_rabbit_bowtie",
+				"variant_1": "textures/entity/reworked/fnaf1/bonnie/chocolate_bonnie",
+				"variant_2": "textures/entity/reworked/fnaf1/bonnie/bonnie_the_Elf",
+				"variant_3": "textures/entity/reworked/fnaf1/bonnie/bonnie_the_rabbit_HW_guitair_bowtie_v2",
+				"variant_4": "textures/entity/reworked/fnaf1/bonnie/bonnie_the_rabbit_black_eyes_bowtie",
+				"variant_5": "textures/entity/reworked/fnaf1/bonnie/bonnie_the_rabbit_black_eyes_HW_guitar_bowtie_v2",
 				"fr_b": "textures/entity/reworked/fnaf1/bonnie/bonnie_the_rabbit_bowtie"
 			},
 			"spawn_egg": {
@@ -40,7 +45,7 @@
 				"fr_b": "geometry.bonnie_the_rabbit_blood"
 			},
 			"render_controllers": [
-				"controller.render.fr_render_vars",
+				"controller.render.fr_bonnie_walking_rc",
 				"controller.render.fr_bonnie_vars"
 			],
 			"enable_attachables": false

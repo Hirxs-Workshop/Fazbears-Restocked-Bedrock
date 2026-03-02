@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "cup_of_coffee",
+        "metalness_emissive_roughness": "cup_of_coffee_mer",
+        "heightmap": "cup_of_coffee_normal"
+    }
+}

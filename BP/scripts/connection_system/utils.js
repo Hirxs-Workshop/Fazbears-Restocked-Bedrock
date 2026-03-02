@@ -97,7 +97,6 @@ export function cleanupLampVfxEntitiesSilent() {
             const allVfxTypes = getAllVfxEntities();
             
             for (const vfxType of allVfxTypes) {
-                // NO limpiar spotlights, solo las otras luces
                 if (vfxType === "fr:stage_spotlight_vfx") continue;
                 
                 try {

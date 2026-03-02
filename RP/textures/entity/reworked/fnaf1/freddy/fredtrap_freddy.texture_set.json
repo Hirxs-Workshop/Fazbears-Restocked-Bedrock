@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fredtrap_freddy",
+        "metalness_emissive_roughness": "fredtrap_freddy_mer",
+        "heightmap": "fredtrap_freddy_normal"
+    }
+}

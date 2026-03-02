@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "candy_endo",
+        "metalness_emissive_roughness": "candy_endo_mer",
+        "heightmap": "candy_endo_normal"
+    }
+}

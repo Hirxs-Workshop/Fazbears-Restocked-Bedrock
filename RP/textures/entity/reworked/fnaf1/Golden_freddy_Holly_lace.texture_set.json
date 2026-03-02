@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Golden_freddy_Holly_lace",
+        "metalness_emissive_roughness": "Golden_freddy_Holly_lace_mer",
+        "heightmap": "Golden_freddy_Holly_lace_normal"
+    }
+}

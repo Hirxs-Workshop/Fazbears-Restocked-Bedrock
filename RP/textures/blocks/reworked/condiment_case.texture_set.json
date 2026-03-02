@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "condiment_case",
+        "metalness_emissive_roughness": "condiment_case_mer",
+        "heightmap": "condiment_case_normal"
+    }
+}

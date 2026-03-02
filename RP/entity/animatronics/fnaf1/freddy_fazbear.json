@@ -10,6 +10,17 @@
 			},
 			"textures": {
 				"default": "textures/entity/reworked/fnaf1/freddy/freddy_fazbear_bowtie",
+				"variant_1": "textures/entity/reworked/fnaf1/freddy/freddy_fazbear_blackeyes_bowtie",
+				"variant_2": "textures/entity/reworked/fnaf1/freddy/freddy_fazbear_hardmode_bowtie_v2",
+				"variant_3": "textures/entity/reworked/fnaf1/freddy/Frostbear_Freddy",
+				"variant_4": "textures/entity/reworked/fnaf1/freddy/Santa_Freddy",
+				"variant_5": "textures/entity/reworked/fnaf1/freddy/blacklight_freddy_fazbear",
+				"variant_6": "textures/entity/reworked/fnaf1/freddy/bear5_mygod",
+				"variant_7": "textures/entity/reworked/fnaf1/freddy/Venom_Freddy_Fazbear",
+				"variant_8": "textures/entity/reworked/fnaf1/freddy/big_band_freddy_fazbear_texture",
+				"variant_9": "textures/entity/reworked/fnaf1/freddy/chocolate__freddy",
+				"variant_10": "textures/entity/reworked/fnaf1/freddy/Hatsune_Fazbear",
+				"variant_11": "textures/entity/reworked/fnaf1/freddy/super_freddy",
 				"fr_b": "textures/entity/reworked/fnaf1/freddy/freddy_fazbear_bowtie"
 			},
 			"spawn_egg": {
@@ -40,7 +51,7 @@
 				"fr_b": "geometry.fr_freddy_fazbear_blood"
 			},
 			"render_controllers": [
-				"controller.render.fr_render_vars",
+				"controller.render.fr_freddy_walking_rc",
 				"controller.render.fr_bonnie_vars"
 			],
 			"enable_attachables": false

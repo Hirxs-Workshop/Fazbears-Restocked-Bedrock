@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "accurate_Sparky_withered",
+        "metalness_emissive_roughness": "accurate_Sparky_withered_mer",
+        "heightmap": "accurate_Sparky_withered_normal"
+    }
+}

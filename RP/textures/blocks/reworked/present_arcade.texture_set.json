@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "present_arcade",
+        "metalness_emissive_roughness": "present_arcade_mer",
+        "heightmap": "present_arcade_normal"
+    }
+}

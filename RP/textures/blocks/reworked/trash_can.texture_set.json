@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "trash_can",
+        "metalness_emissive_roughness": "trash_can_mer",
+        "heightmap": "trash_can_normal"
+    }
+}

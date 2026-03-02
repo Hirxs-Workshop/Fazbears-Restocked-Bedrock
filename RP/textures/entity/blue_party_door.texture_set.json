@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "blue_party_door",
+        "metalness_emissive_roughness": "blue_party_door_mer",
+        "heightmap": "blue_party_door_normal"
+    }
+}

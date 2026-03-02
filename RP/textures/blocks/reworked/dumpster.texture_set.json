@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "dumpster",
+        "metalness_emissive_roughness": "dumpster_mer",
+        "heightmap": "dumpster_normal"
+    }
+}

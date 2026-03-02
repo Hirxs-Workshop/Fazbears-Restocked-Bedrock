@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "newspaper_3",
+        "metalness_emissive_roughness": "newspaper_3_mer",
+        "heightmap": "newspaper_3_normal"
+    }
+}

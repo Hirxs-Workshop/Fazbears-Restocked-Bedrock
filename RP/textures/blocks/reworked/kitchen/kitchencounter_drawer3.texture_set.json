@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "kitchencounter_drawer3",
+        "metalness_emissive_roughness": "kitchencounter_drawer3_mer",
+        "heightmap": "kitchencounter_drawer3_normal"
+    }
+}

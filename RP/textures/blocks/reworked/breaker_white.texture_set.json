@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "breaker_white",
+        "metalness_emissive_roughness": "breaker_white_mer",
+        "heightmap": "breaker_white_normal"
+    }
+}

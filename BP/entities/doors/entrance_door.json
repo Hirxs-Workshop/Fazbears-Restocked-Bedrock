@@ -48,9 +48,6 @@
 					"deals_damage": false
 				}
 			},
-			"minecraft:despawn": {
-				"despawn_from_distance": {}
-			},
 			"minecraft:persistent": {}
 		},
 		"events": {
@@ -63,12 +60,16 @@
 			},
 			"open_door": {
 				"add": {
-					"component_groups": ["fr_open_door"]
+					"component_groups": [
+						"fr_open_door"
+					]
 				}
 			},
 			"close_door": {
 				"add": {
-					"component_groups": ["fr_close_door"]
+					"component_groups": [
+						"fr_close_door"
+					]
 				}
 			}
 		}

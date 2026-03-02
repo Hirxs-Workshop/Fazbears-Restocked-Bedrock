@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "vending_machine",
+        "metalness_emissive_roughness": "vending_machine_mer",
+        "heightmap": "vending_machine_normal"
+    }
+}

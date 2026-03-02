@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Film_Endoskeleten_01_Springlock",
+        "metalness_emissive_roughness": "Film_Endoskeleten_01_Springlock_mer",
+        "heightmap": "Film_Endoskeleten_01_Springlock_normal"
+    }
+}

@@ -21,16 +21,56 @@
 			}
 		},
 		"components": {
-    		"minecraft:collision_box": [
-		        {
-		            "origin": [-8, 0, -8],
-		            "size": [1, 22, 16]
-		        },
-		        {
-		            "origin": [7, 0, -8],
-		            "size": [1, 22, 16]
-		        }
-		    ],
+			"minecraft:collision_box": [
+				{
+					"origin": [
+						-8,
+						0,
+						-8
+					],
+					"size": [
+						1,
+						22,
+						16
+					]
+				},
+				{
+					"origin": [
+						7,
+						0,
+						-8
+					],
+					"size": [
+						1,
+						22,
+						16
+					]
+				},
+				{
+					"origin": [
+						-5.5,
+						0,
+						-8
+					],
+					"size": [
+						11,
+						9,
+						10
+					]
+				},
+				{
+					"origin": [
+						-5.5,
+						8,
+						1
+					],
+					"size": [
+						11,
+						8,
+						5
+					]
+				}
+			],
 			"minecraft:geometry": {
 				"identifier": "geometry.restroom_stall",
 				"bone_visibility": {
@@ -64,7 +104,8 @@
 					}
 				}
 			},
-			"fr:double_block": {}
+			"fr:double_block": {},
+			"fr:stall_sit": {}
 		},
 		"permutations": [
 			{
@@ -113,6 +154,37 @@
 							0
 						]
 					}
+				}
+			},
+			{
+				"condition": "q.block_state('fr:block_bit') == 'upper'",
+				"components": {
+					"minecraft:collision_box": [
+						{
+							"origin": [
+								-8,
+								0,
+								-8
+							],
+							"size": [
+								1,
+								16,
+								16
+							]
+						},
+						{
+							"origin": [
+								7,
+								0,
+								-8
+							],
+							"size": [
+								1,
+								16,
+								16
+							]
+						}
+					]
 				}
 			}
 		]

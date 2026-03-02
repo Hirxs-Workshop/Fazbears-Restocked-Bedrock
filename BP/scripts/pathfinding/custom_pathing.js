@@ -28,6 +28,7 @@ import {
   safeGet,
   distance3D as getDistance
 } from "../utils.js";
+import { dynamicToast } from "../connection_system/utils.js";
 const DEBUG_MODE = false;
 function debugLog(message, ...args) {
   if (DEBUG_MODE) {
@@ -529,13 +530,25 @@ export function selectStageplate(player, stageplateLocation, dimensionId) {
   const cleanedCount = cleanupOrphanedLinks(stageplateLocation, dimensionId);
   if (cleanedCount > 0) {
     player.sendMessage(
-      `§e[Stageplate] §7Cleaned up §c${cleanedCount}§7 orphaned link(s).`);
+      dynamicToast(
+        "§l§gCleanup",
+        `§7Cleaned up §f${cleanedCount}§7 orphaned link(s).`,
+        "textures/fr_ui/warning_icon",
+        "textures/fr_ui/warning_ui",
+      ),
+    );
     stageplateData = getStageplateData(stageplateLocation, dimensionId);
   }
   if (
     stageplateData.linkedAnimatronics.length >= MAX_ANIMATRONICS_PER_STAGEPLATE) {
     player.sendMessage(
-      `§c[Stageplate] §7This platform already has ${MAX_ANIMATRONICS_PER_STAGEPLATE} animatronics linked!`);
+      dynamicToast(
+        "§l§cFull",
+        `§7This platform already has §f${MAX_ANIMATRONICS_PER_STAGEPLATE}§7 animatronics linked!`,
+        "textures/fr_ui/deny_icon",
+        "textures/fr_ui/deny_ui",
+      ),
+    );
     return false;
   }
   playerSelections.set(player.id, {
@@ -550,9 +563,13 @@ export function selectStageplate(player, stageplateLocation, dimensionId) {
   });
   const linkedCount = stageplateData.linkedAnimatronics.length;
   player.sendMessage(
-    `§a[Stageplate] §7Platform selected! §8(${linkedCount}/${MAX_ANIMATRONICS_PER_STAGEPLATE}linked)`);
-  player.sendMessage(
-    "§7Now right-click on an §eanimatronic§7 to link it to this platform.");
+    dynamicToast(
+      "§l§qPlatform Selected",
+      `§7Now right-click on an §fanimatronic§7\nto link it! §8(${linkedCount}/${MAX_ANIMATRONICS_PER_STAGEPLATE})`,
+      "textures/fr_ui/approve_icon",
+      "textures/fr_ui/approve_ui",
+    ),
+  );
   return true;
 }
 export function getPlayerSelection(player) {
@@ -570,12 +587,24 @@ export function linkAnimatronicToStageplate(player, entity) {
   const selection = getPlayerSelection(player);
   if (!selection || !selection.selectedStageplateKey) {
     player.sendMessage(
-      "§c[Stageplate] §7No platform selected! Right-click on a §efr:stage_platform§7 first.");
+      dynamicToast(
+        "§l§cNo Platform",
+        `§7No platform selected! Right-click on a\n§ffr:stage_platform§7 first.`,
+        "textures/fr_ui/deny_icon",
+        "textures/fr_ui/deny_ui",
+      ),
+    );
     return false;
   }
   if (!isAnimatronic(entity)) {
     player.sendMessage(
-      "§c[Stageplate] §7This entity cannot be linked to a platform.");
+      dynamicToast(
+        "§l§cInvalid Entity",
+        "§7This entity cannot be linked to a platform.",
+        "textures/fr_ui/deny_icon",
+        "textures/fr_ui/deny_ui",
+      ),
+    );
     return false;
   }
   const animatronicId = getOrCreateAnimatronicId(entity);
@@ -585,14 +614,26 @@ export function linkAnimatronicToStageplate(player, entity) {
   let stageplateData = getStageplateData(stageplateLocation, dimensionId);
   if (!stageplateData) {
     player.sendMessage(
-      "§c[Stageplate] §7Platform no longer exists. Please select again.");
+      dynamicToast(
+        "§l§cNot Found",
+        "§7Platform no longer exists. Please select again.",
+        "textures/fr_ui/deny_icon",
+        "textures/fr_ui/deny_ui",
+      ),
+    );
     clearPlayerSelection(player);
     return false;
   }
   if (
     stageplateData.linkedAnimatronics.length >= MAX_ANIMATRONICS_PER_STAGEPLATE) {
     player.sendMessage(
-      `§c[Stageplate] §7Maximum of ${MAX_ANIMATRONICS_PER_STAGEPLATE} animatronics per platform reached!`);
+      dynamicToast(
+        "§l§cFull",
+        `§7Maximum of §f${MAX_ANIMATRONICS_PER_STAGEPLATE}§7 animatronics per platform reached!`,
+        "textures/fr_ui/deny_icon",
+        "textures/fr_ui/deny_ui",
+      ),
+    );
     clearPlayerSelection(player);
     return false;
   }
@@ -614,11 +655,23 @@ export function linkAnimatronicToStageplate(player, entity) {
   if (existingIndex >= 0) {
     stageplateData.linkedAnimatronics[existingIndex] = linkData;
     player.sendMessage(
-      `§a[Stageplate] §7Updated §e${entityName}§7 link with current pose and rotation.`);
+      dynamicToast(
+        "§l§aUpdated",
+        `§7Updated §f${entityName}§7 link with\ncurrent pose and rotation.`,
+        "textures/fr_ui/approve_icon",
+        "textures/fr_ui/approve_ui",
+      ),
+    );
   } else {
     stageplateData.linkedAnimatronics.push(linkData);
     player.sendMessage(
-      `§a[Stageplate] §e${entityName}§7 linked successfully! §8(${stageplateData.linkedAnimatronics.length}/${MAX_ANIMATRONICS_PER_STAGEPLATE})`);
+      dynamicToast(
+        "§l§qSUCCESS",
+        `§f${entityName}§7 linked successfully!\n§8(${stageplateData.linkedAnimatronics.length}/${MAX_ANIMATRONICS_PER_STAGEPLATE})`,
+        "textures/fr_ui/approve_icon",
+        "textures/fr_ui/approve_ui",
+      ),
+    );
   }
   const key = selection.selectedStageplateKey;
   updateStageplateData(key, stageplateData);
@@ -874,6 +927,13 @@ export function enableNightMode(entity) {
     ? ANIMATRONIC_TO_STATUE[entity.typeId]
     : entity.typeId;
 
+  const entityRotation = entity.getRotation ? entity.getRotation() : { y: 0 };
+  for (const [existingId, existingData] of nightModeRegistry) {
+    if (existingData.routeId === routeId && existingId !== animatronicId) {
+      debugWarn(`[NightMode] Route ${routeId} already claimed by animatronic ${existingId}, rejecting ${animatronicId}`);
+      return false;
+    }
+  }
   nightModeRegistry.set(animatronicId, {
     stageplateKey: stageplateKey,
     routeId: routeId,
@@ -886,9 +946,14 @@ export function enableNightMode(entity) {
     platformLocation: platformLocation,
     originalStatueType: originalStatueType,
     isWalking: isWalking,
-    walkingEntityId: isWalking ? entity.id : null
+    walkingEntityId: isWalking ? entity.id : null,
+    platformPoseIndex: entity.getDynamicProperty("fr:pose_index") || entity.getDynamicProperty("fr:platform_pose_index") || 0,
+    platformRotation: normalizeRotation(entityRotation.y),
+    platformVariantIndex: entity.getDynamicProperty("fr:variant_index") || entity.getDynamicProperty("fr:platform_variant_index") || 0,
+    missedTicks: 0,
   });
   activeNightEntities.set(entity.id, animatronicId);
+  broadcastDebug(`[NightMode] Saved platform settings for ${animatronicId}: pose=${entity.getDynamicProperty("fr:pose_index") || 0}, rot=${normalizeRotation(entityRotation.y)}, variant=${entity.getDynamicProperty("fr:variant_index") || 0}`);
 
   const savedStateJson = entity.getDynamicProperty("fr:night_pathing_state");
   let restoredState = null;
@@ -1395,7 +1460,7 @@ function executeCameraBlackout(effect, session) {
       }
     }
     if (isViewingCamera) {
-      player.runCommand(`title @s actionbar §C§A§M§D`);
+      player.runCommand(`title @s actionbar §ᄀ§ᄁ§ᄂ`);
       try {
         const durationSec = duration / 20;
         player.runCommand(`camera @s fade time 0.1 ${durationSec} 0.1 color 0 0 0`);
@@ -2391,12 +2456,22 @@ function processNightMode() {
     }
     const entity = findNightModeEntity(nightModeData);
     if (!entity) {
-      if (DEBUG_MODE && system.currentTick % 200 === 0) {
+      nightModeData.missedTicks = (nightModeData.missedTicks || 0) + 1;
+      if (nightModeData.missedTicks >= 3) {
+        const ps = nightPathingState.get(animatronicId);
+        if (ps?.pathfindingSessionId) {
+          try { stopPathfinding(ps.pathfindingSessionId); } catch { }
+        }
+        nightModeRegistry.delete(animatronicId);
+        nightPathingState.delete(animatronicId);
+        console.warn(`[NightMode] Removed dead/missing animatronic ${animatronicId} after ${nightModeData.missedTicks} missed ticks`);
+      } else if (DEBUG_MODE) {
         debugWarn(
-          `[NightMode] ${animatronicId}- SKIPPED: entity not found, entityId: ${nightModeData.entityId}, entityType: ${nightModeData.entityType}`);
+          `[NightMode] ${animatronicId}- entity not found (miss ${nightModeData.missedTicks}/3), entityId: ${nightModeData.entityId}`);
       }
       continue;
     }
+    nightModeData.missedTicks = 0;
     if (DEBUG_MODE && system.currentTick % 200 === 0) {
       const now = Date.now();
       const timeSinceLastMove = now - pathingState.lastMoveTime;
@@ -2779,15 +2854,22 @@ function convertToStatueAtLocation(animatronicId, walkingEntity, location, route
   let variantIndex = walkingEntity.getDynamicProperty("fr:variant_index") || 0;
   if (routePointData?.variant !== undefined && routePointData?.variant !== null && routePointData.variant >= 0) {
     variantIndex = routePointData.variant;
+  } else if (nightModeData.platformVariantIndex !== undefined) {
+    variantIndex = nightModeData.platformVariantIndex;
   }
-  const poseIndex =
-    routePointData?.pose !== undefined && routePointData?.pose !== null
-      ? routePointData.pose
-      : 0;
-  const rotation =
-    routePointData?.rotation !== undefined && routePointData?.rotation !== null
-      ? routePointData.rotation
-      : 0;
+  let poseIndex = 0;
+  if (routePointData?.pose !== undefined && routePointData?.pose !== null) {
+    poseIndex = routePointData.pose;
+  } else if (nightModeData.platformPoseIndex !== undefined) {
+    poseIndex = nightModeData.platformPoseIndex;
+  }
+  let rotation = 0;
+  if (routePointData?.rotation !== undefined && routePointData?.rotation !== null) {
+    rotation = routePointData.rotation;
+  } else if (nightModeData.platformRotation !== undefined) {
+    rotation = nightModeData.platformRotation;
+  }
+  broadcastDebug(`[NightMode] convertToStatue ${animatronicId}: pose=${poseIndex}, rot=${rotation}, variant=${variantIndex}, hasRouteData=${!!routePointData}, platformPose=${nightModeData.platformPoseIndex}, platformRot=${nightModeData.platformRotation}, platformVar=${nightModeData.platformVariantIndex}`);
   try {
     const statue = dimension.spawnEntity(statueType, location);
     try {
@@ -3333,7 +3415,7 @@ function processCameraBlockage() {
         if (blocked) {
           if (activeBlackoutCam !== camPosStr) {
             try {
-              player.runCommand(`title @s actionbar §C§A§M§D`);
+              player.runCommand(`title @s actionbar §ᄀ§ᄁ§ᄂ`);
               player.setDynamicProperty("fr:active_blackout_cam", camPosStr);
             } catch { }
           }
@@ -3425,6 +3507,14 @@ function ensureWalkingEntity(entity, animatronicId, nightModeData) {
   const dimension = entity.dimension;
   const spawnLocation = { ...entity.location };
   const variantIndex = entity.getDynamicProperty("fr:variant_index") || 0;
+  const currentPoseIndex = entity.getDynamicProperty("fr:pose_index") || 0;
+
+  if (currentPoseIndex > 0) {
+    nightModeData.platformPoseIndex = currentPoseIndex;
+  }
+  if (variantIndex > 0) {
+    nightModeData.platformVariantIndex = variantIndex;
+  }
 
   console.log(`[NightMode] Converting statue ${entityType} to animatronic ${animatronicType}`);
   try {
@@ -3432,6 +3522,9 @@ function ensureWalkingEntity(entity, animatronicId, nightModeData) {
     walkingEntity.setDynamicProperty("fr:animatronic_id", animatronicId);
     walkingEntity.setDynamicProperty("fr:night_mode_enabled", true);
     walkingEntity.setDynamicProperty("fr:variant_index", variantIndex);
+    walkingEntity.setDynamicProperty("fr:pose_index", currentPoseIndex);
+    walkingEntity.setDynamicProperty("fr:platform_pose_index", nightModeData.platformPoseIndex);
+    walkingEntity.setDynamicProperty("fr:platform_variant_index", nightModeData.platformVariantIndex);
     walkingEntity.setDynamicProperty("fr:route_id", nightModeData.routeId);
     walkingEntity.setDynamicProperty("fr:platform_location", nightModeData.platformLocation);
     walkingEntity.setDynamicProperty("fr:original_statue_type", entityType);

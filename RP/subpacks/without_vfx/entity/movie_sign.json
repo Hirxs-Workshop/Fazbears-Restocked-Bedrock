@@ -1,0 +1,33 @@
+{
+	"format_version": "1.10.0",
+	"minecraft:client_entity": {
+		"description": {
+			"identifier": "fr:movie_sign",
+			"min_engine_version": "1.8.0",
+			"materials": {
+				"default": "fr_anim"
+			},
+			"textures": {
+				"default": "textures/entity/reworked/signs/movie_sign"
+			},
+			"animations": {
+				"fixed": "animation.spotlight_vfx.fixed"
+			},
+			"geometry": {
+				"default": "geometry.fr_movie_sign"
+			},
+			"render_controllers": [
+				"controller.render.fr_movie_sign_normal"
+			],
+			"scripts": {
+				"animate": [
+					"fixed"
+				]
+			},
+			"enable_attachables": false,
+			"spawn_egg": {
+				"texture": "movie_sign"
+			}
+		}
+	}
+}

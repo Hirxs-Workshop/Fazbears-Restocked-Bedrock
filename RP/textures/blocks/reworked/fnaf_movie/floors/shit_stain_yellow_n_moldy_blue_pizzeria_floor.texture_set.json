@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "shit_stain_yellow_n_moldy_blue_pizzeria_floor",
+        "metalness_emissive_roughness": "shit_stain_yellow_n_moldy_blue_pizzeria_floor_mer",
+        "heightmap": "shit_stain_yellow_n_moldy_blue_pizzeria_floor_normal"
+    }
+}

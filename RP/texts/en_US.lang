@@ -630,3 +630,5 @@ tile.fr:party_chair_blue.name=Party Chair Blue
 tile.fr:party_chair_red.name=Party Chair Red
 tile.fr:party_chair_purple.name=Party Chair Purple
 fr:itemGroup.name.colored_tiles=Colored Tiles
+tile.fr:heavy_duty_storage_shelves.name=Heavy Duty Storage Shelves
+tile.fr:wooden_heavy_duty_storage_shelves.name=Heavy Duty Storage Shelves

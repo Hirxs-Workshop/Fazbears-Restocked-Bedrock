@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "thank_you_bin",
+        "metalness_emissive_roughness": "thank_you_bin_mer",
+        "heightmap": "thank_you_bin_normal"
+    }
+}

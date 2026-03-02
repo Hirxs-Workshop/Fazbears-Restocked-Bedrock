@@ -2879,6 +2879,16 @@
                 "textures/blocks/reworked/party_chairs/party_chair_purple"
             ]
         },
+        "heavy_duty_storage_shelves": {
+            "textures": [
+                "textures/blocks/reworked/heavy_duty_storage_shelves"
+            ]
+        },
+        "wooden_heavy_duty_storage_shelves": {
+            "textures": [
+                "textures/blocks/reworked/wooden_heavy_duty_storage_shelves"
+            ]
+        },
         "wall_tiles_4x3_blue": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_blue" ] },
         "wall_tiles_4x3_cyan": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_cyan" ] },
         "wall_tiles_4x3_gray": { "textures": [ "textures/blocks/reworked/colored_blocks/tiles/wall_tiles_4x3_gray" ] },

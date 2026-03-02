@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fredrick_plush",
+        "metalness_emissive_roughness": "fredrick_plush_mer",
+        "heightmap": "fredrick_plush_normal"
+    }
+}

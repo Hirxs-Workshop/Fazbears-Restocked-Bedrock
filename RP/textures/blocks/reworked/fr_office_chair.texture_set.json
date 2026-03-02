@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "fr_office_chair",
+        "metalness_emissive_roughness": "fr_office_chair_mer",
+        "heightmap": "fr_office_chair_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "circus_freddy",
+        "metalness_emissive_roughness": "circus_freddy_mer",
+        "heightmap": "circus_freddy_normal"
+    }
+}

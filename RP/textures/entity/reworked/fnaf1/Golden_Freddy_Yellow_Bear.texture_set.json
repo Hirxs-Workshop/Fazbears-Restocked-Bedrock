@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Golden_Freddy_Yellow_Bear",
+        "metalness_emissive_roughness": "Golden_Freddy_Yellow_Bear_mer",
+        "heightmap": "Golden_Freddy_Yellow_Bear_normal"
+    }
+}

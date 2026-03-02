@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "pirate_cove_light_yellow",
+        "metalness_emissive_roughness": "pirate_cove_light_yellow_mer",
+        "heightmap": "pirate_cove_light_yellow_normal"
+    }
+}

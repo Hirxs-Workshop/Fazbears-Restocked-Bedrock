@@ -580,6 +580,224 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
     },
   });
 
+  blockComponentRegistry.registerCustomComponent("fr:ffp_sign", {
+    beforeOnPlayerPlace: (e) => {
+      const { block, permutationToPlace, player } = e;
+      const { dimension, location } = block;
+      const bit = permutationToPlace.getState("fr:block_bit") ?? "center";
+      if (bit !== "center") return;
+
+      const facing = permutationToPlace.getState("minecraft:cardinal_direction") ?? "south";
+
+      let hAxis = { x: 1, z: 0 };
+      if (facing === "east" || facing === "west") {
+        hAxis = { x: 0, z: 1 };
+      }
+
+      for (let dy = 0; dy < 3; dy++) {
+        for (let dh = -2; dh <= 2; dh++) {
+          if (dy === 0 && dh === 0) continue;
+
+          const pos = {
+            x: location.x + dh * hAxis.x,
+            y: location.y + dy,
+            z: location.z + dh * hAxis.z
+          };
+
+          const targetBlock = dimension.getBlock(pos);
+          if (!targetBlock || (!targetBlock.isAir && targetBlock.typeId !== "minecraft:air")) {
+            e.cancel = true;
+            if (player) {
+              system.run(() => {
+                player.sendMessage(
+                  dynamicToast(
+                    "§l§cERROR",
+                    "§cNot enough space to place FFP Sign\n§7Requires 5×3 blocks area",
+                    "textures/fr_ui/deny_icon",
+                    "textures/fr_ui/deny_ui"
+                  )
+                );
+              });
+            }
+            return;
+          }
+        }
+      }
+    },
+    onPlace: (e) => {
+      const { block } = e;
+      const { dimension, location } = block;
+      const bit = block.permutation.getState("fr:block_bit") ?? "center";
+      if (bit !== "center") return;
+
+      const facing = block.permutation.getState("minecraft:cardinal_direction") ?? "south";
+      const blockId = "fr:ffp_sign";
+
+      let hAxis = { x: 1, z: 0 };
+      if (facing === "east" || facing === "west") {
+        hAxis = { x: 0, z: 1 };
+      }
+
+      for (let dy = 0; dy < 3; dy++) {
+        for (let dh = -2; dh <= 2; dh++) {
+          if (dy === 0 && dh === 0) continue;
+
+          const pos = {
+            x: location.x + dh * hAxis.x,
+            y: location.y + dy,
+            z: location.z + dh * hAxis.z
+          };
+
+          const targetBlock = dimension.getBlock(pos);
+          if (targetBlock && (targetBlock.isAir || targetBlock.typeId === "minecraft:air")) {
+            try {
+              targetBlock.setType("fr:ffp_sign_side");
+              const side = dh < 0 ? "left" : "right";
+              let perm = targetBlock.permutation;
+              perm = perm.withState("minecraft:cardinal_direction", facing);
+              perm = perm.withState("fr:side", side);
+              targetBlock.setPermutation(perm);
+            } catch (e) {
+              console.warn(`Failed to place ffp_sign_side at ${pos.x},${pos.y},${pos.z}: ${e}`);
+            }
+          }
+        }
+      }
+
+      let yRot = 0;
+      switch (facing) {
+        case "north": yRot = 0; break;
+        case "south": yRot = 180; break;
+        case "east": yRot = 90; break;
+        case "west": yRot = -90; break;
+      }
+
+      const spawnPos = { x: location.x + 0.5, y: location.y, z: location.z + 0.5 };
+      dimension.runCommand(`summon fr:ffp_sign ${spawnPos.x} ${spawnPos.y} ${spawnPos.z} ${yRot} 0`);
+
+    },
+    onPlayerBreak: ({ block, brokenBlockPermutation }) => {
+      const dimension = block.dimension;
+      const location = block.location;
+      const facing = brokenBlockPermutation.getState("minecraft:cardinal_direction") ?? "south";
+      const bit = brokenBlockPermutation.getState("fr:block_bit") ?? "center";
+
+      let hAxis = { x: 1, z: 0 };
+      if (facing === "east" || facing === "west") {
+        hAxis = { x: 0, z: 1 };
+      }
+
+      let centerPos = { x: location.x, y: location.y, z: location.z };
+
+      if (bit === "part") {
+        outerLoop:
+        for (let dy = 0; dy >= -2; dy--) {
+          for (let dh = -2; dh <= 2; dh++) {
+            const checkPos = {
+              x: location.x + dh * hAxis.x,
+              y: location.y + dy,
+              z: location.z + dh * hAxis.z
+            };
+            const checkBlock = dimension.getBlock(checkPos);
+            if (checkBlock && checkBlock.typeId === "fr:ffp_sign") {
+              const checkBit = checkBlock.permutation.getState("fr:block_bit");
+              if (checkBit === "center") {
+                centerPos = checkPos;
+                break outerLoop;
+              }
+            }
+          }
+        }
+      }
+
+      const entities = dimension.getEntities({
+        type: "fr:ffp_sign",
+        location: { x: centerPos.x + 0.5, y: centerPos.y, z: centerPos.z + 0.5 },
+        maxDistance: 4
+      });
+      entities.forEach((ent) => {
+        try { ent.triggerEvent("destroy"); } catch (e) { try { ent.remove(); } catch (e2) { } }
+      });
+
+      for (let dy = 0; dy < 3; dy++) {
+        for (let dh = -2; dh <= 2; dh++) {
+          const pos = {
+            x: centerPos.x + dh * hAxis.x,
+            y: centerPos.y + dy,
+            z: centerPos.z + dh * hAxis.z
+          };
+          if (pos.x === location.x && pos.y === location.y && pos.z === location.z) continue;
+
+          const targetBlock = dimension.getBlock(pos);
+          if (targetBlock && (targetBlock.typeId === "fr:ffp_sign" || targetBlock.typeId === "fr:ffp_sign_side")) {
+            targetBlock.setType("minecraft:air");
+          }
+        }
+      }
+
+    }
+  });
+
+  blockComponentRegistry.registerCustomComponent("fr:ffp_sign_side", {
+    onPlayerBreak: ({ block, brokenBlockPermutation }) => {
+      const dimension = block.dimension;
+      const location = block.location;
+      const facing = brokenBlockPermutation.getState("minecraft:cardinal_direction") ?? "south";
+
+      let hAxis = { x: 1, z: 0 };
+      if (facing === "east" || facing === "west") {
+        hAxis = { x: 0, z: 1 };
+      }
+
+      let centerPos = null;
+      outerLoop:
+      for (let dy = 0; dy >= -2; dy--) {
+        for (let dh = -2; dh <= 2; dh++) {
+          const checkPos = {
+            x: location.x + dh * hAxis.x,
+            y: location.y + dy,
+            z: location.z + dh * hAxis.z
+          };
+          const checkBlock = dimension.getBlock(checkPos);
+          if (checkBlock && checkBlock.typeId === "fr:ffp_sign") {
+            const checkBit = checkBlock.permutation.getState("fr:block_bit");
+            if (checkBit === "center") {
+              centerPos = checkPos;
+              break outerLoop;
+            }
+          }
+        }
+      }
+
+      if (!centerPos) return;
+
+      const entities = dimension.getEntities({
+        type: "fr:ffp_sign",
+        location: { x: centerPos.x + 0.5, y: centerPos.y, z: centerPos.z + 0.5 },
+        maxDistance: 4
+      });
+      entities.forEach((ent) => {
+        try { ent.triggerEvent("destroy"); } catch (e) { try { ent.remove(); } catch (e2) { } }
+      });
+
+      for (let dy = 0; dy < 3; dy++) {
+        for (let dh = -2; dh <= 2; dh++) {
+          const pos = {
+            x: centerPos.x + dh * hAxis.x,
+            y: centerPos.y + dy,
+            z: centerPos.z + dh * hAxis.z
+          };
+          if (pos.x === location.x && pos.y === location.y && pos.z === location.z) continue;
+
+          const targetBlock = dimension.getBlock(pos);
+          if (targetBlock && (targetBlock.typeId === "fr:ffp_sign" || targetBlock.typeId === "fr:ffp_sign_side")) {
+            targetBlock.setType("minecraft:air");
+          }
+        }
+      }
+    }
+  });
+
   blockComponentRegistry.registerCustomComponent("fr:movie_sign", {
     beforeOnPlayerPlace: (e) => {
       const { block, permutationToPlace, player } = e;
@@ -797,7 +1015,6 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
       }
     }
   });
-
 });
 
 world.afterEvents.playerBreakBlock.subscribe((e) => {
@@ -1215,7 +1432,6 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
       try {
         const isVisible = block.permutation.getState("fr:visible") ?? true;
         if (!isVisible) {
-          // Check if we should visualize it
           const players = dimension.getPlayers({
             location: block.location,
             maxDistance: 8,
@@ -1245,14 +1461,6 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
 
         const routeData = getRoutePointData(loc, dimId);
         const order = routeData?.order ?? 0;
-
-        // Existing particle logic for visible points (using minecraft:none?)
-        // The user asked to visualize ONLY when invisible and holding item.
-        // But maybe the existing logic was for something else?
-        // "minecraft:none" does nothing. I'll keep it if it was intended for something, 
-        // but it seems useless. I'll comment it out or remove it to save performance.
-
-        // dimension.spawnParticle("minecraft:none", ...
       } catch { }
     },
     onPlayerInteract: (e) => {
@@ -1264,7 +1472,14 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
       const isRepairman = heldItem && heldItem.typeId === "fr:faz-diver_repairman";
 
       if (!isRepairman) {
-        player.sendMessage("§cYou need the Faz-Diver Repairman tool to edit this.");
+        player.sendMessage(
+          dynamicToast(
+            "§l§9Info",
+            `§7You need the §fFaz-Diver Repairman§7\ntool to edit this!`,
+            "textures/fr_ui/selection_icon",
+            "textures/fr_ui/selection_ui",
+          ),
+        );
         return;
       }
 
@@ -1619,6 +1834,47 @@ system.beforeEvents.startup.subscribe(({ blockComponentRegistry }) => {
       if (!e.block) return;
       let block = e.block.above();
       if (!block) return;
+    },
+  });
+
+  blockComponentRegistry.registerCustomComponent("fr:stall_sit", {
+    onPlayerInteract: function (e) {
+      let { x, y, z } = e.block.location;
+      if (e.player.isSneaking) return;
+      try {
+        const blockBit = e.block.permutation.getState("fr:block_bit");
+        if (blockBit !== "bottom") return;
+      } catch { return; }
+      const cx = x + 0.5;
+      const cy = y + 0.3;
+      const cz = z + 0.5;
+      let seatId = "fr:south_sit";
+      try {
+        const face = e.block.permutation.getState(
+          "minecraft:cardinal_direction",
+        );
+        if (face === "north") seatId = "fr:north_sit";
+        else if (face === "east") seatId = "fr:west_sit";
+        else if (face === "south") seatId = "fr:south_sit";
+        else if (face === "west") seatId = "fr:east_sit";
+      } catch { }
+      e.dimension.runCommand(`summon ${seatId} ${cx} ${cy} ${cz}`);
+      e.dimension.runCommand(
+        `execute positioned ${cx} ${cy} ${cz} as @e[type=${seatId},r=0.8] run tp @s ${cx} ${cy} ${cz}`,
+      );
+      e.player.runCommand(
+        `execute at @e[type=player] positioned ${cx} ${cy} ${cz} run ride @s start_riding @e[type=${seatId},r=0.8] teleport_rider`,
+      );
+    },
+    onPlayerDestroy: function (e) {
+      if (!e.player) return;
+      let playerLoc = e.player.location;
+      playerLoc.x -= 0.5;
+      playerLoc.z -= 0.5;
+      if (playerLoc.x != e.block.location.x) return;
+      if (playerLoc.y != e.block.location.y) return;
+      if (playerLoc.z != e.block.location.z) return;
+      e.player.runCommand("ride @s stop_riding");
     },
   });
 

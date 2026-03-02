@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "bonnie_the_rabbit_black_eyes_bowtie",
+        "metalness_emissive_roughness": "bonnie_the_rabbit_black_eyes_bowtie_mer",
+        "heightmap": "bonnie_the_rabbit_black_eyes_bowtie_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Fixed_Sparky",
+        "metalness_emissive_roughness": "Fixed_Sparky_mer",
+        "heightmap": "Fixed_Sparky_normal"
+    }
+}

@@ -1252,7 +1252,7 @@ class SecurityCameraSystem {
                                 dimensionId: dim.id
                             });
                             if (gen && gen.energy <= 0) {
-                                titleFlag = "§C§A§M§D";
+                                titleFlag = "§ᄀ§ᄁ§ᄂ";
                             }
                         }
                     }
@@ -2120,7 +2120,7 @@ class SecurityCameraSystem {
             }
 
             if (currentCamSettings.disabled || isPowerOut) {
-                const f = new ActionFormData().title(`§C§A§M§D §f${camName} `);
+                const f = new ActionFormData().title(`§ᄀ§ᄁ§ᄂ §f${camName} `);
                 try {
                     player.playSound("camera_select");
                 } catch { }

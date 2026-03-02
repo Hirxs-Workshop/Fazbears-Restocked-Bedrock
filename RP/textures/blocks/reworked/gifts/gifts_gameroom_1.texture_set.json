@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "gifts_gameroom_1",
+        "metalness_emissive_roughness": "gifts_gameroom_1_mer",
+        "heightmap": "gifts_gameroom_1_normal"
+    }
+}

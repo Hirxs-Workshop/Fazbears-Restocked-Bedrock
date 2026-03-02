@@ -26,7 +26,7 @@ class BigRedDoorManager {
     this.spamClicks = new Map();
     this.doorEntities = new Map();
 
-system.beforeEvents.startup.subscribe((eventData) => {
+    system.beforeEvents.startup.subscribe((eventData) => {
       eventData.blockComponentRegistry.registerCustomComponent("fr:en_on_place", {
         onPlace: (e) => this.handleOnPlace(e)
       });
@@ -50,7 +50,14 @@ system.beforeEvents.startup.subscribe((eventData) => {
       });
     });
 
-}
+    let tickCount = 0;
+    system.runInterval(() => {
+      tickCount++;
+      if (tickCount % 5 === 0) {
+        this.checkAndRespawnDoorEntities();
+      }
+    }, 20);
+  }
 
   loadDoorDatabase() {
     const json = world.getDynamicProperty("fr:door_db");
@@ -79,7 +86,7 @@ system.beforeEvents.startup.subscribe((eventData) => {
     return `${x},${y},${z}`;
   }
 
-getClosedOffsets(direction) {
+  getClosedOffsets(direction) {
     const offsets = [];
     switch (direction) {
       case "north":
@@ -116,7 +123,7 @@ getClosedOffsets(direction) {
     return offsets;
   }
 
-getOpenedOffsets(direction) {
+  getOpenedOffsets(direction) {
     const offsets = [];
     switch (direction) {
       case "north":
@@ -223,7 +230,7 @@ getOpenedOffsets(direction) {
     }
   }
 
-isOpenExtraAreaBlocked(dimension, baseX, baseY, baseZ, doorDirection) {
+  isOpenExtraAreaBlocked(dimension, baseX, baseY, baseZ, doorDirection) {
     const closedOffsets = this.getClosedOffsets(doorDirection);
     let extraDx = 0, extraDz = 0;
     switch (doorDirection) {
@@ -245,7 +252,7 @@ isOpenExtraAreaBlocked(dimension, baseX, baseY, baseZ, doorDirection) {
     return false;
   }
 
-handleSpamClicks(dimension, baseX, baseY, baseZ, doorDirection, player) {
+  handleSpamClicks(dimension, baseX, baseY, baseZ, doorDirection, player) {
     const doorKey = this.getBlockKey(baseX, baseY, baseZ);
     if (!this.spamClicks.has(doorKey)) {
       this.spamClicks.set(doorKey, new Map());
@@ -293,7 +300,7 @@ handleSpamClicks(dimension, baseX, baseY, baseZ, doorDirection, player) {
     }
   }
 
-isPlayerInDoorArea(baseX, baseY, baseZ, offsets, player) {
+  isPlayerInDoorArea(baseX, baseY, baseZ, offsets, player) {
     const pos = player.location;
     const playerX = Math.floor(pos.x);
     const playerY = Math.floor(pos.y);
@@ -318,7 +325,7 @@ isPlayerInDoorArea(baseX, baseY, baseZ, offsets, player) {
     return false;
   }
 
-pushPlayerFromArea(doorDirection, player, baseX, baseY, baseZ, offsets) {
+  pushPlayerFromArea(doorDirection, player, baseX, baseY, baseZ, offsets) {
     let sumX = 0, sumZ = 0;
     for (let i = 0; i < offsets.length; i++) {
       const [dx, dz] = offsets[i];
@@ -377,9 +384,7 @@ pushPlayerFromArea(doorDirection, player, baseX, baseY, baseZ, offsets) {
     this.placeDoorSegments(dimension, x, y, z, offsets, "closed", direction);
     this.activateDoorChain(dimension, x, y, z, direction);
 
-const entity = block.dimension.spawnEntity("fr:entrance_door", { x: x + 0.5, y: y, z: z + 0.5 });
-
-let yRotation = 0;
+    let yRotation = 0;
     switch (direction) {
       case "north":
         yRotation = 0;
@@ -395,9 +400,17 @@ let yRotation = 0;
         break;
     }
 
-entity.setRotation({ x: 0, y: yRotation });
+    const spawnPos = { x: x + 0.5, y: y, z: z + 0.5 };
+    block.dimension.runCommand(`summon fr:entrance_door ${spawnPos.x} ${spawnPos.y} ${spawnPos.z} ${yRotation} 0`);
 
-    this.doorEntities.set(key, entity.id);
+    system.runTimeout(() => {
+      try {
+        const ents = block.dimension.getEntities({ location: spawnPos, maxDistance: 1.5, type: "fr:entrance_door", closest: 1 });
+        if (ents.length > 0) {
+          this.doorEntities.set(key, ents[0].id);
+        }
+      } catch { }
+    }, 2);
 
     this.processedBlocks.set(key, true);
     this.saveDoorDatabase();
@@ -452,7 +465,7 @@ entity.setRotation({ x: 0, y: yRotation });
       this.doorBases.set(this.getBlockKey(pos.x, pos.y, pos.z), baseKey);
     };
 
-const offsetsOld = isOpen ? openedOffsets : closedOffsets;
+    const offsetsOld = isOpen ? openedOffsets : closedOffsets;
     for (let i = 0; i < offsetsOld.length; i++) {
       const [oldDx, oldDz] = offsetsOld[i];
       let dy;
@@ -475,7 +488,7 @@ const offsetsOld = isOpen ? openedOffsets : closedOffsets;
       }
     }
 
-for (let i = 0; i < offsetsNew.length; i++) {
+    for (let i = 0; i < offsetsNew.length; i++) {
       const [newDx, newDz] = offsetsNew[i];
 
       let dy;
@@ -498,7 +511,7 @@ for (let i = 0; i < offsetsNew.length; i++) {
       segmentState["fr:destroyed"] = false;
       segmentState["fr:value"] = i;
 
-let segOpenBit = "closed";
+      let segOpenBit = "closed";
       if (newOpenState) {
         switch (doorDirection) {
           case "north":
@@ -535,7 +548,7 @@ let segOpenBit = "closed";
     if (newOpenState) player.playSound("open.wooden_door");
     else player.playSound("close.wooden_door");
 
-system.runTimeout(() => {
+    system.runTimeout(() => {
       const targetValue = newOpenState ? 7 : 2;
       const offsets = newOpenState ? openedOffsets : closedOffsets;
 
@@ -605,7 +618,7 @@ system.runTimeout(() => {
       }
     }, 1);
 
-if (newOpenSide === "closed") {
+    if (newOpenSide === "closed") {
       const closedArea = this.getClosedOffsets(doorDirection);
       const openArea = this.getOpenedOffsets(doorDirection);
       const insideClosed = this.isPlayerInDoorArea(baseX, baseY, baseZ, closedArea, player);
@@ -687,7 +700,7 @@ if (newOpenSide === "closed") {
         try { targetEntity = dimension.getEntity(entityId); } catch (_) { targetEntity = null; }
       }
 
-if (!targetEntity) {
+      if (!targetEntity) {
         try {
           const nearby = dimension.getEntities({
             type: "fr:entrance_door",
@@ -745,7 +758,7 @@ if (!targetEntity) {
     if (baseKey) {
       const [baseX, baseY, baseZ] = baseKey.split(",").map(Number);
 
-system.runTimeout(() => {
+      system.runTimeout(() => {
         let targetEntity = null;
 
         const storedId = this.doorEntities.get(baseKey);
@@ -771,7 +784,7 @@ system.runTimeout(() => {
         }
       }, 1);
 
-try {
+      try {
 
         const baseBlock = dimension.getBlock({ x: baseX, y: baseY, z: baseZ });
         let direction = "south";
@@ -800,9 +813,81 @@ try {
         applyDestroyed(opened);
       } catch (_) { }
 
-this.doorEntities.delete(baseKey);
+      this.doorEntities.delete(baseKey);
     } else {
 
+    }
+  }
+
+  checkAndRespawnDoorEntities() {
+    const checkedBases = new Set();
+    for (const [segKey, baseKey] of this.doorBases.entries()) {
+      if (checkedBases.has(baseKey)) continue;
+      checkedBases.add(baseKey);
+
+      const [x, y, z] = baseKey.split(",").map(Number);
+      let dim;
+      try { dim = world.getDimension("overworld"); } catch { continue; }
+
+      const block = dim.getBlock({ x, y, z });
+      if (!block || block.typeId !== "fr:entrance_door_block") continue;
+
+      const storedId = this.doorEntities.get(baseKey);
+      let entity = null;
+      if (storedId) {
+        try { entity = dim.getEntity(storedId); } catch { entity = null; }
+      }
+
+      if (!entity) {
+        const center = { x: x + 0.5, y: y, z: z + 0.5 };
+        const nearby = dim.getEntities({
+          type: "fr:entrance_door",
+          location: center,
+          maxDistance: 2,
+          closest: 1
+        });
+
+        if (nearby.length > 0) {
+          entity = nearby[0];
+          this.doorEntities.set(baseKey, entity.id);
+          const states = block.permutation.getAllStates();
+          const direction = states["minecraft:cardinal_direction"] || "south";
+          let angle = 0;
+          switch (direction) {
+            case "north": angle = 0; break;
+            case "east": angle = 90; break;
+            case "south": angle = 180; break;
+            case "west": angle = 270; break;
+          }
+          try { entity.setRotation({ x: 0, y: angle }); } catch { }
+        } else {
+          const states = block.permutation.getAllStates();
+          const direction = states["minecraft:cardinal_direction"] || "south";
+          let angle = 0;
+          switch (direction) {
+            case "north": angle = 0; break;
+            case "east": angle = 90; break;
+            case "south": angle = 180; break;
+            case "west": angle = 270; break;
+          }
+          const center = { x: x + 0.5, y: y, z: z + 0.5 };
+          try {
+            dim.runCommand(`summon fr:entrance_door ${center.x} ${center.y} ${center.z} ${angle} 0`);
+            system.runTimeout(() => {
+              try {
+                const ents = dim.getEntities({ location: center, maxDistance: 1.5, type: "fr:entrance_door", closest: 1 });
+                if (ents.length > 0) {
+                  this.doorEntities.set(baseKey, ents[0].id);
+                  const openState = states["fr:open_bit"];
+                  if (openState && openState !== "closed") {
+                    ents[0].triggerEvent("open_door");
+                  }
+                }
+              } catch { }
+            }, 2);
+          } catch { }
+        }
+      }
     }
   }
 }

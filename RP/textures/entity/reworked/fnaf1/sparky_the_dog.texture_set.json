@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "sparky_the_dog",
+        "metalness_emissive_roughness": "sparky_the_dog_mer",
+        "heightmap": "sparky_the_dog_normal"
+    }
+}

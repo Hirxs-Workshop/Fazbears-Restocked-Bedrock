@@ -76,7 +76,7 @@
       "anchor_to": "top_middle",
       "layer": 10000,
       "$atext": "$actionbar_text",
-      "visible": "(not (($atext - '§C§A§M§D') = $atext))",
+      "visible": "(not (($atext - '§ᄀ§ᄁ§ᄂ') = $atext))",
       "alpha": "@hud.fr_camera_dark_fade_in_text",
       "controls": [
          {
@@ -154,7 +154,7 @@
       "layer": 9000,
       "propagate_alpha": true,
       "$atext": "$actionbar_text",
-      "visible": "(not (($atext - '§C§A§M§D') = $atext))",
+      "visible": "(not (($atext - '§ᄀ§ᄁ§ᄂ') = $atext))",
       "alpha": "@hud.fr_camera_dark_fade_in_clean",
       "controls": [
          {

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Frostbear_Freddy",
+        "metalness_emissive_roughness": "Frostbear_Freddy_mer",
+        "heightmap": "Frostbear_Freddy_normal"
+    }
+}

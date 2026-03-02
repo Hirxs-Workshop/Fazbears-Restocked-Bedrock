@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "brick_tear_left",
+        "metalness_emissive_roughness": "brick_tear_left_mer",
+        "heightmap": "brick_tear_left_normal"
+    }
+}

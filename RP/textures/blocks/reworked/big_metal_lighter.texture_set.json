@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "big_metal_lighter",
+        "metalness_emissive_roughness": "big_metal_lighter_mer",
+        "heightmap": "big_metal_lighter_normal"
+    }
+}

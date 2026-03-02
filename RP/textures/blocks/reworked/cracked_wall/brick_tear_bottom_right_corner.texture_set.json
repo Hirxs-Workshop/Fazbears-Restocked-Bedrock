@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "brick_tear_bottom_right_corner",
+        "metalness_emissive_roughness": "brick_tear_bottom_right_corner_mer",
+        "heightmap": "brick_tear_bottom_right_corner_normal"
+    }
+}

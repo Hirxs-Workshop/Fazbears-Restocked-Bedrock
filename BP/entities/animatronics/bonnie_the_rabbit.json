@@ -1147,6 +1147,11 @@
           "fr:variant": 4
         }
       },
+      "fr:set_variant_5": {
+        "set_property": {
+          "fr:variant": 5
+        }
+      },
       "fr:disable_ai_walk": {
         "add": {
           "component_groups": [

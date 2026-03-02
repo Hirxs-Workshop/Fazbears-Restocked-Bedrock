@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "endo_01",
+        "metalness_emissive_roughness": "endo_01_mer",
+        "heightmap": "endo_01_normal"
+    }
+}

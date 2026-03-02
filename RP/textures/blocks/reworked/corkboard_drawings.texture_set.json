@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "corkboard_drawings",
+        "metalness_emissive_roughness": "corkboard_drawings_mer",
+        "heightmap": "corkboard_drawings_normal"
+    }
+}

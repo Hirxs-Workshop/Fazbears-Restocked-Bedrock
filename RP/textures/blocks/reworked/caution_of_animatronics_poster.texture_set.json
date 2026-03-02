@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "caution_of_animatronics_poster",
+        "metalness_emissive_roughness": "caution_of_animatronics_poster_mer",
+        "heightmap": "caution_of_animatronics_poster_normal"
+    }
+}

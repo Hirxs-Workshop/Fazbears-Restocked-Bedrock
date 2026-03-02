@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "freezer_iron_rack",
+        "metalness_emissive_roughness": "freezer_iron_rack_mer",
+        "heightmap": "freezer_iron_rack_normal"
+    }
+}

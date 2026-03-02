@@ -8,6 +8,16 @@
 			},
 			"textures": {
 				"default": "textures/entity/reworked/fnaf1/foxy/foxy_the_pirate",
+				"variant_1": "textures/entity/reworked/fnaf1/foxy/foxy_the_pirate_fixed",
+				"variant_2": "textures/entity/reworked/fnaf1/foxy/foxy_the_pirate_glow_eyes",
+				"variant_3": "textures/entity/reworked/fnaf1/foxy/foxy_the_pirate_fixed_glow_eyes",
+				"variant_4": "textures/entity/reworked/fnaf1/foxy/foxy_the_gingerbread_fox",
+				"variant_5": "textures/entity/reworked/fnaf1/foxy/radioactive_foxy",
+				"variant_6": "textures/entity/reworked/fnaf1/foxy/damaged_foxy_the_pirate_captain_fixed",
+				"variant_7": "textures/entity/reworked/fnaf1/foxy/damaged_foxy_the_pirate_captain_torn",
+				"variant_8": "textures/entity/reworked/fnaf1/foxy/fixed_foxy_the_pirate_captain_fixed",
+				"variant_9": "textures/entity/reworked/fnaf1/foxy/fixed_foxy_the_pirate_captain_torn",
+				"variant_10": "textures/entity/reworked/fnaf1/foxy/chocolate_foxy",
 				"glowing_eyes": "textures/entity/reworked/fnaf1/foxy/foxy_the_pirate_glow_eyes"
 			},
 			"spawn_egg": {
@@ -33,7 +43,7 @@
 				"default": "geometry.Foxy_the_Pirate_alt"
 			},
 			"render_controllers": [
-				"controller.render.fr_render_vars"
+				"controller.render.fr_foxy_walking_rc"
 			],
 			"enable_attachables": false
 		}

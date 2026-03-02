@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "damaged_foxy_the_pirate_captain_torn",
+        "metalness_emissive_roughness": "damaged_foxy_the_pirate_captain_torn_mer",
+        "heightmap": "damaged_foxy_the_pirate_captain_torn_normal"
+    }
+}

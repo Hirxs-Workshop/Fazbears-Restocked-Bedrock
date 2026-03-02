@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "arcade_stool_orange",
+        "metalness_emissive_roughness": "arcade_stool_orange_mer",
+        "heightmap": "arcade_stool_orange_normal"
+    }
+}

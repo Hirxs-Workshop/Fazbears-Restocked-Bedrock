@@ -835,7 +835,7 @@
   "ng_long_form": {
     "type": "panel",
     "$flag_camerasUi": "§r§r§r§C§u",
-    "$flag_camDisabled": "§C§A§M§D",
+    "$flag_camDisabled": "§ᄀ§ᄁ§ᄂ",
     "$flag_camEdit": "§C§A§M§E§D",
     "$flag_camEditPitch": "§C§A§M§E§P",
     "$flag_camEditRange": "§C§A§M§E§R",
@@ -2949,8 +2949,7 @@
                   }
                 ]
               }
-            }
-            ,
+            },
             {
               "close_bar_panel": {
                 "type": "panel",

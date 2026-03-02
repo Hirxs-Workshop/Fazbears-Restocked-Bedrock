@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "deep_fryer_machine",
+        "metalness_emissive_roughness": "deep_fryer_machine_mer",
+        "heightmap": "deep_fryer_machine_normal"
+    }
+}

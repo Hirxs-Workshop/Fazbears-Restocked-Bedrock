@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "rules_for_safety",
+        "metalness_emissive_roughness": "rules_for_safety_mer",
+        "heightmap": "rules_for_safety_normal"
+    }
+}

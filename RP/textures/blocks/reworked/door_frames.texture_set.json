@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "door_frames",
+        "metalness_emissive_roughness": "door_frames_mer",
+        "heightmap": "door_frames_normal"
+    }
+}

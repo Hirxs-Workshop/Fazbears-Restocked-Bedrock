@@ -134,7 +134,7 @@ system.runTimeout(() => {
             players.forEach(player => {
                 player.sendMessage(dynamicToast(
                     "§l§qSUCCESS",
-                    `§qScripts reloaded...`,
+                    `§7Scripts reloaded...`,
                     "textures/fr_ui/approve_icon",
                     "textures/fr_ui/approve_ui"
                 ));

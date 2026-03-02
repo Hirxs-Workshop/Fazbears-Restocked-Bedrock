@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "Freddy_Fazbear_Film",
+        "metalness_emissive_roughness": "Freddy_Fazbear_Film_mer",
+        "heightmap": "Freddy_Fazbear_Film_normal"
+    }
+}

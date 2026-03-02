@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "carl_the_cupcake",
+        "metalness_emissive_roughness": "carl_the_cupcake_mer",
+        "heightmap": "carl_the_cupcake_normal"
+    }
+}

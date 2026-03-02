@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "kris_dev_plush",
+        "metalness_emissive_roughness": "kris_dev_plush_mer",
+        "heightmap": "kris_dev_plush_normal"
+    }
+}

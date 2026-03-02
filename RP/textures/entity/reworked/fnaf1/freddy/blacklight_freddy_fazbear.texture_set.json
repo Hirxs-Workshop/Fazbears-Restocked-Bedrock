@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "blacklight_freddy_fazbear",
+        "metalness_emissive_roughness": "blacklight_freddy_fazbear_mer",
+        "heightmap": "blacklight_freddy_fazbear_normal"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "vhs_tape",
+        "metalness_emissive_roughness": "vhs_tape_mer",
+        "heightmap": "vhs_tape_normal"
+    }
+}

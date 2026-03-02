@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "movie_sign_block_center",
+        "metalness_emissive_roughness": "movie_sign_block_center_mer",
+        "heightmap": "movie_sign_block_center_normal"
+    }
+}

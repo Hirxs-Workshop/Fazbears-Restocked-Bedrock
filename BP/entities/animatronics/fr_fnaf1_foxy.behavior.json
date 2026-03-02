@@ -10,26 +10,37 @@
         "foxy:attack_time": {
           "type": "float",
           "default": 0.0,
-          "range": [0.0, 10.0]
+          "range": [
+            0.0,
+            10.0
+          ]
         },
         "fr:pose": {
           "client_sync": true,
           "type": "int",
           "default": 0,
-          "range": [0, 18]
+          "range": [
+            0,
+            18
+          ]
         },
         "fr:variant": {
           "client_sync": true,
           "type": "int",
           "default": 0,
-          "range": [0, 9]
+          "range": [
+            0,
+            10
+          ]
         }
       },
       "animations": {
         "attack_animation": "controller.animation.fnaf1_foxy.attack"
       },
       "scripts": {
-        "animate": ["attack_animation"]
+        "animate": [
+          "attack_animation"
+        ]
       }
     },
     "component_groups": {
@@ -96,7 +107,11 @@
           "seat_count": 1,
           "seats": [
             {
-              "position": [0, 0.6, 1.6],
+              "position": [
+                0,
+                0.6,
+                1.6
+              ],
               "rotate_rider_by": 180,
               "lock_rider_rotation": 0
             }
@@ -167,7 +182,11 @@
           "seat_count": 1,
           "seats": [
             {
-              "position": [0, 0.6, 1.6],
+              "position": [
+                0,
+                0.6,
+                1.6
+              ],
               "rotate_rider_by": 180,
               "lock_rider_rotation": 0
             }
@@ -202,7 +221,11 @@
           "seat_count": 1,
           "seats": [
             {
-              "position": [0, 0.6, 1.6],
+              "position": [
+                0,
+                0.6,
+                1.6
+              ],
               "rotate_rider_by": 180,
               "lock_rider_rotation": 0
             }
@@ -336,7 +359,10 @@
           "priority": 10
         },
         "minecraft:timer": {
-          "time": [1.0, 2.0],
+          "time": [
+            1.0,
+            2.0
+          ],
           "looping": true,
           "time_down_event": {
             "event": "foxy_check_for_player"
@@ -350,7 +376,11 @@
     },
     "components": {
       "minecraft:type_family": {
-        "family": ["foxy", "animatronic", "hostile"]
+        "family": [
+          "foxy",
+          "animatronic",
+          "hostile"
+        ]
       },
       "minecraft:collision_box": {
         "width": 0.8,
@@ -395,7 +425,10 @@
         "priority": 10
       },
       "minecraft:timer": {
-        "time": [1.0, 2.0],
+        "time": [
+          1.0,
+          2.0
+        ],
         "looping": true,
         "time_down_event": {
           "event": "foxy_check_for_player"
@@ -414,26 +447,39 @@
     "events": {
       "minecraft:entity_spawned": {
         "add": {
-          "component_groups": ["foxy_hostile"]
+          "component_groups": [
+            "foxy_hostile"
+          ]
         }
       },
       "foxy_start_chase": {
         "add": {
-          "component_groups": ["foxy_chasing"]
+          "component_groups": [
+            "foxy_chasing"
+          ]
         },
         "remove": {
-          "component_groups": ["foxy_hostile"]
+          "component_groups": [
+            "foxy_hostile"
+          ]
         }
       },
       "foxy_stop_chase": {
         "add": {
-          "component_groups": ["foxy_hostile"]
+          "component_groups": [
+            "foxy_hostile"
+          ]
         },
         "remove": {
-          "component_groups": ["foxy_chasing", "foxy_scare_cooldown"]
+          "component_groups": [
+            "foxy_chasing",
+            "foxy_scare_cooldown"
+          ]
         },
         "queue_command": {
-          "command": ["tag @s remove played_scare"]
+          "command": [
+            "tag @s remove played_scare"
+          ]
         }
       },
       "foxy_set_attack_time_1": {
@@ -460,10 +506,16 @@
       },
       "foxy_start_attack": {
         "add": {
-          "component_groups": ["foxy_attacking", "foxy_attack_timer"]
+          "component_groups": [
+            "foxy_attacking",
+            "foxy_attack_timer"
+          ]
         },
         "remove": {
-          "component_groups": ["foxy_chasing", "foxy_hostile"]
+          "component_groups": [
+            "foxy_chasing",
+            "foxy_hostile"
+          ]
         },
         "set_property": {
           "foxy:attack_time": "1.0"
@@ -482,15 +534,22 @@
       },
       "foxy_sitting_player": {
         "queue_command": {
-          "command": ["ride @p start_riding @s teleport_ride"]
+          "command": [
+            "ride @p start_riding @s teleport_ride"
+          ]
         }
       },
       "foxy_end_attack": {
         "remove": {
-          "component_groups": ["foxy_attacking", "foxy_attack_timer"]
+          "component_groups": [
+            "foxy_attacking",
+            "foxy_attack_timer"
+          ]
         },
         "add": {
-          "component_groups": ["foxy_chasing"]
+          "component_groups": [
+            "foxy_chasing"
+          ]
         },
         "set_property": {
           "foxy:attack_time": "0.0"
@@ -507,10 +566,14 @@
       },
       "foxy_reset_scare": {
         "queue_command": {
-          "command": ["tag @s remove played_scare"]
+          "command": [
+            "tag @s remove played_scare"
+          ]
         },
         "remove": {
-          "component_groups": ["foxy_scare_cooldown"]
+          "component_groups": [
+            "foxy_scare_cooldown"
+          ]
         }
       },
       "foxy_check_for_player": {
@@ -542,10 +605,15 @@
               ]
             },
             "add": {
-              "component_groups": ["foxy_chasing", "foxy_scare_cooldown"]
+              "component_groups": [
+                "foxy_chasing",
+                "foxy_scare_cooldown"
+              ]
             },
             "remove": {
-              "component_groups": ["foxy_hostile"]
+              "component_groups": [
+                "foxy_hostile"
+              ]
             },
             "queue_command": {
               "command": [
@@ -574,23 +642,34 @@
               ]
             },
             "add": {
-              "component_groups": ["foxy_hostile"]
+              "component_groups": [
+                "foxy_hostile"
+              ]
             },
             "remove": {
-              "component_groups": ["foxy_chasing"]
+              "component_groups": [
+                "foxy_chasing"
+              ]
             },
             "queue_command": {
-              "command": ["tag @s remove played_scare"]
+              "command": [
+                "tag @s remove played_scare"
+              ]
             }
           }
         ]
       },
       "foxy_ignore_player": {
         "add": {
-          "component_groups": ["foxy_ignoring_player"]
+          "component_groups": [
+            "foxy_ignoring_player"
+          ]
         },
         "remove": {
-          "component_groups": ["foxy_hostile", "foxy_chasing"]
+          "component_groups": [
+            "foxy_hostile",
+            "foxy_chasing"
+          ]
         }
       },
       "foxy_stop_ignore_player": {
@@ -610,10 +689,14 @@
               ]
             },
             "add": {
-              "component_groups": ["foxy_chasing"]
+              "component_groups": [
+                "foxy_chasing"
+              ]
             },
             "remove": {
-              "component_groups": ["foxy_ignoring_player"]
+              "component_groups": [
+                "foxy_ignoring_player"
+              ]
             }
           },
           {
@@ -631,17 +714,23 @@
               ]
             },
             "add": {
-              "component_groups": ["foxy_hostile"]
+              "component_groups": [
+                "foxy_hostile"
+              ]
             },
             "remove": {
-              "component_groups": ["foxy_ignoring_player"]
+              "component_groups": [
+                "foxy_ignoring_player"
+              ]
             }
           }
         ]
       },
       "fr:start_walking": {
         "add": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         },
         "remove": {
           "component_groups": [
@@ -654,15 +743,21 @@
       },
       "fr:stop_walking": {
         "add": {
-          "component_groups": ["fr:route_stopped"]
+          "component_groups": [
+            "fr:route_stopped"
+          ]
         },
         "remove": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         }
       },
       "foxy_return_home": {
         "add": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         },
         "remove": {
           "component_groups": [
@@ -675,39 +770,171 @@
       },
       "foxy_stop_returning": {
         "add": {
-          "component_groups": ["fr:route_stopped"]
+          "component_groups": [
+            "fr:route_stopped"
+          ]
         },
         "remove": {
-          "component_groups": ["fr:route_walking"]
+          "component_groups": [
+            "fr:route_walking"
+          ]
         }
       },
-      "fr:set_pose_0": { "set_property": { "fr:pose": 0 } },
-      "fr:set_pose_1": { "set_property": { "fr:pose": 1 } },
-      "fr:set_pose_2": { "set_property": { "fr:pose": 2 } },
-      "fr:set_pose_3": { "set_property": { "fr:pose": 3 } },
-      "fr:set_pose_4": { "set_property": { "fr:pose": 4 } },
-      "fr:set_pose_5": { "set_property": { "fr:pose": 5 } },
-      "fr:set_pose_6": { "set_property": { "fr:pose": 6 } },
-      "fr:set_pose_7": { "set_property": { "fr:pose": 7 } },
-      "fr:set_pose_8": { "set_property": { "fr:pose": 8 } },
-      "fr:set_pose_9": { "set_property": { "fr:pose": 9 } },
-      "fr:set_pose_10": { "set_property": { "fr:pose": 10 } },
-      "fr:set_pose_11": { "set_property": { "fr:pose": 11 } },
-      "fr:set_pose_12": { "set_property": { "fr:pose": 12 } },
-      "fr:set_pose_13": { "set_property": { "fr:pose": 13 } },
-      "fr:set_pose_14": { "set_property": { "fr:pose": 14 } },
-      "fr:set_pose_15": { "set_property": { "fr:pose": 15 } },
-      "fr:set_pose_16": { "set_property": { "fr:pose": 16 } },
-      "fr:set_pose_17": { "set_property": { "fr:pose": 17 } },
-      "fr:set_pose_18": { "set_property": { "fr:pose": 18 } },
-      "fr:set_variant_0": { "set_property": { "fr:variant": 0 } },
-      "fr:set_variant_1": { "set_property": { "fr:variant": 1 } },
-      "fr:set_variant_2": { "set_property": { "fr:variant": 2 } },
-      "fr:set_variant_3": { "set_property": { "fr:variant": 3 } },
-      "fr:set_variant_4": { "set_property": { "fr:variant": 4 } },
+      "fr:set_pose_0": {
+        "set_property": {
+          "fr:pose": 0
+        }
+      },
+      "fr:set_pose_1": {
+        "set_property": {
+          "fr:pose": 1
+        }
+      },
+      "fr:set_pose_2": {
+        "set_property": {
+          "fr:pose": 2
+        }
+      },
+      "fr:set_pose_3": {
+        "set_property": {
+          "fr:pose": 3
+        }
+      },
+      "fr:set_pose_4": {
+        "set_property": {
+          "fr:pose": 4
+        }
+      },
+      "fr:set_pose_5": {
+        "set_property": {
+          "fr:pose": 5
+        }
+      },
+      "fr:set_pose_6": {
+        "set_property": {
+          "fr:pose": 6
+        }
+      },
+      "fr:set_pose_7": {
+        "set_property": {
+          "fr:pose": 7
+        }
+      },
+      "fr:set_pose_8": {
+        "set_property": {
+          "fr:pose": 8
+        }
+      },
+      "fr:set_pose_9": {
+        "set_property": {
+          "fr:pose": 9
+        }
+      },
+      "fr:set_pose_10": {
+        "set_property": {
+          "fr:pose": 10
+        }
+      },
+      "fr:set_pose_11": {
+        "set_property": {
+          "fr:pose": 11
+        }
+      },
+      "fr:set_pose_12": {
+        "set_property": {
+          "fr:pose": 12
+        }
+      },
+      "fr:set_pose_13": {
+        "set_property": {
+          "fr:pose": 13
+        }
+      },
+      "fr:set_pose_14": {
+        "set_property": {
+          "fr:pose": 14
+        }
+      },
+      "fr:set_pose_15": {
+        "set_property": {
+          "fr:pose": 15
+        }
+      },
+      "fr:set_pose_16": {
+        "set_property": {
+          "fr:pose": 16
+        }
+      },
+      "fr:set_pose_17": {
+        "set_property": {
+          "fr:pose": 17
+        }
+      },
+      "fr:set_pose_18": {
+        "set_property": {
+          "fr:pose": 18
+        }
+      },
+      "fr:set_variant_0": {
+        "set_property": {
+          "fr:variant": 0
+        }
+      },
+      "fr:set_variant_1": {
+        "set_property": {
+          "fr:variant": 1
+        }
+      },
+      "fr:set_variant_2": {
+        "set_property": {
+          "fr:variant": 2
+        }
+      },
+      "fr:set_variant_3": {
+        "set_property": {
+          "fr:variant": 3
+        }
+      },
+      "fr:set_variant_4": {
+        "set_property": {
+          "fr:variant": 4
+        }
+      },
+      "fr:set_variant_5": {
+        "set_property": {
+          "fr:variant": 5
+        }
+      },
+      "fr:set_variant_6": {
+        "set_property": {
+          "fr:variant": 6
+        }
+      },
+      "fr:set_variant_7": {
+        "set_property": {
+          "fr:variant": 7
+        }
+      },
+      "fr:set_variant_8": {
+        "set_property": {
+          "fr:variant": 8
+        }
+      },
+      "fr:set_variant_9": {
+        "set_property": {
+          "fr:variant": 9
+        }
+      },
+      "fr:set_variant_10": {
+        "set_property": {
+          "fr:variant": 10
+        }
+      },
       "fr:disable_ai_walk": {
         "add": {
-          "component_groups": ["fr:pathfinding_mode"]
+          "component_groups": [
+            "fr:pathfinding_mode"
+          ]
         },
         "remove": {
           "component_groups": [
@@ -720,10 +947,15 @@
       },
       "fr:enable_ai_walk": {
         "add": {
-          "component_groups": ["foxy_hostile", "fr:normal_ai_mode"]
+          "component_groups": [
+            "foxy_hostile",
+            "fr:normal_ai_mode"
+          ]
         },
         "remove": {
-          "component_groups": ["fr:pathfinding_mode"]
+          "component_groups": [
+            "fr:pathfinding_mode"
+          ]
         }
       }
     }

@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "movie_booth_1",
+        "metalness_emissive_roughness": "movie_booth_1_mer",
+        "heightmap": "movie_booth_1_normal"
+    }
+}

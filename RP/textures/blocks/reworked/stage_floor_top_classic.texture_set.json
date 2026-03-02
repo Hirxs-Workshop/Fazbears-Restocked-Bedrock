@@ -1,0 +1,8 @@
+{
+    "format_version": "1.16.100",
+    "minecraft:texture_set": {
+        "color": "stage_floor_top_classic",
+        "metalness_emissive_roughness": "stage_floor_top_classic_mer",
+        "heightmap": "stage_floor_top_classic_normal"
+    }
+}
