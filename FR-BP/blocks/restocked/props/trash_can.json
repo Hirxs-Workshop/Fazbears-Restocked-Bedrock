@@ -16,12 +16,12 @@
 		},
 		"components": {
 			"minecraft:collision_box": {
-				"origin": [-8, 0, -8],
-				"size": [16, 16, 16]
+				"origin": [-7, 0, -7],
+				"size": [14, 16, 14]
 			},
 			"minecraft:selection_box": {
-				"origin": [-8, 0, -8],
-				"size": [16, 16, 16]
+				"origin": [-7, 0, -7],
+				"size": [14, 16, 14]
 			},
 			"minecraft:geometry": {
 				"identifier": "geometry.trash_can"

@@ -24,11 +24,11 @@
 			},
 			"minecraft:collision_box": {
 				"origin": [-4, 0, -3],
-				"size": [9, 1, 7]
+				"size": [8, 1, 6]
 			},
 			"minecraft:selection_box": {
 				"origin": [-4, 0, -3],
-				"size": [9, 1, 7]
+				"size": [8, 1, 6]
 			}
 		},
 		"permutations": [

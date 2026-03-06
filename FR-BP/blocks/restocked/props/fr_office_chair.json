@@ -17,12 +17,12 @@
 		"components": {
 			"tag:fr:its_chair": {},
 			"minecraft:collision_box": {
-				"origin": [-8, 0, -8],
-				"size": [16, 16, 16]
+				"origin": [-6, 0, -6],
+				"size": [12, 11, 12]
 			},
 			"minecraft:selection_box": {
-				"origin": [-8, 0, -8],
-				"size": [16, 16, 16]
+				"origin": [-6, 0, -6],
+				"size": [12, 11, 12]
 			},
 			"minecraft:geometry": {
 				"identifier": "geometry.fr_office_chair"
