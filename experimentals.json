@@ -1,6 +1,6 @@
 {
   "requires": {
-    "beta-api": true,
-    "upcoming-creators-features": true
+    "beta-api": false,
+    "upcoming-creators-features": false
   }
 }
